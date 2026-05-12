@@ -446,10 +446,10 @@ export default function Index() {
                     Это доказывает: проект реальный, команда работает, а легенда
                     начинает материализовываться.
                   </p>
-                  <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
+                  <a href="https://web.max.ru/-72521511416496" target="_blank" rel="noopener noreferrer"
                     className="font-body font-bold flex items-center gap-2"
                     style={{ color: "var(--bronze)" }}>
-                    Читать на Planeta.ru
+                    Читать на Макс
                     <Icon name="ArrowRight" size={16} />
                   </a>
                 </div>
