@@ -168,8 +168,8 @@ export default function Index() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
           <div className="animate-float mb-8 inline-block">
             <img
-              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/eda0e784-2336-4322-939a-d4f224b016cd.jpg"
-              alt="Енотыч на набережной"
+              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/4362ca50-9ec3-4776-96ed-7ac9a6dcf123.png"
+              alt="Енофья с малышом"
               className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-full object-cover shadow-2xl"
               style={{ border: "4px solid rgba(245, 230, 211, 0.4)" }}
             />
