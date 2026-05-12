@@ -276,6 +276,7 @@ export default function Index() {
             <img
               src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/eda0e784-2336-4322-939a-d4f224b016cd.jpg"
               alt="Енотыч — первый бронзовый хранитель"
+              style={{ objectPosition: "center 20%" }}
               className="w-full h-64 sm:h-96 object-cover"
             />
             <div className="absolute inset-0 flex items-end p-8"
