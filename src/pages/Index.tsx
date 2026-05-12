@@ -446,10 +446,10 @@ export default function Index() {
                     Это доказывает: проект реальный, команда работает, а легенда
                     начинает материализовываться.
                   </p>
-                  <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer"
+                  <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
                     className="font-body font-bold flex items-center gap-2"
                     style={{ color: "var(--bronze)" }}>
-                    Читать в Telegram
+                    Читать на Planeta.ru
                     <Icon name="ArrowRight" size={16} />
                   </a>
                 </div>
