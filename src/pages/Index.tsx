@@ -168,7 +168,7 @@ export default function Index() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
           <div className="animate-float mb-8 inline-block">
             <img
-              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/files/8a983959-575d-4452-a803-50fcb32da4a9.jpg"
+              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/eda0e784-2336-4322-939a-d4f224b016cd.jpg"
               alt="Енотыч на набережной"
               className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-full object-cover shadow-2xl"
               style={{ border: "4px solid rgba(245, 230, 211, 0.4)" }}
@@ -274,8 +274,8 @@ export default function Index() {
 
           <div className="mt-16 rounded-3xl overflow-hidden shadow-2xl relative">
             <img
-              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/files/d19a56ad-9b80-4f2d-a3ea-bc8e18ccd8f4.jpg"
-              alt="Семья Туапсенотов"
+              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/eda0e784-2336-4322-939a-d4f224b016cd.jpg"
+              alt="Енотыч — первый бронзовый хранитель"
               className="w-full h-64 sm:h-96 object-cover"
             />
             <div className="absolute inset-0 flex items-end p-8"
@@ -421,7 +421,7 @@ export default function Index() {
               <div className="md:flex">
                 <div className="md:w-2/5">
                   <img
-                    src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/files/2d9fe402-d602-4831-a670-85adea3f621a.jpg"
+                    src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/eda0e784-2336-4322-939a-d4f224b016cd.jpg"
                     alt="Енотыч в бронзе"
                     className="w-full h-64 md:h-full object-cover"
                   />
