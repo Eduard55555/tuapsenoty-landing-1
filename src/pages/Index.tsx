@@ -282,7 +282,7 @@ export default function Index() {
 
           <div className="mt-16 rounded-3xl overflow-hidden shadow-2xl relative">
             <img
-              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/050bd85e-b6ca-4e18-8aad-ac00640f7e1a.jpg"
+              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/files/a8da7eed-7ba4-4087-b984-a61389caf502.jpg"
               alt="Семья Туапсенотов"
               style={{ objectPosition: "center center" }}
               className="w-full h-64 sm:h-96 object-cover"
