@@ -310,49 +310,23 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {characters.map((char) => (
-              <div key={char.name}
-                className={`card-hover rounded-3xl overflow-hidden bg-gradient-to-br ${char.color}`}
-                style={{ border: "1px solid rgba(184,115,51,0.12)" }}>
-                <div className="p-6">
-                  {char.image ? (
-                    <img src={char.image} alt={char.name}
-                      className="w-full h-44 object-cover rounded-2xl mb-4"
-                      style={{ objectPosition: "top" }} />
-                  ) : (
-                    <div className="text-5xl mb-4 text-center">{char.emoji}</div>
-                  )}
-                  <div className="text-center mb-4">
-                    <h3 className="font-display text-2xl font-bold" style={{ color: "var(--warm-dark)" }}>
-                      {char.name}
-                    </h3>
-                    <p className="font-body text-sm font-semibold mt-1" style={{ color: "var(--bronze)" }}>
-                      {char.role}
-                    </p>
+              <div key={char.name} className="relative group rounded-2xl overflow-hidden">
+                {char.image ? (
+                  <img src={char.image} alt={char.name}
+                    className="w-full h-64 object-cover object-top" />
+                ) : (
+                  <div className="w-full h-64 flex flex-col items-center justify-center rounded-2xl"
+                    style={{ backgroundColor: "var(--sand)" }}>
+                    <span className="text-6xl mb-2">{char.emoji}</span>
+                    <span className="font-body text-sm font-semibold" style={{ color: "var(--bronze)" }}>Скоро</span>
                   </div>
-                  <p className="font-body text-sm text-center mb-4" style={{ color: "#5A3E2B", lineHeight: 1.6 }}>
-                    {char.description}
-                  </p>
-
-                  <div className="rounded-2xl p-3 text-center"
-                    style={{ backgroundColor: "rgba(184,115,51,0.1)", border: "1px dashed rgba(184,115,51,0.3)" }}>
-                    <p className="font-body text-xs font-bold mb-1" style={{ color: "var(--bronze)" }}>
-                      🪄 Ритуал
-                    </p>
-                    <p className="font-body text-xs italic" style={{ color: "#6B4C35" }}>
-                      {char.ritual}
-                    </p>
-                  </div>
-
-                  {char.location && (
-                    <div className="flex items-center justify-center gap-1 mt-3">
-                      <Icon name="MapPin" size={12} />
-                      <span className="font-body text-xs" style={{ color: "var(--sea)" }}>
-                        {char.location}
-                      </span>
-                    </div>
-                  )}
+                )}
+                <div className="absolute bottom-0 left-0 right-0 px-3 py-2"
+                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%)" }}>
+                  <p className="font-display text-white font-bold text-lg leading-tight">{char.name}</p>
+                  <p className="font-body text-xs" style={{ color: "rgba(255,255,255,0.8)" }}>{char.role}</p>
                 </div>
               </div>
             ))}
