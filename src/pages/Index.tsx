@@ -215,7 +215,7 @@ export default function Index() {
           </div>
 
           <div className="animate-fade-up-delay-3 mt-16 grid grid-cols-3 gap-6 max-w-xl mx-auto">
-            {[["8", "Енотов-хранителей"], ["1", "Уже отлит в бронзе"], ["∞", "Легенд впереди"]].map(([num, label]) => (
+            {[["🦝", "Енотов-хранителей"], ["🏅", "Уже отлит в бронзе"], ["✨", "Легенд впереди"]].map(([num, label]) => (
               <div key={label} className="text-center">
                 <div className="font-display text-3xl sm:text-4xl font-bold"
                   style={{ color: "var(--teal-light)" }}>
