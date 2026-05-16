@@ -72,6 +72,7 @@ const characters = [
     ritual: "Потри Морскую жемчужину — богатство само найдёт тебя",
     location: "",
     color: "from-sky-100 to-indigo-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/214a3f64-cbda-49f6-b733-689288c9ff6d.png",
   },
   {
     name: "Еноша",
