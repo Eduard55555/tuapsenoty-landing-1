@@ -53,6 +53,7 @@ const characters = [
     ritual: "Загадай желание звезде и коснись Звёздной пыли — сбудется",
     location: "",
     color: "from-pink-100 to-violet-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/26e030b8-8ffc-470b-9422-9d0f8875b67c.png",
   },
   {
     name: "Еновей",
