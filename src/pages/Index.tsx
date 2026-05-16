@@ -13,6 +13,7 @@ const characters = [
     ritual: "Потри удочку и загадай желание — оно сбудется, когда волна дойдёт до берега",
     location: "Набережная",
     color: "from-amber-100 to-yellow-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/699870c8-5038-41a7-acc4-bd7dc2b4cbbb.png",
   },
   {
     name: "Енофья",
@@ -22,6 +23,7 @@ const characters = [
     ritual: "Погладь корзинку — и год будет сладким. Говорят, кто улыбнётся ей в ответ — у того даже грустный день становится сладким",
     location: "",
     color: "from-rose-100 to-orange-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/7fe56c76-2ec3-4595-bb45-b77d9b1dc305.png",
   },
   {
     name: "Туапсей",
@@ -31,6 +33,7 @@ const characters = [
     ritual: "Потри его по плечу и посмотри вдаль — говорят, там на горизонте уже ждёт твоя удача",
     location: "",
     color: "from-blue-100 to-teal-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/af45e7d8-5b7a-418b-9d71-002fdccd3530.png",
   },
   {
     name: "Енира",
@@ -313,7 +316,13 @@ export default function Index() {
                 className={`card-hover rounded-3xl overflow-hidden bg-gradient-to-br ${char.color}`}
                 style={{ border: "1px solid rgba(184,115,51,0.12)" }}>
                 <div className="p-6">
-                  <div className="text-5xl mb-4 text-center">{char.emoji}</div>
+                  {char.image ? (
+                    <img src={char.image} alt={char.name}
+                      className="w-full h-44 object-cover rounded-2xl mb-4"
+                      style={{ objectPosition: "top" }} />
+                  ) : (
+                    <div className="text-5xl mb-4 text-center">{char.emoji}</div>
+                  )}
                   <div className="text-center mb-4">
                     <h3 className="font-display text-2xl font-bold" style={{ color: "var(--warm-dark)" }}>
                       {char.name}
