@@ -186,7 +186,7 @@ export default function Index() {
           <div className="animate-fade-up">
             <p className="font-body text-sm font-bold tracking-widest uppercase mb-4"
               style={{ color: "var(--teal-light)", letterSpacing: "0.2em" }}>
-              Краудфандинговый проект · Туапсе
+              Туапсе
             </p>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
               style={{ color: "var(--cream)", lineHeight: 1.1 }}>
