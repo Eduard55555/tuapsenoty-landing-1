@@ -13,7 +13,7 @@ const characters = [
     ritual: "Потри удочку и загадай желание — оно сбудется, когда волна дойдёт до берега",
     location: "Набережная",
     color: "from-amber-100 to-yellow-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/699870c8-5038-41a7-acc4-bd7dc2b4cbbb.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/61957535-c6fc-42ed-be30-235d0501d01a.png",
   },
   {
     name: "Енофья",
@@ -23,7 +23,7 @@ const characters = [
     ritual: "Погладь корзинку — и год будет сладким. Говорят, кто улыбнётся ей в ответ — у того даже грустный день становится сладким",
     location: "",
     color: "from-rose-100 to-orange-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/7fe56c76-2ec3-4595-bb45-b77d9b1dc305.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/7bd68cbe-1da1-45cf-bafd-0828c44078d6.png",
   },
   {
     name: "Туапсей",
@@ -33,7 +33,7 @@ const characters = [
     ritual: "Потри его по плечу и посмотри вдаль — говорят, там на горизонте уже ждёт твоя удача",
     location: "",
     color: "from-blue-100 to-teal-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/af45e7d8-5b7a-418b-9d71-002fdccd3530.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/d591b894-0720-4afe-9119-19877540c0b0.png",
   },
   {
     name: "Енира",
@@ -43,6 +43,7 @@ const characters = [
     ritual: "Прижми Ракушковый оберег к уху — услышишь своё желание",
     location: "",
     color: "from-cyan-100 to-blue-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/489b20a1-045b-4b22-bbd8-f91f8c07cc2b.png",
   },
   {
     name: "Тыдочка",
