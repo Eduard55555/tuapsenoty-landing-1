@@ -62,6 +62,7 @@ const characters = [
     ritual: "Разверни Карту сокровищ — найдёшь, что давно потерял",
     location: "",
     color: "from-green-100 to-emerald-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/6c3bb954-3b8c-4404-ab87-eaab2dfc4b89.png",
   },
   {
     name: "Еносик",
