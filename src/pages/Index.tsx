@@ -81,6 +81,7 @@ const characters = [
     ritual: "Коснись Компаса из якоря — он укажет путь к твоему кладу",
     location: "",
     color: "from-slate-100 to-gray-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/a3981d6a-4ab5-4b95-88d5-fa6c9f1cf3d2.png",
   },
 ];
 
