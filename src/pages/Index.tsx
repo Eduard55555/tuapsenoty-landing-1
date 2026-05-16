@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const PLANETA_URL = "https://planeta.ru";
+const PLANETA_URL = "https://planeta.ru/account/my-campaigns/244619";
 const TELEGRAM_URL = "https://t.me/tuapsenoty";
 
 const characters = [
