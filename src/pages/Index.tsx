@@ -280,26 +280,41 @@ export default function Index() {
             ))}
           </div>
 
-          <div className="mt-16 rounded-3xl overflow-hidden shadow-2xl relative">
-            <div className="grid grid-cols-4 grid-rows-2 gap-1" style={{ height: "420px" }}>
-              {[
-                "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/61957535-c6fc-42ed-be30-235d0501d01a.png",
-                "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/7bd68cbe-1da1-45cf-bafd-0828c44078d6.png",
-                "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/d591b894-0720-4afe-9119-19877540c0b0.png",
-                "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/489b20a1-045b-4b22-bbd8-f91f8c07cc2b.png",
-                "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/26e030b8-8ffc-470b-9422-9d0f8875b67c.png",
-                "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/6c3bb954-3b8c-4404-ab87-eaab2dfc4b89.png",
-                "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/214a3f64-cbda-49f6-b733-689288c9ff6d.png",
-                "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/a3981d6a-4ab5-4b95-88d5-fa6c9f1cf3d2.png",
-              ].map((url, i) => (
-                <img key={i} src={url} alt="" className="w-full h-full object-cover object-top" />
-              ))}
-            </div>
-            <div className="absolute inset-0 flex items-end p-8"
-              style={{ background: "linear-gradient(to top, rgba(46,92,110,0.8) 0%, transparent 60%)" }}>
-              <p className="font-display text-2xl sm:text-3xl font-bold italic"
-                style={{ color: "var(--cream)" }}>
-                «Каждый еnот — это история, которую хочется рассказать»
+          <div className="mt-16 relative flex items-center justify-center" style={{ height: "520px" }}>
+            {[
+              "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/61957535-c6fc-42ed-be30-235d0501d01a.png",
+              "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/7bd68cbe-1da1-45cf-bafd-0828c44078d6.png",
+              "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/d591b894-0720-4afe-9119-19877540c0b0.png",
+              "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/489b20a1-045b-4b22-bbd8-f91f8c07cc2b.png",
+              "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/26e030b8-8ffc-470b-9422-9d0f8875b67c.png",
+              "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/6c3bb954-3b8c-4404-ab87-eaab2dfc4b89.png",
+              "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/214a3f64-cbda-49f6-b733-689288c9ff6d.png",
+              "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/a3981d6a-4ab5-4b95-88d5-fa6c9f1cf3d2.png",
+            ].map((url, i) => {
+              const angle = (i / 8) * 2 * Math.PI - Math.PI / 2;
+              const r = 195;
+              const x = Math.cos(angle) * r;
+              const y = Math.sin(angle) * r;
+              return (
+                <div key={i} className="absolute rounded-full overflow-hidden shadow-xl"
+                  style={{
+                    width: 130,
+                    height: 130,
+                    transform: `translate(${x}px, ${y}px)`,
+                    border: "4px solid rgba(184,115,51,0.4)",
+                  }}>
+                  <img src={url} alt="" className="w-full h-full object-cover object-top" />
+                </div>
+              );
+            })}
+            <div className="relative z-10 text-center px-6 py-8 rounded-full"
+              style={{ background: "rgba(253,246,238,0.92)", border: "2px dashed rgba(184,115,51,0.3)", maxWidth: 200 }}>
+              <div className="text-4xl mb-2">🦝</div>
+              <p className="font-display text-lg font-bold leading-tight" style={{ color: "var(--warm-dark)" }}>
+                Вся семья
+              </p>
+              <p className="font-body text-xs mt-1" style={{ color: "var(--bronze)" }}>
+                8 хранителей Туапсе
               </p>
             </div>
           </div>
