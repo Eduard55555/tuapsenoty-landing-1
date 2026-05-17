@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
 const PLANETA_URL = "https://planeta.ru/account/my-campaigns/244619";
-const TELEGRAM_URL = "https://t.me/tuapsenoty";
+const MAX_URL = "https://max.ru/join/uBdeDmv3f51WgWvFTPMWA84VIaYSgeU9yLwdr9lYO1g";
 const VK_URL = "https://vk.ru/club237171594";
 
 const characters = [
@@ -564,10 +564,18 @@ export default function Index() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="Phone" size={14} />
-                  <a href="tel:+79001234567"
+                  <a href="tel:+79185051617"
                     className="font-body text-sm hover:underline"
                     style={{ color: "rgba(245,230,211,0.8)" }}>
-                    +7 (900) 123-45-67
+                    8-918-505-16-17
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Phone" size={14} />
+                  <a href="tel:+79184362113"
+                    className="font-body text-sm hover:underline"
+                    style={{ color: "rgba(245,230,211,0.8)" }}>
+                    8-918-436-21-13
                   </a>
                 </div>
               </div>
@@ -579,11 +587,11 @@ export default function Index() {
                 Ссылки
               </h4>
               <div className="space-y-2">
-                <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer"
+                <a href={MAX_URL} target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 font-body text-sm hover:underline"
                   style={{ color: "rgba(245,230,211,0.8)" }}>
-                  <Icon name="Send" size={14} />
-                  Telegram @tuapsenoty
+                  <Icon name="MessageCircle" size={14} />
+                  Мессенджер Макс
                 </a>
                 <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 font-body text-sm hover:underline"
