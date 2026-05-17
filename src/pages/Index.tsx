@@ -556,10 +556,18 @@ export default function Index() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="Mail" size={14} />
-                  <a href="mailto:info@tuapsenoty.ru"
+                  <a href="mailto:sen555551@mail.ru"
                     className="font-body text-sm hover:underline"
                     style={{ color: "rgba(245,230,211,0.8)" }}>
-                    info@tuapsenoty.ru
+                    sen555551@mail.ru
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Mail" size={14} />
+                  <a href="mailto:galyapina2014@yandex.ru"
+                    className="font-body text-sm hover:underline"
+                    style={{ color: "rgba(245,230,211,0.8)" }}>
+                    galyapina2014@yandex.ru
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
