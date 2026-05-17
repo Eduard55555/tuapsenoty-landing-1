@@ -405,9 +405,7 @@ export default function Index() {
                 <p className="font-body text-sm mb-4" style={{ color: "rgba(245,230,211,0.75)" }}>
                   {tier.desc}
                 </p>
-                <div className="font-body font-bold text-lg" style={{ color: "var(--teal-light)" }}>
-                  от {tier.amount}
-                </div>
+
               </div>
             ))}
           </div>
