@@ -3,6 +3,7 @@ import Icon from "@/components/ui/icon";
 
 const PLANETA_URL = "https://planeta.ru/account/my-campaigns/244619";
 const TELEGRAM_URL = "https://t.me/tuapsenoty";
+const VK_URL = "https://vk.ru/club237171594";
 
 const characters = [
   {
@@ -539,7 +540,7 @@ export default function Index() {
                 </span>
               </div>
               <p className="font-body text-sm" style={{ color: "rgba(245,230,211,0.6)", lineHeight: 1.7 }}>
-                Семья бронзовых енотов-хранителей Туапсе. Проект автора Эдуарда Сарбаева.
+                Семья бронзовых енотов-хранителей Туапсе. Проект автора Ирины Сарбаевой.
               </p>
             </div>
 
@@ -551,7 +552,7 @@ export default function Index() {
               <div className="space-y-2">
                 <div className="flex items-center gap-2" style={{ color: "rgba(245,230,211,0.8)" }}>
                   <Icon name="User" size={14} />
-                  <span className="font-body text-sm">Эдуард Сарбаев</span>
+                  <span className="font-body text-sm">Ирина Сарбаева</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="Mail" size={14} />
@@ -589,6 +590,12 @@ export default function Index() {
                   style={{ color: "rgba(245,230,211,0.8)" }}>
                   <Icon name="ExternalLink" size={14} />
                   Страница на Planeta.ru
+                </a>
+                <a href={VK_URL} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 font-body text-sm hover:underline"
+                  style={{ color: "rgba(245,230,211,0.8)" }}>
+                  <Icon name="Users" size={14} />
+                  ВКонтакте
                 </a>
               </div>
 
