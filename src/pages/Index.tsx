@@ -437,7 +437,7 @@ export default function Index() {
               <div className="md:flex">
                 <div className="md:w-2/5">
                   <img
-                    src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/eda0e784-2336-4322-939a-d4f224b016cd.jpg"
+                    src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/35e8511e-6850-47ef-b595-1cf605b96ff1.jpg"
                     alt="Енотыч в бронзе"
                     className="w-full h-64 md:h-full object-cover"
                   />
