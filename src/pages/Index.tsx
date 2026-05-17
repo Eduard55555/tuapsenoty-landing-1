@@ -540,19 +540,19 @@ export default function Index() {
                 </span>
               </div>
               <p className="font-body text-sm" style={{ color: "rgba(245,230,211,0.6)", lineHeight: 1.7 }}>
-                Семья бронзовых енотов-хранителей Туапсе. Проект автора Ирины Сарбаевой.
+                Семья бронзовых енотов-хранителей Туапсе. Проект авторов Эдуарда и Ирины Сарбаевых.
               </p>
             </div>
 
             <div>
               <h4 className="font-body font-bold mb-4 text-sm uppercase tracking-wider"
                 style={{ color: "var(--teal-light)" }}>
-                Контакты автора
+                Контакты авторов
               </h4>
               <div className="space-y-2">
                 <div className="flex items-center gap-2" style={{ color: "rgba(245,230,211,0.8)" }}>
                   <Icon name="User" size={14} />
-                  <span className="font-body text-sm">Ирина Сарбаева</span>
+                  <span className="font-body text-sm">Эдуард и Ирина Сарбаевы</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="Mail" size={14} />
