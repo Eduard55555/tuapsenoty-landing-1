@@ -14,12 +14,7 @@ const characters = [
     ritual: "Потри удочку и загадай желание — оно сбудется, когда волна дойдёт до берега",
     location: "Набережная",
     color: "from-amber-100 to-yellow-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/253279f9-b0f5-475d-834d-63b99c68b4b0.jpg",
-    images: [
-      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/253279f9-b0f5-475d-834d-63b99c68b4b0.jpg",
-      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e8e4fa3a-5863-483b-9cb1-762d643b6148.jpg",
-      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e4d92eb9-6be8-457e-ac19-82c4926e846e.jpg",
-    ],
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/61957535-c6fc-42ed-be30-235d0501d01a.png",
   },
   {
     name: "Енофья",
@@ -93,42 +88,47 @@ const characters = [
   },
 ];
 
-function CharacterGallery({ images, name }: { images: string[]; name: string }) {
+const NEWS_PHOTOS = [
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/253279f9-b0f5-475d-834d-63b99c68b4b0.jpg",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e8e4fa3a-5863-483b-9cb1-762d643b6148.jpg",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e4d92eb9-6be8-457e-ac19-82c4926e846e.jpg",
+];
+
+function NewsGallery() {
   const [idx, setIdx] = useState(0);
   return (
-    <div className="relative w-full h-44 rounded-2xl mb-4 overflow-hidden">
+    <div className="relative w-full h-64 md:h-full min-h-64">
       <img
-        src={images[idx]}
-        alt={name}
-        className="w-full h-full object-cover transition-opacity duration-300"
-        style={{ objectPosition: "center" }}
+        src={NEWS_PHOTOS[idx]}
+        alt="Енотыч в бронзе"
+        className="w-full h-full object-cover"
       />
-      <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
-        {images.map((_, i) => (
+      <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+        {NEWS_PHOTOS.map((_, i) => (
           <button
             key={i}
             onClick={() => setIdx(i)}
-            className="w-2 h-2 rounded-full border-0 cursor-pointer transition-all"
-            style={{ background: i === idx ? "#B8732F" : "rgba(255,255,255,0.7)" }}
+            className="w-2.5 h-2.5 rounded-full border-0 cursor-pointer transition-all"
+            style={{ background: i === idx ? "#B8732F" : "rgba(255,255,255,0.75)" }}
           />
         ))}
       </div>
       {idx > 0 && (
         <button
           onClick={() => setIdx(idx - 1)}
-          className="absolute left-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center border-0 cursor-pointer"
-          style={{ background: "rgba(255,255,255,0.8)" }}
+          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center border-0 cursor-pointer"
+          style={{ background: "rgba(255,255,255,0.85)" }}
         >
-          <Icon name="ChevronLeft" size={16} />
+          <Icon name="ChevronLeft" size={18} />
         </button>
       )}
-      {idx < images.length - 1 && (
+      {idx < NEWS_PHOTOS.length - 1 && (
         <button
           onClick={() => setIdx(idx + 1)}
-          className="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center border-0 cursor-pointer"
-          style={{ background: "rgba(255,255,255,0.8)" }}
+          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center border-0 cursor-pointer"
+          style={{ background: "rgba(255,255,255,0.85)" }}
         >
-          <Icon name="ChevronRight" size={16} />
+          <Icon name="ChevronRight" size={18} />
         </button>
       )}
     </div>
@@ -369,9 +369,7 @@ export default function Index() {
                 className={`card-hover rounded-3xl overflow-hidden bg-gradient-to-br ${char.color}`}
                 style={{ border: "1px solid rgba(184,115,51,0.12)" }}>
                 <div className="p-6">
-                  {char.images ? (
-                    <CharacterGallery images={char.images} name={char.name} />
-                  ) : char.image ? (
+                  {char.image ? (
                     <img src={char.image} alt={char.name}
                       className="w-full h-44 object-cover rounded-2xl mb-4"
                       style={{ objectPosition: "top" }} />
@@ -484,12 +482,8 @@ export default function Index() {
             <div className="card-hover rounded-3xl overflow-hidden md:col-span-2"
               style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
               <div className="md:flex">
-                <div className="md:w-2/5">
-                  <img
-                    src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/35e8511e-6850-47ef-b595-1cf605b96ff1.jpg"
-                    alt="Енотыч в бронзе"
-                    className="w-full h-64 md:h-full object-cover"
-                  />
+                <div className="md:w-2/5 relative">
+                  <NewsGallery />
                 </div>
                 <div className="p-8 md:w-3/5">
                   <div className="flex items-center gap-2 mb-4">
