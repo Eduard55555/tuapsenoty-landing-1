@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const PLANETA_URL = "https://planeta.ru/account/my-campaigns/244619";
+const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 const MAX_URL = "https://max.ru/join/uBdeDmv3f51WgWvFTPMWA84VIaYSgeU9yLwdr9lYO1g";
 const VK_URL = "https://vk.ru/club237171594";
 
