@@ -619,14 +619,7 @@ export default function Index() {
                     8-918-505-16-17
                   </a>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="Phone" size={14} />
-                  <a href="tel:+79184362113"
-                    className="font-body text-sm hover:underline"
-                    style={{ color: "rgba(245,230,211,0.8)" }}>
-                    8-918-436-21-13
-                  </a>
-                </div>
+
               </div>
             </div>
 
