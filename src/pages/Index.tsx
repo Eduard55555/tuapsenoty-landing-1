@@ -262,14 +262,16 @@ export default function Index() {
           </p>
 
           <div className="animate-fade-up-delay-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/shop"
+              className="btn-primary text-base px-6 py-4 w-full sm:w-auto text-center"
+              style={{ backgroundColor: "var(--bronze)" }}>
+              <Icon name="ShoppingCart" size={18} />
+              Перейти в магазин
+            </a>
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-              className="btn-primary text-base px-6 py-4 w-full sm:w-auto text-center">
+              className="btn-secondary text-base px-6 py-4 w-full sm:w-auto text-center">
               <Icon name="Heart" size={18} />
               Стать частью легенды
-            </a>
-            <a href="#about" className="btn-secondary text-base px-6 py-4 w-full sm:w-auto text-center">
-              Узнать историю
-              <Icon name="ChevronDown" size={18} />
             </a>
           </div>
 
