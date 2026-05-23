@@ -178,11 +178,7 @@ export default function Index() {
               ))}
             </nav>
 
-            <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-              className="hidden md:inline-flex btn-primary text-sm px-5 py-3">
-              <Icon name="Heart" size={16} />
-              Поддержать
-            </a>
+
 
             <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}
               style={{ color: "var(--bronze)" }}>
@@ -244,7 +240,7 @@ export default function Index() {
 
           <div className="animate-fade-up">
             <p className="font-body text-sm font-bold tracking-widest uppercase mb-4"
-              style={{ color: "var(--teal-light)", letterSpacing: "0.2em" }}>
+              style={{ color: "var(--teal-light)" }}>
               Туапсе
             </p>
             <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
@@ -297,7 +293,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
-              style={{ color: "var(--bronze)", letterSpacing: "0.2em" }}>
+              style={{ color: "var(--bronze)" }}>
               Новости проекта
             </p>
             <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-4">
@@ -400,7 +396,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
-              style={{ color: "var(--bronze)", letterSpacing: "0.2em" }}>
+              style={{ color: "var(--bronze)" }}>
               О проекте
             </p>
             <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-6">
@@ -468,7 +464,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
-              style={{ color: "var(--bronze)", letterSpacing: "0.2em" }}>
+              style={{ color: "var(--bronze)" }}>
               Персонажи
             </p>
             <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-6">
@@ -538,7 +534,7 @@ export default function Index() {
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <p className="font-body text-sm font-bold tracking-widest uppercase mb-4"
-            style={{ color: "var(--teal-light)", letterSpacing: "0.2em" }}>
+            style={{ color: "var(--teal-light)" }}>
             Как помочь
           </p>
           <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold mb-6"

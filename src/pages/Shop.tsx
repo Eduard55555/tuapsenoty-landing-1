@@ -34,6 +34,10 @@ function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
   const handleOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     await fetch("https://functions.poehali.dev/c9f50a36-d5ce-4c13-ae29-999d565492de", {
@@ -48,9 +52,10 @@ function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end">
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
-      <div className="relative w-full max-w-md bg-white h-full overflow-y-auto flex flex-col shadow-2xl">
+    <div className="fixed inset-0 flex justify-end" style={{ zIndex: 9999 }}>
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div className="relative w-full max-w-md bg-white flex flex-col shadow-2xl"
+        style={{ height: "100dvh", overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
         <div className="flex items-center justify-between p-5 border-b"
           style={{ borderColor: "rgba(184,115,51,0.2)" }}>
           <h2 className="font-display text-2xl font-bold" style={{ color: "var(--warm-dark)" }}>
