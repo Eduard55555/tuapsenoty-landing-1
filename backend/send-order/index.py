@@ -3,7 +3,7 @@ import smtplib
 import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-# v2
+# v3
 
 
 def handler(event: dict, context) -> dict:
