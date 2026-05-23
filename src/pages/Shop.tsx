@@ -149,7 +149,9 @@ export default function Shop() {
   const handleAdd = (product: typeof PRODUCTS[0]) => {
     add({ id: product.id, name: product.name, price: product.price, image: product.image });
     setAdded(product.id);
-    setTimeout(() => setAdded(null), 1500);
+    setTimeout(() => {
+      window.location.href = "/cart";
+    }, 800);
   };
 
   return (
@@ -168,8 +170,7 @@ export default function Shop() {
             <a href="/" className="font-body text-sm hidden sm:block" style={{ color: "var(--warm-dark)" }}>
               ← На главную
             </a>
-            <button onClick={() => setCartOpen(true)}
-              className="relative btn-primary text-sm px-4 py-2">
+            <a href="/cart" className="relative btn-primary text-sm px-4 py-2">
               <Icon name="ShoppingCart" size={18} />
               Корзина
               {count > 0 && (
@@ -178,7 +179,7 @@ export default function Shop() {
                   {count}
                 </span>
               )}
-            </button>
+            </a>
           </div>
         </div>
       </header>
