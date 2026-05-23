@@ -171,6 +171,11 @@ export default function Index() {
                   {label}
                 </a>
               ))}
+              <a href="/shop"
+                className="font-body text-sm transition-colors"
+                style={{ color: "var(--bronze)", fontWeight: 700 }}>
+                🛒 Магазин
+              </a>
             </nav>
 
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
@@ -197,6 +202,12 @@ export default function Index() {
                 {label}
               </a>
             ))}
+            <a href="/shop"
+              className="block font-body font-semibold py-2"
+              style={{ color: "var(--bronze)" }}
+              onClick={() => setMenuOpen(false)}>
+              🛒 Магазин
+            </a>
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
               className="btn-primary text-sm w-full justify-center mt-2">
               <Icon name="Heart" size={16} />
