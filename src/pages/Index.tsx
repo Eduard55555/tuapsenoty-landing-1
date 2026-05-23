@@ -236,7 +236,7 @@ export default function Index() {
               style={{ color: "var(--teal-light)", letterSpacing: "0.2em" }}>
               Туапсе
             </p>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+            <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
               style={{ color: "var(--cream)", lineHeight: 1.1 }}>
               Туапсеноты —<br />
               <em style={{ color: "var(--teal-light)" }}>новая душа</em><br />
@@ -287,7 +287,7 @@ export default function Index() {
               style={{ color: "var(--bronze)", letterSpacing: "0.2em" }}>
               Новости проекта
             </p>
-            <h2 className="section-title text-4xl sm:text-5xl mb-4">
+            <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-4">
               Это уже происходит
             </h2>
           </div>
@@ -299,7 +299,7 @@ export default function Index() {
                 <div className="md:w-2/5 relative">
                   <NewsGallery />
                 </div>
-                <div className="p-8 md:w-3/5">
+                <div className="p-4 sm:p-8 md:w-3/5">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
                       style={{ backgroundColor: "rgba(76,175,80,0.15)", color: "#4CAF50" }}>
@@ -309,7 +309,7 @@ export default function Index() {
                       Май 2026
                     </span>
                   </div>
-                  <h3 className="section-title text-3xl mb-4">
+                  <h3 className="section-title text-xl sm:text-3xl mb-4">
                     Енотыч уже отлит в бронзе!
                   </h3>
                   <p className="font-body mb-6" style={{ color: "#6B4C35", lineHeight: 1.8 }}>
@@ -344,9 +344,9 @@ export default function Index() {
           </div>
 
           {/* Subscribe */}
-          <div className="mt-16 rounded-3xl p-8 sm:p-12 text-center"
+          <div className="mt-12 rounded-3xl p-6 sm:p-12 text-center"
             style={{ background: "linear-gradient(135deg, var(--sand), #EDD5B8)" }}>
-            <h3 className="section-title text-3xl mb-3">Следите за проектом</h3>
+            <h3 className="section-title text-xl sm:text-3xl mb-3">Следите за проектом</h3>
             <p className="font-body mb-8" style={{ color: "#6B4C35" }}>
               Подпишитесь и узнавайте первыми об открытии каждого нового Туапсенота
             </p>
@@ -390,7 +390,7 @@ export default function Index() {
               style={{ color: "var(--bronze)", letterSpacing: "0.2em" }}>
               О проекте
             </p>
-            <h2 className="section-title text-4xl sm:text-5xl mb-6">
+            <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-6">
               Туапсе заслуживает<br />своей легенды
             </h2>
             <p className="font-body text-lg max-w-2xl mx-auto" style={{ color: "#6B4C35", lineHeight: 1.8 }}>
@@ -418,7 +418,7 @@ export default function Index() {
               },
             ].map((item) => (
               <div key={item.title}
-                className="card-hover rounded-3xl p-8"
+                className="card-hover rounded-3xl p-5 sm:p-8"
                 style={{ backgroundColor: "var(--sand)", border: "1px solid rgba(184,115,51,0.15)" }}>
                 <div className="text-4xl mb-4">{item.emoji}</div>
                 <h3 className="font-display text-2xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
@@ -440,7 +440,7 @@ export default function Index() {
             />
             <div className="absolute inset-0 flex items-end p-8"
               style={{ background: "linear-gradient(to top, rgba(46,92,110,0.8) 0%, transparent 60%)" }}>
-              <p className="font-display text-2xl sm:text-3xl font-bold italic"
+              <p className="font-display text-lg sm:text-2xl md:text-3xl font-bold italic"
                 style={{ color: "var(--cream)" }}>
                 «Каждый еnот — это история, которую хочется рассказать»
               </p>
@@ -458,7 +458,7 @@ export default function Index() {
               style={{ color: "var(--bronze)", letterSpacing: "0.2em" }}>
               Персонажи
             </p>
-            <h2 className="section-title text-4xl sm:text-5xl mb-6">
+            <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-6">
               Познакомьтесь с семьёй
             </h2>
             <p className="font-body text-lg max-w-xl mx-auto" style={{ color: "#6B4C35" }}>
@@ -528,7 +528,7 @@ export default function Index() {
             style={{ color: "var(--teal-light)", letterSpacing: "0.2em" }}>
             Как помочь
           </p>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6"
+          <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold mb-6"
             style={{ color: "var(--cream)", lineHeight: 1.2 }}>
             Станьте хранителем<br />
             <em style={{ color: "var(--teal-light)" }}>вместе с нами</em>
