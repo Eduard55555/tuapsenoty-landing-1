@@ -196,7 +196,8 @@ export default function Shop() {
               style={{ backgroundColor: "var(--sand)", border: "1px solid rgba(184,115,51,0.15)" }}>
               <div className="relative">
                 <img src={p.image} alt={p.name}
-                  className="w-full h-56 object-cover" style={{ objectPosition: "center" }} />
+                  className="w-full object-contain"
+                  style={{ maxHeight: "320px", backgroundColor: "#f5f0eb" }} />
                 <span className="absolute top-3 left-3 font-body text-xs font-bold px-3 py-1 rounded-full"
                   style={{ backgroundColor: p.badgeColor, color: "white" }}>
                   {p.badge}
