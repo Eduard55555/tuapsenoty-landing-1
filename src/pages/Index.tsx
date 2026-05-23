@@ -164,6 +164,11 @@ export default function Index() {
             </a>
 
             <nav className="hidden md:flex items-center gap-8">
+              <a href="/shop"
+                className="font-body text-sm px-3 py-1 rounded-full transition-colors"
+                style={{ color: "white", fontWeight: 800, backgroundColor: "var(--bronze)", letterSpacing: "0.02em" }}>
+                🛒 Магазин
+              </a>
               {[["О проекте", "#about"], ["Персонажи", "#characters"], ["Как помочь", "#help"], ["Новости", "#news"]].map(([label, href]) => (
                 <a key={label} href={href}
                   className="font-body text-sm transition-colors"
@@ -171,11 +176,6 @@ export default function Index() {
                   {label}
                 </a>
               ))}
-              <a href="/shop"
-                className="font-body text-sm transition-colors"
-                style={{ color: "var(--bronze)", fontWeight: 700 }}>
-                🛒 Магазин
-              </a>
             </nav>
 
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
@@ -194,6 +194,12 @@ export default function Index() {
         {menuOpen && (
           <div className="md:hidden px-4 pb-4 pt-2 space-y-3"
             style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
+            <a href="/shop"
+              className="block font-body py-2 px-3 rounded-xl text-center"
+              style={{ color: "white", fontWeight: 800, backgroundColor: "var(--bronze)" }}
+              onClick={() => setMenuOpen(false)}>
+              🛒 Магазин
+            </a>
             {[["О проекте", "#about"], ["Персонажи", "#characters"], ["Как помочь", "#help"], ["Новости", "#news"]].map(([label, href]) => (
               <a key={label} href={href}
                 className="block font-body font-semibold py-2"
@@ -202,12 +208,6 @@ export default function Index() {
                 {label}
               </a>
             ))}
-            <a href="/shop"
-              className="block font-body font-semibold py-2"
-              style={{ color: "var(--bronze)" }}
-              onClick={() => setMenuOpen(false)}>
-              🛒 Магазин
-            </a>
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
               className="btn-primary text-sm w-full justify-center mt-2">
               <Icon name="Heart" size={16} />

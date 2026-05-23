@@ -8,9 +8,9 @@ const PRODUCTS = [
   {
     id: "mini-figure",
     name: "Мини-фигурка Енотыча",
-    price: 749,
+    price: 479,
     emoji: "🗿",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/253279f9-b0f5-475d-834d-63b99c68b4b0.jpg",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/1dfa0dd2-540a-4897-a4ba-8a240e6f23e2.jpg",
     description: "Авторская мини-фигурка первого хранителя Туапсе — Енотыча. Ручная работа, лимитированная серия.",
     badge: "Хит",
     badgeColor: "#4CAF50",
