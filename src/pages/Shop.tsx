@@ -149,9 +149,7 @@ export default function Shop() {
   const handleAdd = (product: typeof PRODUCTS[0]) => {
     add({ id: product.id, name: product.name, price: product.price, image: product.image });
     setAdded(product.id);
-    setTimeout(() => {
-      window.location.href = "/cart";
-    }, 800);
+    setTimeout(() => setAdded(null), 1500);
   };
 
   return (
