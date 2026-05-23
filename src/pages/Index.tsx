@@ -210,9 +210,9 @@ export default function Index() {
       <section className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
         <div className="absolute inset-0 texture-overlay opacity-30" />
 
-        <div className="absolute top-20 right-10 w-64 h-64 rounded-full opacity-10"
+        <div className="absolute top-20 right-10 w-32 h-32 sm:w-64 sm:h-64 rounded-full opacity-10"
           style={{ background: "var(--teal)", filter: "blur(60px)" }} />
-        <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full opacity-15"
+        <div className="absolute bottom-20 left-10 w-40 h-40 sm:w-80 sm:h-80 rounded-full opacity-15"
           style={{ background: "var(--bronze)", filter: "blur(80px)" }} />
 
         <div className="absolute bottom-0 left-0 right-0">
@@ -252,24 +252,24 @@ export default function Index() {
 
           <div className="animate-fade-up-delay-2 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-              className="btn-primary text-base px-8 py-4">
+              className="btn-primary text-base px-6 py-4 w-full sm:w-auto text-center">
               <Icon name="Heart" size={18} />
               Стать частью легенды
             </a>
-            <a href="#about" className="btn-secondary text-base px-8 py-4">
+            <a href="#about" className="btn-secondary text-base px-6 py-4 w-full sm:w-auto text-center">
               Узнать историю
               <Icon name="ChevronDown" size={18} />
             </a>
           </div>
 
-          <div className="animate-fade-up-delay-3 mt-16 grid grid-cols-3 gap-6 max-w-xl mx-auto">
+          <div className="animate-fade-up-delay-3 mt-16 grid grid-cols-3 gap-3 sm:gap-6 max-w-xl mx-auto">
             {[["🦝", "Енотов-хранителей"], ["🏅", "Уже отлит в бронзе"], ["✨", "Легенд впереди"]].map(([num, label]) => (
               <div key={label} className="text-center">
-                <div className="font-display text-3xl sm:text-4xl font-bold"
+                <div className="font-display text-2xl sm:text-4xl font-bold"
                   style={{ color: "var(--teal-light)" }}>
                   {num}
                 </div>
-                <div className="font-body text-xs sm:text-sm mt-1"
+                <div className="font-body text-xs mt-1 leading-tight"
                   style={{ color: "rgba(245,230,211,0.7)" }}>
                   {label}
                 </div>
@@ -557,109 +557,6 @@ export default function Index() {
             <Icon name="ExternalLink" size={20} />
             Перейти к сбору на Planeta.ru
           </a>
-        </div>
-      </section>
-
-      {/* NEWS */}
-      <section id="news" className="py-20 sm:py-28 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
-              style={{ color: "var(--bronze)", letterSpacing: "0.2em" }}>
-              Новости проекта
-            </p>
-            <h2 className="section-title text-4xl sm:text-5xl mb-4">
-              Это уже происходит
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="card-hover rounded-3xl overflow-hidden md:col-span-2"
-              style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
-              <div className="md:flex">
-                <div className="md:w-2/5 relative">
-                  <NewsGallery />
-                </div>
-                <div className="p-8 md:w-3/5">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
-                      style={{ backgroundColor: "rgba(76,175,80,0.15)", color: "#4CAF50" }}>
-                      🔥 Горячая новость
-                    </span>
-                    <span className="font-body text-xs" style={{ color: "#9B7B5A" }}>
-                      Май 2026
-                    </span>
-                  </div>
-                  <h3 className="section-title text-3xl mb-4">
-                    Енотыч уже отлит в бронзе!
-                  </h3>
-                  <p className="font-body mb-6" style={{ color: "#6B4C35", lineHeight: 1.8 }}>
-                    Первый хранитель семьи — Енотыч — готов. Бронзовый рыбак с удочкой уже
-                    воплощён мастерами и ждёт своего места на туапсинской набережной.
-                    Это доказывает: проект реальный, команда работает, а легенда
-                    начинает материализовываться.
-                  </p>
-                  <a href="https://web.max.ru/-72521511416496" target="_blank" rel="noopener noreferrer"
-                    className="font-body font-bold flex items-center gap-2"
-                    style={{ color: "var(--bronze)" }}>
-                    Читать на Макс
-                    <Icon name="ArrowRight" size={16} />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {[
-              { emoji: "🏛️", title: "Администрация поддержала проект", date: "Апрель 2026", text: "Официальное одобрение от администрации Туапсе открыло путь к размещению скульптур в городе." },
-              { emoji: "⚖️", title: "Юридическая защита оформлена", date: "Март 2026", text: "Персонажи и названия зарегистрированы. Туапсеноты под надёжной защитой авторского права." },
-            ].map((item) => (
-              <div key={item.title}
-                className="card-hover rounded-3xl p-6"
-                style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
-                <div className="text-3xl mb-3">{item.emoji}</div>
-                <div className="font-body text-xs mb-2" style={{ color: "#9B7B5A" }}>{item.date}</div>
-                <h4 className="section-title text-xl mb-3">{item.title}</h4>
-                <p className="font-body text-sm" style={{ color: "#6B4C35", lineHeight: 1.7 }}>{item.text}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Subscribe */}
-          <div className="mt-16 rounded-3xl p-8 sm:p-12 text-center"
-            style={{ background: "linear-gradient(135deg, var(--sand), #EDD5B8)" }}>
-            <h3 className="section-title text-3xl mb-3">Следите за проектом</h3>
-            <p className="font-body mb-8" style={{ color: "#6B4C35" }}>
-              Подпишитесь и узнавайте первыми об открытии каждого нового Туапсенота
-            </p>
-
-            {subscribed ? (
-              <div className="flex items-center justify-center gap-2 text-lg font-body font-semibold"
-                style={{ color: "#4CAF50" }}>
-                <Icon name="CheckCircle" size={24} />
-                Отлично! Мы вам напишем 🦝
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Ваш email"
-                  required
-                  className="flex-1 rounded-full px-6 py-3 font-body text-sm outline-none"
-                  style={{
-                    border: "2px solid rgba(184,115,51,0.3)",
-                    backgroundColor: "white",
-                    color: "var(--warm-dark)",
-                  }}
-                />
-                <button type="submit" className="btn-primary text-sm px-6 py-3">
-                  <Icon name="Send" size={16} />
-                  Подписаться
-                </button>
-              </form>
-            )}
-          </div>
         </div>
       </section>
 
