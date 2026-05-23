@@ -436,25 +436,17 @@ export default function Index() {
             от команды Туапсенотов.
           </p>
 
-          <div className="grid sm:grid-cols-3 gap-6 mb-12">
-            {[
-              { emoji: "🏅", title: "Набор значков", desc: "Эксклюзивные значки со всеми персонажами семьи", amount: "500 ₽" },
-              { emoji: "🪪", title: "Енотий паспорт", desc: "Официальный документ почётного жителя Туапсенотии", amount: "1 500 ₽" },
-              { emoji: "🗿", title: "Мини-фигурка", desc: "Бронзовая мини-фигурка вашего любимого персонажа", amount: "5 000 ₽" },
-            ].map((tier) => (
-              <div key={tier.title}
-                className="rounded-3xl p-6 card-hover"
-                style={{ backgroundColor: "rgba(245,230,211,0.1)", border: "1px solid rgba(245,230,211,0.2)" }}>
-                <div className="text-4xl mb-3">{tier.emoji}</div>
-                <div className="font-display text-xl font-bold mb-2" style={{ color: "var(--cream)" }}>
-                  {tier.title}
-                </div>
-                <p className="font-body text-sm mb-4" style={{ color: "rgba(245,230,211,0.75)" }}>
-                  {tier.desc}
-                </p>
-
+          <div className="mb-12">
+            <div className="rounded-3xl p-6 card-hover max-w-sm"
+              style={{ backgroundColor: "rgba(245,230,211,0.1)", border: "1px solid rgba(245,230,211,0.2)" }}>
+              <div className="text-4xl mb-3">🗿</div>
+              <div className="font-display text-xl font-bold mb-2" style={{ color: "var(--cream)" }}>
+                Мини-фигурка
               </div>
-            ))}
+              <p className="font-body text-sm mb-4" style={{ color: "rgba(245,230,211,0.75)" }}>
+                Мини-фигурка вашего любимого персонажа
+              </p>
+            </div>
           </div>
 
           <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
