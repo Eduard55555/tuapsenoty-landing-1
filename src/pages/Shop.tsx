@@ -19,7 +19,7 @@ const PRODUCTS = [
     name: "Заказ бронзового оригинала",
     price: 100000,
     emoji: "🏆",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e8e4fa3a-5863-483b-9cb1-762d643b6148.jpg",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/77bcdbf7-bda8-4027-a2e3-e9da0657381e.jpg",
     description: "Полноразмерная бронзовая скульптура Енотыча высотой 20 см. Именная табличка, сертификат подлинности, доставка по России.",
     badge: "Эксклюзив",
     badgeColor: "#B8732F",
