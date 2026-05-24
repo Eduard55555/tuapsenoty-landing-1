@@ -104,6 +104,10 @@ export default function Cart() {
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 placeholder="Ваше имя"
+                autoComplete="name"
+                autoCorrect="off"
+                autoCapitalize="words"
+                spellCheck={false}
                 className="w-full rounded-2xl px-5 py-4 font-body outline-none text-base"
                 style={{ border: "1.5px solid rgba(184,115,51,0.3)", color: "var(--warm-dark)", backgroundColor: "white" }}
               />
@@ -113,6 +117,9 @@ export default function Cart() {
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Телефон"
                 type="tel"
+                autoComplete="tel"
+                autoCorrect="off"
+                spellCheck={false}
                 className="w-full rounded-2xl px-5 py-4 font-body outline-none text-base"
                 style={{ border: "1.5px solid rgba(184,115,51,0.3)", color: "var(--warm-dark)", backgroundColor: "white" }}
               />
