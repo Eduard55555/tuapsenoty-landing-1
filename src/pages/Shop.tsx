@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useCart } from "@/context/CartContext";
 import Icon from "@/components/ui/icon";
 
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
@@ -18,7 +17,7 @@ const PRODUCTS = [
   {
     id: "bronze-original",
     name: "Заказ бронзового оригинала",
-    price: 107000,
+    price: 100000,
     emoji: "🏆",
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e8e4fa3a-5863-483b-9cb1-762d643b6148.jpg",
     description: "Полноразмерная бронзовая скульптура Енотыча высотой 20 см. Именная табличка, сертификат подлинности, доставка по России.",
@@ -28,13 +27,13 @@ const PRODUCTS = [
 ];
 
 export default function Shop() {
-  const { add, count } = useCart();
   const [added, setAdded] = useState<string | null>(null);
 
   const handleAdd = (product: typeof PRODUCTS[0]) => {
-    add({ id: product.id, name: product.name, price: product.price, image: product.image });
     setAdded(product.id);
-    setTimeout(() => setAdded(null), 1500);
+    setTimeout(() => {
+      window.location.href = `/cart?id=${product.id}&name=${encodeURIComponent(product.name)}&price=${product.price}&image=${encodeURIComponent(product.image)}`;
+    }, 500);
   };
 
   return (
@@ -52,15 +51,9 @@ export default function Shop() {
             <a href="/" className="font-body text-sm hidden sm:block" style={{ color: "var(--warm-dark)" }}>
               ← На главную
             </a>
-            <a href="/cart" className="relative btn-primary text-sm px-4 py-2">
+            <a href="/cart" className="btn-primary text-sm px-4 py-2">
               <Icon name="ShoppingCart" size={18} />
               Корзина
-              {count > 0 && (
-                <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-xs flex items-center justify-center font-bold"
-                  style={{ backgroundColor: "var(--teal)", color: "var(--warm-dark)" }}>
-                  {count}
-                </span>
-              )}
             </a>
           </div>
         </div>
