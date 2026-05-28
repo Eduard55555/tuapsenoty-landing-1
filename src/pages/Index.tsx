@@ -92,21 +92,24 @@ const NEWS_PHOTOS = [
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/253279f9-b0f5-475d-834d-63b99c68b4b0.jpg",
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e8e4fa3a-5863-483b-9cb1-762d643b6148.jpg",
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e4d92eb9-6be8-457e-ac19-82c4926e846e.jpg",
+];
+
+const ENOFYA_PHOTOS = [
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/f2ed4f9c-6423-4631-a911-6b92b59e2583.jpg",
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/942e525e-ab66-4f68-a8c6-8380b1f3e60e.jpg",
 ];
 
-function NewsGallery() {
+function PhotoGallery({ photos, alt }: { photos: string[]; alt: string }) {
   const [idx, setIdx] = useState(0);
   return (
     <div className="relative w-full h-64 md:h-full min-h-64">
       <img
-        src={NEWS_PHOTOS[idx]}
-        alt="Енотыч в бронзе"
+        src={photos[idx]}
+        alt={alt}
         className="w-full h-full object-cover"
       />
       <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
-        {NEWS_PHOTOS.map((_, i) => (
+        {photos.map((_, i) => (
           <button
             key={i}
             onClick={() => setIdx(i)}
@@ -124,7 +127,7 @@ function NewsGallery() {
           <Icon name="ChevronLeft" size={18} />
         </button>
       )}
-      {idx < NEWS_PHOTOS.length - 1 && (
+      {idx < photos.length - 1 && (
         <button
           onClick={() => setIdx(idx + 1)}
           className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center border-0 cursor-pointer"
@@ -136,6 +139,16 @@ function NewsGallery() {
     </div>
   );
 }
+
+function NewsGallery() {
+  return <PhotoGallery photos={NEWS_PHOTOS} alt="Енотыч в бронзе" />;
+}
+
+function EnofyaGallery() {
+  return <PhotoGallery photos={ENOFYA_PHOTOS} alt="Енофья в бронзе" />;
+}
+
+
 
 export default function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -335,6 +348,32 @@ export default function Index() {
                     Читать на Макс
                     <Icon name="ArrowRight" size={16} />
                   </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="card-hover rounded-3xl overflow-hidden md:col-span-2"
+              style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
+              <div className="md:flex md:flex-row-reverse">
+                <div className="md:w-2/5 relative">
+                  <EnofyaGallery />
+                </div>
+                <div className="p-4 sm:p-8 md:w-3/5">
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
+                      style={{ backgroundColor: "rgba(184,115,51,0.15)", color: "var(--bronze)" }}>
+                      🧺 Новый хранитель
+                    </span>
+                    <span className="font-body text-xs" style={{ color: "#9B7B5A" }}>
+                      Май 2026
+                    </span>
+                  </div>
+                  <h3 className="section-title text-xl sm:text-3xl mb-4">
+                    Енофья отлита в бронзе!
+                  </h3>
+                  <p className="font-body mb-6" style={{ color: "#6B4C35", lineHeight: 1.8 }}>
+                    Добрая бабушка семьи — Енофья — воплощена мастерами. В платочке и фартуке, с корзинкой полной гостинцев, она уже готова встречать гостей Туапсе с улыбкой и теплом.
+                  </p>
                 </div>
               </div>
             </div>
