@@ -343,11 +343,20 @@ export default function Index() {
                     начинает материализовываться.
                   </p>
                   <a href="https://web.max.ru/-72521511416496" target="_blank" rel="noopener noreferrer"
-                    className="font-body font-bold flex items-center gap-2"
+                    className="font-body font-bold flex items-center gap-2 mb-6"
                     style={{ color: "var(--bronze)" }}>
                     Читать на Макс
                     <Icon name="ArrowRight" size={16} />
                   </a>
+                  <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
+                    <iframe
+                      src="https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor"
+                      width="100%"
+                      height="260"
+                      frameBorder={0}
+                      title="Енотыч на карте"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
