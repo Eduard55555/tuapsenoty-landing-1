@@ -92,6 +92,8 @@ const NEWS_PHOTOS = [
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/253279f9-b0f5-475d-834d-63b99c68b4b0.jpg",
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e8e4fa3a-5863-483b-9cb1-762d643b6148.jpg",
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e4d92eb9-6be8-457e-ac19-82c4926e846e.jpg",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/f2ed4f9c-6423-4631-a911-6b92b59e2583.jpg",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/942e525e-ab66-4f68-a8c6-8380b1f3e60e.jpg",
 ];
 
 function NewsGallery() {
