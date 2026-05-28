@@ -101,9 +101,11 @@ export default function Shop() {
                 <h2 className="font-display text-base font-bold mb-1" style={{ color: "var(--warm-dark)" }}>
                   {p.name}
                 </h2>
-                <p className="font-body text-xs mb-3 whitespace-pre-line" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
-                  {p.description}
-                </p>
+                <div className="font-body text-xs mb-3" style={{ color: "#6B4C35", lineHeight: 1.5 }}>
+                  {p.description.split("\n\n").map((block, i) => (
+                    <p key={i} className="mb-1 whitespace-pre-line">{block}</p>
+                  ))}
+                </div>
                 <div className="flex items-center justify-between gap-2">
                   <span className="font-display text-lg font-bold" style={{ color: "var(--bronze)" }}>
                     {p.price.toLocaleString("ru-RU")} ₽
