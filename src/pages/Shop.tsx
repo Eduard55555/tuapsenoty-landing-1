@@ -6,11 +6,11 @@ const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 const PRODUCTS = [
   {
     id: "mini-figure",
-    name: "Мини-фигурка Енотыча",
+    name: "Мини-фигурка «Енотыч — хранитель удачи» (5 см)",
     price: 479,
     emoji: "🗿",
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/1dfa0dd2-540a-4897-a4ba-8a240e6f23e2.jpg",
-    description: "Авторская мини-фигурка первого хранителя Туапсе — Енотыча. Ручная работа, лимитированная серия.",
+    description: "Пусть ваш личный бронзовый хранитель всегда будет рядом.\n\nТочная копия того самого Енотыча с набережной Туапсе — только маленький. На рабочий стол, в машину или в подарок.\n\nМатериал: полимерная смола, ручная роспись «под старую бронзу». Размер: 5 см. Каждая фигурка создаётся вручную и может иметь уникальные отличия.",
     badge: "Хит",
     badgeColor: "#4CAF50",
   },
@@ -101,7 +101,7 @@ export default function Shop() {
                 <h2 className="font-display text-base font-bold mb-1" style={{ color: "var(--warm-dark)" }}>
                   {p.name}
                 </h2>
-                <p className="font-body text-xs mb-3" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
+                <p className="font-body text-xs mb-3 whitespace-pre-line" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
                   {p.description}
                 </p>
                 <div className="flex items-center justify-between gap-2">
