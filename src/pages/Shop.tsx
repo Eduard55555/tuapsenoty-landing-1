@@ -84,38 +84,38 @@ export default function Shop() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-8 mb-16">
+        <div className="grid sm:grid-cols-3 gap-4 mb-16">
           {PRODUCTS.map((p) => (
-            <div key={p.id} className="rounded-3xl overflow-hidden card-hover"
+            <div key={p.id} className="rounded-2xl overflow-hidden card-hover"
               style={{ backgroundColor: "var(--sand)", border: "1px solid rgba(184,115,51,0.15)" }}>
               <div className="relative">
                 <img src={p.image} alt={p.name}
                   className="w-full object-contain"
-                  style={{ maxHeight: "320px", backgroundColor: "#f5f0eb" }} />
-                <span className="absolute top-3 left-3 font-body text-xs font-bold px-3 py-1 rounded-full"
+                  style={{ maxHeight: "180px", backgroundColor: "#f5f0eb" }} />
+                <span className="absolute top-2 left-2 font-body text-xs font-bold px-2 py-0.5 rounded-full"
                   style={{ backgroundColor: p.badgeColor, color: "white" }}>
                   {p.badge}
                 </span>
               </div>
-              <div className="p-6">
-                <h2 className="font-display text-2xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+              <div className="p-4">
+                <h2 className="font-display text-base font-bold mb-1" style={{ color: "var(--warm-dark)" }}>
                   {p.name}
                 </h2>
-                <p className="font-body text-sm mb-4" style={{ color: "#6B4C35", lineHeight: 1.7 }}>
+                <p className="font-body text-xs mb-3" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
                   {p.description}
                 </p>
-                <div className="flex items-center justify-between gap-3">
-                  <span className="font-display text-2xl font-bold" style={{ color: "var(--bronze)" }}>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-display text-lg font-bold" style={{ color: "var(--bronze)" }}>
                     {p.price.toLocaleString("ru-RU")} ₽
                   </span>
                   <button
                     onClick={() => handleAdd(p)}
-                    className="btn-primary text-sm px-5 py-3"
+                    className="btn-primary text-xs px-3 py-2"
                     style={added === p.id ? { backgroundColor: "#4CAF50" } : {}}>
                     {added === p.id ? (
-                      <><Icon name="Check" size={16} /> Добавлено</>
+                      <><Icon name="Check" size={14} /> Добавлено</>
                     ) : (
-                      <><Icon name="ShoppingCart" size={16} /> В корзину</>
+                      <><Icon name="ShoppingCart" size={14} /> В корзину</>
                     )}
                   </button>
                 </div>
