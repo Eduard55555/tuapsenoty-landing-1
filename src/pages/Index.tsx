@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { QRCodeSVG } from "qrcode.react";
 import Icon from "@/components/ui/icon";
 
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
@@ -7,6 +8,7 @@ const VK_URL = "https://vk.ru/club237171594";
 
 const characters = [
   {
+    slug: "enotych",
     name: "Енотыч",
     emoji: "🎣",
     role: "Дедушка",
@@ -17,6 +19,7 @@ const characters = [
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/61957535-c6fc-42ed-be30-235d0501d01a.png",
   },
   {
+    slug: "enofya",
     name: "Енофья",
     emoji: "🧺",
     role: "Бабушка",
@@ -27,6 +30,7 @@ const characters = [
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/7bd68cbe-1da1-45cf-bafd-0828c44078d6.png",
   },
   {
+    slug: "tuapsey",
     name: "Туапсей",
     emoji: "🧭",
     role: "Папа",
@@ -37,6 +41,7 @@ const characters = [
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/d591b894-0720-4afe-9119-19877540c0b0.png",
   },
   {
+    slug: "enira",
     name: "Енира",
     emoji: "🐚",
     role: "Морская плетельщица",
@@ -47,6 +52,7 @@ const characters = [
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/489b20a1-045b-4b22-bbd8-f91f8c07cc2b.png",
   },
   {
+    slug: "tydochka",
     name: "Тыдочка",
     emoji: "🌅",
     role: "Дочка мечты",
@@ -57,6 +63,7 @@ const characters = [
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/26e030b8-8ffc-470b-9422-9d0f8875b67c.png",
   },
   {
+    slug: "enovey",
     name: "Еновей",
     emoji: "🗺️",
     role: "Скалолаз-проказник",
@@ -67,6 +74,7 @@ const characters = [
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/6c3bb954-3b8c-4404-ab87-eaab2dfc4b89.png",
   },
   {
+    slug: "enosik",
     name: "Еносик",
     emoji: "🪸",
     role: "Ныряльщик-пухляш",
@@ -77,6 +85,7 @@ const characters = [
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/214a3f64-cbda-49f6-b733-689288c9ff6d.png",
   },
   {
+    slug: "enosha",
     name: "Еноша",
     emoji: "⚓",
     role: "Весельчак и заводила",
@@ -526,51 +535,65 @@ export default function Index() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {characters.map((char) => (
-              <div key={char.name}
-                className={`card-hover rounded-3xl overflow-hidden bg-gradient-to-br ${char.color}`}
-                style={{ border: "1px solid rgba(184,115,51,0.12)" }}>
-                <div className="p-6">
-                  {char.image ? (
-                    <img src={char.image} alt={char.name}
-                      className="w-full h-44 object-cover rounded-2xl mb-4"
-                      style={{ objectPosition: "top" }} />
-                  ) : (
-                    <div className="text-5xl mb-4 text-center">{char.emoji}</div>
-                  )}
-                  <div className="text-center mb-4">
-                    <h3 className="font-display text-2xl font-bold" style={{ color: "var(--warm-dark)" }}>
-                      {char.name}
-                    </h3>
-                    <p className="font-body text-sm font-semibold mt-1" style={{ color: "var(--bronze)" }}>
-                      {char.role}
-                    </p>
-                  </div>
-                  <p className="font-body text-sm text-center mb-4" style={{ color: "#5A3E2B", lineHeight: 1.6 }}>
-                    {char.description}
-                  </p>
-
-                  <div className="rounded-2xl p-3 text-center"
-                    style={{ backgroundColor: "rgba(184,115,51,0.1)", border: "1px dashed rgba(184,115,51,0.3)" }}>
-                    <p className="font-body text-xs font-bold mb-1" style={{ color: "var(--bronze)" }}>
-                      🪄 Ритуал
-                    </p>
-                    <p className="font-body text-xs italic" style={{ color: "#6B4C35" }}>
-                      {char.ritual}
-                    </p>
-                  </div>
-
-                  {char.location && (
-                    <div className="flex items-center justify-center gap-1 mt-3">
-                      <Icon name="MapPin" size={12} />
-                      <span className="font-body text-xs" style={{ color: "var(--sea)" }}>
-                        {char.location}
-                      </span>
+            {characters.map((char) => {
+              const charUrl = `${window.location.origin}/characters/${char.slug}`;
+              return (
+                <div key={char.name}
+                  className={`card-hover rounded-3xl overflow-hidden bg-gradient-to-br ${char.color} flex flex-col`}
+                  style={{ border: "1px solid rgba(184,115,51,0.12)" }}>
+                  <div className="p-6 flex flex-col flex-1">
+                    {char.image ? (
+                      <img src={char.image} alt={char.name}
+                        className="w-full h-44 object-cover rounded-2xl mb-4"
+                        style={{ objectPosition: "top" }} />
+                    ) : (
+                      <div className="text-5xl mb-4 text-center">{char.emoji}</div>
+                    )}
+                    <div className="text-center mb-4">
+                      <h3 className="font-display text-2xl font-bold" style={{ color: "var(--warm-dark)" }}>
+                        {char.name}
+                      </h3>
+                      <p className="font-body text-sm font-semibold mt-1" style={{ color: "var(--bronze)" }}>
+                        {char.role}
+                      </p>
                     </div>
-                  )}
+                    <p className="font-body text-sm text-center mb-4" style={{ color: "#5A3E2B", lineHeight: 1.6 }}>
+                      {char.description}
+                    </p>
+
+                    <div className="rounded-2xl p-3 text-center mb-4"
+                      style={{ backgroundColor: "rgba(184,115,51,0.1)", border: "1px dashed rgba(184,115,51,0.3)" }}>
+                      <p className="font-body text-xs font-bold mb-1" style={{ color: "var(--bronze)" }}>
+                        🪄 Ритуал
+                      </p>
+                      <p className="font-body text-xs italic" style={{ color: "#6B4C35" }}>
+                        {char.ritual}
+                      </p>
+                    </div>
+
+                    {char.location && (
+                      <div className="flex items-center justify-center gap-1 mb-4">
+                        <Icon name="MapPin" size={12} />
+                        <span className="font-body text-xs" style={{ color: "var(--sea)" }}>
+                          {char.location}
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="mt-auto flex flex-col items-center gap-3">
+                      <div className="bg-white p-2 rounded-xl shadow-sm">
+                        <QRCodeSVG value={charUrl} size={80} fgColor="#3D2B1A" />
+                      </div>
+                      <a href={`/characters/${char.slug}`}
+                        className="w-full text-center font-body text-xs font-bold py-2 px-4 rounded-full transition-colors"
+                        style={{ backgroundColor: "rgba(184,115,51,0.15)", color: "var(--bronze)", border: "1px solid rgba(184,115,51,0.3)" }}>
+                        Подробнее →
+                      </a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
