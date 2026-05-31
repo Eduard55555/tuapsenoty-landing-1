@@ -295,20 +295,7 @@ export default function Index() {
             </a>
           </div>
 
-          <div className="animate-fade-up-delay-3 mt-16 grid grid-cols-3 gap-3 sm:gap-6 max-w-xl mx-auto">
-            {[["🦝", "Енотов-хранителей"], ["🏅", "Уже отлит в бронзе"], ["✨", "Легенд впереди"]].map(([num, label]) => (
-              <div key={label} className="text-center">
-                <div className="font-display text-2xl sm:text-4xl font-bold"
-                  style={{ color: "var(--teal-light)" }}>
-                  {num}
-                </div>
-                <div className="font-body text-xs mt-1 leading-tight"
-                  style={{ color: "rgba(245,230,211,0.7)" }}>
-                  {label}
-                </div>
-              </div>
-            ))}
-          </div>
+
         </div>
       </section>
 
