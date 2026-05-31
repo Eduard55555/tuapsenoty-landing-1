@@ -300,7 +300,7 @@ export default function Index() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-20 sm:py-28 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
+      <section id="about" className="py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
@@ -339,7 +339,7 @@ export default function Index() {
       </section>
 
       {/* NEWS */}
-      <section id="news" className="py-20 sm:py-28 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
+      <section id="news" className="py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
@@ -441,7 +441,7 @@ export default function Index() {
       </section>
 
       {/* CHARACTERS */}
-      <section id="characters" className="py-20 sm:py-28 px-4 sm:px-6"
+      <section id="characters" className="py-8 sm:py-12 px-4 sm:px-6"
         style={{ background: "linear-gradient(180deg, var(--sand) 0%, var(--cream) 100%)" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -519,7 +519,7 @@ export default function Index() {
       </section>
 
       {/* SUBSCRIBE */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
+      <section className="py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
         <div className="max-w-6xl mx-auto">
           <div className="rounded-3xl p-6 sm:p-12 text-center"
             style={{ background: "linear-gradient(135deg, var(--sand), #EDD5B8)" }}>
@@ -560,7 +560,7 @@ export default function Index() {
       </section>
 
       {/* HOW TO HELP */}
-      <section id="help" className="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden"
+      <section id="help" className="py-8 sm:py-12 px-4 sm:px-6 relative overflow-hidden"
         style={{ background: "var(--sea)" }}>
         <div className="absolute inset-0 texture-overlay" />
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10"
