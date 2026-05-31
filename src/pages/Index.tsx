@@ -581,13 +581,10 @@ export default function Index() {
                     )}
 
                     <div className="mt-auto flex flex-col items-center gap-3">
-                      <div className="bg-white p-2 rounded-xl shadow-sm">
-                        <QRCodeSVG value={charUrl} size={80} fgColor="#3D2B1A" />
-                      </div>
-                      <a href={`/characters/${char.slug}`}
+                      <a href="/shop"
                         className="w-full text-center font-body text-xs font-bold py-2 px-4 rounded-full transition-colors"
-                        style={{ backgroundColor: "rgba(184,115,51,0.15)", color: "var(--bronze)", border: "1px solid rgba(184,115,51,0.3)" }}>
-                        Подробнее →
+                        style={{ backgroundColor: "var(--bronze)", color: "white" }}>
+                        🛒 Магазин
                       </a>
                     </div>
                   </div>
