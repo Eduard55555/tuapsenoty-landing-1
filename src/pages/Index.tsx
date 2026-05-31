@@ -326,7 +326,7 @@ export default function Index() {
               style={{ background: "linear-gradient(to top, rgba(46,92,110,0.8) 0%, transparent 60%)" }}>
               <p className="font-display text-lg sm:text-2xl md:text-3xl font-bold italic"
                 style={{ color: "var(--cream)" }}>
-                «Каждый еnот — это история, которую хочется рассказать»
+                «Каждый енот — это история, которую хочется рассказать»
               </p>
             </div>
           </div>
