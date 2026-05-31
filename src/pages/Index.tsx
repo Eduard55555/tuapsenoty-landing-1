@@ -312,6 +312,40 @@ export default function Index() {
         </div>
       </section>
 
+      {/* ABOUT */}
+      <section id="about" className="py-20 sm:py-28 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
+              style={{ color: "var(--bronze)" }}>
+              О проекте
+            </p>
+            <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-6">
+              Туапсе заслуживает<br />своей легенды
+            </h2>
+            <p className="font-body text-lg w-full mx-auto" style={{ color: "#6B4C35", lineHeight: 1.8 }}>
+              Туапсе — город с богатой историей, но туристы проезжают мимо. Гости едут в санатории и пансионаты, но не задерживаются в самом городе. Не хватает эмоционального якоря — повода остановиться, выйти из машины, сходить в кафе, купить сувенир. Мы создаём причину остановиться! Семья из 7–8 бронзовых скульптур высотой 20 см в разных местах города. У каждого енота — имя, характер, легенда и ритуал. Семья, которую хочется встретить, обнять, сфотографировать.
+            </p>
+          </div>
+
+          <div className="mt-16 rounded-3xl overflow-hidden shadow-2xl relative">
+            <img
+              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/2d9722e6-bc44-40c7-b04f-5b489accacfc.png"
+              alt="Семья Туапсенотов"
+              className="w-full h-64 sm:h-96 object-cover"
+              style={{ objectPosition: "center center" }}
+            />
+            <div className="absolute inset-0 flex items-end p-8"
+              style={{ background: "linear-gradient(to top, rgba(46,92,110,0.8) 0%, transparent 60%)" }}>
+              <p className="font-display text-lg sm:text-2xl md:text-3xl font-bold italic"
+                style={{ color: "var(--cream)" }}>
+                «Каждый еnот — это история, которую хочется рассказать»
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* NEWS */}
       <section id="news" className="py-20 sm:py-28 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
         <div className="max-w-6xl mx-auto">
@@ -411,72 +445,6 @@ export default function Index() {
             ))}
           </div>
 
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section id="about" className="py-20 sm:py-28 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
-              style={{ color: "var(--bronze)" }}>
-              О проекте
-            </p>
-            <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-6">
-              Туапсе заслуживает<br />своей легенды
-            </h2>
-            <p className="font-body text-lg w-full mx-auto" style={{ color: "#6B4C35", lineHeight: 1.8 }}>
-              Туапсе — город с богатой историей, но туристы проезжают мимо. Гости едут в санатории и пансионаты, но не задерживаются в самом городе. Не хватает эмоционального якоря — повода остановиться, выйти из машины, сходить в кафе, купить сувенир. Мы создаём причину остановиться! Семья из 7–8 бронзовых скульптур высотой 20 см в разных местах города. У каждого енота — имя, характер, легенда и ритуал. Семья, которую хочется встретить, обнять, сфотографировать.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                emoji: "😔",
-                title: "Проблема",
-                text: "Гости едут в санатории и пансионаты, но не задерживаются в самом городе. Не хватает эмоционального якоря — повода остановиться, выйти из машины, сходить в кафе, купить сувенир.",
-              },
-              {
-                emoji: "✨",
-                title: "Наша идея",
-                text: "Семья из 7–8 бронзовых скульптур высотой 20 см в разных местах города. У каждого енота — имя, характер, легенда и ритуал. Семья, которую хочется встретить, обнять, сфотографировать.",
-              },
-              {
-                emoji: "🏆",
-                title: "Уже сделано",
-                text: "Поддержка администрации города, готовая 3D-модель Енотыча, юридическая защита проекта. Первый еnот уже отлит!",
-              },
-            ].map((item) => (
-              <div key={item.title}
-                className="card-hover rounded-3xl p-5 sm:p-8"
-                style={{ backgroundColor: "var(--sand)", border: "1px solid rgba(184,115,51,0.15)" }}>
-                <div className="text-4xl mb-4">{item.emoji}</div>
-                <h3 className="font-display text-2xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
-                  {item.title}
-                </h3>
-                <p className="font-body" style={{ color: "#6B4C35", lineHeight: 1.7 }}>
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-16 rounded-3xl overflow-hidden shadow-2xl relative">
-            <img
-              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/2d9722e6-bc44-40c7-b04f-5b489accacfc.png"
-              alt="Семья Туапсенотов"
-              className="w-full h-64 sm:h-96 object-cover"
-              style={{ objectPosition: "center center" }}
-            />
-            <div className="absolute inset-0 flex items-end p-8"
-              style={{ background: "linear-gradient(to top, rgba(46,92,110,0.8) 0%, transparent 60%)" }}>
-              <p className="font-display text-lg sm:text-2xl md:text-3xl font-bold italic"
-                style={{ color: "var(--cream)" }}>
-                «Каждый еnот — это история, которую хочется рассказать»
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
