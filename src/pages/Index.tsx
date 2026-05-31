@@ -582,18 +582,7 @@ export default function Index() {
             от команды Туапсенотов.
           </p>
 
-          <div className="mb-12">
-            <div className="rounded-3xl p-6 card-hover max-w-sm"
-              style={{ backgroundColor: "rgba(245,230,211,0.1)", border: "1px solid rgba(245,230,211,0.2)" }}>
-              <div className="text-4xl mb-3">🗿</div>
-              <div className="font-display text-xl font-bold mb-2" style={{ color: "var(--cream)" }}>
-                Мини-фигурка
-              </div>
-              <p className="font-body text-sm mb-4" style={{ color: "rgba(245,230,211,0.75)" }}>
-                Мини-фигурка вашего любимого персонажа
-              </p>
-            </div>
-          </div>
+
 
           <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
             className="btn-primary text-lg px-10 py-5 inline-flex">
