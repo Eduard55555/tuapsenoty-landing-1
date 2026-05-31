@@ -411,42 +411,6 @@ export default function Index() {
             ))}
           </div>
 
-          {/* Subscribe */}
-          <div className="mt-12 rounded-3xl p-6 sm:p-12 text-center"
-            style={{ background: "linear-gradient(135deg, var(--sand), #EDD5B8)" }}>
-            <h3 className="section-title text-xl sm:text-3xl mb-3">Следите за проектом</h3>
-            <p className="font-body mb-8" style={{ color: "#6B4C35" }}>
-              Подпишитесь и узнавайте первыми об открытии каждого нового Туапсенота
-            </p>
-
-            {subscribed ? (
-              <div className="flex items-center justify-center gap-2 text-lg font-body font-semibold"
-                style={{ color: "#4CAF50" }}>
-                <Icon name="CheckCircle" size={24} />
-                Отлично! Мы вам напишем 🦝
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Ваш email"
-                  required
-                  className="flex-1 rounded-full px-6 py-3 font-body text-sm outline-none"
-                  style={{
-                    border: "2px solid rgba(184,115,51,0.3)",
-                    backgroundColor: "white",
-                    color: "var(--warm-dark)",
-                  }}
-                />
-                <button type="submit" className="btn-primary text-sm px-6 py-3">
-                  <Icon name="Send" size={16} />
-                  Подписаться
-                </button>
-              </form>
-            )}
-          </div>
         </div>
       </section>
 
@@ -591,6 +555,47 @@ export default function Index() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* SUBSCRIBE */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="rounded-3xl p-6 sm:p-12 text-center"
+            style={{ background: "linear-gradient(135deg, var(--sand), #EDD5B8)" }}>
+            <h3 className="section-title text-xl sm:text-3xl mb-3">Следите за проектом</h3>
+            <p className="font-body mb-8" style={{ color: "#6B4C35" }}>
+              Подпишитесь и узнавайте первыми об открытии каждого нового Туапсенота
+            </p>
+
+            {subscribed ? (
+              <div className="flex items-center justify-center gap-2 text-lg font-body font-semibold"
+                style={{ color: "#4CAF50" }}>
+                <Icon name="CheckCircle" size={24} />
+                Отлично! Мы вам напишем 🦝
+              </div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Ваш email"
+                  required
+                  className="flex-1 rounded-full px-6 py-3 font-body text-sm outline-none"
+                  style={{
+                    border: "2px solid rgba(184,115,51,0.3)",
+                    backgroundColor: "white",
+                    color: "var(--warm-dark)",
+                  }}
+                />
+                <button type="submit" className="btn-primary text-sm px-6 py-3">
+                  <Icon name="Send" size={16} />
+                  Подписаться
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>
