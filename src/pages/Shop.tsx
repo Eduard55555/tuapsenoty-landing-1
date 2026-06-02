@@ -55,7 +55,17 @@ export default function Shop() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
+    <div className="min-h-screen relative overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(1100px 600px at 15% -5%, rgba(122,177,191,0.28), transparent 60%), radial-gradient(900px 500px at 95% 10%, rgba(184,115,51,0.18), transparent 55%), radial-gradient(800px 600px at 50% 110%, rgba(122,177,191,0.20), transparent 60%), linear-gradient(180deg, var(--cream), var(--sand))",
+      }}>
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full opacity-40 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(184,115,51,0.35), transparent 70%)" }} />
+        <div className="absolute top-1/3 -right-32 w-96 h-96 rounded-full opacity-40 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(122,177,191,0.35), transparent 70%)" }} />
+      </div>
       <header className="fixed top-0 left-0 right-0 z-40"
         style={{ background: "rgba(253,246,238,0.95)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(184,115,51,0.15)" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -77,7 +87,7 @@ export default function Shop() {
         </div>
       </header>
 
-      <div className="pt-24 pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 pt-24 pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
             style={{ color: "var(--bronze)" }}>
