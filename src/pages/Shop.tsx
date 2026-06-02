@@ -61,12 +61,12 @@ export default function Shop() {
           "radial-gradient(1100px 600px at 12% -8%, rgba(122,177,191,0.22), transparent 58%), radial-gradient(1000px 600px at 95% 8%, rgba(184,115,51,0.18), transparent 55%), radial-gradient(900px 700px at 50% 115%, rgba(212,160,90,0.16), transparent 60%), linear-gradient(180deg, #FDF6EE, #F5E6D3 55%, #F0DCC2)",
       }}>
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full opacity-40 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(184,115,51,0.30), transparent 70%)" }} />
-        <div className="absolute top-1/3 -right-32 w-[28rem] h-[28rem] rounded-full opacity-35 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(122,177,191,0.30), transparent 70%)" }} />
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full opacity-30 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(212,160,90,0.30), transparent 70%)" }} />
+        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full opacity-70 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(140,82,30,0.55), transparent 70%)" }} />
+        <div className="absolute top-1/3 -right-32 w-[28rem] h-[28rem] rounded-full opacity-60 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(70,120,135,0.50), transparent 70%)" }} />
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full opacity-55 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(160,110,45,0.50), transparent 70%)" }} />
       </div>
       <header className="fixed top-0 left-0 right-0 z-40"
         style={{ background: "rgba(253,246,238,0.85)", backdropFilter: "blur(14px)", borderBottom: "1px solid rgba(184,115,51,0.2)" }}>
