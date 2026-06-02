@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
+import { loadMetrika } from "@/lib/metrika";
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -7,11 +8,13 @@ export default function CookieBanner() {
   useEffect(() => {
     const consent = localStorage.getItem("cookie-consent");
     if (!consent) setVisible(true);
+    else if (consent === "accepted") loadMetrika();
   }, []);
 
   const handle = (value: "accepted" | "declined") => {
     localStorage.setItem("cookie-consent", value);
     setVisible(false);
+    if (value === "accepted") loadMetrika();
   };
 
   if (!visible) return null;
