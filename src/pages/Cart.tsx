@@ -15,6 +15,7 @@ export default function Cart() {
   const [customerName, setCustomerName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
 
   const handleOrder = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -132,10 +133,27 @@ export default function Cart() {
                 className="w-full rounded-2xl px-5 py-4 font-body outline-none text-base"
                 style={{ border: "1.5px solid rgba(184,115,51,0.3)", color: "var(--warm-dark)", backgroundColor: "white" }}
               />
+              <label className="flex items-start gap-3 cursor-pointer py-1">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-1 w-5 h-5 flex-shrink-0 accent-current"
+                  style={{ accentColor: "var(--bronze)" }}
+                />
+                <span className="font-body text-sm" style={{ color: "#6B4C35", lineHeight: 1.5 }}>
+                  Я принимаю условия{" "}
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "var(--bronze)" }}>
+                    Политики обработки персональных данных
+                  </a>{" "}
+                  и даю согласие на обработку моих данных для оформления заказа
+                </span>
+              </label>
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full btn-primary py-5 text-lg justify-center mt-2">
+                disabled={loading || !consent}
+                className="w-full btn-primary py-5 text-lg justify-center mt-2"
+                style={(!consent || loading) ? { opacity: 0.5, cursor: "not-allowed" } : {}}>
                 {loading
                   ? <><Icon name="Loader" size={20} /> Отправляем...</>
                   : <><Icon name="Send" size={20} /> Оформить заявку</>
