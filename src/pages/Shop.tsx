@@ -7,7 +7,7 @@ const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 const PRODUCTS = [
   {
     id: "mini-figure",
-    name: "Енотыч-хранитель набережной и добрых мгновений",
+    name: "Мини-фигурка «Енотыч-хранитель набережной и добрых мгновений»",
     price: 479,
     emoji: "🗿",
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/1dfa0dd2-540a-4897-a4ba-8a240e6f23e2.jpg",
