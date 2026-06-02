@@ -3,6 +3,7 @@ import Icon from "@/components/ui/icon";
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 const MAX_URL = "https://max.ru/join/uBdeDmv3f51WgWvFTPMWA84VIaYSgeU9yLwdr9lYO1g";
 const VK_URL = "https://vk.ru/club237171594";
+const TELEGRAM_URL = "https://t.me/tuapsenoty";
 
 export default function SiteFooter() {
   return (
@@ -69,19 +70,25 @@ export default function SiteFooter() {
                 className="flex items-center gap-2 font-body text-sm hover:underline"
                 style={{ color: "rgba(245,230,211,0.8)" }}>
                 <Icon name="MessageCircle" size={14} />
-                Мессенджер Макс
-              </a>
-              <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 font-body text-sm hover:underline"
-                style={{ color: "rgba(245,230,211,0.8)" }}>
-                <Icon name="ExternalLink" size={14} />
-                Страница на Planeta.ru
+                MAX
               </a>
               <a href={VK_URL} target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-2 font-body text-sm hover:underline"
                 style={{ color: "rgba(245,230,211,0.8)" }}>
                 <Icon name="Users" size={14} />
                 ВКонтакте
+              </a>
+              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 font-body text-sm hover:underline"
+                style={{ color: "rgba(245,230,211,0.8)" }}>
+                <Icon name="Send" size={14} />
+                Телеграм
+              </a>
+              <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 font-body text-sm hover:underline"
+                style={{ color: "rgba(245,230,211,0.8)" }}>
+                <Icon name="ExternalLink" size={14} />
+                Страница на Planeta.ru
               </a>
             </div>
 
