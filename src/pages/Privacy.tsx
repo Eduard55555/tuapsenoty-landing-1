@@ -223,6 +223,18 @@ export default function Privacy() {
             <p className="flex items-center gap-2"><Icon name="Mail" size={16} /> sen555551@mail.ru</p>
             <p className="flex items-center gap-2"><Icon name="Phone" size={16} /> 8-918-505-16-17</p>
           </section>
+
+          <section>
+            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+              13. Настройки файлов cookie
+            </h2>
+            <p className="mb-3">Вы можете в любой момент изменить своё решение по использованию файлов cookie.</p>
+            <button
+              onClick={() => window.dispatchEvent(new Event("cookie-settings-open"))}
+              className="btn-primary inline-flex px-6 py-3">
+              <Icon name="Cookie" size={18} /> Изменить настройки cookie
+            </button>
+          </section>
         </div>
       </div>
     </div>
