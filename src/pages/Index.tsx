@@ -682,10 +682,18 @@ export default function Index() {
           </div>
 
           <div className="text-center">
-            <a href="/privacy" className="font-body text-sm underline mb-2 inline-block"
-              style={{ color: "rgba(245,230,211,0.6)" }}>
-              Политика обработки персональных данных
-            </a>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mb-2">
+              <a href="/privacy" className="font-body text-sm underline inline-block"
+                style={{ color: "rgba(245,230,211,0.6)" }}>
+                Политика обработки персональных данных
+              </a>
+              <button
+                onClick={() => window.dispatchEvent(new Event("cookie-settings-open"))}
+                className="font-body text-sm underline inline-block"
+                style={{ color: "rgba(245,230,211,0.6)" }}>
+                Настройки cookie
+              </button>
+            </div>
             <p className="font-body text-sm" style={{ color: "rgba(245,230,211,0.4)" }}>
               © 2026 Туапсеноты. С любовью к Туапсе 🌊
             </p>
