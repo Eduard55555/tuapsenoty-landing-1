@@ -58,27 +58,27 @@ export default function Shop() {
     <div className="min-h-screen relative overflow-hidden"
       style={{
         background:
-          "radial-gradient(1100px 600px at 12% -8%, rgba(122,177,191,0.30), transparent 58%), radial-gradient(1000px 600px at 95% 8%, rgba(184,115,51,0.28), transparent 55%), radial-gradient(900px 700px at 50% 115%, rgba(122,177,191,0.18), transparent 60%), linear-gradient(180deg, #261913, #1a110c 55%, #120b07)",
+          "radial-gradient(1100px 600px at 12% -8%, rgba(122,177,191,0.22), transparent 58%), radial-gradient(1000px 600px at 95% 8%, rgba(184,115,51,0.18), transparent 55%), radial-gradient(900px 700px at 50% 115%, rgba(212,160,90,0.16), transparent 60%), linear-gradient(180deg, #FDF6EE, #F5E6D3 55%, #F0DCC2)",
       }}>
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full opacity-50 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(184,115,51,0.45), transparent 70%)" }} />
-        <div className="absolute top-1/3 -right-32 w-[28rem] h-[28rem] rounded-full opacity-45 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(122,177,191,0.40), transparent 70%)" }} />
+        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full opacity-40 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(184,115,51,0.30), transparent 70%)" }} />
+        <div className="absolute top-1/3 -right-32 w-[28rem] h-[28rem] rounded-full opacity-35 blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(122,177,191,0.30), transparent 70%)" }} />
         <div className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full opacity-30 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(212,160,90,0.40), transparent 70%)" }} />
+          style={{ background: "radial-gradient(circle, rgba(212,160,90,0.30), transparent 70%)" }} />
       </div>
       <header className="fixed top-0 left-0 right-0 z-40"
-        style={{ background: "rgba(26,17,12,0.75)", backdropFilter: "blur(14px)", borderBottom: "1px solid rgba(212,160,90,0.25)" }}>
+        style={{ background: "rgba(253,246,238,0.85)", backdropFilter: "blur(14px)", borderBottom: "1px solid rgba(184,115,51,0.2)" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
             <span className="text-2xl">🦝</span>
-            <span className="font-display text-xl font-bold" style={{ color: "#E6B873" }}>
+            <span className="font-display text-xl font-bold" style={{ color: "var(--bronze)" }}>
               Туапсеноты
             </span>
           </a>
           <div className="flex items-center gap-3">
-            <a href="/" className="font-body text-sm hidden sm:block" style={{ color: "rgba(245,230,211,0.85)" }}>
+            <a href="/" className="font-body text-sm hidden sm:block" style={{ color: "var(--warm-dark)" }}>
               ← На главную
             </a>
             <a href="/cart" className="btn-primary text-sm px-4 py-2">
@@ -92,14 +92,14 @@ export default function Shop() {
       <div className="relative z-10 pt-24 pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
-            style={{ color: "#E6B873" }}>
+            style={{ color: "var(--bronze)" }}>
             Магазин
           </p>
           <h1 className="font-display text-3xl sm:text-5xl font-bold mb-4"
-            style={{ color: "#FBF3E8" }}>
+            style={{ color: "var(--warm-dark)" }}>
             Возьми частичку Туапсе домой
           </h1>
-          <p className="font-body text-lg max-w-xl mx-auto" style={{ color: "rgba(245,230,211,0.75)" }}>
+          <p className="font-body text-lg max-w-xl mx-auto" style={{ color: "#6B4C35" }}>
             Каждый заказ — это вклад в проект и живая память о Туапсенотах
           </p>
         </div>
@@ -108,52 +108,52 @@ export default function Shop() {
           {PRODUCTS.map((p) => (
             <div key={p.id} className="rounded-2xl overflow-hidden card-hover"
               style={{
-                background: "rgba(54,37,26,0.55)",
+                background: "rgba(255,252,247,0.7)",
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
-                border: "1px solid rgba(212,160,90,0.30)",
-                boxShadow: "0 12px 40px rgba(0,0,0,0.45)",
+                border: "1px solid rgba(255,255,255,0.7)",
+                boxShadow: "0 12px 40px rgba(184,115,51,0.18)",
               }}>
               <div className="relative">
                 <img src={p.image} alt={p.name}
                   className="w-full object-contain"
-                  style={{ maxHeight: "180px", backgroundColor: "rgba(245,240,235,0.92)" }} />
+                  style={{ maxHeight: "180px", backgroundColor: "#f5f0eb" }} />
                 <span className="absolute top-2 left-2 font-body text-xs font-bold px-2 py-0.5 rounded-full"
                   style={{ backgroundColor: p.badgeColor, color: "white" }}>
                   {p.badge}
                 </span>
               </div>
               <div className="p-4">
-                <h2 className="font-display text-base font-bold mb-1" style={{ color: "#FBF3E8" }}>
+                <h2 className="font-display text-base font-bold mb-1" style={{ color: "var(--warm-dark)" }}>
                   {p.name}
                 </h2>
-                <div className="font-body text-xs mb-3" style={{ color: "rgba(240,224,205,0.78)", lineHeight: 1.5 }}>
+                <div className="font-body text-xs mb-3" style={{ color: "#6B4C35", lineHeight: 1.5 }}>
                   {p.description.split("\n\n").map((block, i) => (
                     <p key={i} className="mb-1 whitespace-pre-line">{block}</p>
                   ))}
                 </div>
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="font-display text-lg font-bold" style={{ color: "#E6B873" }}>
+                  <span className="font-display text-lg font-bold" style={{ color: "var(--bronze)" }}>
                     {p.price.toLocaleString("ru-RU")} ₽
                   </span>
                   <div className="flex items-center gap-1 rounded-full px-1 py-1"
-                    style={{ border: "1.5px solid rgba(212,160,90,0.4)", backgroundColor: "rgba(255,255,255,0.08)" }}>
+                    style={{ border: "1.5px solid rgba(184,115,51,0.3)", backgroundColor: "white" }}>
                     <button
                       type="button"
                       onClick={() => changeQty(p.id, -1)}
                       className="w-7 h-7 flex items-center justify-center rounded-full"
-                      style={{ color: "#E6B873" }}
+                      style={{ color: "var(--bronze)" }}
                       aria-label="Уменьшить">
                       <Icon name="Minus" size={14} />
                     </button>
-                    <span className="font-body font-bold text-sm w-6 text-center" style={{ color: "#FBF3E8" }}>
+                    <span className="font-body font-bold text-sm w-6 text-center" style={{ color: "var(--warm-dark)" }}>
                       {getQty(p.id)}
                     </span>
                     <button
                       type="button"
                       onClick={() => changeQty(p.id, 1)}
                       className="w-7 h-7 flex items-center justify-center rounded-full"
-                      style={{ color: "#E6B873" }}
+                      style={{ color: "var(--bronze)" }}
                       aria-label="Увеличить">
                       <Icon name="Plus" size={14} />
                     </button>
@@ -175,7 +175,7 @@ export default function Shop() {
         </div>
 
         <div className="rounded-3xl p-8 text-center"
-          style={{ background: "linear-gradient(135deg, #2c5d6b, #1c3d47)", border: "1px solid rgba(212,160,90,0.25)", boxShadow: "0 12px 40px rgba(0,0,0,0.4)" }}>
+          style={{ background: "linear-gradient(135deg, var(--sea), #3d7a90)", boxShadow: "0 12px 40px rgba(122,177,191,0.3)" }}>
           <h3 className="font-display text-2xl sm:text-3xl font-bold mb-3"
             style={{ color: "var(--cream)" }}>
             Поддержать проект
