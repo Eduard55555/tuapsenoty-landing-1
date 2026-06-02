@@ -39,11 +39,18 @@ const PRODUCTS = [
 
 export default function Shop() {
   const [added, setAdded] = useState<string | null>(null);
+  const [qtys, setQtys] = useState<Record<string, number>>({});
+
+  const getQty = (id: string) => qtys[id] || 1;
+  const changeQty = (id: string, delta: number) => {
+    setQtys((prev) => ({ ...prev, [id]: Math.max(1, (prev[id] || 1) + delta) }));
+  };
 
   const handleAdd = (product: typeof PRODUCTS[0]) => {
     setAdded(product.id);
+    const qty = getQty(product.id);
     setTimeout(() => {
-      window.location.href = `/cart?id=${product.id}&name=${encodeURIComponent(product.name)}&price=${product.price}&image=${encodeURIComponent(product.image)}`;
+      window.location.href = `/cart?id=${product.id}&name=${encodeURIComponent(product.name)}&price=${product.price}&image=${encodeURIComponent(product.image)}&qty=${qty}`;
     }, 500);
   };
 
@@ -107,21 +114,43 @@ export default function Shop() {
                     <p key={i} className="mb-1 whitespace-pre-line">{block}</p>
                   ))}
                 </div>
-                <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center justify-between gap-2 mb-3">
                   <span className="font-display text-lg font-bold" style={{ color: "var(--bronze)" }}>
                     {p.price.toLocaleString("ru-RU")} ₽
                   </span>
-                  <button
-                    onClick={() => handleAdd(p)}
-                    className="btn-primary text-xs px-3 py-2"
-                    style={added === p.id ? { backgroundColor: "#4CAF50" } : {}}>
-                    {added === p.id ? (
-                      <><Icon name="Check" size={14} /> Добавлено</>
-                    ) : (
-                      <><Icon name="ShoppingCart" size={14} /> В корзину</>
-                    )}
-                  </button>
+                  <div className="flex items-center gap-1 rounded-full px-1 py-1"
+                    style={{ border: "1.5px solid rgba(184,115,51,0.3)", backgroundColor: "white" }}>
+                    <button
+                      type="button"
+                      onClick={() => changeQty(p.id, -1)}
+                      className="w-7 h-7 flex items-center justify-center rounded-full"
+                      style={{ color: "var(--bronze)" }}
+                      aria-label="Уменьшить">
+                      <Icon name="Minus" size={14} />
+                    </button>
+                    <span className="font-body font-bold text-sm w-6 text-center" style={{ color: "var(--warm-dark)" }}>
+                      {getQty(p.id)}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => changeQty(p.id, 1)}
+                      className="w-7 h-7 flex items-center justify-center rounded-full"
+                      style={{ color: "var(--bronze)" }}
+                      aria-label="Увеличить">
+                      <Icon name="Plus" size={14} />
+                    </button>
+                  </div>
                 </div>
+                <button
+                  onClick={() => handleAdd(p)}
+                  className="btn-primary text-xs px-3 py-2 w-full justify-center"
+                  style={added === p.id ? { backgroundColor: "#4CAF50" } : {}}>
+                  {added === p.id ? (
+                    <><Icon name="Check" size={14} /> Добавлено</>
+                  ) : (
+                    <><Icon name="ShoppingCart" size={14} /> В корзину</>
+                  )}
+                </button>
               </div>
             </div>
           ))}

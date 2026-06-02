@@ -7,8 +7,12 @@ export default function Cart() {
   const name = params.get("name") || "";
   const price = Number(params.get("price") || 0);
   const image = params.get("image") || "";
+  const initialQty = Math.max(1, Number(params.get("qty") || 1));
 
   const hasItem = !!id && !!name && price > 0;
+
+  const [qty, setQty] = useState(initialQty);
+  const total = price * qty;
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,8 +32,8 @@ export default function Cart() {
           name: customerName,
           phone,
           email,
-          items: [{ name, price, qty: 1 }],
-          total: price,
+          items: [{ name, price, qty }],
+          total,
         }),
       });
     } catch (err) { console.error(err); }
@@ -89,9 +93,36 @@ export default function Cart() {
                   <p className="font-body font-bold text-lg" style={{ color: "var(--warm-dark)" }}>
                     {name}
                   </p>
-                  <p className="font-display text-2xl font-bold mt-1" style={{ color: "var(--bronze)" }}>
-                    {price.toLocaleString("ru-RU")} ₽
+                  <p className="font-body text-sm mt-0.5" style={{ color: "#9B7B5A" }}>
+                    {price.toLocaleString("ru-RU")} ₽ / шт
                   </p>
+                  <div className="flex items-center gap-3 mt-3">
+                    <div className="flex items-center gap-1 rounded-full px-1 py-1"
+                      style={{ border: "1.5px solid rgba(184,115,51,0.3)", backgroundColor: "white" }}>
+                      <button
+                        type="button"
+                        onClick={() => setQty((q) => Math.max(1, q - 1))}
+                        className="w-8 h-8 flex items-center justify-center rounded-full"
+                        style={{ color: "var(--bronze)" }}
+                        aria-label="Уменьшить">
+                        <Icon name="Minus" size={16} />
+                      </button>
+                      <span className="font-body font-bold w-7 text-center" style={{ color: "var(--warm-dark)" }}>
+                        {qty}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setQty((q) => q + 1)}
+                        className="w-8 h-8 flex items-center justify-center rounded-full"
+                        style={{ color: "var(--bronze)" }}
+                        aria-label="Увеличить">
+                        <Icon name="Plus" size={16} />
+                      </button>
+                    </div>
+                    <p className="font-display text-2xl font-bold" style={{ color: "var(--bronze)" }}>
+                      {total.toLocaleString("ru-RU")} ₽
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
