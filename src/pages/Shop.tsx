@@ -105,11 +105,17 @@ export default function Shop() {
         <div className="grid sm:grid-cols-3 gap-4 mb-16">
           {PRODUCTS.map((p) => (
             <div key={p.id} className="rounded-2xl overflow-hidden card-hover"
-              style={{ backgroundColor: "var(--sand)", border: "1px solid rgba(184,115,51,0.15)" }}>
+              style={{
+                background: "rgba(255,255,255,0.45)",
+                backdropFilter: "blur(14px)",
+                WebkitBackdropFilter: "blur(14px)",
+                border: "1px solid rgba(255,255,255,0.6)",
+                boxShadow: "0 8px 32px rgba(184,115,51,0.12)",
+              }}>
               <div className="relative">
                 <img src={p.image} alt={p.name}
                   className="w-full object-contain"
-                  style={{ maxHeight: "180px", backgroundColor: "#f5f0eb" }} />
+                  style={{ maxHeight: "180px", backgroundColor: "rgba(245,240,235,0.6)" }} />
                 <span className="absolute top-2 left-2 font-body text-xs font-bold px-2 py-0.5 rounded-full"
                   style={{ backgroundColor: p.badgeColor, color: "white" }}>
                   {p.badge}
