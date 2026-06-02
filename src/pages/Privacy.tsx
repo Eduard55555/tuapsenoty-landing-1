@@ -217,7 +217,7 @@ export default function Privacy() {
 
           <section>
             <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
-              12. Контакты Оператора
+              12. Контакты
             </h2>
             <p>Сарбаев Эдуард Нажиевич</p>
             <p className="flex items-center gap-2"><Icon name="Mail" size={16} /> sen555551@mail.ru</p>
