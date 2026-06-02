@@ -124,12 +124,18 @@ export default function Shop() {
                 </span>
               </div>
               <div className="p-4">
-                <h2 className="font-display text-base font-bold mb-1" style={{ color: "var(--warm-dark)" }}>
+                <h2 className="font-display text-xl font-bold mb-2 leading-tight" style={{ color: "#2a1a10" }}>
                   {p.name}
                 </h2>
-                <div className="font-body text-xs mb-3" style={{ color: "#6B4C35", lineHeight: 1.5 }}>
+                <div className="font-body text-sm mb-3" style={{ color: "#3d2b1f", lineHeight: 1.6 }}>
                   {p.description.split("\n\n").map((block, i) => (
-                    <p key={i} className="mb-1 whitespace-pre-line">{block}</p>
+                    <p
+                      key={i}
+                      className={`mb-2 whitespace-pre-line ${i === 0 ? "font-bold text-base" : ""}`}
+                      style={i === 0 ? { color: "var(--bronze)" } : undefined}
+                    >
+                      {block}
+                    </p>
                   ))}
                 </div>
                 <div className="flex items-center justify-between gap-2 mb-3">
