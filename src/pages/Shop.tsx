@@ -129,16 +129,12 @@ export default function Shop() {
 
         <div className="rounded-3xl p-8 text-center"
           style={{ background: "linear-gradient(135deg, var(--sea), #3d7a90)" }}>
-          <p className="font-body text-sm font-bold uppercase tracking-widest mb-3"
-            style={{ color: "var(--teal-light)" }}>
-            Краудфандинг
-          </p>
           <h3 className="font-display text-2xl sm:text-3xl font-bold mb-3"
             style={{ color: "var(--cream)" }}>
-            Хочешь поддержать весь проект?
+            Поддержать проект
           </h3>
           <p className="font-body mb-6" style={{ color: "rgba(245,230,211,0.8)" }}>
-            Стань частью истории на Planeta.ru — поддержи краудфандинг
+            Стань частью истории на Planeta.ru
           </p>
           <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
             className="btn-primary inline-flex text-base px-8 py-4">
