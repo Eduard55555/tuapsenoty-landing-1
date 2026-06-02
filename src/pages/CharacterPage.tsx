@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
 import Icon from "@/components/ui/icon";
+import SiteFooter from "@/components/SiteFooter";
 
 const characters = [
   {
@@ -211,6 +212,8 @@ export default function CharacterPage() {
 
         </div>
       </main>
+
+      <SiteFooter />
     </div>
   );
 }

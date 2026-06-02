@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
+import SiteFooter from "@/components/SiteFooter";
 
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 
@@ -146,6 +147,8 @@ export default function Shop() {
           </a>
         </div>
       </div>
+
+      <SiteFooter />
     </div>
   );
 }
