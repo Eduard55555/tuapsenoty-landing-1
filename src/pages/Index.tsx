@@ -682,6 +682,10 @@ export default function Index() {
           </div>
 
           <div className="text-center">
+            <a href="/privacy" className="font-body text-sm underline mb-2 inline-block"
+              style={{ color: "rgba(245,230,211,0.6)" }}>
+              Политика обработки персональных данных
+            </a>
             <p className="font-body text-sm" style={{ color: "rgba(245,230,211,0.4)" }}>
               © 2026 Туапсеноты. С любовью к Туапсе 🌊
             </p>
