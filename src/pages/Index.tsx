@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { QRCodeSVG } from "qrcode.react";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 
@@ -460,7 +459,6 @@ export default function Index() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {characters.map((char) => {
-              const charUrl = `${window.location.origin}/characters/${char.slug}`;
               return (
                 <div key={char.name}
                   className={`card-hover rounded-3xl overflow-hidden bg-gradient-to-br ${char.color} flex flex-col`}
