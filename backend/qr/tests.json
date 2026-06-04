@@ -1,0 +1,1 @@
+{"tests": [{"name": "Генерация QR-кодов", "method": "GET", "path": "/", "expectedStatus": 200, "expectedBody": {"qrcodes": "array"}, "bodyMatcher": "partial"}]}
