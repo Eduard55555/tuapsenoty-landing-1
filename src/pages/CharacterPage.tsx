@@ -1,5 +1,4 @@
 import { useParams, Link } from "react-router-dom";
-import { QRCodeSVG } from "qrcode.react";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 
@@ -117,8 +116,6 @@ export default function CharacterPage() {
     );
   }
 
-  const pageUrl = `${window.location.origin}/characters/${char.slug}`;
-
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <header className="fixed top-0 left-0 right-0 z-50"
@@ -187,23 +184,7 @@ export default function CharacterPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl p-8 text-center"
-            style={{ backgroundColor: "var(--sand)", border: "1px solid rgba(184,115,51,0.15)" }}>
-            <p className="font-body text-sm font-bold tracking-widest uppercase mb-3" style={{ color: "var(--bronze)" }}>
-              QR-код этой страницы
-            </p>
-            <p className="font-body text-sm mb-6" style={{ color: "#6B4C35" }}>
-              Отсканируй — и узнай всё о {char.name === "Енофья" ? "Енофье" : char.name === "Тыдочка" ? "Тыдочке" : char.name + "е"}
-            </p>
-            <div className="flex justify-center mb-4">
-              <div className="bg-white p-4 rounded-2xl shadow-sm">
-                <QRCodeSVG value={pageUrl} size={180} fgColor="#3D2B1A" />
-              </div>
-            </div>
-            <p className="font-body text-xs" style={{ color: "#9B7B5A" }}>{pageUrl}</p>
-          </div>
-
-          <div className="mt-8 text-center">
+          <div className="text-center">
             <a href="/shop" className="btn-primary inline-flex">
               <Icon name="ShoppingCart" size={18} />
               Купить статуэтку {char.name === "Енофья" ? "Енофьи" : char.name === "Тыдочка" ? "Тыдочки" : char.name + "а"}
