@@ -15,6 +15,7 @@ const characters = [
     location: "Набережная",
     color: "from-amber-100 to-yellow-100",
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/61957535-c6fc-42ed-be30-235d0501d01a.png",
+    video: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/videos/enotych.mp4",
   },
   {
     slug: "enofya",
@@ -203,7 +204,12 @@ export default function CharacterPage() {
       </main>
 
       {arOpen && (
-        <ARHologram image={char.image} name={char.name} onClose={() => setArOpen(false)} />
+        <ARHologram
+          image={char.image}
+          video={(char as { video?: string }).video}
+          name={char.name}
+          onClose={() => setArOpen(false)}
+        />
       )}
 
       <SiteFooter />

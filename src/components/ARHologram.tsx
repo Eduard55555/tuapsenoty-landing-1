@@ -3,12 +3,13 @@ import Icon from "@/components/ui/icon";
 
 interface ARHologramProps {
   image: string;
+  video?: string;
   name: string;
   onClose: () => void;
 }
 
-export default function ARHologram({ image, name, onClose }: ARHologramProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+export default function ARHologram({ image, video, name, onClose }: ARHologramProps) {
+  const camRef = useRef<HTMLVideoElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const [scale, setScale] = useState(1);
@@ -22,9 +23,9 @@ export default function ARHologram({ image, name, onClose }: ARHologramProps) {
           video: { facingMode: { ideal: "environment" } },
           audio: false,
         });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          await videoRef.current.play();
+        if (camRef.current) {
+          camRef.current.srcObject = stream;
+          await camRef.current.play();
           setReady(true);
         }
       } catch (e) {
@@ -46,7 +47,7 @@ export default function ARHologram({ image, name, onClose }: ARHologramProps) {
   return (
     <div className="fixed inset-0 z-[100] bg-black">
       <video
-        ref={videoRef}
+        ref={camRef}
         playsInline
         muted
         className="absolute inset-0 w-full h-full object-cover"
@@ -54,16 +55,24 @@ export default function ARHologram({ image, name, onClose }: ARHologramProps) {
 
       {ready && !error && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div
-            className="ar-hologram"
-            style={{ transform: `scale(${scale})` }}
-          >
-            <img
-              src={image}
-              alt={name}
-              className="ar-hologram-img"
-              draggable={false}
-            />
+          <div className="ar-hologram" style={{ transform: `scale(${scale})` }}>
+            {video ? (
+              <video
+                src={video}
+                className="ar-hologram-img"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            ) : (
+              <img
+                src={image}
+                alt={name}
+                className="ar-hologram-img"
+                draggable={false}
+              />
+            )}
           </div>
         </div>
       )}

@@ -20,9 +20,13 @@ def handler(event: dict, context) -> dict:
             'body': '',
         }
 
-    body = json.loads(event.get('body') or '{}')
-    source_url = body.get('source_url')
-    key = body.get('key', 'videos/clip.mp4')
+    try:
+        body = json.loads(event.get('body') or '{}')
+    except (ValueError, TypeError):
+        body = {}
+    params = event.get('queryStringParameters') or {}
+    source_url = body.get('source_url') or params.get('source_url')
+    key = body.get('key') or params.get('key') or 'videos/clip.mp4'
 
     if not source_url:
         return {
