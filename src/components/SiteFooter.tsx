@@ -95,7 +95,7 @@ export default function SiteFooter() {
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
               className="btn-primary text-sm mt-6 inline-flex">
               <Icon name="Heart" size={16} />
-              Поддержить проект
+              Поддержать проект
             </a>
           </div>
         </div>
