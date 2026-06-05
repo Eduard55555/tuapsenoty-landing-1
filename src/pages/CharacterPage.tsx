@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
+import ARHologram from "@/components/ARHologram";
 
 const characters = [
   {
@@ -98,6 +100,7 @@ export { characters };
 export default function CharacterPage() {
   const { slug } = useParams<{ slug: string }>();
   const char = characters.find((c) => c.slug === slug);
+  const [arOpen, setArOpen] = useState(false);
 
   if (!char) {
     return (
@@ -184,7 +187,12 @@ export default function CharacterPage() {
             </div>
           </div>
 
-          <div className="text-center">
+          <div className="text-center flex flex-col items-center gap-4">
+            <button onClick={() => setArOpen(true)} className="btn-primary inline-flex"
+              style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
+              <Icon name="Sparkles" size={18} />
+              Оживить {char.name} в AR
+            </button>
             <a href="/shop" className="btn-primary inline-flex">
               <Icon name="ShoppingCart" size={18} />
               Купить статуэтку {char.name === "Енофья" ? "Енофьи" : char.name === "Тыдочка" ? "Тыдочки" : char.name + "а"}
@@ -193,6 +201,10 @@ export default function CharacterPage() {
 
         </div>
       </main>
+
+      {arOpen && (
+        <ARHologram image={char.image} name={char.name} onClose={() => setArOpen(false)} />
+      )}
 
       <SiteFooter />
     </div>

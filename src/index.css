@@ -267,3 +267,44 @@
 .animate-accordion-up {
   animation: accordion-up 0.2s ease-out;
 }
+
+.ar-hologram {
+  animation: ar-float 4s ease-in-out infinite;
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+
+.ar-hologram-img {
+  max-width: 75vw;
+  max-height: 55vh;
+  object-fit: contain;
+  filter: drop-shadow(0 0 18px rgba(64, 224, 208, 0.85))
+    drop-shadow(0 0 42px rgba(46, 92, 110, 0.6)) brightness(1.08) saturate(1.15);
+  animation: ar-glow 3s ease-in-out infinite;
+}
+
+@keyframes ar-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(1deg);
+  }
+}
+
+@keyframes ar-glow {
+  0%,
+  100% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 18px rgba(64, 224, 208, 0.85))
+      drop-shadow(0 0 42px rgba(46, 92, 110, 0.6)) brightness(1.08)
+      saturate(1.15);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 28px rgba(64, 224, 208, 1))
+      drop-shadow(0 0 60px rgba(46, 92, 110, 0.8)) brightness(1.18)
+      saturate(1.3);
+  }
+}
