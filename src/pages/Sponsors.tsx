@@ -168,7 +168,11 @@ export default function Sponsors() {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <a href="mailto:sen555551@mail.ru" className="btn-primary inline-flex">
+              <a
+                href="https://e.mail.ru/compose/?mailto=mailto:sen555551@mail.ru"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-flex">
                 <Icon name="Mail" size={18} />
                 Написать на почту
               </a>
