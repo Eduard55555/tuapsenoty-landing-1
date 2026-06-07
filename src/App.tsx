@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import CharacterPage from "./pages/CharacterPage";
 import Privacy from "./pages/Privacy";
 import Sponsors from "./pages/Sponsors";
+import Gallery from "./pages/Gallery";
 import { CartProvider } from "./context/CartContext";
 import CookieBanner from "./components/CookieBanner";
 
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/characters/:slug" element={<CharacterPage />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/sponsors" element={<Sponsors />} />
+            <Route path="/gallery" element={<Gallery />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

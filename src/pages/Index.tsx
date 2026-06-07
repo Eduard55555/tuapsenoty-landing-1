@@ -198,7 +198,7 @@ export default function Index() {
                 style={{ color: "white", fontWeight: 800, backgroundColor: "var(--bronze)", letterSpacing: "0.02em" }}>
                 🛒 Магазин
               </a>
-              {[["О проекте", "#about"], ["Персонажи", "#characters"], ["Как помочь", "#help"], ["Новости", "#news"]].map(([label, href]) => (
+              {[["О проекте", "#about"], ["Персонажи", "#characters"], ["Галерея", "/gallery"], ["Как помочь", "#help"], ["Новости", "#news"]].map(([label, href]) => (
                 <a key={label} href={href}
                   className="font-body text-sm transition-colors"
                   style={{ color: "var(--warm-dark)", fontWeight: 600 }}>
@@ -231,7 +231,7 @@ export default function Index() {
               onClick={() => setMenuOpen(false)}>
               🛒 Магазин
             </a>
-            {[["О проекте", "#about"], ["Персонажи", "#characters"], ["Как помочь", "#help"], ["Новости", "#news"]].map(([label, href]) => (
+            {[["О проекте", "#about"], ["Персонажи", "#characters"], ["Галерея", "/gallery"], ["Как помочь", "#help"], ["Новости", "#news"]].map(([label, href]) => (
               <a key={label} href={href}
                 className="block font-body font-semibold py-2"
                 style={{ color: "var(--warm-dark)" }}
