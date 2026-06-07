@@ -189,9 +189,9 @@ export default function Index() {
 
             <nav className="hidden md:flex items-center gap-8">
               <a href="/sponsors"
-                className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
-                style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
-                🤝 Партнёры и друзья
+                className="font-body text-xs px-3 py-1 rounded-2xl inline-flex items-center gap-1 text-center leading-tight transition-transform hover:scale-105"
+                style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", boxShadow: "0 2px 10px rgba(64,224,208,0.4)", width: "180px" }}>
+                🤝 Туапсеноты рекомендуют: наши партнёры и друзья
               </a>
               <a href="/shop"
                 className="font-body text-sm px-3 py-1 rounded-full transition-colors"
@@ -223,7 +223,7 @@ export default function Index() {
               className="block font-body py-2 px-3 rounded-xl text-center"
               style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))" }}
               onClick={() => setMenuOpen(false)}>
-              🤝 Партнёры и друзья
+              🤝 Туапсеноты рекомендуют: наши партнёры и друзья
             </a>
             <a href="/shop"
               className="block font-body py-2 px-3 rounded-xl text-center"
