@@ -200,6 +200,11 @@ export default function Index() {
                   {label}
                 </a>
               ))}
+              <a href="/sponsors"
+                className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 transition-transform hover:scale-105"
+                style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
+                🤝 Спонсоры
+              </a>
             </nav>
 
 
@@ -228,6 +233,12 @@ export default function Index() {
                 {label}
               </a>
             ))}
+            <a href="/sponsors"
+              className="block font-body py-2 px-3 rounded-xl text-center"
+              style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))" }}
+              onClick={() => setMenuOpen(false)}>
+              🤝 Спонсоры
+            </a>
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
               className="btn-primary text-sm w-full justify-center mt-2">
               <Icon name="Heart" size={16} />
