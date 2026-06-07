@@ -188,6 +188,11 @@ export default function Index() {
             </a>
 
             <nav className="hidden md:flex items-center gap-8">
+              <a href="/sponsors"
+                className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 transition-transform hover:scale-105"
+                style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
+                🤝 Спонсоры и партнёры
+              </a>
               <a href="/shop"
                 className="font-body text-sm px-3 py-1 rounded-full transition-colors"
                 style={{ color: "white", fontWeight: 800, backgroundColor: "var(--bronze)", letterSpacing: "0.02em" }}>
@@ -200,11 +205,6 @@ export default function Index() {
                   {label}
                 </a>
               ))}
-              <a href="/sponsors"
-                className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 transition-transform hover:scale-105"
-                style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
-                🤝 Спонсоры
-              </a>
             </nav>
 
 
@@ -219,6 +219,12 @@ export default function Index() {
         {menuOpen && (
           <div className="md:hidden px-4 pb-4 pt-2 space-y-3"
             style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
+            <a href="/sponsors"
+              className="block font-body py-2 px-3 rounded-xl text-center"
+              style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))" }}
+              onClick={() => setMenuOpen(false)}>
+              🤝 Спонсоры и партнёры
+            </a>
             <a href="/shop"
               className="block font-body py-2 px-3 rounded-xl text-center"
               style={{ color: "white", fontWeight: 800, backgroundColor: "var(--bronze)" }}
@@ -233,12 +239,6 @@ export default function Index() {
                 {label}
               </a>
             ))}
-            <a href="/sponsors"
-              className="block font-body py-2 px-3 rounded-xl text-center"
-              style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))" }}
-              onClick={() => setMenuOpen(false)}>
-              🤝 Спонсоры
-            </a>
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
               className="btn-primary text-sm w-full justify-center mt-2">
               <Icon name="Heart" size={16} />
