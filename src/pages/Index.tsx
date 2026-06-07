@@ -189,8 +189,8 @@ export default function Index() {
 
             <nav className="hidden md:flex items-center gap-8">
               <a href="/sponsors"
-                className="font-body text-xs px-3 py-1 rounded-2xl inline-flex items-center gap-1 text-center leading-tight transition-transform hover:scale-105"
-                style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", boxShadow: "0 2px 10px rgba(64,224,208,0.4)", width: "180px" }}>
+                className="font-body px-3 py-1 rounded-2xl inline-flex items-center justify-center text-center leading-tight transition-transform hover:scale-105"
+                style={{ color: "var(--warm-dark)", fontWeight: 800, fontSize: "11px", background: "linear-gradient(135deg, var(--teal-light), var(--teal))", boxShadow: "0 2px 10px rgba(64,224,208,0.4)", width: "260px" }}>
                 🤝 Туапсеноты рекомендуют: наши партнёры и друзья
               </a>
               <a href="/shop"
