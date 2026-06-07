@@ -129,7 +129,7 @@ export default function Sponsors() {
             <div className="text-center">
               <div className="text-4xl mb-4">💛</div>
               <h2 className="font-display text-3xl font-bold mb-4" style={{ color: "var(--cream)" }}>
-                Хотите, чтобы енот стоял рядом с вами?
+                Хотите, чтобы бронзовая скульптура стояла у вашего бизнеса?
               </h2>
             </div>
 
