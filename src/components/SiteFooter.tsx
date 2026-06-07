@@ -90,6 +90,12 @@ export default function SiteFooter() {
                 <Icon name="ExternalLink" size={14} />
                 Страница на Planeta.ru
               </a>
+              <a href="/sponsors"
+                className="flex items-center gap-2 font-body text-sm hover:underline"
+                style={{ color: "rgba(245,230,211,0.8)" }}>
+                <Icon name="Handshake" size={14} />
+                Спонсоры и партнёры
+              </a>
             </div>
 
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"

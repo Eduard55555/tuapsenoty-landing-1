@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import CharacterPage from "./pages/CharacterPage";
 import Privacy from "./pages/Privacy";
+import Sponsors from "./pages/Sponsors";
 import { CartProvider } from "./context/CartContext";
 import CookieBanner from "./components/CookieBanner";
 
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/cart" element={<Cart />} />
             <Route path="/characters/:slug" element={<CharacterPage />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/sponsors" element={<Sponsors />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
