@@ -73,11 +73,14 @@ export default function Sponsors() {
           <div className="text-center mb-12">
             <div className="text-5xl mb-4">🤝</div>
             <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
-              Наши спонсоры и партнёры
+              Наши партнёры
             </h1>
-            <p className="font-body text-lg max-w-2xl mx-auto" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
-              Компании, которые поддерживают проект «Туапсеноты» и делают наш город теплее.
-              Рекомендуем их услуги гостям и жителям Туапсе.
+            <p className="font-body text-lg max-w-2xl mx-auto mb-3" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
+              Компании, которые помогли енотам найти дом в Туапсе. Заодно — сделали так,
+              чтобы вы знали, куда зайти за хорошим кофе, свежей выпечкой или приятным обслуживанием.
+            </p>
+            <p className="font-body text-lg max-w-2xl mx-auto font-semibold" style={{ color: "var(--bronze)" }}>
+              Мы их рекомендуем. И вы тоже присмотритесь. 💛
             </p>
           </div>
 
@@ -121,17 +124,49 @@ export default function Sponsors() {
             ))}
           </div>
 
-          <div className="rounded-3xl p-8 sm:p-12 text-center"
+          <div className="rounded-3xl p-8 sm:p-12"
             style={{ background: "linear-gradient(135deg, var(--sea), var(--sea-light))" }}>
-            <div className="text-4xl mb-4">💛</div>
-            <h2 className="font-display text-3xl font-bold mb-3" style={{ color: "var(--cream)" }}>
-              Хотите стать спонсором?
-            </h2>
-            <p className="font-body text-base mb-6 max-w-xl mx-auto"
-              style={{ color: "rgba(245,230,211,0.9)", lineHeight: 1.7 }}>
-              Поддержите проект «Туапсеноты» и расскажите о своих услугах тысячам гостей и жителей города.
-              Свяжитесь с авторами — обсудим формат сотрудничества.
-            </p>
+            <div className="text-center">
+              <div className="text-4xl mb-4">💛</div>
+              <h2 className="font-display text-3xl font-bold mb-4" style={{ color: "var(--cream)" }}>
+                Хотите, чтобы енот стоял рядом с вами?
+              </h2>
+            </div>
+
+            <div className="max-w-2xl mx-auto space-y-3 mb-8">
+              <p className="font-body text-base" style={{ color: "rgba(245,230,211,0.95)", lineHeight: 1.7 }}>
+                Проект «Туапсеноты» — это не просто фигурки. Это люди, которые их ищут.
+                И те, кто попадается им на пути.
+              </p>
+              <p className="font-body text-base" style={{ color: "rgba(245,230,211,0.95)", lineHeight: 1.7 }}>
+                Если ваш бизнес — в центре или на набережной — давайте обсудим,
+                как енот может поселиться у вашего входа.
+              </p>
+            </div>
+
+            <div className="max-w-md mx-auto mb-8">
+              <p className="font-body text-sm font-bold uppercase tracking-wider mb-4 text-center"
+                style={{ color: "var(--teal-light)" }}>
+                Что вы получите
+              </p>
+              <div className="space-y-3">
+                {[
+                  "Гостей, которые не проходят мимо",
+                  "Упоминания в соцсетях и прессе",
+                  "Место в этой табличке (и в сердцах тех, кто ищет)",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="flex-shrink-0 mt-0.5">
+                      <Icon name="Check" size={20} style={{ color: "var(--teal-light)" }} />
+                    </span>
+                    <span className="font-body text-base" style={{ color: "var(--cream)" }}>
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a href="mailto:sen555551@mail.ru" className="btn-primary inline-flex">
                 <Icon name="Mail" size={18} />
