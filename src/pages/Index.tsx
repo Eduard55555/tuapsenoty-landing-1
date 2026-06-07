@@ -274,9 +274,9 @@ export default function Index() {
           </div>
 
           <div className="animate-fade-up">
-            <h1 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 whitespace-nowrap"
+            <h1 className="font-display text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 whitespace-nowrap"
               style={{ color: "var(--cream)", lineHeight: 1.1 }}>
-              Туапсеноты — <em style={{ color: "var(--teal-light)" }}>новая душа</em> Туапсе
+              Туапсеноты — <em style={{ color: "var(--teal-light)" }}>новая душа</em> Черноморского побережья
             </h1>
           </div>
 
