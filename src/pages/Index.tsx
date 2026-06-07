@@ -249,7 +249,7 @@ export default function Index() {
       </header>
 
       {/* HERO */}
-      <section className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      <section className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-28 sm:pt-32">
         <div className="absolute inset-0 texture-overlay opacity-30" />
 
         <div className="absolute top-20 right-10 w-32 h-32 sm:w-64 sm:h-64 rounded-full opacity-10"
@@ -274,15 +274,9 @@ export default function Index() {
           </div>
 
           <div className="animate-fade-up">
-            <p className="font-body text-sm font-bold tracking-widest uppercase mb-4"
-              style={{ color: "var(--teal-light)" }}>
-              Туапсе
-            </p>
-            <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+            <h1 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 whitespace-nowrap"
               style={{ color: "var(--cream)", lineHeight: 1.1 }}>
-              Туапсеноты —<br />
-              <em style={{ color: "var(--teal-light)" }}>новая душа</em><br />
-              Черноморского побережья
+              Туапсеноты — <em style={{ color: "var(--teal-light)" }}>новая душа</em> Туапсе
             </h1>
           </div>
 
