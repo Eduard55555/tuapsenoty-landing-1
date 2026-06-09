@@ -3,6 +3,7 @@ import IndexHeader from "./index/IndexHeader";
 import IndexHero from "./index/IndexHero";
 import IndexNews from "./index/IndexNews";
 import IndexCharacters from "./index/IndexCharacters";
+import IndexMapTeaser from "./index/IndexMapTeaser";
 
 export default function Index() {
   return (
@@ -19,6 +20,9 @@ export default function Index() {
 
       {/* CHARACTERS + SUBSCRIBE + HOW TO HELP */}
       <IndexCharacters />
+
+      {/* MAP TEASER */}
+      <IndexMapTeaser />
 
       {/* FOOTER */}
       <SiteFooter />
