@@ -1,91 +1,45 @@
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 import Icon from "@/components/ui/icon";
 import { characters } from "./index/indexData";
 
-const TUAPSE_CENTER: [number, number] = [44.0985, 39.078];
-
 type Char = (typeof characters)[number] & { coords?: [number, number] };
 
-export default function MapPage() {
-  const mapEl = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<L.Map | null>(null);
+const TUAPSE: [number, number] = [44.0985, 39.078];
 
+function osmEmbed(center: [number, number], zoomSpan = 0.02) {
+  const [lat, lon] = center;
+  const left = lon - zoomSpan;
+  const right = lon + zoomSpan;
+  const top = lat + zoomSpan / 2;
+  const bottom = lat - zoomSpan / 2;
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${left}%2C${bottom}%2C${right}%2C${top}&layer=mapnik&marker=${lat}%2C${lon}`;
+}
+
+export default function MapPage() {
   const installed = (characters as Char[]).filter((c) => c.coords);
   const pending = (characters as Char[]).filter((c) => !c.coords);
 
-  useEffect(() => {
-    if (!mapEl.current || mapRef.current) return;
-
-    const map = L.map(mapEl.current, {
-      center: TUAPSE_CENTER,
-      zoom: 15,
-      scrollWheelZoom: true,
-    });
-    mapRef.current = map;
-
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "&copy; OpenStreetMap",
-      maxZoom: 19,
-    }).addTo(map);
-
-    installed.forEach((char) => {
-      if (!char.coords) return;
-
-      const markerHtml = `
-        <div style="position:relative;display:flex;flex-direction:column;align-items:center;">
-          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#b87333,#8b5523);
-            border:3px solid #fdf6ee;box-shadow:0 4px 14px rgba(0,0,0,0.35);
-            display:flex;align-items:center;justify-content:center;font-size:24px;">${char.emoji}</div>
-          <div style="width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;
-            border-top:10px solid #8b5523;margin-top:-2px;"></div>
-        </div>`;
-
-      const icon = L.divIcon({
-        html: markerHtml,
-        className: "",
-        iconSize: [48, 58],
-        iconAnchor: [24, 58],
-        popupAnchor: [0, -56],
-      });
-
-      const popupHtml = `
-        <div style="width:200px;font-family:Nunito,sans-serif;text-align:center;">
-          <img src="${char.image}" alt="${char.name}"
-            style="width:100%;height:120px;object-fit:cover;border-radius:12px;margin-bottom:8px;" />
-          <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#3d2b1f;">${char.name}</div>
-          <div style="font-size:13px;font-weight:700;color:#b87333;margin-bottom:4px;">${char.role}</div>
-          <div style="font-size:12px;color:#6B4C35;margin-bottom:10px;">📍 ${char.location}</div>
-          <a href="/characters/${char.slug}"
-            style="display:inline-block;background:linear-gradient(135deg,#b87333,#8b5523);color:#fdf6ee;
-            text-decoration:none;font-weight:700;font-size:13px;padding:8px 18px;border-radius:50px;">
-            Подробнее</a>
-        </div>`;
-
-      L.marker(char.coords, { icon }).addTo(map).bindPopup(popupHtml);
-    });
-
-    return () => {
-      map.remove();
-      mapRef.current = null;
-    };
-  }, [installed]);
+  const [active, setActive] = useState<Char | null>(installed[0] ?? null);
+  const center = active?.coords ?? TUAPSE;
 
   return (
     <div className="relative h-screen w-full overflow-hidden" style={{ backgroundColor: "var(--cream)" }}>
-      <div ref={mapEl} className="absolute inset-0 z-0" />
+      <iframe
+        title="Карта енотов Туапсе"
+        src={osmEmbed(center)}
+        className="absolute inset-0 w-full h-full border-0 z-0"
+      />
 
       <Link to="/"
-        className="absolute top-4 left-4 z-[1000] inline-flex items-center gap-2 font-body font-bold text-sm px-4 py-2 rounded-full shadow-lg"
+        className="absolute top-4 left-4 z-20 inline-flex items-center gap-2 font-body font-bold text-sm px-4 py-2 rounded-full shadow-lg"
         style={{ backgroundColor: "var(--cream)", color: "var(--warm-dark)", border: "1px solid rgba(184,115,51,0.3)" }}>
         <Icon name="ArrowLeft" size={18} />
         На главную
       </Link>
 
-      <div className="absolute top-4 right-4 z-[1000] max-w-[260px] rounded-2xl shadow-xl p-4"
-        style={{ backgroundColor: "rgba(253,246,238,0.96)", border: "1px solid rgba(184,115,51,0.25)", backdropFilter: "blur(8px)" }}>
+      <div className="absolute top-4 right-4 z-20 w-[280px] max-w-[calc(100%-2rem)] rounded-2xl shadow-xl p-4"
+        style={{ backgroundColor: "rgba(253,246,238,0.97)", border: "1px solid rgba(184,115,51,0.25)", backdropFilter: "blur(8px)" }}>
         <div className="flex items-center gap-2 mb-3">
           <Icon name="MapPin" size={18} style={{ color: "var(--bronze)" }} />
           <span className="font-display text-lg font-bold" style={{ color: "var(--warm-dark)" }}>
@@ -94,11 +48,41 @@ export default function MapPage() {
         </div>
         <p className="font-body text-xs mb-3" style={{ color: "#6B4C35" }}>
           Установлено: <b style={{ color: "var(--bronze)" }}>{installed.length}</b> из {characters.length}.
-          Нажми на метку, чтобы узнать о хранителе.
+          Нажми на енота, чтобы найти его на карте.
         </p>
 
+        <div className="space-y-2 mb-3">
+          {installed.map((c) => (
+            <button key={c.slug} onClick={() => setActive(c)}
+              className="w-full flex items-center gap-3 p-2 rounded-xl transition-colors text-left"
+              style={{
+                backgroundColor: active?.slug === c.slug ? "rgba(184,115,51,0.15)" : "transparent",
+                border: active?.slug === c.slug ? "1px solid rgba(184,115,51,0.4)" : "1px solid transparent",
+              }}>
+              <img src={c.image} alt={c.name}
+                className="w-11 h-11 rounded-lg object-cover flex-shrink-0" />
+              <div className="min-w-0 flex-1">
+                <div className="font-display text-base font-bold truncate" style={{ color: "var(--warm-dark)" }}>
+                  {c.emoji} {c.name}
+                </div>
+                <div className="font-body text-[11px] truncate" style={{ color: "var(--bronze)" }}>
+                  📍 {c.location}
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {active && (
+          <a href={`/characters/${active.slug}`}
+            className="block w-full text-center font-body text-sm font-bold py-2 rounded-full mb-3"
+            style={{ background: "linear-gradient(135deg, var(--bronze), var(--bronze-dark))", color: "var(--cream)" }}>
+            Подробнее о {active.name}
+          </a>
+        )}
+
         {pending.length > 0 && (
-          <div>
+          <div className="pt-3" style={{ borderTop: "1px solid rgba(184,115,51,0.2)" }}>
             <div className="font-body text-[11px] font-bold uppercase tracking-wide mb-2" style={{ color: "var(--sea)" }}>
               Скоро появятся
             </div>
