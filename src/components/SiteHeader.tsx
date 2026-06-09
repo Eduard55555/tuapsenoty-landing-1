@@ -12,6 +12,43 @@ const LINKS: [string, string][] = [
   ["Новости", "/#news"],
 ];
 
+const HERO_STOPS: { p: number; c: [number, number, number] }[] = [
+  { p: 0, c: [46, 92, 110] },
+  { p: 0.25, c: [61, 122, 144] },
+  { p: 0.65, c: [184, 115, 51] },
+  { p: 0.85, c: [245, 160, 80] },
+  { p: 1, c: [245, 230, 211] },
+];
+
+function gradientColor(t: number): [number, number, number] {
+  for (let i = 0; i < HERO_STOPS.length - 1; i++) {
+    const a = HERO_STOPS[i];
+    const b = HERO_STOPS[i + 1];
+    if (t >= a.p && t <= b.p) {
+      const k = (t - a.p) / (b.p - a.p);
+      return [
+        Math.round(a.c[0] + (b.c[0] - a.c[0]) * k),
+        Math.round(a.c[1] + (b.c[1] - a.c[1]) * k),
+        Math.round(a.c[2] + (b.c[2] - a.c[2]) * k),
+      ];
+    }
+  }
+  return HERO_STOPS[HERO_STOPS.length - 1].c;
+}
+
+function gradientButtonStyle(t: number): React.CSSProperties {
+  const [r, g, b] = gradientColor(t);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  const color = luminance > 0.6 ? "var(--warm-dark)" : "#fff";
+  return {
+    backgroundColor: `rgb(${r}, ${g}, ${b})`,
+    color,
+    fontWeight: 800,
+    letterSpacing: "0.02em",
+    boxShadow: `0 2px 10px rgba(${r}, ${g}, ${b}, 0.45)`,
+  };
+}
+
 export default function SiteHeader({ showCart = false }: { showCart?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -28,28 +65,23 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
           </a>
 
           <nav className="hidden lg:flex items-center gap-3">
-            <a href="/sponsors"
-              className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
-              style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
-              💛 Наши партнёры ✨
-            </a>
-            <a href="/shop"
-              className="font-body text-sm px-3 py-1 rounded-full transition-colors whitespace-nowrap"
-              style={{ color: "white", fontWeight: 800, backgroundColor: "var(--bronze)", letterSpacing: "0.02em" }}>
-              🛒 Магазин
-            </a>
-            {LINKS.map(([label, href], i) => {
-              const teal = i % 2 === 0;
-              return (
-                <a key={label} href={href}
-                  className="font-body text-sm px-3 py-1 rounded-full whitespace-nowrap transition-transform hover:scale-105"
-                  style={teal
-                    ? { color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }
-                    : { color: "white", fontWeight: 800, backgroundColor: "var(--bronze)", letterSpacing: "0.02em" }}>
-                  {label}
-                </a>
-              );
-            })}
+            {(() => {
+              const items: [string, string][] = [
+                ["💛 Наши партнёры ✨", "/sponsors"],
+                ["🛒 Магазин", "/shop"],
+                ...LINKS,
+              ];
+              return items.map(([label, href], i) => {
+                const t = items.length > 1 ? i / (items.length - 1) : 0;
+                return (
+                  <a key={label} href={href}
+                    className="font-body text-sm px-3 py-1 rounded-full whitespace-nowrap transition-transform hover:scale-105"
+                    style={{ ...gradientButtonStyle(t) }}>
+                    {label}
+                  </a>
+                );
+              });
+            })()}
             <InstallButton
               label="Установить"
               className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
