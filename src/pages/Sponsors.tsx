@@ -10,38 +10,42 @@ interface Sponsor {
   services: string[];
   url: string;
   color: string;
+  isVacant?: boolean;
 }
 
 const sponsors: Sponsor[] = [
   {
-    name: "Название компании",
-    logo: "🏢",
-    category: "Категория услуг",
+    name: "Здесь может быть ваш бизнес",
+    logo: "✨",
+    category: "Свободное место",
     description:
-      "Короткое описание спонсора и того, чем он полезен гостям и жителям Туапсе. Здесь можно рассказать про услуги, акции и преимущества.",
-    services: ["Услуга 1", "Услуга 2", "Услуга 3"],
-    url: "https://example.com",
+      "Это место ждёт своего хозяина. Поселите бронзового енота у входа — и гости начнут искать именно вас.",
+    services: [],
+    url: "https://e.mail.ru/compose/?mailto=mailto:sen555551@mail.ru",
     color: "from-amber-100 to-yellow-100",
+    isVacant: true,
   },
   {
-    name: "Название компании",
-    logo: "🛍️",
-    category: "Категория услуг",
+    name: "Здесь может быть ваш бизнес",
+    logo: "✨",
+    category: "Свободное место",
     description:
-      "Короткое описание спонсора и того, чем он полезен гостям и жителям Туапсе. Здесь можно рассказать про услуги, акции и преимущества.",
-    services: ["Услуга 1", "Услуга 2"],
-    url: "https://example.com",
+      "Это место ждёт своего хозяина. Поселите бронзового енота у входа — и гости начнут искать именно вас.",
+    services: [],
+    url: "https://e.mail.ru/compose/?mailto=mailto:sen555551@mail.ru",
     color: "from-cyan-100 to-blue-100",
+    isVacant: true,
   },
   {
-    name: "Название компании",
-    logo: "🍰",
-    category: "Категория услуг",
+    name: "Здесь может быть ваш бизнес",
+    logo: "✨",
+    category: "Свободное место",
     description:
-      "Короткое описание спонсора и того, чем он полезен гостям и жителям Туапсе. Здесь можно рассказать про услуги, акции и преимущества.",
-    services: ["Услуга 1", "Услуга 2", "Услуга 3"],
-    url: "https://example.com",
+      "Это место ждёт своего хозяина. Поселите бронзового енота у входа — и гости начнут искать именно вас.",
+    services: [],
+    url: "https://e.mail.ru/compose/?mailto=mailto:sen555551@mail.ru",
     color: "from-rose-100 to-orange-100",
+    isVacant: true,
   },
 ];
 
@@ -88,7 +92,12 @@ export default function Sponsors() {
             {sponsors.map((s, i) => (
               <div key={i}
                 className="rounded-3xl overflow-hidden card-hover flex flex-col"
-                style={{ background: "#fff", border: "1px solid rgba(184,115,51,0.15)" }}>
+                style={{
+                  background: s.isVacant ? "rgba(255,255,255,0.6)" : "#fff",
+                  border: s.isVacant
+                    ? "2px dashed rgba(184,115,51,0.4)"
+                    : "1px solid rgba(184,115,51,0.15)",
+                }}>
                 <div className={`bg-gradient-to-br ${s.color} flex items-center justify-center`}
                   style={{ height: "140px" }}>
                   <span className="text-6xl">{s.logo}</span>
@@ -115,9 +124,9 @@ export default function Sponsors() {
                     ))}
                   </div>
                   <a href={s.url} target="_blank" rel="noopener noreferrer"
-                    className="btn-primary text-sm mt-auto justify-center">
-                    <Icon name="ExternalLink" size={16} />
-                    Подробнее
+                    className={`${s.isVacant ? "btn-secondary" : "btn-primary"} text-sm mt-auto justify-center`}>
+                    <Icon name={s.isVacant ? "Sparkles" : "ExternalLink"} size={16} />
+                    {s.isVacant ? "Стать партнёром" : "Подробнее"}
                   </a>
                 </div>
               </div>
