@@ -52,7 +52,8 @@ export default function IndexHero() {
               Перейти в магазин
             </a>
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-              className="btn-secondary text-base px-6 py-4 w-full sm:w-auto text-center">
+              className="btn-primary text-base px-6 py-4 w-full sm:w-auto text-center"
+              style={{ background: "linear-gradient(135deg, var(--teal), var(--sea-light))", color: "var(--warm-dark)", boxShadow: "0 4px 15px rgba(64,224,208,0.4)" }}>
               <Icon name="Heart" size={18} />
               Стать частью легенды
             </a>
