@@ -106,7 +106,8 @@ export default function Sponsors() {
                     ))}
                   </div>
                   <a href={s.url} target="_blank" rel="noopener noreferrer"
-                    className={`${s.isVacant ? "btn-secondary" : "btn-primary"} text-sm mt-auto justify-center`}>
+                    className="btn-primary text-sm mt-auto justify-center"
+                    style={s.isVacant ? { background: "linear-gradient(135deg, var(--teal), var(--sea-light))", color: "var(--warm-dark)", boxShadow: "0 4px 15px rgba(64,224,208,0.4)" } : undefined}>
                     <Icon name={s.isVacant ? "Sparkles" : "ExternalLink"} size={16} />
                     {s.isVacant ? "Стать партнёром" : "Подробнее"}
                   </a>
