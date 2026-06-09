@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 
@@ -68,26 +69,7 @@ export default function Shop() {
         <div className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full opacity-55 blur-3xl"
           style={{ background: "radial-gradient(circle, rgba(160,110,45,0.50), transparent 70%)" }} />
       </div>
-      <header className="fixed top-0 left-0 right-0 z-40"
-        style={{ background: "rgba(253,246,238,0.85)", backdropFilter: "blur(14px)", borderBottom: "1px solid rgba(184,115,51,0.2)" }}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🦝</span>
-            <span className="font-display text-xl font-bold" style={{ color: "var(--bronze)" }}>
-              Туапсеноты
-            </span>
-          </a>
-          <div className="flex items-center gap-3">
-            <a href="/" className="font-body text-sm hidden sm:block" style={{ color: "var(--warm-dark)" }}>
-              ← На главную
-            </a>
-            <a href="/cart" className="btn-primary text-sm px-4 py-2">
-              <Icon name="ShoppingCart" size={18} />
-              Корзина
-            </a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader showCart />
 
       <div className="relative z-10 pt-24 pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-12">

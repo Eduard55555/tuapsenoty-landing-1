@@ -1,22 +1,10 @@
 import Icon from "@/components/ui/icon";
+import SiteHeader from "@/components/SiteHeader";
 
 export default function Privacy() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
-      <header className="fixed top-0 left-0 right-0 z-40"
-        style={{ background: "rgba(253,246,238,0.95)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(184,115,51,0.15)" }}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🦝</span>
-            <span className="font-display text-xl font-bold" style={{ color: "var(--bronze)" }}>
-              Туапсеноты
-            </span>
-          </a>
-          <a href="/" className="font-body text-sm" style={{ color: "var(--warm-dark)" }}>
-            ← На главную
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
       <div className="pt-24 pb-16 px-4 sm:px-6 max-w-3xl mx-auto">
         <div className="mb-10">

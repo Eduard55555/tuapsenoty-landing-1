@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 import ARHologram from "@/components/ARHologram";
 
 const characters = [
@@ -146,25 +147,7 @@ export default function CharacterPage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
-      <header className="fixed top-0 left-0 right-0 z-50"
-        style={{ background: "rgba(253, 246, 238, 0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(184,115,51,0.15)" }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16">
-            <a href="/" className="flex items-center gap-2">
-              <span className="text-2xl">🦝</span>
-              <span className="font-display text-xl font-bold" style={{ color: "var(--bronze)" }}>
-                Туапсеноты
-              </span>
-            </a>
-            <Link to="/#characters"
-              className="flex items-center gap-2 font-body text-sm font-semibold"
-              style={{ color: "var(--bronze)" }}>
-              <Icon name="ArrowLeft" size={16} />
-              Все персонажи
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="pt-24 pb-20 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
