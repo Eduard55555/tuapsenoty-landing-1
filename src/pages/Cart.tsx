@@ -16,6 +16,7 @@ export default function Cart() {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -23,9 +24,13 @@ export default function Cart() {
 
   const handleOrder = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
     setLoading(true);
+    setError("");
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 20000);
     try {
-      await fetch("https://functions.poehali.dev/c9f50a36-d5ce-4c13-ae29-999d565492de", {
+      const res = await fetch("https://functions.poehali.dev/c9f50a36-d5ce-4c13-ae29-999d565492de", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -35,10 +40,17 @@ export default function Cart() {
           items: [{ name, price, qty }],
           total,
         }),
+        signal: controller.signal,
       });
-    } catch (err) { console.error(err); }
-    setLoading(false);
-    setSubmitted(true);
+      if (!res.ok) throw new Error("bad status " + res.status);
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setError("Не удалось отправить заявку. Проверьте соединение и попробуйте ещё раз.");
+    } finally {
+      clearTimeout(timer);
+      setLoading(false);
+    }
   };
 
   return (
@@ -190,6 +202,11 @@ export default function Cart() {
                   : <><Icon name="Send" size={20} /> Оформить заявку</>
                 }
               </button>
+              {error && (
+                <p className="font-body text-sm text-center" style={{ color: "#c0392b" }}>
+                  {error}
+                </p>
+              )}
             </form>
           </>
         )}

@@ -1,7 +1,7 @@
 import json
 import os
 import urllib.request
-# v4
+# v6
 
 
 def handler(event: dict, context) -> dict:
@@ -40,7 +40,15 @@ def handler(event: dict, context) -> dict:
         data=data,
         headers={'Content-Type': 'application/json'}
     )
-    urllib.request.urlopen(req)
+
+    try:
+        urllib.request.urlopen(req, timeout=10)
+    except Exception as e:
+        return {
+            'statusCode': 502,
+            'headers': {'Access-Control-Allow-Origin': '*'},
+            'body': json.dumps({'ok': False, 'error': str(e)})
+        }
 
     return {
         'statusCode': 200,
