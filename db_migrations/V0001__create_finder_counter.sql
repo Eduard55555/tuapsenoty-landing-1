@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS finder_counter (
+    id INTEGER PRIMARY KEY DEFAULT 1,
+    count INTEGER NOT NULL DEFAULT 1234,
+    CONSTRAINT single_row CHECK (id = 1)
+);
+
+INSERT INTO finder_counter (id, count)
+VALUES (1, 1234)
+ON CONFLICT (id) DO NOTHING;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import InstallButton from "@/components/InstallButton";
+import FinderCounter from "@/components/FinderCounter";
 
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 const MAX_URL = "https://max.ru/join/uBdeDmv3f51WgWvFTPMWA84VIaYSgeU9yLwdr9lYO1g";
@@ -313,6 +314,8 @@ export default function Index() {
 
         </div>
       </section>
+
+      <FinderCounter />
 
       {/* ABOUT */}
       <section id="about" className="py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
