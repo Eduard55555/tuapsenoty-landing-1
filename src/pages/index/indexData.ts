@@ -45,7 +45,7 @@ export const characters = [
     ritual: "Обними её — и даже в пасмурный день станет солнечно",
     location: "",
     color: "from-cyan-100 to-blue-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/489b20a1-045b-4b22-bbd8-f91f8c07cc2b.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/4362ca50-9ec3-4776-96ed-7ac9a6dcf123.png",
   },
   {
     slug: "tydochka",
