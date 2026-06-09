@@ -50,7 +50,7 @@ export default function Gallery() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {photos.map((p) => (
-              <Link key={p.key} to={`/characters/${p.slug}`}
+              <a key={p.key} href={`/characters/${p.slug}`}
                 className="rounded-3xl overflow-hidden card-hover flex flex-col"
                 style={{ background: "#fff", border: "1px solid rgba(184,115,51,0.15)" }}>
                 <div className={`bg-gradient-to-br ${p.color}`}>
@@ -69,7 +69,7 @@ export default function Gallery() {
                     </span>
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
