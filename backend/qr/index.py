@@ -43,7 +43,7 @@ def handler(event: dict, context) -> dict:
 
     results = []
     for slug in CHARACTERS:
-        url = f"{BASE_URL}{slug}"
+        url = f"{BASE_URL}{slug}?qr=1"
         qr = qrcode.QRCode(box_size=12, border=2)
         qr.add_data(url)
         qr.make(fit=True)
