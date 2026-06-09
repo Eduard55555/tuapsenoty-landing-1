@@ -6,6 +6,7 @@ import { PLANETA_URL } from "@/pages/index/indexData";
 const LINKS: [string, string][] = [
   ["О проекте", "/#about"],
   ["Персонажи", "/#characters"],
+  ["Карта", "/map"],
   ["Галерея", "/gallery"],
   ["Как помочь", "/#help"],
   ["Новости", "/#news"],
