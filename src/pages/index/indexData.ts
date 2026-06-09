@@ -1,0 +1,105 @@
+export const PLANETA_URL = "https://planeta.ru/campaigns/244619";
+export const MAX_URL = "https://max.ru/join/uBdeDmv3f51WgWvFTPMWA84VIaYSgeU9yLwdr9lYO1g";
+export const VK_URL = "https://vk.ru/club237171594";
+
+export const characters = [
+  {
+    slug: "enotych",
+    name: "Енотыч",
+    emoji: "🎣",
+    role: "Дедушка",
+    description: "На набережной, встречая восходы и провожая закаты, сидит Енотыч — бронзовый рыбак с удочкой и мудрым взглядом. Он всматривается в прохожих, провожает взглядом детский смех, угадывает, о чём шепчутся влюблённые на той самой скамейке. Он знает, где сегодня особенно вкусно пахнет кофе, почему голуби устроили совет у фонтана и в какую сторону ветер уносит самые заветные желания. Енотыч ловит не рыбу — он ловит надежды, что шепчут ему в бронзовое ухо дети и ветер. Его бронза не остывает — в ней живёт тепло всех прикосновений. Енотыч знает: мечты сбываются у тех, кто имеет смелость смотреть за горизонт.",
+    ritual: "Потри удочку, фуражку или лапку. Загадай желание. Енотыч верит, что оно сбудется. И это уже полдела. А Енотыч постарается сделать так, чтобы оно сбылось.",
+    location: "Набережная",
+    color: "from-amber-100 to-yellow-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/61957535-c6fc-42ed-be30-235d0501d01a.png",
+  },
+  {
+    slug: "enofya",
+    name: "Енофья",
+    emoji: "🧺",
+    role: "Бабушка",
+    description: "Добрая, хлебосольная, всегда с гостинцем. В платочке и фартуке с карманами, у ног — пустая корзина, которую она уже успела раздать.",
+    ritual: "Погладь корзинку — и год будет сладким. Говорят, кто улыбнётся ей в ответ — у того даже грустный день становится сладким",
+    location: "",
+    color: "from-rose-100 to-orange-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/7bd68cbe-1da1-45cf-bafd-0828c44078d6.png",
+  },
+  {
+    slug: "tuapsey",
+    name: "Туапсей",
+    emoji: "🧭",
+    role: "Папа",
+    description: "Надёжный, как маяк — активный и спортивный. В кепке и комбинезоне, с компасом и биноклем. Всегда знает, куда идти.",
+    ritual: "Потри его по плечу и посмотри вдаль — говорят, там на горизонте уже ждёт твоя удача",
+    location: "",
+    color: "from-blue-100 to-teal-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/d591b894-0720-4afe-9119-19877540c0b0.png",
+  },
+  {
+    slug: "enira",
+    name: "Енира",
+    emoji: "🐚",
+    role: "Морская плетельщица",
+    description: "Ласковая, заботливая, добрая.",
+    ritual: "Обними её — и даже в пасмурный день станет солнечно",
+    location: "",
+    color: "from-cyan-100 to-blue-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/489b20a1-045b-4b22-bbd8-f91f8c07cc2b.png",
+  },
+  {
+    slug: "tydochka",
+    name: "Тыдочка",
+    emoji: "🌅",
+    role: "Дочка мечты",
+    description: "Маленькая, загадочная, хранительница мечты.",
+    ritual: "Потри головку — и мечты сбудутся",
+    location: "",
+    color: "from-pink-100 to-violet-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/26e030b8-8ffc-470b-9422-9d0f8875b67c.png",
+  },
+  {
+    slug: "enovey",
+    name: "Еновей",
+    emoji: "🗺️",
+    role: "Скалолаз-проказник",
+    description: "Непоседа, исследователь, знает все тропы.",
+    ritual: "Дотронься до его рюкзака — он зарядит тебя энергией и любопытством. Говорят, после этого даже знакомая тропа открывается с новой стороны, как будто видишь её впервые",
+    location: "",
+    color: "from-green-100 to-emerald-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/6c3bb954-3b8c-4404-ab87-eaab2dfc4b89.png",
+  },
+  {
+    slug: "enosik",
+    name: "Еносик",
+    emoji: "🪸",
+    role: "Ныряльщик-пухляш",
+    description: "Тихоня, любит отдых.",
+    ritual: "Посиди рядом, потри ему носик, закрой глаза или посмотри вокруг — расслабься и улыбнись миру",
+    location: "",
+    color: "from-sky-100 to-indigo-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/214a3f64-cbda-49f6-b733-689288c9ff6d.png",
+  },
+  {
+    slug: "enosha",
+    name: "Еноша",
+    emoji: "⚓",
+    role: "Весельчак и заводила",
+    description: "Весельчак, заводила, любит компании.",
+    ritual: "Улыбнись ему — и день станет веселее",
+    location: "",
+    color: "from-slate-100 to-gray-100",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/a3981d6a-4ab5-4b95-88d5-fa6c9f1cf3d2.png",
+  },
+];
+
+export const NEWS_PHOTOS = [
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/253279f9-b0f5-475d-834d-63b99c68b4b0.jpg",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e8e4fa3a-5863-483b-9cb1-762d643b6148.jpg",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e4d92eb9-6be8-457e-ac19-82c4926e846e.jpg",
+];
+
+export const ENOFYA_PHOTOS = [
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/f2ed4f9c-6423-4631-a911-6b92b59e2583.jpg",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/942e525e-ab66-4f68-a8c6-8380b1f3e60e.jpg",
+];
