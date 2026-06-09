@@ -18,6 +18,7 @@ export default function CookieBanner() {
   const handle = (value: "accepted" | "declined") => {
     localStorage.setItem("cookie-consent", value);
     setVisible(false);
+    window.dispatchEvent(new Event("cookie-consent-done"));
     if (value === "accepted") loadMetrika();
   };
 
