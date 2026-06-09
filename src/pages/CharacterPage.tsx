@@ -100,17 +100,30 @@ export { characters };
 
 const COUNTER_API = "https://functions.poehali.dev/eec444e5-96b7-4788-9c65-0077c246d938";
 
+function pluralPeople(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return "человек";
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "человека";
+  return "человек";
+}
+
 export default function CharacterPage() {
   const { slug } = useParams<{ slug: string }>();
   const char = characters.find((c) => c.slug === slug);
   const [arOpen, setArOpen] = useState(false);
+  const [foundCount, setFoundCount] = useState<number | null>(null);
 
   useEffect(() => {
     if (!slug) return;
     const key = `found-${slug}`;
-    if (localStorage.getItem(key)) return;
-    localStorage.setItem(key, "1");
-    fetch(COUNTER_API, { method: "POST" }).catch(() => {});
+    const already = localStorage.getItem(key);
+    const method = already ? "GET" : "POST";
+    if (!already) localStorage.setItem(key, "1");
+    fetch(COUNTER_API, { method })
+      .then((r) => r.json())
+      .then((d) => setFoundCount(typeof d.count === "number" ? d.count : null))
+      .catch(() => {});
   }, [slug]);
 
   if (!char) {
@@ -177,6 +190,32 @@ export default function CharacterPage() {
                     <Icon name="MapPin" size={14} />
                     <span className="font-body text-sm" style={{ color: "var(--sea)" }}>
                       {char.location}
+                    </span>
+                  </div>
+                )}
+                {foundCount !== null && (
+                  <div
+                    className="inline-flex items-center gap-2 rounded-full px-4 py-2 mt-4"
+                    style={{ backgroundColor: "rgba(184,115,51,0.12)", border: "1px solid rgba(184,115,51,0.3)" }}
+                  >
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span
+                        className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
+                        style={{ backgroundColor: "var(--bronze)" }}
+                      />
+                      <span
+                        className="relative inline-flex rounded-full h-2.5 w-2.5"
+                        style={{ backgroundColor: "var(--bronze)" }}
+                      />
+                    </span>
+                    <span className="font-body text-sm" style={{ color: "#5A3E2B" }}>
+                      Меня нашли уже
+                    </span>
+                    <span className="font-display font-bold text-base tabular-nums" style={{ color: "var(--bronze)" }}>
+                      {foundCount.toLocaleString("ru-RU")}
+                    </span>
+                    <span className="font-body text-sm" style={{ color: "#5A3E2B" }}>
+                      {pluralPeople(foundCount)}
                     </span>
                   </div>
                 )}
