@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
+import InstallButton from "@/components/InstallButton";
 
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 const MAX_URL = "https://max.ru/join/uBdeDmv3f51WgWvFTPMWA84VIaYSgeU9yLwdr9lYO1g";
@@ -205,6 +206,10 @@ export default function Index() {
                   {label}
                 </a>
               ))}
+              <InstallButton
+                className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
+                style={{ color: "var(--warm-dark)", fontWeight: 700, border: "1px solid rgba(184,115,51,0.4)" }}
+              />
             </nav>
 
 
@@ -239,6 +244,11 @@ export default function Index() {
                 {label}
               </a>
             ))}
+            <InstallButton
+              className="font-body text-sm w-full justify-center mt-2 inline-flex items-center gap-2 py-2 rounded-full"
+              style={{ color: "var(--warm-dark)", fontWeight: 700, border: "1px solid rgba(184,115,51,0.4)" }}
+              onClick={() => setMenuOpen(false)}
+            />
             <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
               className="btn-primary text-sm w-full justify-center mt-2">
               <Icon name="Heart" size={16} />
