@@ -1,12 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const API_URL = "https://functions.poehali.dev/eec444e5-96b7-4788-9c65-0077c246d938";
 
 export default function FinderCounter() {
   const [count, setCount] = useState<number | null>(null);
   const [display, setDisplay] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const animated = useRef(false);
 
   useEffect(() => {
     fetch(API_URL)
@@ -17,49 +15,58 @@ export default function FinderCounter() {
 
   useEffect(() => {
     if (count === null) return;
-    const el = ref.current;
-    if (!el) return;
-
-    const obs = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !animated.current) {
-          animated.current = true;
-          const duration = 1500;
-          const start = performance.now();
-          const tick = (now: number) => {
-            const p = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - p, 3);
-            setDisplay(Math.round(count * eased));
-            if (p < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-        }
-      },
-      { threshold: 0.4 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
+    const duration = 1600;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setDisplay(Math.round(count * eased));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }, [count]);
+
+  if (count === null) return null;
 
   const formatted = display.toLocaleString("ru-RU");
 
   return (
-    <section className="py-12 sm:py-16 px-4 sm:px-6" style={{ backgroundColor: "var(--warm-dark)" }}>
-      <div ref={ref} className="max-w-3xl mx-auto text-center">
-        <div className="text-5xl sm:text-6xl mb-4">🦝</div>
-        <p
-          className="font-display text-2xl sm:text-4xl font-bold mb-3"
-          style={{ color: "var(--cream)", lineHeight: 1.2 }}
+    <div className="animate-fade-up inline-flex flex-col items-center mb-6">
+      <div
+        className="inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-lg"
+        style={{
+          background: "rgba(253, 246, 238, 0.12)",
+          border: "1px solid rgba(64,224,208,0.4)",
+          backdropFilter: "blur(8px)",
+        }}
+      >
+        <span className="relative flex h-2.5 w-2.5">
+          <span
+            className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
+            style={{ backgroundColor: "var(--teal-light)" }}
+          />
+          <span
+            className="relative inline-flex rounded-full h-2.5 w-2.5"
+            style={{ backgroundColor: "var(--teal-light)" }}
+          />
+        </span>
+        <span className="font-body text-sm sm:text-base" style={{ color: "rgba(245,230,211,0.9)" }}>
+          Енотыча нашли
+        </span>
+        <span
+          className="font-display font-bold text-lg sm:text-xl tabular-nums"
+          style={{ color: "var(--teal-light)" }}
         >
-          Енотыча нашли{" "}
-          <span style={{ color: "var(--teal-light)" }}>{formatted}</span>{" "}
+          {formatted}
+        </span>
+        <span className="font-body text-sm sm:text-base" style={{ color: "rgba(245,230,211,0.9)" }}>
           {pluralPeople(display)}
-        </p>
-        <p className="font-body text-lg sm:text-xl italic" style={{ color: "rgba(245,230,211,0.85)" }}>
-          Енофья ждёт вас 💛
-        </p>
+        </span>
       </div>
-    </section>
+      <p className="font-body text-xs sm:text-sm italic mt-2" style={{ color: "rgba(245,230,211,0.7)" }}>
+        Енофья ждёт вас 💛
+      </p>
+    </div>
   );
 }
 
