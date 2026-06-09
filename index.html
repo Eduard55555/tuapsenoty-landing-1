@@ -11,6 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2e5c6e">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Туапсеноты">
+    <link rel="apple-touch-icon" href="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/files/b44c9b66-aad2-42dc-b157-85b6071038f7.jpg">
     <meta property="og:title" content="Туапсеноты — новая душа Черноморского побережья">
     <meta property="og:description" content="Семья бронзовых енотов-хранителей, которые изменят Туапсе. Восемь персонажей с историями, ритуалами и душой.">
     <meta property="og:image:width" content="1200">
@@ -67,5 +74,14 @@
     <div><img src="https://mc.yandex.ru/watch/101026698" style="position:absolute; left:-9999px;" alt=""/></div>
 </noscript>
 <!-- /Yandex.Metrika counter -->
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js').catch(function (e) {
+                console.warn('SW registration failed:', e);
+            });
+        });
+    }
+</script>
 </body>
 </html>
