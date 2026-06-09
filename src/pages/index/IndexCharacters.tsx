@@ -87,11 +87,18 @@ export default function IndexCharacters() {
                       </p>
                     </div>
 
-                    {char.location && (
+                    {char.location ? (
                       <div className="flex items-center justify-center gap-1 mb-3">
                         <Icon name="MapPin" size={12} />
                         <span className="font-body text-xs" style={{ color: "var(--sea)" }}>
                           {char.location}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center gap-1 mb-3">
+                        <Icon name="Clock" size={12} />
+                        <span className="font-body text-xs" style={{ color: "var(--bronze)" }}>
+                          Скоро появится в городе
                         </span>
                       </div>
                     )}

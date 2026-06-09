@@ -185,11 +185,18 @@ export default function CharacterPage() {
                 <p className="font-body text-lg font-semibold" style={{ color: "var(--bronze)" }}>
                   {char.role}
                 </p>
-                {char.location && (
+                {char.location ? (
                   <div className="flex items-center justify-center gap-1 mt-2">
                     <Icon name="MapPin" size={14} />
                     <span className="font-body text-sm" style={{ color: "var(--sea)" }}>
                       {char.location}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center gap-1 mt-2">
+                    <Icon name="Clock" size={14} />
+                    <span className="font-body text-sm" style={{ color: "var(--bronze)" }}>
+                      Скоро появится в городе
                     </span>
                   </div>
                 )}
