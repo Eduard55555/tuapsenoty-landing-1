@@ -40,7 +40,7 @@ export const characters = [
     slug: "enira",
     name: "Енира",
     emoji: "🐚",
-    role: "Морская плетельщица",
+    role: "Мама",
     description: "Ласковая, заботливая, добрая.",
     ritual: "Обними её — и даже в пасмурный день станет солнечно",
     location: "",
