@@ -4,6 +4,7 @@ import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import ARHologram from "@/components/ARHologram";
+import { FINDER_API, FINDER_BASE, pluralPeople } from "@/hooks/useFinderCount";
 
 const characters = [
   {
@@ -99,17 +100,6 @@ const characters = [
 
 export { characters };
 
-const COUNTER_API = "https://functions.poehali.dev/eec444e5-96b7-4788-9c65-0077c246d938";
-const BASE_FOUND = 200;
-
-function pluralPeople(n: number): string {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return "человек";
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "человека";
-  return "человек";
-}
-
 export default function CharacterPage() {
   const { slug } = useParams<{ slug: string }>();
   const char = characters.find((c) => c.slug === slug);
@@ -122,9 +112,9 @@ export default function CharacterPage() {
     const already = localStorage.getItem(key);
     const method = already ? "GET" : "POST";
     if (!already) localStorage.setItem(key, "1");
-    fetch(COUNTER_API, { method })
+    fetch(FINDER_API, { method, cache: "no-store" })
       .then((r) => r.json())
-      .then((d) => setFoundCount(typeof d.count === "number" ? d.count + BASE_FOUND : null))
+      .then((d) => setFoundCount(typeof d.count === "number" ? d.count + FINDER_BASE : null))
       .catch(() => {});
   }, [slug, char?.location]);
 

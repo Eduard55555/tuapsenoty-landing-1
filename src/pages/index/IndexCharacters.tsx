@@ -1,29 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { characters, PLANETA_URL } from "./indexData";
-
-const COUNTER_API = "https://functions.poehali.dev/eec444e5-96b7-4788-9c65-0077c246d938";
-const BASE_FOUND = 200;
-
-function pluralPeople(n: number): string {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return "человек";
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "человека";
-  return "человек";
-}
+import { useFinderCount, pluralPeople } from "@/hooks/useFinderCount";
 
 export default function IndexCharacters() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
-  const [foundCount, setFoundCount] = useState<number | null>(null);
-
-  useEffect(() => {
-    fetch(COUNTER_API)
-      .then((r) => r.json())
-      .then((d) => setFoundCount(typeof d.count === "number" ? d.count + BASE_FOUND : null))
-      .catch(() => {});
-  }, []);
+  const foundCount = useFinderCount();
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
