@@ -18,20 +18,20 @@ export default function IndexHeader() {
             </span>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-5">
+          <nav className="hidden xl:flex items-center gap-3">
             <a href="/sponsors"
               className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
               style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
               💛 Наши партнёры ✨
             </a>
             <a href="/shop"
-              className="font-body text-sm px-3 py-1 rounded-full transition-colors"
+              className="font-body text-sm px-3 py-1 rounded-full transition-colors whitespace-nowrap"
               style={{ color: "white", fontWeight: 800, backgroundColor: "var(--bronze)", letterSpacing: "0.02em" }}>
               🛒 Магазин
             </a>
             {[["О проекте", "#about"], ["Персонажи", "#characters"], ["Галерея", "/gallery"], ["Как помочь", "#help"], ["Новости", "#news"]].map(([label, href]) => (
               <a key={label} href={href}
-                className="font-body text-sm transition-colors"
+                className="font-body text-sm transition-colors whitespace-nowrap"
                 style={{ color: "var(--warm-dark)", fontWeight: 600 }}>
                 {label}
               </a>
@@ -45,7 +45,7 @@ export default function IndexHeader() {
 
 
 
-          <button className="lg:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}
+          <button className="xl:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}
             style={{ color: "var(--bronze)" }}>
             <Icon name={menuOpen ? "X" : "Menu"} size={24} />
           </button>
@@ -53,7 +53,7 @@ export default function IndexHeader() {
       </div>
 
       {menuOpen && (
-        <div className="lg:hidden px-4 pb-4 pt-2 space-y-3"
+        <div className="xl:hidden px-4 pb-4 pt-2 space-y-3"
           style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
           <a href="/sponsors"
             className="block font-body py-2 px-3 rounded-xl text-center"
