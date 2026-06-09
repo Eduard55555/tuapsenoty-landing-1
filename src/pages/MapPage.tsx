@@ -9,28 +9,24 @@ interface Spot {
   emoji: string;
   location: string;
   status: "placed" | "soon";
-  coords: [number, number];
+  mapSrc: string;
 }
 
+const TUAPSE_MAP = "https://yandex.ru/map-widget/v1/?ll=39.072500%2C44.099000&z=14";
+const ENOTYCH_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor";
+
 const spots: Spot[] = [
-  { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed", coords: [44.093, 39.072] },
-  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Скоро определим", status: "soon", coords: [44.1, 39.08] },
-  { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon", coords: [44.105, 39.075] },
-  { slug: "enira", name: "Енира", emoji: "🐚", location: "Скоро определим", status: "soon", coords: [44.095, 39.085] },
-  { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon", coords: [44.102, 39.068] },
-  { slug: "enovey", name: "Еновей", emoji: "🗺️", location: "Скоро определим", status: "soon", coords: [44.088, 39.078] },
-  { slug: "enosik", name: "Еносик", emoji: "🪸", location: "Скоро определим", status: "soon", coords: [44.097, 39.062] },
-  { slug: "enosha", name: "Еноша", emoji: "⚓", location: "Скоро определим", status: "soon", coords: [44.108, 39.082] },
+  { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed", mapSrc: ENOTYCH_MAP },
+  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
+  { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
+  { slug: "enira", name: "Енира", emoji: "🐚", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
+  { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
+  { slug: "enovey", name: "Еновей", emoji: "🗺️", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
+  { slug: "enosik", name: "Еносик", emoji: "🪸", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
+  { slug: "enosha", name: "Еноша", emoji: "⚓", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
 ];
 
 const placedCount = spots.filter((s) => s.status === "placed").length;
-
-function buildMapSrc(spot: Spot): string {
-  const [lat, lon] = spot.coords;
-  const ll = `${lon},${lat}`;
-  const pt = `${lon},${lat},pm2rdm`;
-  return `https://yandex.ru/map-widget/v1/?ll=${ll}&z=16&pt=${pt}`;
-}
 
 export default function MapPage() {
   const [active, setActive] = useState<Spot>(spots[0]);
@@ -61,7 +57,7 @@ export default function MapPage() {
               <iframe
                 key={active.slug}
                 title={`Карта — ${active.name}`}
-                src={buildMapSrc(active)}
+                src={active.mapSrc}
                 width="100%"
                 height="520"
                 frameBorder="0"
