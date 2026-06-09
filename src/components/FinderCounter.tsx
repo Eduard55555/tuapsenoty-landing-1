@@ -31,7 +31,7 @@ export default function FinderCounter() {
   const formatted = display.toLocaleString("ru-RU");
 
   return (
-    <div className="animate-fade-up inline-flex flex-col items-center mb-6">
+    <div className="animate-fade-up flex flex-col items-center mb-6">
       <div
         className="inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-lg"
         style={{
