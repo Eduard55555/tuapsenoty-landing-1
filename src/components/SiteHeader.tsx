@@ -112,26 +112,24 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
       {menuOpen && (
         <div className="lg:hidden px-4 pb-4 pt-2 space-y-3"
           style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
-          <a href="/sponsors"
-            className="block font-body py-2 px-3 rounded-xl text-center"
-            style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))" }}
-            onClick={() => setMenuOpen(false)}>
-            💛 Наши партнёры ✨
-          </a>
-          <a href="/shop"
-            className="block font-body py-2 px-3 rounded-xl text-center"
-            style={{ color: "white", fontWeight: 800, backgroundColor: "var(--bronze)" }}
-            onClick={() => setMenuOpen(false)}>
-            🛒 Магазин
-          </a>
-          {LINKS.map(([label, href]) => (
-            <a key={label} href={href}
-              className="block font-body font-semibold py-2"
-              style={{ color: "var(--warm-dark)" }}
-              onClick={() => setMenuOpen(false)}>
-              {label}
-            </a>
-          ))}
+          {(() => {
+            const items: [string, string][] = [
+              ["💛 Наши партнёры ✨", "/sponsors"],
+              ["🛒 Магазин", "/shop"],
+              ...LINKS,
+            ];
+            return items.map(([label, href], i) => {
+              const t = items.length > 1 ? i / (items.length - 1) : 0;
+              return (
+                <a key={label} href={href}
+                  className="block font-body py-2 px-3 rounded-xl text-center"
+                  style={{ ...gradientButtonStyle(t) }}
+                  onClick={() => setMenuOpen(false)}>
+                  {label}
+                </a>
+              );
+            });
+          })()}
           <InstallButton
             className="font-body text-sm w-full justify-center mt-2 inline-flex items-center gap-2 py-2 rounded-full"
             style={{ color: "var(--warm-dark)", fontWeight: 700, border: "1px solid rgba(184,115,51,0.4)" }}
