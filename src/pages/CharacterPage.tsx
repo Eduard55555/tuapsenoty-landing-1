@@ -115,7 +115,7 @@ export default function CharacterPage() {
   const [foundCount, setFoundCount] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!slug) return;
+    if (!slug || !char?.location) return;
     const key = `found-${slug}`;
     const already = localStorage.getItem(key);
     const method = already ? "GET" : "POST";
@@ -124,7 +124,7 @@ export default function CharacterPage() {
       .then((r) => r.json())
       .then((d) => setFoundCount(typeof d.count === "number" ? d.count : null))
       .catch(() => {});
-  }, [slug]);
+  }, [slug, char?.location]);
 
   if (!char) {
     return (
