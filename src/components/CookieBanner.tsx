@@ -15,6 +15,13 @@ export default function CookieBanner() {
     return () => window.removeEventListener("cookie-settings-open", reopen);
   }, []);
 
+  useEffect(() => {
+    document.body.style.paddingBottom = visible ? "150px" : "";
+    return () => {
+      document.body.style.paddingBottom = "";
+    };
+  }, [visible]);
+
   const handle = (value: "accepted" | "declined") => {
     localStorage.setItem("cookie-consent", value);
     setVisible(false);
@@ -25,8 +32,8 @@ export default function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4">
-      <div className="max-w-3xl mx-auto rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-lg"
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4">
+      <div className="max-w-3xl mx-auto rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 shadow-2xl animate-fade-up"
         style={{ backgroundColor: "var(--warm-dark)", border: "1px solid rgba(184,115,51,0.3)" }}>
         <div className="text-3xl">🍪</div>
         <p className="font-body text-sm flex-1" style={{ color: "var(--cream)", lineHeight: 1.5 }}>
