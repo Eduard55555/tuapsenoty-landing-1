@@ -38,13 +38,18 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
               style={{ color: "white", fontWeight: 800, backgroundColor: "var(--bronze)", letterSpacing: "0.02em" }}>
               🛒 Магазин
             </a>
-            {LINKS.map(([label, href]) => (
-              <a key={label} href={href}
-                className="font-body text-sm transition-colors whitespace-nowrap"
-                style={{ color: "var(--warm-dark)", fontWeight: 600 }}>
-                {label}
-              </a>
-            ))}
+            {LINKS.map(([label, href], i) => {
+              const teal = i % 2 === 0;
+              return (
+                <a key={label} href={href}
+                  className="font-body text-sm px-3 py-1 rounded-full whitespace-nowrap transition-transform hover:scale-105"
+                  style={teal
+                    ? { color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }
+                    : { color: "white", fontWeight: 800, backgroundColor: "var(--bronze)", letterSpacing: "0.02em" }}>
+                  {label}
+                </a>
+              );
+            })}
             <InstallButton
               label="Установить"
               className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
