@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useSearchParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import ARHologram from "@/components/ARHologram";
@@ -102,17 +102,16 @@ const COUNTER_API = "https://functions.poehali.dev/eec444e5-96b7-4788-9c65-0077c
 
 export default function CharacterPage() {
   const { slug } = useParams<{ slug: string }>();
-  const [searchParams] = useSearchParams();
   const char = characters.find((c) => c.slug === slug);
   const [arOpen, setArOpen] = useState(false);
 
   useEffect(() => {
-    if (searchParams.get("qr") !== "1" || !slug) return;
+    if (!slug) return;
     const key = `found-${slug}`;
     if (localStorage.getItem(key)) return;
     localStorage.setItem(key, "1");
     fetch(COUNTER_API, { method: "POST" }).catch(() => {});
-  }, [searchParams, slug]);
+  }, [slug]);
 
   if (!char) {
     return (
