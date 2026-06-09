@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const API_URL = "https://functions.poehali.dev/eec444e5-96b7-4788-9c65-0077c246d938";
+const BASE_FOUND = 200;
 
 export default function FinderCounter() {
   const [count, setCount] = useState<number | null>(null);
@@ -9,7 +10,7 @@ export default function FinderCounter() {
   useEffect(() => {
     fetch(API_URL)
       .then((r) => r.json())
-      .then((d) => setCount(typeof d.count === "number" ? d.count : 1234))
+      .then((d) => setCount(typeof d.count === "number" ? d.count + BASE_FOUND : 1234))
       .catch(() => setCount(1234));
   }, []);
 
