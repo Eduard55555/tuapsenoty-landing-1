@@ -12,7 +12,6 @@ import CharacterPage from "./pages/CharacterPage";
 import Privacy from "./pages/Privacy";
 import Sponsors from "./pages/Sponsors";
 import Gallery from "./pages/Gallery";
-import MapPage from "./pages/MapPage";
 import { CartProvider } from "./context/CartContext";
 import CookieBanner from "./components/CookieBanner";
 import InstallPrompt from "./components/InstallPrompt";
@@ -34,7 +33,6 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/sponsors" element={<Sponsors />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="/map" element={<MapPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
