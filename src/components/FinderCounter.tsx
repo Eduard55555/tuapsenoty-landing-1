@@ -64,7 +64,7 @@ export default function FinderCounter() {
         </span>
       </div>
       <p className="font-body text-xs sm:text-sm italic mt-2" style={{ color: "rgba(245,230,211,0.7)" }}>
-        Енофья ждёт вас 💛
+        Енофья скоро будет ждать вас 💛
       </p>
     </div>
   );

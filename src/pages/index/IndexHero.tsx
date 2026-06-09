@@ -21,8 +21,7 @@ export default function IndexHero() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <FinderCounter />
-          <div className="animate-float mb-8 inline-block">
+          <div className="animate-float mb-4 inline-block">
             <img
               src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/4362ca50-9ec3-4776-96ed-7ac9a6dcf123.png"
               alt="Енофья с малышом"
@@ -30,6 +29,7 @@ export default function IndexHero() {
               style={{ border: "4px solid rgba(245, 230, 211, 0.4)" }}
             />
           </div>
+          <FinderCounter />
 
           <div className="animate-fade-up">
             <h1 className="font-display font-bold mb-6 whitespace-nowrap"
