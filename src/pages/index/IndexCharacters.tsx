@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 import { characters, PLANETA_URL } from "./indexData";
+
+const COUNTER_API = "https://functions.poehali.dev/eec444e5-96b7-4788-9c65-0077c246d938";
+
+function pluralPeople(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return "человек";
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "человека";
+  return "человек";
+}
 
 export default function IndexCharacters() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [foundCount, setFoundCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch(COUNTER_API)
+      .then((r) => r.json())
+      .then((d) => setFoundCount(typeof d.count === "number" ? d.count : null))
+      .catch(() => {});
+  }, []);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,7 +88,7 @@ export default function IndexCharacters() {
                     </div>
 
                     {char.location && (
-                      <div className="flex items-center justify-center gap-1 mb-4">
+                      <div className="flex items-center justify-center gap-1 mb-3">
                         <Icon name="MapPin" size={12} />
                         <span className="font-body text-xs" style={{ color: "var(--sea)" }}>
                           {char.location}
@@ -78,7 +96,30 @@ export default function IndexCharacters() {
                       </div>
                     )}
 
-                    <div className="mt-auto flex flex-col items-center gap-3">
+                    {foundCount !== null && (
+                      <div className="flex items-center justify-center gap-1.5 mb-4">
+                        <span className="relative flex h-2 w-2">
+                          <span className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
+                            style={{ backgroundColor: "var(--bronze)" }} />
+                          <span className="relative inline-flex rounded-full h-2 w-2"
+                            style={{ backgroundColor: "var(--bronze)" }} />
+                        </span>
+                        <span className="font-body text-xs" style={{ color: "#6B4C35" }}>
+                          Нашли{" "}
+                          <span className="font-bold" style={{ color: "var(--bronze)" }}>
+                            {foundCount.toLocaleString("ru-RU")}
+                          </span>{" "}
+                          {pluralPeople(foundCount)}
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="mt-auto flex flex-col items-center gap-2">
+                      <a href={`/characters/${char.slug}`}
+                        className="w-full text-center font-body text-xs font-bold py-2 px-4 rounded-full transition-colors"
+                        style={{ border: "1px solid var(--bronze)", color: "var(--bronze)" }}>
+                        Подробнее
+                      </a>
                       <a href="/shop"
                         className="w-full text-center font-body text-xs font-bold py-2 px-4 rounded-full transition-colors"
                         style={{ backgroundColor: "var(--bronze)", color: "white" }}>
