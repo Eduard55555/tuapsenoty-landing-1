@@ -13,9 +13,10 @@ interface Props {
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
+  label?: string;
 }
 
-export default function InstallButton({ className, style, onClick }: Props) {
+export default function InstallButton({ className, style, onClick, label = "Установить приложение" }: Props) {
   const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
   const [installed, setInstalled] = useState(false);
 
@@ -67,7 +68,7 @@ export default function InstallButton({ className, style, onClick }: Props) {
   return (
     <button onClick={handle} className={className} style={style}>
       <Icon name="Download" size={16} />
-      Установить приложение
+      {label}
     </button>
   );
 }
