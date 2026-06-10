@@ -278,6 +278,20 @@
   }
 }
 
+@keyframes sound-bar {
+  0%,
+  100% {
+    height: 30%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+.animate-sound-bar {
+  animation: sound-bar 0.9s ease-in-out infinite;
+}
+
 @keyframes finder-splash {
   0% {
     transform: scale(1);

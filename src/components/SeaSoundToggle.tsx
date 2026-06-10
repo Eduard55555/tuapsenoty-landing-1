@@ -17,8 +17,22 @@ export default function SeaSoundToggle() {
         backdropFilter: "blur(6px)",
       }}
     >
-      <Icon name={enabled ? "Volume2" : "VolumeX"} size={22} />
+      <Icon name={enabled ? "Volume2" : "VolumeX"} size={22} className={enabled ? "animate-pulse" : ""} />
       <span className="font-body text-sm font-semibold">Звук моря</span>
+      {enabled && (
+        <span className="flex items-end gap-0.5 h-4 ml-0.5">
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="w-0.5 rounded-full animate-sound-bar"
+              style={{
+                background: "var(--cream)",
+                animationDelay: `${i * 0.18}s`,
+              }}
+            />
+          ))}
+        </span>
+      )}
     </button>
   );
 }

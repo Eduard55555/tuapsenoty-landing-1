@@ -35,49 +35,102 @@ export function playCoin() {
 }
 
 /** Фоновый шум моря: фильтрованный белый шум с медленной волной */
-function createSea(ctx: AudioContext) {
-  const bufferSize = ctx.sampleRate * 2;
+interface Sea {
+  masterGain: GainNode;
+  start: () => void;
+  stop: () => void;
+}
+
+function createSea(ctx: AudioContext): Sea {
+  // длинный буфер розового шума (мягче белого, ближе к воде)
+  const bufferSize = ctx.sampleRate * 4;
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
   const data = buffer.getChannelData(0);
-  for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+  let b0 = 0, b1 = 0, b2 = 0;
+  for (let i = 0; i < bufferSize; i++) {
+    const white = Math.random() * 2 - 1;
+    b0 = 0.997 * b0 + 0.0299 * white;
+    b1 = 0.985 * b1 + 0.0750 * white;
+    b2 = 0.950 * b2 + 0.1538 * white;
+    data[i] = (b0 + b1 + b2 + white * 0.1) * 0.3;
+  }
 
   const noise = ctx.createBufferSource();
   noise.buffer = buffer;
   noise.loop = true;
 
-  const filter = ctx.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.value = 1100;
+  // основной мягкий фон моря
+  const bgFilter = ctx.createBiquadFilter();
+  bgFilter.type = "lowpass";
+  bgFilter.frequency.value = 480;
+  const bgGain = ctx.createGain();
+  bgGain.gain.value = 0.25;
+  noise.connect(bgFilter);
+  bgFilter.connect(bgGain);
 
-  // «волны»: медленно колышем частоту фильтра — слышен накат прибоя
-  const surfLfo = ctx.createOscillator();
-  surfLfo.frequency.value = 0.15;
-  const surfDepth = ctx.createGain();
-  surfDepth.gain.value = 700;
-  surfLfo.connect(surfDepth);
-  surfDepth.connect(filter.frequency);
-
-  // громкость с собственным узлом для плавного вкл/выкл
-  const innerGain = ctx.createGain();
-  innerGain.gain.value = 0.6;
+  // канал «накатов» прибоя — полосовой фильтр + управляемая громкость
+  const surfFilter = ctx.createBiquadFilter();
+  surfFilter.type = "bandpass";
+  surfFilter.frequency.value = 900;
+  surfFilter.Q.value = 0.7;
+  const surfGain = ctx.createGain();
+  surfGain.gain.value = 0;
+  noise.connect(surfFilter);
+  surfFilter.connect(surfGain);
 
   const masterGain = ctx.createGain();
   masterGain.gain.value = 0;
-
-  noise.connect(filter);
-  filter.connect(innerGain);
-  innerGain.connect(masterGain);
+  bgGain.connect(masterGain);
+  surfGain.connect(masterGain);
   masterGain.connect(ctx.destination);
 
   noise.start();
-  surfLfo.start();
 
-  return { masterGain };
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  let alive = false;
+
+  // один накат волны: нарастание -> шуршание -> затухание
+  const wave = () => {
+    if (!alive) return;
+    const now = ctx.currentTime;
+    const peak = 0.35 + Math.random() * 0.25;
+    const rise = 1.4 + Math.random() * 1.2;
+    const fall = 2.2 + Math.random() * 1.6;
+
+    const g = surfGain.gain;
+    g.cancelScheduledValues(now);
+    g.setValueAtTime(g.value, now);
+    g.linearRampToValueAtTime(peak, now + rise);
+    g.linearRampToValueAtTime(0.0001, now + rise + fall);
+
+    // фильтр всплывает вверх на накате и опускается на откате — эффект «шшш»
+    const f = surfFilter.frequency;
+    f.cancelScheduledValues(now);
+    f.setValueAtTime(700, now);
+    f.linearRampToValueAtTime(1600, now + rise);
+    f.linearRampToValueAtTime(500, now + rise + fall);
+
+    const next = (rise + fall + 0.6 + Math.random() * 1.5) * 1000;
+    timer = setTimeout(wave, next);
+  };
+
+  return {
+    masterGain,
+    start: () => {
+      if (alive) return;
+      alive = true;
+      wave();
+    },
+    stop: () => {
+      alive = false;
+      if (timer) clearTimeout(timer);
+    },
+  };
 }
 
 export function useSeaSound() {
   const [enabled, setEnabled] = useState(false);
-  const seaRef = useRef<{ masterGain: GainNode } | null>(null);
+  const seaRef = useRef<Sea | null>(null);
 
   const toggle = useCallback(() => {
     const ctx = getCtx();
@@ -85,11 +138,14 @@ export function useSeaSound() {
     setEnabled((prev) => {
       const next = !prev;
       if (!seaRef.current) seaRef.current = createSea(ctx);
+      const sea = seaRef.current;
       const now = ctx.currentTime;
-      const g = seaRef.current.masterGain.gain;
+      const g = sea.masterGain.gain;
       g.cancelScheduledValues(now);
       g.setValueAtTime(g.value, now);
-      g.linearRampToValueAtTime(next ? 0.5 : 0, now + 1);
+      g.linearRampToValueAtTime(next ? 0.6 : 0, now + 1.2);
+      if (next) sea.start();
+      else setTimeout(() => sea.stop(), 1200);
       return next;
     });
   }, []);
@@ -98,6 +154,7 @@ export function useSeaSound() {
     return () => {
       if (seaRef.current) {
         try {
+          seaRef.current.stop();
           seaRef.current.masterGain.disconnect();
         } catch {
           /* noop */
