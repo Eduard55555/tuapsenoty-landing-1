@@ -59,15 +59,6 @@ function createSea(ctx: AudioContext): Sea {
   noise.buffer = buffer;
   noise.loop = true;
 
-  // основной мягкий фон моря
-  const bgFilter = ctx.createBiquadFilter();
-  bgFilter.type = "lowpass";
-  bgFilter.frequency.value = 480;
-  const bgGain = ctx.createGain();
-  bgGain.gain.value = 0.25;
-  noise.connect(bgFilter);
-  bgFilter.connect(bgGain);
-
   // канал «накатов» прибоя — полосовой фильтр + управляемая громкость
   const surfFilter = ctx.createBiquadFilter();
   surfFilter.type = "bandpass";
@@ -80,7 +71,6 @@ function createSea(ctx: AudioContext): Sea {
 
   const masterGain = ctx.createGain();
   masterGain.gain.value = 0;
-  bgGain.connect(masterGain);
   surfGain.connect(masterGain);
   masterGain.connect(ctx.destination);
 
