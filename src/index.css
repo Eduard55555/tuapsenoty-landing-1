@@ -237,27 +237,33 @@
     opacity: 0;
   }
   8% {
-    opacity: 0.85;
+    opacity: 0.9;
+  }
+  25% {
+    transform: translate(28vw, -18px) scale(var(--gull-scale, 1));
   }
   50% {
-    transform: translate(56vw, -26px) scale(var(--gull-scale, 1));
+    transform: translate(56vw, -34px) scale(var(--gull-scale, 1));
+  }
+  75% {
+    transform: translate(85vw, -14px) scale(var(--gull-scale, 1));
   }
   92% {
-    opacity: 0.85;
+    opacity: 0.9;
   }
   100% {
-    transform: translate(118vw, 8px) scale(var(--gull-scale, 1));
+    transform: translate(118vw, 6px) scale(var(--gull-scale, 1));
     opacity: 0;
   }
 }
 
-@keyframes gull-flap {
+@keyframes gull-bob {
   0%,
   100% {
-    transform: rotate(0deg) translateY(0);
+    transform: translateY(0);
   }
   50% {
-    transform: rotate(-14deg) translateY(-3px);
+    transform: translateY(-3px);
   }
 }
 
