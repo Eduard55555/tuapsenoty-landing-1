@@ -86,8 +86,57 @@ function createSea(ctx: AudioContext): Sea {
 
   noise.start();
 
+  // один крик чайки: короткий «вскрик» с вибрато и нисходящим тоном
+  const gullCry = (delay: number) => {
+    const t0 = ctx.currentTime + delay;
+    const osc = ctx.createOscillator();
+    osc.type = "sawtooth";
+    const base = 950 + Math.random() * 250;
+    osc.frequency.setValueAtTime(base, t0);
+    osc.frequency.linearRampToValueAtTime(base * 1.25, t0 + 0.06);
+    osc.frequency.linearRampToValueAtTime(base * 0.8, t0 + 0.22);
+
+    // вибрато
+    const vib = ctx.createOscillator();
+    vib.frequency.value = 28;
+    const vibGain = ctx.createGain();
+    vibGain.gain.value = 45;
+    vib.connect(vibGain);
+    vibGain.connect(osc.frequency);
+
+    const cryFilter = ctx.createBiquadFilter();
+    cryFilter.type = "bandpass";
+    cryFilter.frequency.value = base * 1.4;
+    cryFilter.Q.value = 4;
+
+    const cryGain = ctx.createGain();
+    cryGain.gain.setValueAtTime(0.0001, t0);
+    cryGain.gain.exponentialRampToValueAtTime(0.12, t0 + 0.04);
+    cryGain.gain.setValueAtTime(0.12, t0 + 0.16);
+    cryGain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.28);
+
+    osc.connect(cryFilter);
+    cryFilter.connect(cryGain);
+    cryGain.connect(masterGain);
+
+    osc.start(t0);
+    vib.start(t0);
+    osc.stop(t0 + 0.3);
+    vib.stop(t0 + 0.3);
+  };
+
   let timer: ReturnType<typeof setTimeout> | null = null;
+  let gullTimer: ReturnType<typeof setTimeout> | null = null;
   let alive = false;
+
+  // редкие крики чаек: серия из 2-3 вскриков, потом долгая пауза
+  const gulls = () => {
+    if (!alive) return;
+    const count = 2 + Math.floor(Math.random() * 2);
+    for (let i = 0; i < count; i++) gullCry(i * (0.32 + Math.random() * 0.12));
+    const next = (8 + Math.random() * 14) * 1000;
+    gullTimer = setTimeout(gulls, next);
+  };
 
   // один накат волны: нарастание -> шуршание -> затухание
   const wave = () => {
@@ -120,10 +169,12 @@ function createSea(ctx: AudioContext): Sea {
       if (alive) return;
       alive = true;
       wave();
+      gullTimer = setTimeout(gulls, (4 + Math.random() * 6) * 1000);
     },
     stop: () => {
       alive = false;
       if (timer) clearTimeout(timer);
+      if (gullTimer) clearTimeout(gullTimer);
     },
   };
 }
