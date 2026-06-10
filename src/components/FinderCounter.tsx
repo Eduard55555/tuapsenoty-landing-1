@@ -21,6 +21,11 @@ export default function FinderCounter() {
   if (count === null) return null;
 
   const formatted = display.toLocaleString("ru-RU");
+  const updatedAt = new Date().toLocaleDateString("ru-RU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <div className="animate-fade-up flex flex-col items-center mb-6">
@@ -57,6 +62,9 @@ export default function FinderCounter() {
       </div>
       <p className="font-body text-xs sm:text-sm italic mt-2" style={{ color: "rgba(245,230,211,0.7)" }}>
         Енофья скоро будет ждать вас 💛
+      </p>
+      <p className="font-body text-[11px] sm:text-xs mt-1" style={{ color: "rgba(245,230,211,0.55)" }}>
+        Обновлено: {updatedAt}
       </p>
     </div>
   );
