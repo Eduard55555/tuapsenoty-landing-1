@@ -1,4 +1,5 @@
 import SiteFooter from "@/components/SiteFooter";
+import TuapseMap from "@/components/TuapseMap";
 import IndexHeader from "./index/IndexHeader";
 import IndexHero from "./index/IndexHero";
 import IndexNews from "./index/IndexNews";
@@ -13,6 +14,9 @@ export default function Index() {
 
       {/* HERO + ABOUT */}
       <IndexHero />
+
+      {/* MAP */}
+      <TuapseMap />
 
       {/* NEWS */}
       <IndexNews />
