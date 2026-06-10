@@ -15,16 +15,40 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
   const [ready, setReady] = useState(false);
   const [scale, setScale] = useState(1);
   const [muted, setMuted] = useState(true);
+  const [hasAudio, setHasAudio] = useState(true);
+
+  const checkAudio = () => {
+    const v = holoRef.current as (HTMLVideoElement & {
+      mozHasAudio?: boolean;
+      webkitAudioDecodedByteCount?: number;
+      audioTracks?: { length: number };
+    }) | null;
+    if (!v) return;
+    const detected =
+      v.mozHasAudio ||
+      Boolean(v.webkitAudioDecodedByteCount) ||
+      Boolean(v.audioTracks && v.audioTracks.length > 0);
+    setHasAudio(detected);
+  };
 
   const toggleSound = () => {
     const v = holoRef.current;
     if (!v) return;
-    const next = !muted;
-    v.muted = next;
-    if (!next) {
-      v.play().catch(() => {});
+    const nextMuted = !muted;
+    if (!nextMuted) {
+      v.muted = false;
+      v.volume = 1;
+      const p = v.play();
+      if (p && typeof p.then === "function") {
+        p.catch(() => {
+          v.muted = true;
+          setMuted(true);
+        });
+      }
+    } else {
+      v.muted = true;
     }
-    setMuted(next);
+    setMuted(nextMuted);
   };
 
   useEffect(() => {
@@ -78,6 +102,8 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
                 loop
                 muted={muted}
                 playsInline
+                onLoadedData={checkAudio}
+                onPlaying={checkAudio}
               />
             ) : (
               <img
@@ -121,7 +147,7 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
             <span className="font-body text-sm font-bold text-white">✨ {name} оживает</span>
           </div>
 
-          {video && (
+          {video && hasAudio && (
             <button
               onClick={toggleSound}
               className="absolute z-10 flex items-center gap-2 px-4 py-2.5 rounded-full"
@@ -142,9 +168,6 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
             >
               <Icon name="Minus" size={22} className="text-white" />
             </button>
-            <span className="font-body text-xs text-white/80 w-28 text-center">
-              Наведи на стол и меняй размер
-            </span>
             <button
               onClick={() => setScale((s) => Math.min(2.5, s + 0.2))}
               className="w-11 h-11 rounded-full flex items-center justify-center bg-white/20"
