@@ -16,9 +16,11 @@ const GULLS: Gull[] = [
 
 const BODY = "rgba(252,247,238,0.97)";
 const WING = "rgba(238,231,220,0.97)";
-const HEAD = "rgba(252,247,238,0.98)";
-const BEAK = "rgba(245,170,70,0.97)";
-const EYE = "rgba(55,45,38,0.9)";
+const HEAD = "rgba(255,255,255,1)";
+const HEAD_OUTLINE = "rgba(70,90,105,0.55)";
+const BEAK = "rgba(240,135,25,1)";
+const BEAK_OUTLINE = "rgba(180,90,10,0.9)";
+const EYE = "rgba(30,25,20,1)";
 
 // Цельное крыло (одна фигура) в трёх фазах взмаха
 const WING_UP = "M40 25 C30 9 18 5 5 10 C18 12 30 18 40 27 Z";
@@ -63,14 +65,14 @@ function Seagull({ flap }: { flap: number }) {
       {/* шея */}
       <path d="M48 24 C50 22 51 21 52 19.5 L54 21 C53 23 51 24.5 49 26 Z" fill={BODY} />
       {/* голова */}
-      <circle cx="53" cy="19" r="3.1" fill={HEAD} />
+      <circle cx="53" cy="19" r="3.3" fill={HEAD} stroke={HEAD_OUTLINE} strokeWidth="0.6" />
       {/* нижняя челюсть клюва */}
-      <path d="M55.4 19.6 L61.5 19.3 L55.8 21 Z" fill={BEAK} />
+      <path d="M55.4 19.6 L61.5 19.3 L55.8 21 Z" fill={BEAK} stroke={BEAK_OUTLINE} strokeWidth="0.4" strokeLinejoin="round" />
       {/* верхняя челюсть клюва */}
-      <path d="M55.4 18 L61.8 18.6 L55.8 19.4 Z" fill={BEAK} />
+      <path d="M55.4 18 L61.8 18.6 L55.8 19.4 Z" fill={BEAK} stroke={BEAK_OUTLINE} strokeWidth="0.4" strokeLinejoin="round" />
       {/* глаз */}
-      <circle cx="53.6" cy="18.4" r="0.85" fill={EYE} />
-      <circle cx="53.85" cy="18.15" r="0.28" fill="rgba(255,255,255,0.85)" />
+      <circle cx="53.6" cy="18.4" r="1" fill={EYE} />
+      <circle cx="53.9" cy="18.1" r="0.32" fill="rgba(255,255,255,0.95)" />
     </svg>
   );
 }
