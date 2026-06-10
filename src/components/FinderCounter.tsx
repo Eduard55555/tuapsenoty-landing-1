@@ -1,9 +1,18 @@
 import { useState, useEffect } from "react";
 import { useFinderData, pluralPeople } from "@/hooks/useFinderCount";
+import { playCoin } from "@/hooks/useSound";
 
 export default function FinderCounter() {
   const { count, updatedAt } = useFinderData();
   const [display, setDisplay] = useState(0);
+  const [splashes, setSplashes] = useState<number[]>([]);
+
+  const handleSplash = () => {
+    playCoin();
+    const id = Date.now();
+    setSplashes((s) => [...s, id]);
+    setTimeout(() => setSplashes((s) => s.filter((x) => x !== id)), 700);
+  };
 
   useEffect(() => {
     if (count === null) return;
@@ -33,14 +42,23 @@ export default function FinderCounter() {
 
   return (
     <div className="animate-fade-up flex flex-col items-center mb-6">
-      <div
-        className="inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-lg"
+      <button
+        type="button"
+        onClick={handleSplash}
+        className="relative inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-lg cursor-pointer transition-transform hover:scale-[1.03] active:scale-95"
         style={{
           background: "rgba(253, 246, 238, 0.12)",
           border: "1px solid rgba(64,224,208,0.4)",
           backdropFilter: "blur(8px)",
         }}
       >
+        {splashes.map((id) => (
+          <span
+            key={id}
+            className="absolute inset-0 rounded-full pointer-events-none animate-finder-splash"
+            style={{ border: "2px solid var(--teal-light)" }}
+          />
+        ))}
         <span className="relative flex h-2.5 w-2.5">
           <span
             className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
@@ -63,7 +81,7 @@ export default function FinderCounter() {
         <span className="font-body text-sm sm:text-base" style={{ color: "rgba(245,230,211,0.9)" }}>
           {pluralPeople(display)}
         </span>
-      </div>
+      </button>
       {updatedLabel && (
         <p className="font-body text-[11px] sm:text-xs mt-2" style={{ color: "rgba(245,230,211,0.55)" }}>
           Обновлено: {updatedLabel}
