@@ -129,7 +129,7 @@ export default function Shop() {
                     <button
                       type="button"
                       onClick={() => changeQty(p.id, -1)}
-                      className="w-7 h-7 flex items-center justify-center rounded-full"
+                      className="w-9 h-9 sm:w-7 sm:h-7 flex items-center justify-center rounded-full"
                       style={{ color: "var(--bronze)" }}
                       aria-label="Уменьшить">
                       <Icon name="Minus" size={14} />
@@ -140,7 +140,7 @@ export default function Shop() {
                     <button
                       type="button"
                       onClick={() => changeQty(p.id, 1)}
-                      className="w-7 h-7 flex items-center justify-center rounded-full"
+                      className="w-9 h-9 sm:w-7 sm:h-7 flex items-center justify-center rounded-full"
                       style={{ color: "var(--bronze)" }}
                       aria-label="Увеличить">
                       <Icon name="Plus" size={14} />
