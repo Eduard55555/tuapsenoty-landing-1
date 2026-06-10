@@ -12,14 +12,22 @@ export function pluralPeople(n: number): string {
 }
 
 export function useFinderCount(): number | null {
+  return useFinderData().count;
+}
+
+export function useFinderData(): { count: number | null; updatedAt: string | null } {
   const [count, setCount] = useState<number | null>(null);
+  const [updatedAt, setUpdatedAt] = useState<string | null>(null);
 
   useEffect(() => {
     fetch(FINDER_API, { cache: "no-store" })
       .then((r) => r.json())
-      .then((d) => setCount(typeof d.count === "number" ? d.count + FINDER_BASE : null))
+      .then((d) => {
+        setCount(typeof d.count === "number" ? d.count + FINDER_BASE : null);
+        setUpdatedAt(typeof d.updated_at === "string" ? d.updated_at : null);
+      })
       .catch(() => {});
   }, []);
 
-  return count;
+  return { count, updatedAt };
 }
