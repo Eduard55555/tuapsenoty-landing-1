@@ -35,19 +35,27 @@ def handler(event: dict, context) -> dict:
     chat_id = '300609957'
 
     data = json.dumps({'chat_id': chat_id, 'text': text, 'parse_mode': 'Markdown'}).encode()
-    req = urllib.request.Request(
-        f'https://api.telegram.org/bot{token}/sendMessage',
-        data=data,
-        headers={'Content-Type': 'application/json'}
-    )
 
-    try:
-        urllib.request.urlopen(req, timeout=10)
-    except Exception as e:
+    last_error = ''
+    sent = False
+    for attempt in range(2):
+        req = urllib.request.Request(
+            f'https://api.telegram.org/bot{token}/sendMessage',
+            data=data,
+            headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'}
+        )
+        try:
+            urllib.request.urlopen(req, timeout=5)
+            sent = True
+            break
+        except Exception as e:
+            last_error = str(e)
+
+    if not sent:
         return {
             'statusCode': 502,
             'headers': {'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'ok': False, 'error': str(e)})
+            'body': json.dumps({'ok': False, 'error': last_error})
         }
 
     return {

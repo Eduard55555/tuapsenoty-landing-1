@@ -28,7 +28,7 @@ export default function Cart() {
     setLoading(true);
     setError("");
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 20000);
+    const timer = setTimeout(() => controller.abort(), 15000);
     try {
       const res = await fetch("https://functions.poehali.dev/c9f50a36-d5ce-4c13-ae29-999d565492de", {
         method: "POST",
