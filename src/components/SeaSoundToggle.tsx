@@ -9,10 +9,8 @@ export default function SeaSoundToggle() {
       onClick={toggle}
       aria-label={enabled ? "Выключить звук моря" : "Включить звук моря"}
       title={enabled ? "Выключить звук моря" : "Включить звук моря"}
-      className="fixed bottom-5 right-5 z-50 flex items-center justify-center rounded-full shadow-lg transition-transform hover:scale-110"
+      className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full shadow-lg transition-transform hover:scale-105 pl-4 pr-5 py-3"
       style={{
-        width: 52,
-        height: 52,
         background: enabled ? "var(--teal)" : "rgba(46,92,110,0.85)",
         color: "var(--cream)",
         border: "2px solid rgba(245,230,211,0.4)",
@@ -20,6 +18,7 @@ export default function SeaSoundToggle() {
       }}
     >
       <Icon name={enabled ? "Volume2" : "VolumeX"} size={22} />
+      <span className="font-body text-sm font-semibold">Звук моря</span>
     </button>
   );
 }
