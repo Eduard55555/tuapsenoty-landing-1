@@ -96,7 +96,7 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
               <video
                 ref={holoRef}
                 src={video}
-                className="ar-hologram-img"
+                className="ar-hologram-video"
                 autoPlay
                 loop
                 muted={muted}
