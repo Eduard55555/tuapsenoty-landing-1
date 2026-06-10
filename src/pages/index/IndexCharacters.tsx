@@ -43,9 +43,22 @@ export default function IndexCharacters() {
                   style={{ border: "1px solid rgba(184,115,51,0.12)" }}>
                   <div className="p-6 flex flex-col flex-1">
                     {char.image ? (
-                      <img src={char.image} alt={char.name}
-                        className="w-full h-44 object-cover rounded-2xl mb-4"
-                        style={{ objectPosition: "top" }} />
+                      <div className="relative mb-4">
+                        <img src={char.image} alt={char.name}
+                          className="w-full h-44 object-cover rounded-2xl"
+                          style={{ objectPosition: "top" }} />
+                        {char.icon && (
+                          <div className="absolute bottom-2 right-2 flex items-center justify-center rounded-full shadow-md"
+                            style={{
+                              width: 38,
+                              height: 38,
+                              background: "var(--cream)",
+                              border: "2px solid var(--bronze)",
+                            }}>
+                            <Icon name={char.icon} size={20} style={{ color: "var(--bronze)" }} />
+                          </div>
+                        )}
+                      </div>
                     ) : (
                       <div className="text-5xl mb-4 text-center">{char.emoji}</div>
                     )}
