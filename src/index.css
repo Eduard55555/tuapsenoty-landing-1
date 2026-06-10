@@ -284,14 +284,9 @@
 }
 
 .ar-hologram-video {
-  width: 75vw;
-  max-width: 520px;
-  height: auto;
-  display: block;
+  max-width: 75vw;
+  max-height: 55vh;
   object-fit: contain;
-  clip-path: inset(13% 0 13% 0);
-  margin-top: -13%;
-  margin-bottom: -13%;
   filter: drop-shadow(0 0 18px rgba(64, 224, 208, 0.85))
     drop-shadow(0 0 42px rgba(46, 92, 110, 0.6)) brightness(1.08) saturate(1.15);
   animation: ar-glow 3s ease-in-out infinite;
