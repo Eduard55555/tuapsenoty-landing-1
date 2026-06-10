@@ -15,20 +15,30 @@ const GULLS: Gull[] = [
 ];
 
 const BODY = "rgba(252,247,238,0.97)";
-const WING = "rgba(232,224,212,0.97)";
-const TIP = "rgba(120,120,128,0.9)";
-const BEAK = "rgba(245,170,70,0.95)";
+const WING = "rgba(238,231,220,0.97)";
+const HEAD = "rgba(252,247,238,0.98)";
+const BEAK = "rgba(245,170,70,0.97)";
+const EYE = "rgba(55,45,38,0.9)";
 
-// Контуры крыльев в трёх фазах взмаха (вверх → ровно → вниз)
-const WING_UP =
-  "M40 24 C30 8 18 4 4 9 C16 9 26 14 33 22 C24 18 14 18 6 22 C18 23 31 24 40 26 Z";
-const WING_MID =
-  "M40 25 C30 18 18 16 3 21 C15 19 26 21 33 24 C24 23 14 24 6 27 C18 27 31 27 40 27 Z";
-const WING_DOWN =
-  "M40 26 C30 32 18 36 5 33 C16 31 26 29 33 26 C24 28 14 30 7 34 C18 31 31 28 40 27 Z";
+// Цельное крыло (одна фигура) в трёх фазах взмаха
+const WING_UP = "M40 25 C30 9 18 5 5 10 C18 12 30 18 40 27 Z";
+const WING_MID = "M40 25 C30 19 18 17 4 22 C18 21 30 23 40 27 Z";
+const WING_DOWN = "M40 25 C30 31 18 35 6 33 C18 30 30 28 40 27 Z";
 
 function Seagull({ flap }: { flap: number }) {
   const dur = `${flap}s`;
+  const wingAnim = (
+    <animate
+      attributeName="d"
+      dur={dur}
+      repeatCount="indefinite"
+      values={`${WING_UP};${WING_MID};${WING_DOWN};${WING_MID};${WING_UP}`}
+      keyTimes="0;0.25;0.5;0.75;1"
+      calcMode="spline"
+      keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"
+    />
+  );
+
   return (
     <svg
       width="70"
@@ -37,48 +47,30 @@ function Seagull({ flap }: { flap: number }) {
       fill="none"
       style={{ filter: "drop-shadow(0 2px 2px rgba(40,70,90,0.18))" }}
     >
-      {/* левое крыло (морфинг взмаха) */}
-      <path fill={WING}>
-        <animate
-          attributeName="d"
-          dur={dur}
-          repeatCount="indefinite"
-          values={`${WING_UP};${WING_MID};${WING_DOWN};${WING_MID};${WING_UP}`}
-          keyTimes="0;0.25;0.5;0.75;1"
-          calcMode="spline"
-          keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"
-        />
-      </path>
+      {/* левое крыло */}
+      <path fill={WING}>{wingAnim}</path>
 
-      {/* тело */}
-      <ellipse cx="44" cy="25" rx="6" ry="3.6" fill={BODY} />
-      {/* хвост */}
-      <path d="M44 25 L36 28 L43 26 Z" fill={BODY} />
-      {/* шея и голова */}
-      <circle cx="49" cy="21.5" r="2.8" fill={BODY} />
-      {/* клюв */}
-      <path d="M51.2 20.6 L57 20 L51.6 22.6 Z" fill={BEAK} />
-      {/* глаз */}
-      <circle cx="49.6" cy="21" r="0.6" fill="rgba(60,50,40,0.85)" />
-
-      {/* правое крыло — зеркало левого (морфинг в противофазе для глубины) */}
+      {/* правое крыло — зеркало */}
       <g transform="translate(88 0) scale(-1 1)">
-        <path fill={WING} opacity="0.95">
-          <animate
-            attributeName="d"
-            dur={dur}
-            repeatCount="indefinite"
-            values={`${WING_UP};${WING_MID};${WING_DOWN};${WING_MID};${WING_UP}`}
-            keyTimes="0;0.25;0.5;0.75;1"
-            calcMode="spline"
-            keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"
-          />
-        </path>
+        <path fill={WING}>{wingAnim}</path>
       </g>
 
-      {/* тёмные кончики крыльев для реализма */}
-      <circle cx="6" cy="22" r="1.6" fill={TIP} opacity="0.55" />
-      <circle cx="74" cy="22" r="1.6" fill={TIP} opacity="0.55" />
+      {/* тело */}
+      <ellipse cx="44" cy="25.5" rx="6.5" ry="3.6" fill={BODY} />
+      {/* хвост */}
+      <path d="M44 25.5 L36 28.5 L43 26.5 Z" fill={BODY} />
+
+      {/* шея */}
+      <path d="M48 24 C50 22 51 21 52 19.5 L54 21 C53 23 51 24.5 49 26 Z" fill={BODY} />
+      {/* голова */}
+      <circle cx="53" cy="19" r="3.1" fill={HEAD} />
+      {/* нижняя челюсть клюва */}
+      <path d="M55.4 19.6 L61.5 19.3 L55.8 21 Z" fill={BEAK} />
+      {/* верхняя челюсть клюва */}
+      <path d="M55.4 18 L61.8 18.6 L55.8 19.4 Z" fill={BEAK} />
+      {/* глаз */}
+      <circle cx="53.6" cy="18.4" r="0.85" fill={EYE} />
+      <circle cx="53.85" cy="18.15" r="0.28" fill="rgba(255,255,255,0.85)" />
     </svg>
   );
 }
