@@ -21,11 +21,17 @@ const HEAD_OUTLINE = "rgba(70,90,105,0.55)";
 const BEAK = "rgba(240,135,25,1)";
 const BEAK_OUTLINE = "rgba(180,90,10,0.9)";
 const EYE = "rgba(30,25,20,1)";
+const STRIPE = "rgba(120,128,138,0.85)";
 
 // Цельное крыло (одна фигура) в трёх фазах взмаха
 const WING_UP = "M40 25 C30 9 18 5 5 10 C18 12 30 18 40 27 Z";
 const WING_MID = "M40 25 C30 19 18 17 4 22 C18 21 30 23 40 27 Z";
 const WING_DOWN = "M40 25 C30 31 18 35 6 33 C18 30 30 28 40 27 Z";
+
+// Серая полоса вдоль края крыла (повторяет верхний контур)
+const STRIPE_UP = "M40 25 C30 9 18 5 5 10";
+const STRIPE_MID = "M40 25 C30 19 18 17 4 22";
+const STRIPE_DOWN = "M40 25 C30 31 18 35 6 33";
 
 function Seagull({ flap }: { flap: number }) {
   const dur = `${flap}s`;
@@ -40,6 +46,26 @@ function Seagull({ flap }: { flap: number }) {
       keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"
     />
   );
+  const stripeAnim = (
+    <animate
+      attributeName="d"
+      dur={dur}
+      repeatCount="indefinite"
+      values={`${STRIPE_UP};${STRIPE_MID};${STRIPE_DOWN};${STRIPE_MID};${STRIPE_UP}`}
+      keyTimes="0;0.25;0.5;0.75;1"
+      calcMode="spline"
+      keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"
+    />
+  );
+
+  const wing = (
+    <>
+      <path fill={WING}>{wingAnim}</path>
+      <path fill="none" stroke={STRIPE} strokeWidth="1.1" strokeLinecap="round">
+        {stripeAnim}
+      </path>
+    </>
+  );
 
   return (
     <svg
@@ -50,12 +76,10 @@ function Seagull({ flap }: { flap: number }) {
       style={{ filter: "drop-shadow(0 2px 2px rgba(40,70,90,0.18))" }}
     >
       {/* левое крыло */}
-      <path fill={WING}>{wingAnim}</path>
+      {wing}
 
       {/* правое крыло — зеркало */}
-      <g transform="translate(88 0) scale(-1 1)">
-        <path fill={WING}>{wingAnim}</path>
-      </g>
+      <g transform="translate(88 0) scale(-1 1)">{wing}</g>
 
       {/* тело */}
       <ellipse cx="44" cy="25.5" rx="6.5" ry="3.6" fill={BODY} />
