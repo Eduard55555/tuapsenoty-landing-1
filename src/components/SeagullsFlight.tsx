@@ -7,11 +7,11 @@ interface Gull {
 }
 
 const GULLS: Gull[] = [
-  { top: "12%", scale: 1, duration: 18, delay: 0, flap: 0.7 },
-  { top: "20%", scale: 0.7, duration: 24, delay: 4, flap: 0.85 },
-  { top: "8%", scale: 0.55, duration: 28, delay: 9, flap: 0.8 },
-  { top: "26%", scale: 0.85, duration: 21, delay: 13, flap: 0.75 },
-  { top: "16%", scale: 0.45, duration: 32, delay: 7, flap: 0.9 },
+  { top: "12%", scale: 1, duration: 18, delay: -2, flap: 0.7 },
+  { top: "20%", scale: 0.7, duration: 24, delay: -8, flap: 0.85 },
+  { top: "8%", scale: 0.55, duration: 28, delay: -15, flap: 0.8 },
+  { top: "26%", scale: 0.85, duration: 21, delay: -5, flap: 0.75 },
+  { top: "16%", scale: 0.45, duration: 32, delay: -22, flap: 0.9 },
 ];
 
 const FILL = "rgba(250,243,230,0.96)";
