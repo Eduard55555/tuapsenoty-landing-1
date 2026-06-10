@@ -278,18 +278,17 @@
   }
 }
 
-@keyframes sound-bar {
-  0%,
-  100% {
-    height: 30%;
+@keyframes sea-wave {
+  from {
+    transform: translateX(0);
   }
-  50% {
-    height: 100%;
+  to {
+    transform: translateX(-50%);
   }
 }
 
-.animate-sound-bar {
-  animation: sound-bar 0.9s ease-in-out infinite;
+.animate-sea-wave {
+  animation: sea-wave 2.2s linear infinite;
 }
 
 @keyframes finder-splash {
