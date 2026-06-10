@@ -11,10 +11,6 @@ export function pluralPeople(n: number): string {
   return "человек";
 }
 
-export function useFinderCount(): number | null {
-  return useFinderData().count;
-}
-
 export function useFinderData(): { count: number | null; updatedAt: string | null } {
   const [count, setCount] = useState<number | null>(null);
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
@@ -30,4 +26,8 @@ export function useFinderData(): { count: number | null; updatedAt: string | nul
   }, []);
 
   return { count, updatedAt };
+}
+
+export function useFinderCount(): number | null {
+  return useFinderData().count;
 }
