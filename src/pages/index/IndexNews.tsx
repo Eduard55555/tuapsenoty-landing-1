@@ -91,12 +91,19 @@ export default function IndexNews() {
                   Это доказывает: проект реальный, команда работает, а легенда
                   начинает материализовываться.
                 </p>
-                <a href="https://web.max.ru/-72521511416496" target="_blank" rel="noopener noreferrer"
-                  className="font-body font-bold flex items-center gap-2 mb-6"
-                  style={{ color: "var(--bronze)" }}>
-                  Читать на Макс
-                  <Icon name="ArrowRight" size={16} />
-                </a>
+                <div className="flex flex-wrap items-center gap-3 mb-6">
+                  <a href="https://web.max.ru/-72521511416496" target="_blank" rel="noopener noreferrer"
+                    className="btn-primary inline-flex">
+                    Читать в MAX
+                    <Icon name="ArrowRight" size={16} />
+                  </a>
+                  <a href="/characters/enotych"
+                    className="btn-primary inline-flex"
+                    style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
+                    <Icon name="Sparkles" size={16} />
+                    Оживить Енотыча
+                  </a>
+                </div>
                 <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
                   <iframe
                     src="https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor"
