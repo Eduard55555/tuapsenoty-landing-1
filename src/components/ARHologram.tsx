@@ -10,9 +10,22 @@ interface ARHologramProps {
 
 export default function ARHologram({ image, video, name, onClose }: ARHologramProps) {
   const camRef = useRef<HTMLVideoElement>(null);
+  const holoRef = useRef<HTMLVideoElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const [scale, setScale] = useState(1);
+  const [muted, setMuted] = useState(true);
+
+  const toggleSound = () => {
+    const v = holoRef.current;
+    if (!v) return;
+    const next = !muted;
+    v.muted = next;
+    if (!next) {
+      v.play().catch(() => {});
+    }
+    setMuted(next);
+  };
 
   useEffect(() => {
     let stream: MediaStream | null = null;
@@ -58,11 +71,12 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
           <div className="ar-hologram" style={{ transform: `scale(${scale})` }}>
             {video ? (
               <video
+                ref={holoRef}
                 src={video}
                 className="ar-hologram-img"
                 autoPlay
                 loop
-                muted
+                muted={muted}
                 playsInline
               />
             ) : (
@@ -106,6 +120,19 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
             style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }}>
             <span className="font-body text-sm font-bold text-white">✨ {name} оживает</span>
           </div>
+
+          {video && (
+            <button
+              onClick={toggleSound}
+              className="absolute z-10 flex items-center gap-2 px-4 py-2.5 rounded-full"
+              style={{ top: "5rem", left: "1.25rem", background: muted ? "var(--bronze)" : "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }}
+            >
+              <Icon name={muted ? "VolumeX" : "Volume2"} size={18} className="text-white" />
+              <span className="font-body text-sm font-bold text-white">
+                {muted ? "Включить звук" : "Звук вкл"}
+              </span>
+            </button>
+          )}
 
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-4 px-5 py-3 rounded-full"
             style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }}>

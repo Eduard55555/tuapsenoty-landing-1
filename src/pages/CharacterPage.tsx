@@ -222,7 +222,7 @@ export default function CharacterPage() {
             <button onClick={() => setArOpen(true)} className="btn-primary inline-flex"
               style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
               <Icon name="Sparkles" size={18} />
-              Оживить {char.name} в AR
+              Оживить {char.name === "Енофья" ? "Енофью" : char.name === "Тыдочка" ? "Тыдочку" : char.name === "Енира" ? "Ениру" : char.name + "а"} в AR
             </button>
             <a href="/shop" className="btn-primary inline-flex">
               <Icon name="ShoppingCart" size={18} />
