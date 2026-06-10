@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
-import InstallButton from "@/components/InstallButton";
 import { PLANETA_URL } from "@/pages/index/indexData";
 
 const LINKS: [string, string][] = [
@@ -82,11 +81,6 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
                 );
               });
             })()}
-            <InstallButton
-              label="Установить"
-              className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
-              style={{ color: "var(--warm-dark)", fontWeight: 700, border: "1px solid rgba(184,115,51,0.4)" }}
-            />
             {showCart && (
               <a href="/cart" className="btn-primary text-sm px-3 py-1 whitespace-nowrap">
                 <Icon name="ShoppingCart" size={16} />
@@ -130,11 +124,6 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
               );
             });
           })()}
-          <InstallButton
-            className="font-body text-sm w-full justify-center mt-2 inline-flex items-center gap-2 py-2 rounded-full"
-            style={{ color: "var(--warm-dark)", fontWeight: 700, border: "1px solid rgba(184,115,51,0.4)" }}
-            onClick={() => setMenuOpen(false)}
-          />
           <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
             className="btn-primary text-sm w-full justify-center mt-2">
             <Icon name="Heart" size={16} />

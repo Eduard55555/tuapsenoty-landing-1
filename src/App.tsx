@@ -15,7 +15,6 @@ import Gallery from "./pages/Gallery";
 import MapPage from "./pages/MapPage";
 import { CartProvider } from "./context/CartContext";
 import CookieBanner from "./components/CookieBanner";
-import InstallPrompt from "./components/InstallPrompt";
 
 const queryClient = new QueryClient();
 
@@ -39,7 +38,6 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <CookieBanner />
-          <InstallPrompt />
         </BrowserRouter>
       </CartProvider>
     </TooltipProvider>
