@@ -47,25 +47,30 @@ function createSea(ctx: AudioContext) {
 
   const filter = ctx.createBiquadFilter();
   filter.type = "lowpass";
-  filter.frequency.value = 600;
+  filter.frequency.value = 1100;
+
+  // «волны»: медленно колышем частоту фильтра — слышен накат прибоя
+  const surfLfo = ctx.createOscillator();
+  surfLfo.frequency.value = 0.15;
+  const surfDepth = ctx.createGain();
+  surfDepth.gain.value = 700;
+  surfLfo.connect(surfDepth);
+  surfDepth.connect(filter.frequency);
+
+  // громкость с собственным узлом для плавного вкл/выкл
+  const innerGain = ctx.createGain();
+  innerGain.gain.value = 0.6;
 
   const masterGain = ctx.createGain();
   masterGain.gain.value = 0;
 
-  // медленные «волны» через LFO на громкости
-  const lfo = ctx.createOscillator();
-  lfo.frequency.value = 0.12;
-  const lfoGain = ctx.createGain();
-  lfoGain.gain.value = 0.06;
-  lfo.connect(lfoGain);
-  lfoGain.connect(masterGain.gain);
-
   noise.connect(filter);
-  filter.connect(masterGain);
+  filter.connect(innerGain);
+  innerGain.connect(masterGain);
   masterGain.connect(ctx.destination);
 
   noise.start();
-  lfo.start();
+  surfLfo.start();
 
   return { masterGain };
 }
@@ -84,7 +89,7 @@ export function useSeaSound() {
       const g = seaRef.current.masterGain.gain;
       g.cancelScheduledValues(now);
       g.setValueAtTime(g.value, now);
-      g.linearRampToValueAtTime(next ? 0.12 : 0, now + 1);
+      g.linearRampToValueAtTime(next ? 0.5 : 0, now + 1);
       return next;
     });
   }, []);
