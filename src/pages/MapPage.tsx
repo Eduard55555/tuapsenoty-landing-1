@@ -12,24 +12,34 @@ interface Spot {
   mapSrc: string;
 }
 
-const TUAPSE_MAP = "https://yandex.ru/map-widget/v1/?ll=39.072500%2C44.099000&z=14";
 const ENOTYCH_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor";
+
+const tuapseMap = (coords: string) =>
+  `https://yandex.ru/map-widget/v1/?ll=${coords}&z=16&pt=${coords},comma`;
+
+const TUAPSE_CENTER = "39.072500,44.099000";
 
 const spots: Spot[] = [
   { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed", mapSrc: ENOTYCH_MAP },
-  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
-  { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
-  { slug: "enira", name: "Енира", emoji: "🐚", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
-  { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
-  { slug: "enovey", name: "Еновей", emoji: "🗺️", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
-  { slug: "enosik", name: "Еносик", emoji: "🪸", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
-  { slug: "enosha", name: "Еноша", emoji: "⚓", location: "Скоро определим", status: "soon", mapSrc: TUAPSE_MAP },
+  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
+  { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
+  { slug: "enira", name: "Енира", emoji: "🐚", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
+  { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
+  { slug: "enovey", name: "Еновей", emoji: "🗺️", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
+  { slug: "enosik", name: "Еносик", emoji: "🪸", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
+  { slug: "enosha", name: "Еноша", emoji: "⚓", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
 ];
 
 const placedCount = spots.filter((s) => s.status === "placed").length;
 
 export default function MapPage() {
   const [active, setActive] = useState<Spot>(spots[0]);
+  const [reloadKey, setReloadKey] = useState(0);
+
+  const selectSpot = (s: Spot) => {
+    setActive(s);
+    setReloadKey((k) => k + 1);
+  };
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
@@ -55,7 +65,7 @@ export default function MapPage() {
             <div className="lg:col-span-2 rounded-3xl overflow-hidden shadow-2xl"
               style={{ border: "3px solid rgba(184,115,51,0.2)", minHeight: 420 }}>
               <iframe
-                key={active.slug}
+                key={`${active.slug}-${reloadKey}`}
                 title={`Карта — ${active.name}`}
                 src={active.mapSrc}
                 width="100%"
@@ -73,7 +83,7 @@ export default function MapPage() {
                 return (
                   <button
                     key={s.slug}
-                    onClick={() => setActive(s)}
+                    onClick={() => selectSpot(s)}
                     className="w-full text-left rounded-2xl p-4 transition-all flex items-center gap-3"
                     style={{
                       background: isActive ? "linear-gradient(135deg, var(--teal-light), var(--teal))" : "#fff",
