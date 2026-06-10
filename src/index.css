@@ -231,6 +231,36 @@
   }
 }
 
+@keyframes gull-fly {
+  0% {
+    transform: translate(-12vw, 0) scale(var(--gull-scale, 1));
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate(56vw, -26px) scale(var(--gull-scale, 1));
+  }
+  92% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(118vw, 8px) scale(var(--gull-scale, 1));
+    opacity: 0;
+  }
+}
+
+@keyframes gull-flap {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.45);
+  }
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;

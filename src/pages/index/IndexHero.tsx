@@ -1,5 +1,6 @@
 import Icon from "@/components/ui/icon";
 import FinderCounter from "@/components/FinderCounter";
+import SeagullsFlight from "@/components/SeagullsFlight";
 import { PLANETA_URL } from "./indexData";
 
 export default function IndexHero() {
@@ -8,6 +9,8 @@ export default function IndexHero() {
       {/* HERO */}
       <section className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-28 sm:pt-32">
         <div className="absolute inset-0 texture-overlay opacity-30" />
+
+        <SeagullsFlight />
 
         <div className="absolute top-20 right-10 w-32 h-32 sm:w-64 sm:h-64 rounded-full opacity-10"
           style={{ background: "var(--teal)", filter: "blur(60px)" }} />
