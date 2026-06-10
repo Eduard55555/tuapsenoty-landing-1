@@ -1,6 +1,10 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
+import ARHologram from "@/components/ARHologram";
+import { characters } from "@/pages/CharacterPage";
 import { NEWS_PHOTOS, ENOFYA_PHOTOS } from "./indexData";
+
+const enotych = characters.find((c) => c.slug === "enotych");
 
 function PhotoGallery({ photos, alt }: { photos: string[]; alt: string }) {
   const [idx, setIdx] = useState(0);
@@ -52,6 +56,7 @@ function EnofyaGallery() {
 }
 
 export default function IndexNews() {
+  const [arOpen, setArOpen] = useState(false);
   return (
     <section id="news" className="py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
       <div className="max-w-6xl mx-auto">
@@ -97,12 +102,14 @@ export default function IndexNews() {
                     Читать в MAX
                     <Icon name="ArrowRight" size={16} />
                   </a>
-                  <a href="/characters/enotych"
+                  <button
+                    type="button"
+                    onClick={() => setArOpen(true)}
                     className="btn-primary inline-flex"
                     style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
                     <Icon name="Sparkles" size={16} />
                     Оживить Енотыча
-                  </a>
+                  </button>
                 </div>
                 <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
                   <iframe
@@ -159,6 +166,15 @@ export default function IndexNews() {
         </div>
 
       </div>
+
+      {arOpen && enotych && (
+        <ARHologram
+          image={enotych.image}
+          video={(enotych as { video?: string }).video}
+          name={enotych.name}
+          onClose={() => setArOpen(false)}
+        />
+      )}
     </section>
   );
 }
