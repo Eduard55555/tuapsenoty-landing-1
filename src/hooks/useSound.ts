@@ -59,15 +59,20 @@ function createSea(ctx: AudioContext): Sea {
   noise.buffer = buffer;
   noise.loop = true;
 
-  // канал «накатов» прибоя — полосовой фильтр + управляемая громкость
-  const surfFilter = ctx.createBiquadFilter();
-  surfFilter.type = "bandpass";
-  surfFilter.frequency.value = 900;
-  surfFilter.Q.value = 0.7;
+  // убираем низкий «рокот/гул» — оставляем только шуршание воды
+  const hp = ctx.createBiquadFilter();
+  hp.type = "highpass";
+  hp.frequency.value = 700;
+  const lp = ctx.createBiquadFilter();
+  lp.type = "lowpass";
+  lp.frequency.value = 6000;
+
+  // накаты прибоя — плавное изменение только громкости, фильтры статичны
   const surfGain = ctx.createGain();
-  surfGain.gain.value = 0;
-  noise.connect(surfFilter);
-  surfFilter.connect(surfGain);
+  surfGain.gain.value = 0.06;
+  noise.connect(hp);
+  hp.connect(lp);
+  lp.connect(surfGain);
 
   const masterGain = ctx.createGain();
   masterGain.gain.value = 0;
@@ -128,28 +133,21 @@ function createSea(ctx: AudioContext): Sea {
     gullTimer = setTimeout(gulls, next);
   };
 
-  // один накат волны: нарастание -> шуршание -> затухание
+  // один накат волны: только плавное нарастание и затухание громкости
   const wave = () => {
     if (!alive) return;
     const now = ctx.currentTime;
-    const peak = 0.35 + Math.random() * 0.25;
-    const rise = 1.4 + Math.random() * 1.2;
-    const fall = 2.2 + Math.random() * 1.6;
+    const peak = 0.28 + Math.random() * 0.18;
+    const rise = 1.6 + Math.random() * 1.4;
+    const fall = 2.6 + Math.random() * 1.8;
 
     const g = surfGain.gain;
     g.cancelScheduledValues(now);
     g.setValueAtTime(g.value, now);
     g.linearRampToValueAtTime(peak, now + rise);
-    g.linearRampToValueAtTime(0.0001, now + rise + fall);
+    g.linearRampToValueAtTime(0.06, now + rise + fall);
 
-    // фильтр всплывает вверх на накате и опускается на откате — эффект «шшш»
-    const f = surfFilter.frequency;
-    f.cancelScheduledValues(now);
-    f.setValueAtTime(700, now);
-    f.linearRampToValueAtTime(1600, now + rise);
-    f.linearRampToValueAtTime(500, now + rise + fall);
-
-    const next = (rise + fall + 0.6 + Math.random() * 1.5) * 1000;
+    const next = (rise + fall + 0.4 + Math.random() * 1.2) * 1000;
     timer = setTimeout(wave, next);
   };
 
