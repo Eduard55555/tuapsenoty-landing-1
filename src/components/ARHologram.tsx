@@ -13,7 +13,6 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
   const holoRef = useRef<HTMLVideoElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
-  const [scale, setScale] = useState(1);
   const [muted, setMuted] = useState(true);
   const [hasAudio, setHasAudio] = useState(true);
 
@@ -92,7 +91,7 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
 
       {ready && !error && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="ar-hologram" style={{ transform: `scale(${scale})` }}>
+          <div className="ar-hologram">
             {video ? (
               <video
                 ref={holoRef}
@@ -160,21 +159,6 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
             </button>
           )}
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-4 px-5 py-3 rounded-full"
-            style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }}>
-            <button
-              onClick={() => setScale((s) => Math.max(0.4, s - 0.2))}
-              className="w-11 h-11 rounded-full flex items-center justify-center bg-white/20"
-            >
-              <Icon name="Minus" size={22} className="text-white" />
-            </button>
-            <button
-              onClick={() => setScale((s) => Math.min(2.5, s + 0.2))}
-              className="w-11 h-11 rounded-full flex items-center justify-center bg-white/20"
-            >
-              <Icon name="Plus" size={22} className="text-white" />
-            </button>
-          </div>
         </>
       )}
     </div>
