@@ -1,5 +1,4 @@
 import SiteFooter from "@/components/SiteFooter";
-import SeaSoundToggle from "@/components/SeaSoundToggle";
 import TuapseMap from "@/components/TuapseMap";
 import IndexHeader from "./index/IndexHeader";
 import IndexHero from "./index/IndexHero";
@@ -27,8 +26,6 @@ export default function Index() {
 
       {/* FOOTER */}
       <SiteFooter />
-
-      <SeaSoundToggle />
     </div>
   );
 }

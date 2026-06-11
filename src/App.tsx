@@ -15,6 +15,7 @@ import Gallery from "./pages/Gallery";
 import MapPage from "./pages/MapPage";
 import { CartProvider } from "./context/CartContext";
 import CookieBanner from "./components/CookieBanner";
+import SeaSoundToggle from "./components/SeaSoundToggle";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <CookieBanner />
+          <SeaSoundToggle />
         </BrowserRouter>
       </CartProvider>
     </TooltipProvider>
