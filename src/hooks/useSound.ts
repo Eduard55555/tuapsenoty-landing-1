@@ -13,72 +13,25 @@ function getCtx(): AudioContext | null {
   return sharedCtx;
 }
 
-// короткий буфер белого шума — переиспользуем для «удара» металла
-let clickBuffer: AudioBuffer | null = null;
-function getClickBuffer(ctx: AudioContext): AudioBuffer {
-  if (!clickBuffer) {
-    const len = Math.floor(ctx.sampleRate * 0.05);
-    clickBuffer = ctx.createBuffer(1, len, ctx.sampleRate);
-    const d = clickBuffer.getChannelData(0);
-    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
-  }
-  return clickBuffer;
-}
-
-/** Один звон монетки: шумовой удар металла + негармоничные обертоны */
-function coinPing(ctx: AudioContext, t0: number, base: number, vol: number) {
-  const out = ctx.createGain();
-  out.gain.value = vol;
-  out.connect(ctx.destination);
-
-  // 1) удар металла — короткий фильтрованный всплеск шума
-  const noise = ctx.createBufferSource();
-  noise.buffer = getClickBuffer(ctx);
-  const nbp = ctx.createBiquadFilter();
-  nbp.type = "bandpass";
-  nbp.frequency.value = base * 2.5;
-  nbp.Q.value = 1.5;
-  const ng = ctx.createGain();
-  ng.gain.setValueAtTime(0.9, t0);
-  ng.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.03);
-  noise.connect(nbp);
-  nbp.connect(ng);
-  ng.connect(out);
-  noise.start(t0);
-  noise.stop(t0 + 0.05);
-
-  // 2) металлический звон — негармонические частоты (как у колокольчика/монеты)
-  const partials = [1, 2.76, 5.4, 8.93];
-  partials.forEach((mult, i) => {
-    const osc = ctx.createOscillator();
-    osc.type = "sine";
-    osc.frequency.value = base * mult;
-    const g = ctx.createGain();
-    const peak = 0.5 / (i + 1);
-    const decay = 0.25 - i * 0.04;
-    g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(peak, t0 + 0.004);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + Math.max(0.08, decay));
-    osc.connect(g);
-    g.connect(out);
-    osc.start(t0);
-    osc.stop(t0 + 0.3);
-  });
-}
-
-/** Звон горсти монет: несколько монеток вразнобой */
+/** Лёгкий звон монетки */
 export function playCoin() {
   const ctx = getCtx();
   if (!ctx) return;
   const now = ctx.currentTime;
-  const bases = [2100, 2480, 2790, 3100, 3520];
-  const count = 4 + Math.floor(Math.random() * 3);
-  for (let i = 0; i < count; i++) {
-    const t0 = now + i * (0.04 + Math.random() * 0.06);
-    const base = bases[Math.floor(Math.random() * bases.length)] * (0.96 + Math.random() * 0.08);
-    const vol = 0.12 + Math.random() * 0.06;
-    coinPing(ctx, t0, base, vol);
-  }
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(0.18, now + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+  gain.connect(ctx.destination);
+
+  [1318, 1976].forEach((freq, i) => {
+    const osc = ctx.createOscillator();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(freq, now + i * 0.02);
+    osc.connect(gain);
+    osc.start(now + i * 0.02);
+    osc.stop(now + 0.35);
+  });
 }
 
 /** Фоновый шум моря: фильтрованный белый шум с медленной волной */
