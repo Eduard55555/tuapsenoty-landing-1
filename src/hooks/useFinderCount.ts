@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 export const FINDER_API = "https://functions.poehali.dev/eec444e5-96b7-4788-9c65-0077c246d938";
-export const FINDER_BASE = 200;
-export const FINDER_FALLBACK = 1451;
+export const FINDER_BASE = 0;
+export const FINDER_FALLBACK = 1552;
 
 const CACHE_KEY = "finder-count-cache";
 
