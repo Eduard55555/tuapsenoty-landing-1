@@ -7,51 +7,96 @@ interface Gull {
 }
 
 const GULLS: Gull[] = [
-  { top: "12%", scale: 1, duration: 19, delay: -2, flap: 2.2 },
-  { top: "21%", scale: 0.72, duration: 25, delay: -8, flap: 2.6 },
-  { top: "8%", scale: 0.55, duration: 29, delay: -15, flap: 3.0 },
-  { top: "27%", scale: 0.85, duration: 22, delay: -5, flap: 2.4 },
-  { top: "16%", scale: 0.42, duration: 33, delay: -22, flap: 3.3 },
+  { top: "12%", scale: 1, duration: 19, delay: -2, flap: 0.9 },
+  { top: "21%", scale: 0.72, duration: 25, delay: -8, flap: 1.05 },
+  { top: "8%", scale: 0.55, duration: 29, delay: -15, flap: 1.2 },
+  { top: "27%", scale: 0.85, duration: 22, delay: -5, flap: 0.95 },
+  { top: "16%", scale: 0.42, duration: 33, delay: -22, flap: 1.3 },
 ];
 
-const STROKE = "rgba(60,78,92,0.85)";
+const BODY = "rgba(252,247,238,0.97)";
+const WING = "rgba(238,231,220,0.97)";
+const HEAD = "rgba(255,255,255,1)";
+const HEAD_OUTLINE = "rgba(70,90,105,0.55)";
+const BEAK = "rgba(240,135,25,1)";
+const BEAK_OUTLINE = "rgba(180,90,10,0.9)";
+const EYE = "rgba(30,25,20,1)";
+const STRIPE = "rgba(120,128,138,0.85)";
 
-// Силуэт чайки одной линией: изгиб крыльев буквой «М».
-// Фазы взмаха — от поднятых крыльев (глубокая «V») до распахнутых почти горизонтально.
-const WINGS_UP =
-  "M2 26 C12 22 20 6 30 14 C33 16 34 16 35 14 C45 6 53 22 63 26";
-const WINGS_MID =
-  "M2 20 C13 18 22 10 30 15 C33 17 34 17 35 15 C44 10 52 18 63 20";
-const WINGS_FLAT =
-  "M2 16 C14 16 23 14 30 16 C33 17 34 17 35 16 C42 14 51 16 63 16";
+// Цельное крыло (одна фигура) в трёх фазах взмаха
+const WING_UP = "M40 25 C30 9 18 5 5 10 C18 12 30 18 40 27 Z";
+const WING_MID = "M40 25 C30 19 18 17 4 22 C18 21 30 23 40 27 Z";
+const WING_DOWN = "M40 25 C30 31 18 35 6 33 C18 30 30 28 40 27 Z";
+
+// Серая полоса вдоль края крыла (повторяет верхний контур)
+const STRIPE_UP = "M40 25 C30 9 18 5 5 10";
+const STRIPE_MID = "M40 25 C30 19 18 17 4 22";
+const STRIPE_DOWN = "M40 25 C30 31 18 35 6 33";
 
 function Seagull({ flap }: { flap: number }) {
   const dur = `${flap}s`;
+  const wingAnim = (
+    <animate
+      attributeName="d"
+      dur={dur}
+      repeatCount="indefinite"
+      values={`${WING_UP};${WING_MID};${WING_DOWN};${WING_MID};${WING_UP}`}
+      keyTimes="0;0.25;0.5;0.75;1"
+      calcMode="spline"
+      keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"
+    />
+  );
+  const stripeAnim = (
+    <animate
+      attributeName="d"
+      dur={dur}
+      repeatCount="indefinite"
+      values={`${STRIPE_UP};${STRIPE_MID};${STRIPE_DOWN};${STRIPE_MID};${STRIPE_UP}`}
+      keyTimes="0;0.25;0.5;0.75;1"
+      calcMode="spline"
+      keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"
+    />
+  );
+
+  const wing = (
+    <>
+      <path fill={WING}>{wingAnim}</path>
+      <path fill="none" stroke={STRIPE} strokeWidth="1.1" strokeLinecap="round">
+        {stripeAnim}
+      </path>
+    </>
+  );
+
   return (
     <svg
       width="70"
-      height="34"
-      viewBox="0 0 65 34"
+      height="44"
+      viewBox="0 0 80 44"
       fill="none"
-      style={{ filter: "drop-shadow(0 1px 1px rgba(40,70,90,0.12))" }}
+      style={{ filter: "drop-shadow(0 2px 2px rgba(40,70,90,0.18))" }}
     >
-      <path
-        fill="none"
-        stroke={STROKE}
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <animate
-          attributeName="d"
-          dur={dur}
-          repeatCount="indefinite"
-          values={`${WINGS_UP};${WINGS_MID};${WINGS_FLAT};${WINGS_MID};${WINGS_UP}`}
-          keyTimes="0;0.25;0.5;0.75;1"
-          calcMode="spline"
-          keySplines="0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1"
-        />
-      </path>
+      {/* левое крыло */}
+      {wing}
+
+      {/* правое крыло — зеркало */}
+      <g transform="translate(88 0) scale(-1 1)">{wing}</g>
+
+      {/* тело */}
+      <ellipse cx="44" cy="25.5" rx="6.5" ry="3.6" fill={BODY} />
+      {/* хвост */}
+      <path d="M44 25.5 L36 28.5 L43 26.5 Z" fill={BODY} />
+
+      {/* шея */}
+      <path d="M48 24 C50 22 51 21 52 19.5 L54 21 C53 23 51 24.5 49 26 Z" fill={BODY} />
+      {/* голова */}
+      <circle cx="53" cy="19" r="3.3" fill={HEAD} stroke={HEAD_OUTLINE} strokeWidth="0.6" />
+      {/* нижняя челюсть клюва */}
+      <path d="M55.4 19.6 L61.5 19.3 L55.8 21 Z" fill={BEAK} stroke={BEAK_OUTLINE} strokeWidth="0.4" strokeLinejoin="round" />
+      {/* верхняя челюсть клюва */}
+      <path d="M55.4 18 L61.8 18.6 L55.8 19.4 Z" fill={BEAK} stroke={BEAK_OUTLINE} strokeWidth="0.4" strokeLinejoin="round" />
+      {/* глаз */}
+      <circle cx="53.6" cy="18.4" r="1" fill={EYE} />
+      <circle cx="53.9" cy="18.1" r="0.32" fill="rgba(255,255,255,0.95)" />
     </svg>
   );
 }
@@ -69,7 +114,7 @@ export default function SeagullsFlight() {
             animation: `gull-fly ${g.duration}s linear ${g.delay}s infinite`,
           }}
         >
-          <div style={{ animation: `gull-bob ${g.flap.toFixed(2)}s ease-in-out infinite` }}>
+          <div style={{ animation: `gull-bob ${(g.flap * 2).toFixed(2)}s ease-in-out infinite` }}>
             <Seagull flap={g.flap} />
           </div>
         </div>
