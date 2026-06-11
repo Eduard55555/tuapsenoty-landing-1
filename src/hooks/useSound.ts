@@ -13,25 +13,45 @@ function getCtx(): AudioContext | null {
   return sharedCtx;
 }
 
-/** Лёгкий звон монетки */
+/** Звяк одной монетки (два металлических обертона) */
+function coinPing(ctx: AudioContext, t0: number, base: number, vol: number) {
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(0.0001, t0);
+  gain.gain.exponentialRampToValueAtTime(vol, t0 + 0.006);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.18);
+  gain.connect(ctx.destination);
+
+  // лёгкий металлический «банк»-фильтр для звонкости
+  const bp = ctx.createBiquadFilter();
+  bp.type = "bandpass";
+  bp.frequency.value = base * 1.5;
+  bp.Q.value = 6;
+  bp.connect(gain);
+
+  [base, base * 1.5, base * 2.02].forEach((freq) => {
+    const osc = ctx.createOscillator();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(freq, t0);
+    osc.frequency.exponentialRampToValueAtTime(freq * 0.985, t0 + 0.18);
+    osc.connect(bp);
+    osc.start(t0);
+    osc.stop(t0 + 0.2);
+  });
+}
+
+/** Звон горсти монет: несколько монеток вразнобой */
 export function playCoin() {
   const ctx = getCtx();
   if (!ctx) return;
   const now = ctx.currentTime;
-  const gain = ctx.createGain();
-  gain.gain.setValueAtTime(0.0001, now);
-  gain.gain.exponentialRampToValueAtTime(0.18, now + 0.01);
-  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
-  gain.connect(ctx.destination);
-
-  [1318, 1976].forEach((freq, i) => {
-    const osc = ctx.createOscillator();
-    osc.type = "triangle";
-    osc.frequency.setValueAtTime(freq, now + i * 0.02);
-    osc.connect(gain);
-    osc.start(now + i * 0.02);
-    osc.stop(now + 0.35);
-  });
+  const bases = [1318, 1568, 1760, 1976, 2349];
+  const count = 4 + Math.floor(Math.random() * 2);
+  for (let i = 0; i < count; i++) {
+    const t0 = now + i * (0.045 + Math.random() * 0.05);
+    const base = bases[Math.floor(Math.random() * bases.length)] * (0.97 + Math.random() * 0.06);
+    const vol = 0.1 + Math.random() * 0.06;
+    coinPing(ctx, t0, base, vol);
+  }
 }
 
 /** Фоновый шум моря: фильтрованный белый шум с медленной волной */

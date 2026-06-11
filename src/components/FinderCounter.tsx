@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useFinderData, pluralPeople } from "@/hooks/useFinderCount";
 import { playCoin } from "@/hooks/useSound";
 
@@ -12,6 +12,14 @@ export default function FinderCounter() {
     const id = Date.now();
     setSplashes((s) => [...s, id]);
     setTimeout(() => setSplashes((s) => s.filter((x) => x !== id)), 700);
+  };
+
+  const lastHover = useRef(0);
+  const handleHover = () => {
+    const now = Date.now();
+    if (now - lastHover.current < 600) return;
+    lastHover.current = now;
+    playCoin();
   };
 
   useEffect(() => {
@@ -45,6 +53,7 @@ export default function FinderCounter() {
       <button
         type="button"
         onClick={handleSplash}
+        onMouseEnter={handleHover}
         className="relative inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-lg cursor-pointer transition-transform hover:scale-[1.03] active:scale-95"
         style={{
           background: "rgba(253, 246, 238, 0.12)",
