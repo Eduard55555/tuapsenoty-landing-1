@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export const FINDER_API = "https://functions.poehali.dev/eec444e5-96b7-4788-9c65-0077c246d938";
 export const FINDER_BASE = 200;
-export const FINDER_FALLBACK = 1651;
+export const FINDER_FALLBACK = 1451;
 
 const CACHE_KEY = "finder-count-cache";
 
@@ -47,7 +47,7 @@ export function useFinderData(): { count: number | null; updatedAt: string | nul
       .then((r) => r.json())
       .then((d) => {
         if (typeof d.count === "number") {
-          const value = Math.max(d.count + FINDER_BASE, FINDER_FALLBACK);
+          const value = d.count + FINDER_BASE;
           const at = typeof d.updated_at === "string" ? d.updated_at : null;
           setCount(value);
           setUpdatedAt(at);
