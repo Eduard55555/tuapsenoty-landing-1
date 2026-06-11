@@ -47,7 +47,7 @@ export function useFinderData(): { count: number | null; updatedAt: string | nul
       .then((r) => r.json())
       .then((d) => {
         if (typeof d.count === "number") {
-          const value = d.count + FINDER_BASE;
+          const value = Math.max(d.count + FINDER_BASE, FINDER_FALLBACK);
           const at = typeof d.updated_at === "string" ? d.updated_at : null;
           setCount(value);
           setUpdatedAt(at);
