@@ -18,7 +18,7 @@ function readCache(): { count: number; updatedAt: string | null } {
   } catch {
     /* ignore */
   }
-  return { count: FINDER_FALLBACK, updatedAt: null };
+  return { count: FINDER_FALLBACK, updatedAt: new Date().toISOString() };
 }
 
 function writeCache(count: number, updatedAt: string | null) {
