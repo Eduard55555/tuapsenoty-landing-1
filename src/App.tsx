@@ -13,7 +13,6 @@ import Privacy from "./pages/Privacy";
 import Sponsors from "./pages/Sponsors";
 import Gallery from "./pages/Gallery";
 import MapPage from "./pages/MapPage";
-import QrEnofya from "./pages/QrEnofya";
 import { CartProvider } from "./context/CartContext";
 import CookieBanner from "./components/CookieBanner";
 import SeaSoundToggle from "./components/SeaSoundToggle";
