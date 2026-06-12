@@ -63,3 +63,35 @@ export function useFinderData(): { count: number | null; updatedAt: string | nul
 export function useFinderCount(): number | null {
   return useFinderData().count;
 }
+
+const FOUND_FLAG = "finder-found-counted";
+
+export function useCountFoundOnce(): void {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("found") !== "1") return;
+
+    const cleanUrl = () => {
+      params.delete("found");
+      const qs = params.toString();
+      const newUrl = window.location.pathname + (qs ? `?${qs}` : "") + window.location.hash;
+      window.history.replaceState(null, "", newUrl);
+    };
+
+    if (localStorage.getItem(FOUND_FLAG) === "1") {
+      cleanUrl();
+      return;
+    }
+
+    localStorage.setItem(FOUND_FLAG, "1");
+    fetch(FINDER_API, { method: "POST", cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => {
+        if (typeof d.count === "number") {
+          writeCache(d.count, typeof d.updated_at === "string" ? d.updated_at : null);
+        }
+      })
+      .catch(() => {})
+      .finally(cleanUrl);
+  }, []);
+}

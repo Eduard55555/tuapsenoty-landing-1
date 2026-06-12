@@ -13,7 +13,6 @@ import Privacy from "./pages/Privacy";
 import Sponsors from "./pages/Sponsors";
 import Gallery from "./pages/Gallery";
 import MapPage from "./pages/MapPage";
-import Found from "./pages/Found";
 import { CartProvider } from "./context/CartContext";
 import CookieBanner from "./components/CookieBanner";
 import SeaSoundToggle from "./components/SeaSoundToggle";
@@ -36,7 +35,6 @@ const App = () => (
             <Route path="/sponsors" element={<Sponsors />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/map" element={<MapPage />} />
-            <Route path="/found" element={<Found />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
