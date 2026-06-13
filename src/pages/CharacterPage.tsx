@@ -14,10 +14,9 @@ export { characters };
 export default function CharacterPage() {
   const { slug } = useParams<{ slug: string }>();
   const char = characters.find((c) => c.slug === slug);
-  const [arOpen, setArOpen] = useState(false);
-  const [foundCount, setFoundCount] = useState<number | null>(null);
-
   const hasOwnCounter = !!slug && OWN_COUNTER_SLUGS.includes(slug);
+  const [arOpen, setArOpen] = useState(false);
+  const [foundCount, setFoundCount] = useState<number | null>(hasOwnCounter ? 0 : null);
 
   useEffect(() => {
     if (!slug) return;
