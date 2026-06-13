@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "GET count for enofya",
+      "method": "GET",
+      "path": "/?slug=enofya",
+      "expectedStatus": 200,
+      "expectedBody": {"slug": "enofya"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Invalid slug rejected",
+      "method": "GET",
+      "path": "/?slug=Bad Slug!",
+      "expectedStatus": 400,
+      "expectedBody": {"error": "invalid slug"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/?slug=enofya",
+      "expectedStatus": 200
+    }
+  ]
+}

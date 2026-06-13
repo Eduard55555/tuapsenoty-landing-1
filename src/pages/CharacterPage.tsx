@@ -4,8 +4,10 @@ import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import ARHologram from "@/components/ARHologram";
-import { FINDER_API, FINDER_BASE, pluralPeople } from "@/hooks/useFinderCount";
+import { FINDER_API, FINDER_BASE, CHARACTER_API, pluralPeople } from "@/hooks/useFinderCount";
 import { characters } from "@/pages/index/indexData";
+
+const OWN_COUNTER_SLUGS = ["enofya"];
 
 export { characters };
 
@@ -15,17 +17,26 @@ export default function CharacterPage() {
   const [arOpen, setArOpen] = useState(false);
   const [foundCount, setFoundCount] = useState<number | null>(null);
 
+  const hasOwnCounter = !!slug && OWN_COUNTER_SLUGS.includes(slug);
+
   useEffect(() => {
-    if (!slug || !char?.location) return;
+    if (!slug) return;
+    if (!hasOwnCounter && !char?.location) return;
+
     const key = `found-${slug}`;
     const already = localStorage.getItem(key);
     const method = already ? "GET" : "POST";
     if (!already) localStorage.setItem(key, "1");
-    fetch(FINDER_API, { method, cache: "no-store" })
+
+    const url = hasOwnCounter
+      ? `${CHARACTER_API}?slug=${encodeURIComponent(slug)}`
+      : FINDER_API;
+
+    fetch(url, { method, cache: "no-store" })
       .then((r) => r.json())
       .then((d) => setFoundCount(typeof d.count === "number" ? d.count + FINDER_BASE : null))
       .catch(() => {});
-  }, [slug, char?.location]);
+  }, [slug, char?.location, hasOwnCounter]);
 
   if (!char) {
     return (
@@ -99,7 +110,7 @@ export default function CharacterPage() {
                       />
                     </span>
                     <span className="font-body text-sm" style={{ color: "#5A3E2B" }}>
-                      Меня нашли уже
+                      {hasOwnCounter ? "Ко мне заглянули уже" : "Меня нашли уже"}
                     </span>
                     <span className="font-display font-bold text-base tabular-nums" style={{ color: "var(--bronze)" }}>
                       {foundCount.toLocaleString("ru-RU")}

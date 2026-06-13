@@ -4,6 +4,8 @@ export const FINDER_API = "https://functions.poehali.dev/eec444e5-96b7-4788-9c65
 export const FINDER_BASE = 0;
 export const FINDER_FALLBACK = 1552;
 
+export const CHARACTER_API = "https://functions.poehali.dev/2aaef5e2-54ce-4968-918d-607fd3ca497a";
+
 const CACHE_KEY = "finder-count-cache";
 
 function readCache(): { count: number; updatedAt: string | null } {
