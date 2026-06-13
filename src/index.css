@@ -381,3 +381,23 @@
       saturate(1.3);
   }
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .qr-print-area,
+  .qr-print-area * {
+    visibility: visible;
+  }
+  .qr-print-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .qr-no-print {
+    display: none !important;
+  }
+}
