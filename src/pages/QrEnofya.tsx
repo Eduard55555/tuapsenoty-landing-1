@@ -1,6 +1,6 @@
 import Icon from "@/components/ui/icon";
 
-const TARGET_PATH = "/characters/enofya";
+const TARGET_PATH = "/characters/enofya?from=qr";
 
 export default function QrEnofya() {
   const targetUrl =

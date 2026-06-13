@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useSearchParams, Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -13,6 +13,8 @@ export { characters };
 
 export default function CharacterPage() {
   const { slug } = useParams<{ slug: string }>();
+  const [searchParams] = useSearchParams();
+  const fromQr = searchParams.get("from") === "qr";
   const char = characters.find((c) => c.slug === slug);
   const hasOwnCounter = !!slug && OWN_COUNTER_SLUGS.includes(slug);
   const [arOpen, setArOpen] = useState(false);
@@ -24,8 +26,11 @@ export default function CharacterPage() {
 
     const key = `found-${slug}`;
     const already = localStorage.getItem(key);
-    const method = already ? "GET" : "POST";
-    if (!already) localStorage.setItem(key, "1");
+
+    // Персонажи со своим счётчиком (Енофья) прибавляются ТОЛЬКО при переходе по QR (?from=qr)
+    const shouldIncrement = hasOwnCounter ? fromQr && !already : !already;
+    const method = shouldIncrement ? "POST" : "GET";
+    if (shouldIncrement) localStorage.setItem(key, "1");
 
     const url = hasOwnCounter
       ? `${CHARACTER_API}?slug=${encodeURIComponent(slug)}`
@@ -35,7 +40,7 @@ export default function CharacterPage() {
       .then((r) => r.json())
       .then((d) => setFoundCount(typeof d.count === "number" ? d.count + FINDER_BASE : null))
       .catch(() => {});
-  }, [slug, char?.location, hasOwnCounter]);
+  }, [slug, char?.location, hasOwnCounter, fromQr]);
 
   if (!char) {
     return (
