@@ -7,6 +7,7 @@ export const FINDER_FALLBACK = 1552;
 export const CHARACTER_API = "https://functions.poehali.dev/2aaef5e2-54ce-4968-918d-607fd3ca497a";
 
 const CACHE_KEY = "finder-count-cache";
+// module rev: 2
 
 function readCache(): { count: number; updatedAt: string | null } {
   try {
