@@ -96,8 +96,8 @@ export default function IndexNews() {
               <div className="md:w-2/5 relative">
                 <NewsGallery />
               </div>
-              <div className="p-4 sm:p-8 md:w-3/5">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="p-4 sm:p-6 md:w-3/5 flex flex-col justify-center">
+                <div className="flex items-center gap-2 mb-3">
                   <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
                     style={{ backgroundColor: "rgba(76,175,80,0.15)", color: "#4CAF50" }}>
                     🔥 Горячая новость
@@ -106,23 +106,23 @@ export default function IndexNews() {
                     Май 2026
                   </span>
                 </div>
-                <h3 className="section-title text-xl sm:text-3xl mb-4">
+                <h3 className="section-title text-xl sm:text-2xl mb-2">
                   Енотыч уже отлит в бронзе!
                 </h3>
-                <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
+                <p className="font-body text-sm mb-4" style={{ color: "var(--warm-text)", lineHeight: 1.6 }}>
                   Первый хранитель семьи — Енотыч — готов. Бронзовый рыбак с удочкой уже
                   воплощён мастерами, установлен на набережной и ждёт жителей и гостей Туапсе.
                 </p>
-                <div className="flex flex-wrap items-center gap-3 mb-6">
+                <div className="flex flex-wrap items-center gap-3 mb-4">
                   <a href="https://web.max.ru/-72521511416496" target="_blank" rel="noopener noreferrer"
-                    className="btn-primary inline-flex">
+                    className="btn-primary inline-flex text-sm py-2.5 px-5">
                     Читать в MAX
                     <Icon name="ArrowRight" size={16} />
                   </a>
                   <button
                     type="button"
                     onClick={() => setArOpen(true)}
-                    className="btn-primary inline-flex"
+                    className="btn-primary inline-flex text-sm py-2.5 px-5"
                     style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
                     <Icon name="Sparkles" size={16} />
                     Оживить Енотыча
@@ -132,7 +132,7 @@ export default function IndexNews() {
                   <iframe
                     src="https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor"
                     width="100%"
-                    height="260"
+                    height="180"
                     frameBorder={0}
                     title="Енотыч на карте"
                   />
