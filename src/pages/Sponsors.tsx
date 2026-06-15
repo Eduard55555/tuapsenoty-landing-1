@@ -21,7 +21,7 @@ const sponsors: Sponsor[] = [
     description:
       "Это место ждёт своего хозяина. Поселите бронзового енота у входа — и гости начнут искать именно вас.",
     services: [],
-    url: "https://e.mail.ru/compose/?mailto=mailto:sen555551@mail.ru",
+    url: "mailto:sen555551@mail.ru?subject=Хочу стать партнёром проекта «Туапсеноты»",
     color: "from-amber-100 to-yellow-100",
     isVacant: true,
   },
@@ -32,7 +32,7 @@ const sponsors: Sponsor[] = [
     description:
       "Это место ждёт своего хозяина. Поселите бронзового енота у входа — и гости начнут искать именно вас.",
     services: [],
-    url: "https://e.mail.ru/compose/?mailto=mailto:sen555551@mail.ru",
+    url: "mailto:sen555551@mail.ru?subject=Хочу стать партнёром проекта «Туапсеноты»",
     color: "from-cyan-100 to-blue-100",
     isVacant: true,
   },
@@ -43,7 +43,7 @@ const sponsors: Sponsor[] = [
     description:
       "Это место ждёт своего хозяина. Поселите бронзового енота у входа — и гости начнут искать именно вас.",
     services: [],
-    url: "https://e.mail.ru/compose/?mailto=mailto:sen555551@mail.ru",
+    url: "mailto:sen555551@mail.ru?subject=Хочу стать партнёром проекта «Туапсеноты»",
     color: "from-rose-100 to-orange-100",
     isVacant: true,
   },
@@ -161,9 +161,7 @@ export default function Sponsors() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href="https://e.mail.ru/compose/?mailto=mailto:sen555551@mail.ru"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:sen555551@mail.ru?subject=Хочу стать партнёром проекта «Туапсеноты»"
                 className="btn-primary inline-flex">
                 <Icon name="Mail" size={18} />
                 Написать на почту
