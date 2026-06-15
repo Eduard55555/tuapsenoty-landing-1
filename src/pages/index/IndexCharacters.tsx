@@ -2,17 +2,33 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { characters, PLANETA_URL } from "./indexData";
 import { useFinderCount, pluralPeople } from "@/hooks/useFinderCount";
+import func2url from "../../../backend/func2url.json";
 
 export default function IndexCharacters() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const foundCount = useFinderCount();
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email || loading) return;
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch(func2url["subscribe"], {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error();
       setSubscribed(true);
       setEmail("");
+    } catch {
+      setError("Не получилось подписаться. Попробуйте ещё раз.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -155,25 +171,33 @@ export default function IndexCharacters() {
                 Отлично! Мы вам напишем 🦝
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Ваш email"
-                  required
-                  className="flex-1 rounded-full px-6 py-3 font-body text-sm outline-none"
-                  style={{
-                    border: "2px solid rgba(184,115,51,0.3)",
-                    backgroundColor: "white",
-                    color: "var(--warm-dark)",
-                  }}
-                />
-                <button type="submit" className="btn-primary text-sm px-6 py-3">
-                  <Icon name="Send" size={16} />
-                  Подписаться
-                </button>
-              </form>
+              <div className="max-w-md mx-auto">
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Ваш email"
+                    required
+                    disabled={loading}
+                    className="flex-1 rounded-full px-6 py-3 font-body text-sm outline-none"
+                    style={{
+                      border: "2px solid rgba(184,115,51,0.3)",
+                      backgroundColor: "white",
+                      color: "var(--warm-dark)",
+                    }}
+                  />
+                  <button type="submit" disabled={loading} className="btn-primary text-sm px-6 py-3">
+                    <Icon name={loading ? "Loader" : "Send"} size={16} className={loading ? "animate-spin" : ""} />
+                    {loading ? "Отправляем…" : "Подписаться"}
+                  </button>
+                </form>
+                {error && (
+                  <p className="font-body text-sm mt-3" style={{ color: "#C0392B" }}>
+                    {error}
+                  </p>
+                )}
+              </div>
             )}
           </div>
         </div>

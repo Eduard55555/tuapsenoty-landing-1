@@ -1,0 +1,25 @@
+{
+  "tests": [
+    {
+      "name": "Подписка с корректным email",
+      "method": "POST",
+      "path": "/",
+      "body": {"email": "test_subscriber@example.com"},
+      "expectedStatus": 200
+    },
+    {
+      "name": "Некорректный email отклоняется",
+      "method": "POST",
+      "path": "/",
+      "body": {"email": "not-an-email"},
+      "expectedStatus": 400,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "CORS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
