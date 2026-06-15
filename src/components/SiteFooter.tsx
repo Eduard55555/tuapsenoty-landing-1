@@ -35,8 +35,7 @@ export default function SiteFooter() {
               </div>
               <div className="flex items-center gap-2">
                 <Icon name="Mail" size={14} />
-                <a href="https://e.mail.ru/compose/?mailto=mailto:sen555551@mail.ru"
-                  target="_blank" rel="noopener noreferrer"
+                <a href="mailto:sen555551@mail.ru"
                   className="font-body text-sm hover:underline"
                   style={{ color: "rgba(245,230,211,0.8)" }}>
                   sen555551@mail.ru
@@ -44,8 +43,7 @@ export default function SiteFooter() {
               </div>
               <div className="flex items-center gap-2">
                 <Icon name="Mail" size={14} />
-                <a href="https://mail.yandex.ru/compose?to=galyapina2014@yandex.ru"
-                  target="_blank" rel="noopener noreferrer"
+                <a href="mailto:galyapina2014@yandex.ru"
                   className="font-body text-sm hover:underline"
                   style={{ color: "rgba(245,230,211,0.8)" }}>
                   galyapina2014@yandex.ru
