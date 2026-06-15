@@ -38,7 +38,9 @@ def handler(event: dict, context) -> dict:
 
     if is_new:
         token = os.environ.get('TELEGRAM_BOT_TOKEN')
-        if token:
+        if not token:
+            print('TELEGRAM_BOT_TOKEN is missing')
+        else:
             text = f"📬 *Новый подписчик на новости!*\n\n📧 {email}"
             data = json.dumps({'chat_id': '300609957', 'text': text, 'parse_mode': 'Markdown'}).encode()
             req = urllib.request.Request(
@@ -47,8 +49,9 @@ def handler(event: dict, context) -> dict:
                 headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'}
             )
             try:
-                urllib.request.urlopen(req, timeout=5)
-            except Exception:
-                pass
+                resp = urllib.request.urlopen(req, timeout=10)
+                print('Telegram response:', resp.status, resp.read().decode())
+            except Exception as e:
+                print('Telegram send failed:', repr(e))
 
     return {'statusCode': 200, 'headers': {'Access-Control-Allow-Origin': '*'}, 'body': json.dumps({'ok': True})}
