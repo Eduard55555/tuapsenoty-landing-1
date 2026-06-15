@@ -95,8 +95,6 @@ export default function IndexNews() {
                 <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
                   Первый хранитель семьи — Енотыч — готов. Бронзовый рыбак с удочкой уже
                   воплощён мастерами, установлен на набережной и ждёт жителей и гостей Туапсе.
-                  Это доказывает: проект реальный, команда работает, а легенда
-                  начинает материализовываться.
                 </p>
                 <div className="flex flex-wrap items-center gap-3 mb-6">
                   <a href="https://web.max.ru/-72521511416496" target="_blank" rel="noopener noreferrer"
