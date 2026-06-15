@@ -1,6 +1,7 @@
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import PhoneLink from "@/components/PhoneLink";
 
 interface Sponsor {
   name: string;
@@ -166,10 +167,7 @@ export default function Sponsors() {
                 <Icon name="Mail" size={18} />
                 Написать на почту
               </a>
-              <a href="tel:+79185051617" className="btn-secondary inline-flex">
-                <Icon name="Phone" size={18} />
-                8-918-505-16-17
-              </a>
+              <PhoneLink className="btn-secondary inline-flex cursor-pointer" iconSize={18} />
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import Icon from "@/components/ui/icon";
+import PhoneLink from "@/components/PhoneLink";
 
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 const MAX_URL = "https://max.ru/join/uBdeDmv3f51WgWvFTPMWA84VIaYSgeU9yLwdr9lYO1g";
@@ -50,12 +51,10 @@ export default function SiteFooter() {
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Icon name="Phone" size={14} />
-                <a href="tel:+79185051617"
-                  className="font-body text-sm hover:underline"
-                  style={{ color: "rgba(245,230,211,0.8)" }}>
-                  8-918-505-16-17
-                </a>
+                <PhoneLink
+                  className="flex items-center gap-2 font-body text-sm hover:underline cursor-pointer"
+                  style={{ color: "rgba(245,230,211,0.8)" }}
+                />
               </div>
             </div>
           </div>
