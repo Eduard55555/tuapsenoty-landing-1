@@ -49,8 +49,36 @@ function PhotoGallery({ photos, alt }: { photos: string[]; alt: string }) {
   );
 }
 
+function PhotoCollage({ photos, alt }: { photos: string[]; alt: string }) {
+  return (
+    <div className="grid grid-cols-2 grid-rows-2 gap-1.5 w-full h-72 md:h-full md:min-h-[22rem] p-1.5">
+      <img
+        src={photos[0]}
+        alt={`${alt} 1`}
+        loading="lazy"
+        decoding="async"
+        className="row-span-2 w-full h-full object-cover rounded-2xl"
+      />
+      <img
+        src={photos[1]}
+        alt={`${alt} 2`}
+        loading="lazy"
+        decoding="async"
+        className="w-full h-full object-cover rounded-2xl"
+      />
+      <img
+        src={photos[2]}
+        alt={`${alt} 3`}
+        loading="lazy"
+        decoding="async"
+        className="w-full h-full object-cover rounded-2xl"
+      />
+    </div>
+  );
+}
+
 function NewsGallery() {
-  return <PhotoGallery photos={NEWS_PHOTOS} alt="Енотыч в бронзе" />;
+  return <PhotoCollage photos={NEWS_PHOTOS} alt="Енотыч в бронзе" />;
 }
 
 function EnofyaGallery() {
