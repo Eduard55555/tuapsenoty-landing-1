@@ -41,17 +41,19 @@ def handler(event: dict, context) -> dict:
         if not token:
             print('TELEGRAM_BOT_TOKEN is missing')
         else:
-            text = f"📬 *Новый подписчик на новости!*\n\n📧 {email}"
-            data = json.dumps({'chat_id': '300609957', 'text': text, 'parse_mode': 'Markdown'}).encode()
-            req = urllib.request.Request(
-                f'https://api.telegram.org/bot{token}/sendMessage',
-                data=data,
-                headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'}
-            )
-            try:
-                resp = urllib.request.urlopen(req, timeout=10)
-                print('Telegram response:', resp.status, resp.read().decode())
-            except Exception as e:
-                print('Telegram send failed:', repr(e))
+            text = f"📬 Новый подписчик на новости!\n\n📧 {email}"
+            data = json.dumps({'chat_id': '300609957', 'text': text}).encode()
+            for attempt in range(3):
+                req = urllib.request.Request(
+                    f'https://api.telegram.org/bot{token}/sendMessage',
+                    data=data,
+                    headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'}
+                )
+                try:
+                    resp = urllib.request.urlopen(req, timeout=10)
+                    print('Telegram response:', resp.status, resp.read().decode())
+                    break
+                except Exception as e:
+                    print(f'Telegram send failed (attempt {attempt + 1}):', repr(e))
 
     return {'statusCode': 200, 'headers': {'Access-Control-Allow-Origin': '*'}, 'body': json.dumps({'ok': True})}
