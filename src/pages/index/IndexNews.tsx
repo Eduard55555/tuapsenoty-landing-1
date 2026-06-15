@@ -13,6 +13,8 @@ function PhotoGallery({ photos, alt }: { photos: string[]; alt: string }) {
       <img
         src={photos[idx]}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className="w-full h-full object-cover"
       />
       <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">

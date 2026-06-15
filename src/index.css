@@ -114,6 +114,30 @@
     border-color: var(--bronze);
   }
 
+  .hero-glow {
+    will-change: auto;
+  }
+
+  .hero-glow-teal {
+    background: var(--teal);
+    filter: blur(28px);
+  }
+
+  .hero-glow-bronze {
+    background: var(--bronze);
+    filter: blur(36px);
+  }
+
+  @media (min-width: 768px) {
+    .hero-glow-teal {
+      filter: blur(60px);
+    }
+
+    .hero-glow-bronze {
+      filter: blur(80px);
+    }
+  }
+
   .hero-bg {
     background: linear-gradient(
       160deg,

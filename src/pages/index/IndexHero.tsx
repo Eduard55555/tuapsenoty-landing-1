@@ -13,10 +13,8 @@ export default function IndexHero() {
 
         <SeagullsFlight />
 
-        <div className="absolute top-20 right-10 w-32 h-32 sm:w-64 sm:h-64 rounded-full opacity-10"
-          style={{ background: "var(--teal)", filter: "blur(60px)" }} />
-        <div className="absolute bottom-20 left-10 w-40 h-40 sm:w-80 sm:h-80 rounded-full opacity-15"
-          style={{ background: "var(--bronze)", filter: "blur(80px)" }} />
+        <div className="absolute top-20 right-10 w-32 h-32 sm:w-64 sm:h-64 rounded-full opacity-10 hero-glow hero-glow-teal" />
+        <div className="absolute bottom-20 left-10 w-40 h-40 sm:w-80 sm:h-80 rounded-full opacity-15 hero-glow hero-glow-bronze" />
 
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 80" className="w-full" style={{ fill: "var(--cream)" }}>
@@ -29,6 +27,10 @@ export default function IndexHero() {
             <img
               src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/4362ca50-9ec3-4776-96ed-7ac9a6dcf123.png"
               alt="Енофья с малышом"
+              fetchPriority="high"
+              decoding="async"
+              width={256}
+              height={256}
               className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-full object-cover shadow-2xl"
               style={{ border: "4px solid rgba(245, 230, 211, 0.4)" }}
             />
@@ -94,6 +96,8 @@ export default function IndexHero() {
             <img
               src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/2d9722e6-bc44-40c7-b04f-5b489accacfc.png"
               alt="Семья Туапсенотов"
+              loading="lazy"
+              decoding="async"
               className="w-full h-64 sm:h-96 object-cover"
               style={{ objectPosition: "center center" }}
             />

@@ -61,6 +61,7 @@ export default function IndexCharacters() {
                     {char.image ? (
                       <div className="relative mb-4">
                         <img src={char.image} alt={char.name}
+                          loading="lazy" decoding="async"
                           className="w-full h-44 object-cover rounded-2xl"
                           style={{ objectPosition: "top" }} />
                         {char.icon && (
