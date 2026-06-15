@@ -46,7 +46,7 @@ export default function IndexCharacters() {
             <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-6">
               Познакомьтесь с семьёй
             </h2>
-            <p className="font-body text-lg max-w-xl mx-auto" style={{ color: "#6B4C35" }}>
+            <p className="font-body text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
               Восемь уникальных хранителей. У каждого — своё место, характер и ритуал удачи.
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function IndexCharacters() {
                 <div key={char.name}
                   className={`card-hover rounded-3xl overflow-hidden bg-gradient-to-br ${char.color} flex flex-col`}
                   style={{ border: "1px solid rgba(184,115,51,0.12)" }}>
-                  <div className="p-6 flex flex-col flex-1">
+                  <div className="p-4 sm:p-6 flex flex-col flex-1">
                     {char.image ? (
                       <div className="relative mb-4">
                         <img src={char.image} alt={char.name}
@@ -86,16 +86,16 @@ export default function IndexCharacters() {
                         {char.role}
                       </p>
                     </div>
-                    <p className="font-body text-sm text-center mb-4" style={{ color: "#5A3E2B", lineHeight: 1.6 }}>
+                    <p className="font-body text-sm text-center mb-4" style={{ color: "var(--warm-text)", lineHeight: 1.7 }}>
                       {char.description}
                     </p>
 
                     <div className="rounded-2xl p-3 text-center mb-4"
-                      style={{ backgroundColor: "rgba(184,115,51,0.1)", border: "1px dashed rgba(184,115,51,0.3)" }}>
-                      <p className="font-body text-xs font-bold mb-1" style={{ color: "var(--bronze)" }}>
+                      style={{ backgroundColor: "rgba(184,115,51,0.18)", border: "1px dashed rgba(184,115,51,0.45)" }}>
+                      <p className="font-body text-xs font-bold mb-1" style={{ color: "var(--bronze-dark)" }}>
                         🪄 Ритуал
                       </p>
-                      <p className="font-body text-xs italic" style={{ color: "#6B4C35" }}>
+                      <p className="font-body text-xs italic" style={{ color: "var(--warm-dark)", lineHeight: 1.6 }}>
                         {char.ritual}
                       </p>
                     </div>
@@ -124,7 +124,7 @@ export default function IndexCharacters() {
                           <span className="relative inline-flex rounded-full h-2 w-2"
                             style={{ backgroundColor: "var(--bronze)" }} />
                         </span>
-                        <span className="font-body text-xs" style={{ color: "#6B4C35" }}>
+                        <span className="font-body text-xs" style={{ color: "var(--warm-text)" }}>
                           Нашли{" "}
                           <span className="font-bold" style={{ color: "var(--bronze)" }}>
                             {foundCount.toLocaleString("ru-RU")}
@@ -141,9 +141,10 @@ export default function IndexCharacters() {
                         Подробнее
                       </a>
                       <a href="/shop"
-                        className="w-full text-center font-body text-xs font-bold py-2 px-4 rounded-full transition-colors"
+                        className="w-full flex items-center justify-center gap-1.5 font-body text-xs font-bold py-2 px-4 rounded-full transition-colors"
                         style={{ backgroundColor: "var(--bronze)", color: "white" }}>
-                        🛒 Магазин
+                        <Icon name="ShoppingCart" size={14} />
+                        Магазин
                       </a>
                     </div>
                   </div>
@@ -160,7 +161,7 @@ export default function IndexCharacters() {
           <div className="rounded-3xl p-6 sm:p-12 text-center"
             style={{ background: "linear-gradient(135deg, var(--sand), #EDD5B8)" }}>
             <h3 className="section-title text-xl sm:text-3xl mb-3">Следите за проектом</h3>
-            <p className="font-body mb-8" style={{ color: "#6B4C35" }}>
+            <p className="font-body mb-8" style={{ color: "var(--warm-text)" }}>
               Подпишитесь и узнавайте первыми об открытии каждого нового Туапсенота
             </p>
 

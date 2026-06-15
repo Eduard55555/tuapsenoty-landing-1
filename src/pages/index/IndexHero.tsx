@@ -36,8 +36,8 @@ export default function IndexHero() {
           <FinderCounter />
 
           <div className="animate-fade-up">
-            <h1 className="font-display font-bold mb-6 whitespace-nowrap"
-              style={{ color: "var(--cream)", lineHeight: 1.15, fontSize: "clamp(15px, 4.6vw, 56px)" }}>
+            <h1 className="font-display font-bold mb-6 max-w-4xl mx-auto"
+              style={{ color: "var(--cream)", lineHeight: 1.15, fontSize: "clamp(30px, 6vw, 56px)" }}>
               Туапсеноты — <em style={{ color: "var(--teal-light)" }}>новая душа</em> Черноморского побережья
             </h1>
           </div>
@@ -81,7 +81,7 @@ export default function IndexHero() {
               Туапсе заслуживает<br />своей легенды
             </h2>
           </div>
-          <div className="font-body text-lg w-full mb-16" style={{ color: "#6B4C35", lineHeight: 1.5, textAlign: "justify" }}>
+          <div className="font-body text-lg max-w-3xl mx-auto mb-16" style={{ color: "var(--warm-text)", lineHeight: 1.8, textAlign: "justify" }}>
             <p style={{ textIndent: "2em" }}>Туапсе — город, где море обнимает берег, а горы смотрят в облака. Здесь хочется замедлиться, остановиться, вдохнуть и рассмотреть повнимательнее.</p>
             <p style={{ textIndent: "2em" }}>«Туапсеноты» — не просто фигурки. Это маленькое чудо, которое делает город ещё теплее.</p>
             <p style={{ textIndent: "2em" }}>Восемь бронзовых енотов. Совсем маленькие — 20 см. Они поселятся на набережной, в парке, на пляже, у вокзала. У каждого — имя, характер, своя тихая легенда. И ритуал, который хочется повторять: потереть лапку, прошептать желание, просто улыбнуться в ответ.</p>

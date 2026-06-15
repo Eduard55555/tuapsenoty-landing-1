@@ -90,7 +90,7 @@ export default function IndexNews() {
                 <h3 className="section-title text-xl sm:text-3xl mb-4">
                   Енотыч уже отлит в бронзе!
                 </h3>
-                <p className="font-body mb-6" style={{ color: "#6B4C35", lineHeight: 1.8 }}>
+                <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
                   Первый хранитель семьи — Енотыч — готов. Бронзовый рыбак с удочкой уже
                   воплощён мастерами, установлен на набережной и ждёт жителей и гостей Туапсе.
                   Это доказывает: проект реальный, команда работает, а легенда
@@ -143,7 +143,7 @@ export default function IndexNews() {
                 <h3 className="section-title text-xl sm:text-3xl mb-4">
                   Енофья отлита в бронзе!
                 </h3>
-                <p className="font-body mb-6" style={{ color: "#6B4C35", lineHeight: 1.8 }}>
+                <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
                   Добрая бабушка семьи — Енофья — воплощена мастерами. В платочке и фартуке, с корзинкой полной гостинцев, она уже готова встречать гостей Туапсе с улыбкой и теплом. Пока выбираем для неё лучшее место в городе.
                 </p>
               </div>
@@ -160,7 +160,7 @@ export default function IndexNews() {
               <div className="text-3xl mb-3">{item.emoji}</div>
               <div className="font-body text-xs mb-2" style={{ color: "#9B7B5A" }}>{item.date}</div>
               <h4 className="section-title text-xl mb-3">{item.title}</h4>
-              <p className="font-body text-sm" style={{ color: "#6B4C35", lineHeight: 1.7 }}>{item.text}</p>
+              <p className="font-body text-sm" style={{ color: "var(--warm-text)", lineHeight: 1.7 }}>{item.text}</p>
             </div>
           ))}
         </div>
