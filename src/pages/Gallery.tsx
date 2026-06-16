@@ -1,6 +1,7 @@
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import useSeo from "@/hooks/useSeo";
 
 interface Placed {
   slug: string;
@@ -27,6 +28,12 @@ const placed: Placed[] = [
 ];
 
 export default function Gallery() {
+  useSeo({
+    title: "Галерея Туапсеноты — фото бронзовых енотов в Туапсе",
+    description:
+      "Фотогалерея бронзовых енотов-хранителей, которые уже установлены в Туапсе. Найдите своего енота, потрите на удачу и загадайте желание.",
+    path: "/gallery",
+  });
   const photos = placed.flatMap((c) =>
     c.photos.map((url, i) => ({ ...c, url, key: `${c.slug}-${i}` }))
   );

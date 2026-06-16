@@ -2,6 +2,7 @@ import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import PhoneLink from "@/components/PhoneLink";
+import useSeo from "@/hooks/useSeo";
 
 interface Sponsor {
   name: string;
@@ -51,6 +52,12 @@ const sponsors: Sponsor[] = [
 ];
 
 export default function Sponsors() {
+  useSeo({
+    title: "Партнёры Туапсеноты — компании, поддержавшие проект",
+    description:
+      "Компании-партнёры, которые помогли бронзовым енотам найти дом в Туапсе. Рекомендуем кафе, кофейни и сервисы города.",
+    path: "/sponsors",
+  });
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <SiteHeader />

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import useSeo from "@/hooks/useSeo";
 
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 
@@ -39,6 +40,12 @@ const PRODUCTS = [
 ];
 
 export default function Shop() {
+  useSeo({
+    title: "Магазин Туапсеноты — фигурки и сувениры бронзовых енотов",
+    description:
+      "Сувениры и мини-фигурки енотов-хранителей Туапсе ручной работы. Купите своего Енотыча и поддержите проект бронзовой семьи на набережной.",
+    path: "/shop",
+  });
   const [added, setAdded] = useState<string | null>(null);
   const [qtys, setQtys] = useState<Record<string, number>>({});
 

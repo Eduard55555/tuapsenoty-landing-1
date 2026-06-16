@@ -6,6 +6,7 @@ import SiteHeader from "@/components/SiteHeader";
 import ARHologram from "@/components/ARHologram";
 import { FINDER_API, FINDER_BASE, CHARACTER_API, pluralPeople } from "@/hooks/useFinderCount";
 import { characters } from "@/pages/index/indexData";
+import useSeo from "@/hooks/useSeo";
 
 const OWN_COUNTER_SLUGS = ["enofya"];
 
@@ -41,6 +42,17 @@ export default function CharacterPage() {
       .then((d) => setFoundCount(typeof d.count === "number" ? d.count + FINDER_BASE : null))
       .catch(() => {});
   }, [slug, char?.location, hasOwnCounter, fromQr]);
+
+  useSeo({
+    title: char
+      ? `${char.name} — ${char.role} | Туапсеноты`
+      : "Персонаж не найден | Туапсеноты",
+    description: char
+      ? `${char.name} (${char.role}) — бронзовый енот-хранитель Туапсе. ${char.description}`.slice(0, 160)
+      : "Бронзовые еноты-хранители Туапсе.",
+    path: `/characters/${slug || ""}`,
+    image: char?.image,
+  });
 
   if (!char) {
     return (

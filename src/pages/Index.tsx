@@ -4,9 +4,16 @@ import IndexHero from "./index/IndexHero";
 import IndexNews from "./index/IndexNews";
 import IndexCharacters from "./index/IndexCharacters";
 import { useCountFoundOnce } from "@/hooks/useFinderCount";
+import useSeo from "@/hooks/useSeo";
 
 export default function Index() {
   useCountFoundOnce();
+  useSeo({
+    title: "Туапсеноты — семья бронзовых енотов-хранителей Туапсе",
+    description:
+      "Восемь бронзовых енотов-хранителей с историями, ритуалами и душой на набережной Туапсе. Познакомьтесь с семьёй, найдите их на карте и поддержите проект.",
+    path: "/",
+  });
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>

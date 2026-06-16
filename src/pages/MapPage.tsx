@@ -2,6 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import useSeo from "@/hooks/useSeo";
 
 interface Spot {
   slug: string;
@@ -33,6 +34,12 @@ const spots: Spot[] = [
 const placedCount = spots.filter((s) => s.status === "placed").length;
 
 export default function MapPage() {
+  useSeo({
+    title: "Карта Туапсеноты — где найти бронзовых енотов в Туапсе",
+    description:
+      "Карта расположения бронзовых енотов-хранителей по Туапсе. Узнайте, где установлен Енотыч и где появятся остальные еноты семьи.",
+    path: "/map",
+  });
   const [active, setActive] = useState<Spot>(spots[0]);
   const [reloadKey, setReloadKey] = useState(0);
 
