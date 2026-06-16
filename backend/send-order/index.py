@@ -14,6 +14,8 @@ def handler(event: dict, context) -> dict:
     name = body.get('name', '')
     phone = body.get('phone', '')
     email = body.get('email', '')
+    delivery = body.get('delivery', '')
+    address = body.get('address', '')
     items = body.get('items', [])
     total = body.get('total', 0)
 
@@ -22,11 +24,18 @@ def handler(event: dict, context) -> dict:
         for i in items
     )
 
+    delivery_text = ''
+    if delivery:
+        delivery_text += f"🚚 *Доставка:* {delivery}\n"
+    if address:
+        delivery_text += f"🏠 *Адрес:* {address}\n"
+
     text = (
         f"🦝 *Новая заявка из магазина!*\n\n"
         f"👤 *Имя:* {name}\n"
         f"📞 *Телефон:* {phone}\n"
-        f"📧 *Email:* {email}\n\n"
+        f"📧 *Email:* {email}\n"
+        f"{delivery_text}\n"
         f"🛒 *Заказ:*\n{items_text}\n\n"
         f"💰 *Итого: {total:,} ₽*"
     )
