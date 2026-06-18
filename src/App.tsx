@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +9,7 @@ import { CartProvider } from "./context/CartContext";
 import CookieBanner from "./components/CookieBanner";
 import SeaSoundToggle from "./components/SeaSoundToggle";
 import MetrikaTracker from "./components/MetrikaTracker";
+import { loadMetrika } from "./lib/metrika";
 
 const Shop = lazy(() => import("./pages/Shop"));
 const Cart = lazy(() => import("./pages/Cart"));
@@ -29,7 +30,12 @@ const PageFallback = () => (
   </div>
 );
 
-const App = () => (
+const App = () => {
+  useEffect(() => {
+    loadMetrika();
+  }, []);
+
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -58,6 +64,7 @@ const App = () => (
       </CartProvider>
     </TooltipProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;
