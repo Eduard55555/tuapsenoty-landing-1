@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import { CartProvider } from "./context/CartContext";
 import CookieBanner from "./components/CookieBanner";
 import SeaSoundToggle from "./components/SeaSoundToggle";
+import MetrikaTracker from "./components/MetrikaTracker";
 
 const Shop = lazy(() => import("./pages/Shop"));
 const Cart = lazy(() => import("./pages/Cart"));
@@ -35,6 +36,7 @@ const App = () => (
       <Sonner />
       <CartProvider>
         <BrowserRouter>
+          <MetrikaTracker />
           <Suspense fallback={<PageFallback />}>
             <Routes>
               <Route path="/" element={<Index />} />
