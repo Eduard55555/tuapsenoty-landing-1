@@ -25,12 +25,9 @@ export function loadMetrika() {
   a.parentNode!.insertBefore(k, a);
 
   w.ym(METRIKA_ID, "init", {
-    ssr: true,
     webvisor: true,
     clickmap: true,
     ecommerce: "dataLayer",
-    referrer: document.referrer,
-    url: location.href,
     accurateTrackBounce: true,
     trackLinks: true,
   });
