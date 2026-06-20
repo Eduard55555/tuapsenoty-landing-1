@@ -1,0 +1,1 @@
+UPDATE finder_counter SET count = 2001, updated_at = now() WHERE id = 1;
