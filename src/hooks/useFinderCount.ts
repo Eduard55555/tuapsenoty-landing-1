@@ -69,6 +69,7 @@ export function useFinderCount(): number | null {
 
 const FOUND_FLAG = "finder-found-counted";
 
+// module rev: 3
 export function useCountFoundOnce(): void {
   useEffect(() => {
     if (localStorage.getItem(FOUND_FLAG) === "1") return;
