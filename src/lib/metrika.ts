@@ -35,7 +35,6 @@ export function loadMetrika() {
 export function hitMetrika(url: string) {
   if (!loaded) return;
   const w = window as unknown as { ym?: (...args: unknown[]) => void };
-  if (typeof w.ym === "function") {
-    w.ym(METRIKA_ID, "hit", url);
-  }
+  if (typeof w.ym !== "function") return;
+  w.ym(METRIKA_ID, "hit", url);
 }
