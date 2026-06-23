@@ -19,17 +19,7 @@ export default function Cart() {
   const [error, setError] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [delivery, setDelivery] = useState("courier");
-  const [address, setAddress] = useState("");
   const [consent, setConsent] = useState(false);
-
-  const deliveryLabels: Record<string, string> = {
-    courier: "Курьером",
-    post: "Почтой России",
-    pickup: "Самовывоз",
-  };
-  const needAddress = delivery === "courier" || delivery === "post";
 
   const handleOrder = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,9 +35,9 @@ export default function Cart() {
         body: JSON.stringify({
           name: customerName,
           phone,
-          email,
-          delivery: deliveryLabels[delivery],
-          address: needAddress ? address : "",
+          email: "",
+          delivery: "Уточнить при звонке",
+          address: "",
           items: [{ name, price, qty }],
           total,
         }),
@@ -178,62 +168,9 @@ export default function Cart() {
                 className="w-full rounded-2xl px-5 py-4 font-body outline-none text-base"
                 style={{ border: "1.5px solid rgba(184,115,51,0.3)", color: "var(--warm-dark)", backgroundColor: "white" }}
               />
-              <input
-                required
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                className="w-full rounded-2xl px-5 py-4 font-body outline-none text-base"
-                style={{ border: "1.5px solid rgba(184,115,51,0.3)", color: "var(--warm-dark)", backgroundColor: "white" }}
-              />
-              <div className="space-y-2">
-                <p className="font-body font-bold text-base" style={{ color: "var(--warm-dark)" }}>
-                  Способ доставки
-                </p>
-                {[
-                  { value: "courier", label: "Курьером" },
-                  { value: "post", label: "Почтой России" },
-                  { value: "pickup", label: "Самовывоз" },
-                ].map((opt) => (
-                  <label
-                    key={opt.value}
-                    className="flex items-center gap-3 cursor-pointer rounded-2xl px-5 py-4"
-                    style={{
-                      border: `1.5px solid ${delivery === opt.value ? "var(--bronze)" : "rgba(184,115,51,0.3)"}`,
-                      backgroundColor: "white",
-                    }}>
-                    <input
-                      type="radio"
-                      name="delivery"
-                      value={opt.value}
-                      checked={delivery === opt.value}
-                      onChange={(e) => setDelivery(e.target.value)}
-                      className="w-5 h-5 flex-shrink-0"
-                      style={{ accentColor: "var(--bronze)" }}
-                    />
-                    <span className="font-body" style={{ color: "var(--warm-dark)" }}>
-                      {opt.label}
-                    </span>
-                  </label>
-                ))}
-              </div>
-              {needAddress && (
-                <div>
-                  <textarea
-                    required
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Адрес доставки"
-                    rows={3}
-                    className="w-full rounded-2xl px-5 py-4 font-body outline-none text-base resize-none"
-                    style={{ border: "1.5px solid rgba(184,115,51,0.3)", color: "var(--warm-dark)", backgroundColor: "white" }}
-                  />
-                  <p className="font-body text-sm mt-1.5 px-1" style={{ color: "#9B7B5A" }}>
-                    Введите ваш полный адрес: город, улицу, номер дома и квартиры
-                  </p>
-                </div>
-              )}
+              <p className="font-body text-sm px-1 -mt-1" style={{ color: "#9B7B5A", lineHeight: 1.5 }}>
+                Способ доставки и адрес уточним по телефону — так быстрее и без ошибок.
+              </p>
               <label className="flex items-start gap-3 cursor-pointer py-1">
                 <input
                   type="checkbox"
