@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tuapsenoty-v1';
+const CACHE_NAME = 'tuapsenoty-v2';
 const PRECACHE_URLS = [
   '/',
   '/manifest.json',

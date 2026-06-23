@@ -10,15 +10,9 @@
   "theme_color": "#2e5c6e",
   "icons": [
     {
-      "src": "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/files/b44c9b66-aad2-42dc-b157-85b6071038f7.jpg",
-      "sizes": "192x192",
-      "type": "image/jpeg",
-      "purpose": "any"
-    },
-    {
-      "src": "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/files/b44c9b66-aad2-42dc-b157-85b6071038f7.jpg",
-      "sizes": "512x512",
-      "type": "image/jpeg",
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any"
     }
   ]
