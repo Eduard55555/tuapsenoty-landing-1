@@ -1,4 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <rect width="100" height="100" rx="22" fill="#fdf6ee"/>
-  <text x="50" y="52" font-size="64" text-anchor="middle" dominant-baseline="central">🦝</text>
+  <g transform="translate(50 53)">
+    <!-- ears -->
+    <path d="M-30 -20 L-19 0 L-37 -3 Z" fill="#7a6048"/>
+    <path d="M30 -20 L19 0 L37 -3 Z" fill="#7a6048"/>
+    <path d="M-28 -17 L-20 -2 L-33 -4 Z" fill="#9b8268"/>
+    <path d="M28 -17 L20 -2 L33 -4 Z" fill="#9b8268"/>
+    <!-- head -->
+    <ellipse cx="0" cy="3" rx="29" ry="27" fill="#8a7359"/>
+    <!-- face light -->
+    <path d="M0 -18 C16 -18 26 -6 26 6 C26 18 14 27 0 27 C-14 27 -26 18 -26 6 C-26 -6 -16 -18 0 -18 Z" fill="#f3e9da"/>
+    <!-- mask -->
+    <path d="M-25 -4 Q-14 -13 -4 -8 Q0 -5 4 -8 Q14 -13 25 -4 Q20 6 11 7 Q4 4 0 6 Q-4 4 -11 7 Q-20 6 -25 -4 Z" fill="#3a2b1f"/>
+    <!-- eyes -->
+    <circle cx="-13" cy="-1" r="4.5" fill="#ffffff"/>
+    <circle cx="13" cy="-1" r="4.5" fill="#ffffff"/>
+    <circle cx="-12.5" cy="-0.5" r="2.4" fill="#1a1208"/>
+    <circle cx="13.5" cy="-0.5" r="2.4" fill="#1a1208"/>
+    <!-- nose -->
+    <path d="M0 14 L-5 8 L5 8 Z" fill="#1a1208"/>
+  </g>
 </svg>
