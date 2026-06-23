@@ -1,5 +1,5 @@
 const METRIKA_ID = 109954003;
-// module rev: 2
+// module rev: 4
 let loaded = false;
 
 export function loadMetrika() {
