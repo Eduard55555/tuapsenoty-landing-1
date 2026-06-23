@@ -190,7 +190,7 @@ export default function Shop() {
                   style={{ border: "1.5px solid var(--bronze)", color: "var(--bronze)", backgroundColor: "white" }}
                   iconSize={14}
                 />
-                <p className="font-body text-[11px] text-center mt-1.5" style={{ color: "#9B7B5A" }}>
+                <p className="font-body text-xs text-center mt-1.5" style={{ color: "#9B7B5A" }}>
                   Заказ в 1 клик — позвоните, оформим за минуту
                 </p>
               </div>

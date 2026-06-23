@@ -99,7 +99,7 @@ export default function Cart() {
               <div className="flex items-center gap-4 p-4">
                 {image && (
                   <img src={image} alt={name}
-                    className="w-24 h-24 object-contain rounded-xl flex-shrink-0"
+                    className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-xl flex-shrink-0"
                     style={{ backgroundColor: "#f5f0eb" }} />
                 )}
                 <div className="flex-1">
