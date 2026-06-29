@@ -8,6 +8,8 @@ const Newsletter = () => {
   const [adminKey, setAdminKey] = useState("");
   const [authed, setAuthed] = useState(false);
   const [count, setCount] = useState<number | null>(null);
+  const [subscribers, setSubscribers] = useState<{ email: string; created_at: string | null }[]>([]);
+  const [showList, setShowList] = useState(false);
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,6 +31,7 @@ const Newsletter = () => {
       }
       const data = await res.json();
       setCount(data.count ?? 0);
+      setSubscribers(data.subscribers ?? []);
       setAuthed(true);
     } catch {
       setError("Ошибка соединения. Попробуйте ещё раз.");
@@ -63,6 +66,12 @@ const Newsletter = () => {
       setError("Ошибка соединения. Попробуйте ещё раз.");
     }
     setLoading(false);
+  };
+
+  const formatDate = (iso: string | null) => {
+    if (!iso) return "";
+    const d = new Date(iso);
+    return d.toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
   };
 
   return (
@@ -116,14 +125,46 @@ const Newsletter = () => {
         ) : (
           <div className="space-y-4">
             <div
-              className="rounded-xl px-4 py-3 flex items-center gap-2"
+              className="rounded-xl px-4 py-3 flex items-center justify-between gap-2"
               style={{ backgroundColor: "var(--cream)", color: "var(--sea)" }}
             >
-              <Icon name="Users" size={18} />
-              <span className="font-semibold">
+              <span className="flex items-center gap-2 font-semibold">
+                <Icon name="Users" size={18} />
                 Подписчиков: {count}
               </span>
+              {count !== null && count > 0 && (
+                <button
+                  onClick={() => setShowList((v) => !v)}
+                  className="flex items-center gap-1 text-sm font-semibold"
+                  style={{ color: "var(--bronze)" }}
+                >
+                  {showList ? "Скрыть" : "Показать список"}
+                  <Icon name={showList ? "ChevronUp" : "ChevronDown"} size={16} />
+                </button>
+              )}
             </div>
+
+            {showList && (
+              <div
+                className="rounded-xl border divide-y max-h-72 overflow-y-auto"
+                style={{ borderColor: "var(--sand)" }}
+              >
+                {subscribers.map((s) => (
+                  <div
+                    key={s.email}
+                    className="flex items-center justify-between gap-2 px-4 py-2.5"
+                    style={{ borderColor: "var(--sand)" }}
+                  >
+                    <span className="text-sm break-all" style={{ color: "var(--warm-dark)" }}>
+                      {s.email}
+                    </span>
+                    <span className="text-xs whitespace-nowrap" style={{ color: "var(--muted-foreground)" }}>
+                      {formatDate(s.created_at)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
 
             <div>
               <label className="block mb-1 font-semibold" style={{ color: "var(--warm-text)" }}>

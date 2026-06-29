@@ -31,14 +31,21 @@ def handler(event: dict, context) -> dict:
     if event.get('httpMethod') == 'GET':
         schema = os.environ['MAIN_DB_SCHEMA']
         conn = psycopg2.connect(os.environ['DATABASE_URL'])
+        subscribers = []
         try:
             cur = conn.cursor()
-            cur.execute(f"SELECT COUNT(*) FROM {schema}.subscribers")
-            count = cur.fetchone()[0]
+            cur.execute(
+                f"SELECT email, created_at FROM {schema}.subscribers ORDER BY created_at DESC"
+            )
+            for email, created_at in cur.fetchall():
+                subscribers.append({
+                    'email': email,
+                    'created_at': created_at.isoformat() if created_at else None,
+                })
             cur.close()
         finally:
             conn.close()
-        return _resp(200, {'ok': True, 'count': count})
+        return _resp(200, {'ok': True, 'count': len(subscribers), 'subscribers': subscribers})
 
     if event.get('httpMethod') != 'POST':
         return _resp(405, {'ok': False, 'error': 'method not allowed'})
