@@ -67,6 +67,7 @@ const Sponsors = lazy(() => import("./pages/Sponsors"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const MapPage = lazy(() => import("./pages/MapPage"));
 const QrEnofya = lazy(() => import("./pages/QrEnofya"));
+const Newsletter = lazy(() => import("./pages/Newsletter"));
 
 const queryClient = new QueryClient();
 
@@ -101,6 +102,7 @@ const App = () => {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/map" element={<MapPage />} />
               <Route path="/qr-enofya" element={<QrEnofya />} />
+              <Route path="/newsletter" element={<Newsletter />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
