@@ -20,9 +20,9 @@ const placed: Placed[] = [
     location: "Набережная",
     color: "from-amber-100 to-yellow-100",
     photos: [
-      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/9d5c8070-8417-4cb5-822b-c4138a28afa9.jpg",
-      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/356aaec3-5d2a-4259-8701-90a9cc1bc1f5.jpg",
-      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/6aa1ad26-3a1e-4c0a-93c5-3228fec581ce.jpg",
+      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/4209745dee83480c8dd7b64a526128ac.webp",
+      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/e1d54b161225457294d5fc19435e3200.webp",
+      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/899811b1ecba4fa7954b1dbdda5d5b67.webp",
     ],
   },
 ];

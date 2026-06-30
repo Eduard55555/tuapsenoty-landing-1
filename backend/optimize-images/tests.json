@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS CORS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Empty list returns ok",
+      "method": "POST",
+      "path": "/",
+      "body": { "urls": [] },
+      "expectedStatus": 200,
+      "expectedBody": { "results": {} },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

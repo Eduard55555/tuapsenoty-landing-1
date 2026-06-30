@@ -4,8 +4,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import { CartProvider } from "./context/CartContext";
-import CookieBanner from "./components/CookieBanner";
-import SeaSoundToggle from "./components/SeaSoundToggle";
+
+const CookieBanner = lazy(() => import("./components/CookieBanner"));
+const SeaSoundToggle = lazy(() => import("./components/SeaSoundToggle"));
 
 const METRIKA_ID = 109954003;
 let metrikaLoaded = false;
@@ -113,8 +114,10 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
-          <CookieBanner />
-          <SeaSoundToggle />
+          <Suspense fallback={null}>
+            <CookieBanner />
+            <SeaSoundToggle />
+          </Suspense>
         </BrowserRouter>
       </CartProvider>
     </>

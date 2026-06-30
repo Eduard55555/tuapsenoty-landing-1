@@ -13,7 +13,7 @@ export const characters = [
     ritual: "Потри удочку, фуражку или лапку. Загадай желание. Енотыч верит, что оно сбудется. И это уже полдела. А Енотыч постарается сделать так, чтобы оно сбылось.",
     location: "Набережная",
     color: "from-amber-100 to-yellow-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/61957535-c6fc-42ed-be30-235d0501d01a.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/562bd5d2802344239c93869ff2c2bc36.webp",
     video: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/videos/enotych-ar-v3.mp4",
   },
   {
@@ -26,7 +26,7 @@ export const characters = [
     ritual: "Погладь корзинку — и год будет сладким. Говорят, кто улыбнётся ей в ответ — у того даже грустный день становится сладким",
     location: "",
     color: "from-rose-100 to-orange-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/7bd68cbe-1da1-45cf-bafd-0828c44078d6.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/ad39aa7d34fd48aa9bb68504c28b0cc3.webp",
   },
   {
     slug: "tuapsey",
@@ -38,7 +38,7 @@ export const characters = [
     ritual: "Потри его по плечу и посмотри вдаль — говорят, там на горизонте уже ждёт твоя удача",
     location: "",
     color: "from-blue-100 to-teal-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/d591b894-0720-4afe-9119-19877540c0b0.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/9c9d10753c734625b091be903995694d.webp",
   },
   {
     slug: "enira",
@@ -50,7 +50,7 @@ export const characters = [
     ritual: "Обними её — и даже в пасмурный день станет солнечно",
     location: "",
     color: "from-cyan-100 to-blue-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/4362ca50-9ec3-4776-96ed-7ac9a6dcf123.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/93ed2016798c4b13abf094a11fc45750.webp",
   },
   {
     slug: "tydochka",
@@ -62,7 +62,7 @@ export const characters = [
     ritual: "Потри головку — и мечты сбудутся",
     location: "",
     color: "from-pink-100 to-violet-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/26e030b8-8ffc-470b-9422-9d0f8875b67c.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/ba2af1cba78f4145a0fd607e89349814.webp",
   },
   {
     slug: "enovey",
@@ -74,7 +74,7 @@ export const characters = [
     ritual: "Дотронься до его рюкзака — он зарядит тебя энергией и любопытством. Говорят, после этого даже знакомая тропа открывается с новой стороны, как будто видишь её впервые",
     location: "",
     color: "from-green-100 to-emerald-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/6c3bb954-3b8c-4404-ab87-eaab2dfc4b89.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/746171e0c4e641158b3d3c8b1901595b.webp",
   },
   {
     slug: "enosik",
@@ -86,7 +86,7 @@ export const characters = [
     ritual: "Посиди рядом, потри ему носик, закрой глаза или посмотри вокруг — расслабься и улыбнись миру",
     location: "",
     color: "from-sky-100 to-indigo-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/214a3f64-cbda-49f6-b733-689288c9ff6d.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/9f1c993f436a4097bd567b0108413625.webp",
   },
   {
     slug: "enosha",
@@ -98,18 +98,18 @@ export const characters = [
     ritual: "Улыбнись ему — и день станет веселее",
     location: "",
     color: "from-slate-100 to-gray-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/a3981d6a-4ab5-4b95-88d5-fa6c9f1cf3d2.png",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/99ba4a0bd6034339aeb2f0834dac231a.webp",
   },
 ];
 
 export const NEWS_PHOTOS = [
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/253279f9-b0f5-475d-834d-63b99c68b4b0.jpg",
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e8e4fa3a-5863-483b-9cb1-762d643b6148.jpg",
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/e4d92eb9-6be8-457e-ac19-82c4926e846e.jpg",
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/dfd692a7-f79a-4bc8-bcd8-45ce3cc9befd.png",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/137c7ba926e5431cae8fe87e2184ac33.webp",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/bbdf2940da0e42819b3a0b904321c0ca.webp",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/22c2bde7c1fa4fb280132a9c51008006.webp",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/8147c82fa9ca4425a5560d6db2ddaf4f.webp",
 ];
 
 export const ENOFYA_PHOTOS = [
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/f2ed4f9c-6423-4631-a911-6b92b59e2583.jpg",
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/942e525e-ab66-4f68-a8c6-8380b1f3e60e.jpg",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/bc45f1a50097404aaefe37e2abda7cc8.webp",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/c8be351b65cb4ba6bf6a901e581c755c.webp",
 ];
