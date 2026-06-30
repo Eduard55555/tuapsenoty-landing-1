@@ -27,10 +27,10 @@ export default function IndexHero() {
             <img
               src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/4362ca50-9ec3-4776-96ed-7ac9a6dcf123.png"
               alt="Енофья с малышом"
-              fetchPriority="high"
               decoding="async"
               width={256}
               height={256}
+              {...{ fetchpriority: "high" }}
               className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-full object-cover shadow-2xl"
               style={{ border: "4px solid rgba(245, 230, 211, 0.4)" }}
             />

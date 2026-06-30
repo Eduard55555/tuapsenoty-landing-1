@@ -1,8 +1,6 @@
 import { lazy, Suspense, useEffect, useRef } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import { CartProvider } from "./context/CartContext";
@@ -30,7 +28,7 @@ function loadMetrika() {
   k.src = `https://mc.yandex.ru/metrika/tag.js?id=${METRIKA_ID}`;
   a.parentNode!.insertBefore(k, a);
   w.ym(METRIKA_ID, "init", {
-    webvisor: true,
+    webvisor: false,
     clickmap: true,
     ecommerce: "dataLayer",
     accurateTrackBounce: true,
@@ -69,8 +67,6 @@ const MapPage = lazy(() => import("./pages/MapPage"));
 const QrEnofya = lazy(() => import("./pages/QrEnofya"));
 const Newsletter = lazy(() => import("./pages/Newsletter"));
 
-const queryClient = new QueryClient();
-
 const PageFallback = () => (
   <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "var(--cream)" }}>
     <div className="w-10 h-10 rounded-full border-4 animate-spin"
@@ -80,12 +76,22 @@ const PageFallback = () => (
 
 const App = () => {
   useEffect(() => {
-    loadMetrika();
+    const w = window as unknown as {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => void;
+    };
+    const start = () => {
+      if (typeof w.requestIdleCallback === "function") {
+        w.requestIdleCallback(loadMetrika, { timeout: 4000 });
+      } else {
+        setTimeout(loadMetrika, 3000);
+      }
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
   }, []);
 
   return (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+    <>
       <Toaster />
       <Sonner />
       <CartProvider>
@@ -111,8 +117,7 @@ const App = () => {
           <SeaSoundToggle />
         </BrowserRouter>
       </CartProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
+    </>
   );
 };
 
