@@ -2,6 +2,7 @@ import SiteFooter from "@/components/SiteFooter";
 import IndexHeader from "./index/IndexHeader";
 import IndexHero from "./index/IndexHero";
 import IndexNews from "./index/IndexNews";
+import IndexShop from "./index/IndexShop";
 import IndexCharacters from "./index/IndexCharacters";
 import { useCountFoundOnce } from "@/hooks/useFinderCount";
 import useSeo from "@/hooks/useSeo";
@@ -29,6 +30,9 @@ export default function Index() {
 
       {/* CHARACTERS + SUBSCRIBE + HOW TO HELP */}
       <IndexCharacters />
+
+      {/* SHOP / SOUVENIRS */}
+      <IndexShop />
 
       {/* FOOTER */}
       <SiteFooter />

@@ -4,54 +4,9 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import PhoneLink from "@/components/PhoneLink";
 import useSeo from "@/hooks/useSeo";
+import { PRODUCTS, buildCartUrl } from "@/data/products";
 
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
-
-const PRODUCTS = [
-  {
-    id: "mini-figure",
-    name: "Мини-фигурка «Енотыч-хранитель набережной и добрых мгновений»",
-    price: 400,
-    emoji: "🗿",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/499a6dcd-8d1e-47a0-86f1-f0865919b597.png",
-    description: "Маленький друг для больших дел\n\nЭто не просто фигурка. Это тот самый Енотыч, который теперь живёт на набережной, но в миниатюре. Можно поставить на рабочий стол — и работа пойдёт веселее. Можно в машину — чтобы рядом был свой бронзовый хранитель дорог. Можно на полку — просто потому, что мило.\n\n• Размер: 5 см — помещается на ладони\n• Материал: полимерная смола, ручная роспись «под бронзу»\n• Вес: приятный, увесистый\n• Детали: фуражка, удочка, полосатый хвост — всё как у большого\n\nЧтобы улыбаться, напоминать о море и загадывать желания — ритуал с удочкой работает и в миниатюре.\n\nКаждая фигурка расписывается вручную и может иметь крошечные уникальные отличия.",
-    badge: "Хит",
-    badgeColor: "#4CAF50",
-  },
-  {
-    id: "metal-figure",
-    name: "Металлическая фигурка «Енотыч-хранитель набережной и добрых мгновений»",
-    price: 950,
-    emoji: "🪙",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/collage/metal-raccoon.jpg",
-    description: "Маленький друг для больших дел\n\nЭто не просто фигурка. Это тот самый Енотыч, который теперь живёт на набережной, но в миниатюре. Можно поставить на рабочий стол — и работа пойдёт веселее. Можно в машину — чтобы рядом был свой бронзовый хранитель дорог. Можно на полку — просто потому, что мило.\n\n• Материал: металл — увесистый, прочный, с благородным блеском «под бронзу»\n• Размер: 5 см — помещается на ладони\n• Вес: приятный, основательный\n• Детали: фуражка, удочка, полосатый хвост — всё как у большого\n\nЧтобы улыбаться, напоминать о море и загадывать желания — ритуал с удочкой работает и в миниатюре.\n\nКаждая фигурка обрабатывается вручную и может иметь крошечные уникальные отличия.",
-    badge: "Металл",
-    badgeColor: "#8C6B3F",
-    stock: "Осталось мало",
-  },
-  {
-    id: "bronze-original",
-    name: "Коллекционная бронзовая статуэтка — Енотыч",
-    price: 100000,
-    emoji: "🏆",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/5c66f1c9-0b53-4bf7-9724-81ede89caadf.jpg",
-    description: "Тот самый. С набережной.\n\nПеред вами не сувенир. Это точная бронзовая копия Енотыча, который теперь живёт на набережной Туапсе и встречает гостей города. Такая же поза, та же удочка, та же лёгкая улыбка.\n\nПочему эта цена?\n• Материал: настоящая бронза (не имитация)\n• Технология: литьё по выплавляемой модели, патинирование, финишная обработка вручную\n• Размер: 20 см — увесистая, основательная\n• Ручная работа: каждая фигурка создаётся мастером индивидуально\n• Легенда: это не просто предмет, а персонаж с душой и историей\n\nКому и зачем?\n• Коллекционерам — уникальный экземпляр ограниченной серии\n• Поклонникам проекта — иметь дома того самого хранителя\n• Для офиса, кабинета, дома — статуэтка, которая притягивает взгляд\n• Как премиальный подарок — который запомнят\n\nХотите другого размера?\nМы можем изготовить Енотыча высотой от 10 до 30 см и более.\n💬 Стоимость и сроки — по запросу. Напишите нам, обсудим детали.\n\nВ комплекте\n• Бронзовая статуэтка\n• Сертификат подлинности\n• Подарок от автора проекта — мини-фигурки всей семьи Туапсенотов",
-    badge: "Эксклюзив",
-    badgeColor: "#B8732F",
-    stock: "Под заказ · ограниченная серия",
-  },
-  {
-    id: "bronze-enofya",
-    name: "Коллекционная бронзовая статуэтка — Енофья",
-    price: 100000,
-    emoji: "🧺",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/942e525e-ab66-4f68-a8c6-8380b1f3e60e.jpg",
-    description: "Хранительница уюта.\n\nПеред вами точная бронзовая копия Енофьи — бабушки с корзинкой, которая скоро займёт своё место в городе. Мудрая, добрая, с лёгкой улыбкой. Та, к кому хочется подойти и погладить корзинку.\n\nПочему эта цена?\n• Материал: настоящая бронза (не имитация)\n• Технология: литьё по выплавляемой модели, патинирование, финишная обработка вручную\n• Размер: 20 см — увесистая, основательная\n• Ручная работа: каждая фигурка создаётся мастером индивидуально\n• Легенда: не просто статуэтка, а персонаж с характером и душой\n\nКому и зачем?\n• Коллекционерам — редкий экземпляр ограниченной серии\n• Поклонникам проекта — хранительница домашнего уюта\n• Для дома, кабинета, гостиной — статуэтка, которая согревает взгляд\n• Как премиальный подарок — женщинам, мамам, бабушкам, тем, кто ценит тепло\n\nХотите другого размера?\nМы можем изготовить Енофью высотой от 10 до 30 см и более.\n💬 Стоимость и сроки — по запросу. Напишите нам, обсудим детали.\n\nВ комплекте\n• Бронзовая статуэтка\n• Сертификат подлинности\n• Подарок от автора проекта",
-    badge: "Эксклюзив",
-    badgeColor: "#B8732F",
-    stock: "Под заказ · ограниченная серия",
-  },
-];
 
 export default function Shop() {
   useSeo({
@@ -72,7 +27,7 @@ export default function Shop() {
     setAdded(product.id);
     const qty = getQty(product.id);
     setTimeout(() => {
-      window.location.href = `/cart?id=${product.id}&name=${encodeURIComponent(product.name)}&price=${product.price}&image=${encodeURIComponent(product.image)}&qty=${qty}`;
+      window.location.href = buildCartUrl(product, qty);
     }, 500);
   };
 
@@ -148,8 +103,17 @@ export default function Shop() {
                     </p>
                   ))}
                 </div>
+                {p.compareNote && (
+                  <div className="rounded-xl px-3 py-2 mb-3 flex items-start gap-2"
+                    style={{ backgroundColor: "rgba(76,175,80,0.1)", border: "1px solid rgba(76,175,80,0.3)" }}>
+                    <Icon name="BadgePercent" size={16} style={{ color: "#388E3C", flexShrink: 0, marginTop: 2 }} />
+                    <p className="font-body text-xs font-semibold" style={{ color: "#2E5E30", lineHeight: 1.5 }}>
+                      {p.compareNote}
+                    </p>
+                  </div>
+                )}
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="font-display text-lg font-bold" style={{ color: "var(--bronze)" }}>
+                  <span className="font-display text-2xl font-bold" style={{ color: "var(--bronze)" }}>
                     {p.price.toLocaleString("ru-RU")} ₽
                   </span>
                   <div className="flex items-center gap-1 rounded-full px-1 py-1"
@@ -177,12 +141,16 @@ export default function Shop() {
                 </div>
                 <button
                   onClick={() => handleAdd(p)}
-                  className="btn-primary text-xs px-3 py-2 w-full justify-center"
-                  style={added === p.id ? { backgroundColor: "#4CAF50" } : {}}>
+                  className="w-full flex items-center justify-center gap-2 rounded-full font-display font-bold text-base px-4 py-3.5 transition-transform active:scale-95"
+                  style={{
+                    backgroundColor: added === p.id ? "#4CAF50" : "#FF7A1A",
+                    color: "white",
+                    boxShadow: "0 8px 20px rgba(255,122,26,0.35)",
+                  }}>
                   {added === p.id ? (
-                    <><Icon name="Check" size={14} /> Добавлено</>
+                    <><Icon name="Check" size={20} /> Добавлено</>
                   ) : (
-                    <><Icon name="ShoppingCart" size={14} /> В корзину</>
+                    <><Icon name="ShoppingCart" size={20} /> В корзину</>
                   )}
                 </button>
                 <PhoneLink

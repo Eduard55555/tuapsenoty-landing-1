@@ -202,6 +202,43 @@ export default function Cart() {
                   {error}
                 </p>
               )}
+
+              <div className="grid grid-cols-3 gap-2 pt-2">
+                {[
+                  { icon: "ShieldCheck", label: "Без предоплаты" },
+                  { icon: "PhoneCall", label: "Звонок-подтверждение" },
+                  { icon: "Lock", label: "Данные защищены" },
+                ].map((b) => (
+                  <div key={b.label} className="flex flex-col items-center text-center gap-1.5 rounded-2xl p-3"
+                    style={{ backgroundColor: "var(--sand)", border: "1px solid rgba(184,115,51,0.15)" }}>
+                    <Icon name={b.icon} size={22} style={{ color: "#388E3C" }} />
+                    <span className="font-body text-xs font-semibold" style={{ color: "var(--warm-dark)", lineHeight: 1.3 }}>
+                      {b.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-2xl p-4 mt-1"
+                style={{ backgroundColor: "white", border: "1px solid rgba(184,115,51,0.15)" }}>
+                <h3 className="font-display font-bold text-base mb-3 flex items-center gap-2" style={{ color: "var(--warm-dark)" }}>
+                  <Icon name="Truck" size={18} style={{ color: "var(--bronze)" }} />
+                  Доставка и оплата
+                </h3>
+                <ul className="space-y-2">
+                  {[
+                    "Отправляем Почтой России и СДЭК по всей стране",
+                    "Стоимость доставки рассчитаем при звонке — зависит от региона",
+                    "Оплата при получении или по реквизитам — как удобно",
+                    "Самовывоз в Туапсе — бесплатно",
+                  ].map((t) => (
+                    <li key={t} className="flex items-start gap-2 font-body text-sm" style={{ color: "#6B4C35", lineHeight: 1.5 }}>
+                      <Icon name="Check" size={16} style={{ color: "#388E3C", flexShrink: 0, marginTop: 2 }} />
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </form>
           </>
         )}
