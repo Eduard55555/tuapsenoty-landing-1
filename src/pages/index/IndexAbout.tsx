@@ -1,6 +1,6 @@
 export default function IndexAbout() {
   return (
-    <section id="about" className="py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
+    <section id="about" className="cv-auto py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
           <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"

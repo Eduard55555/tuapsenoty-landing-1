@@ -77,7 +77,7 @@ function EnofyaGallery() {
 export default function IndexNews() {
   const [arOpen, setArOpen] = useState(false);
   return (
-    <section id="news" className="py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
+    <section id="news" className="cv-auto py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"

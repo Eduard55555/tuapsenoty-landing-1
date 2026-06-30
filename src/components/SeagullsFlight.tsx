@@ -107,7 +107,7 @@ export default function SeagullsFlight() {
       {GULLS.map((g, i) => (
         <div
           key={i}
-          className="absolute left-0"
+          className={`absolute left-0 ${i >= 3 ? "hidden sm:block" : ""}`}
           style={{
             top: g.top,
             ["--gull-scale" as string]: g.scale,

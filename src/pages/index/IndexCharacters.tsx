@@ -35,7 +35,7 @@ export default function IndexCharacters() {
   return (
     <>
       {/* CHARACTERS */}
-      <section id="characters" className="py-8 sm:py-12 px-4 sm:px-6"
+      <section id="characters" className="cv-auto py-8 sm:py-12 px-4 sm:px-6"
         style={{ background: "linear-gradient(180deg, var(--sand) 0%, var(--cream) 100%)" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">

@@ -114,6 +114,11 @@
     border-color: var(--bronze);
   }
 
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+  }
+
   .hero-glow {
     will-change: auto;
   }

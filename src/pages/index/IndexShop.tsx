@@ -5,7 +5,7 @@ const FEATURED = PRODUCTS.slice(0, 3);
 
 export default function IndexShop() {
   return (
-    <section id="shop" className="py-10 sm:py-16 px-4 sm:px-6"
+    <section id="shop" className="cv-auto py-10 sm:py-16 px-4 sm:px-6"
       style={{ background: "linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%)" }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
