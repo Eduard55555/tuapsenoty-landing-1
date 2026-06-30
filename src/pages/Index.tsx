@@ -1,6 +1,7 @@
 import SiteFooter from "@/components/SiteFooter";
 import IndexHeader from "./index/IndexHeader";
 import IndexHero from "./index/IndexHero";
+import IndexAbout from "./index/IndexAbout";
 import IndexNews from "./index/IndexNews";
 import IndexShop from "./index/IndexShop";
 import IndexCharacters from "./index/IndexCharacters";
@@ -22,11 +23,14 @@ export default function Index() {
       {/* HEADER */}
       <IndexHeader />
 
-      {/* HERO + ABOUT */}
+      {/* HERO */}
       <IndexHero />
 
       {/* SHOP / SOUVENIRS */}
       <IndexShop />
+
+      {/* ABOUT */}
+      <IndexAbout />
 
       {/* NEWS */}
       <IndexNews />
