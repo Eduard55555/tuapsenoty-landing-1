@@ -25,14 +25,14 @@ export default function Index() {
       {/* HERO + ABOUT */}
       <IndexHero />
 
+      {/* SHOP / SOUVENIRS */}
+      <IndexShop />
+
       {/* NEWS */}
       <IndexNews />
 
       {/* CHARACTERS + SUBSCRIBE + HOW TO HELP */}
       <IndexCharacters />
-
-      {/* SHOP / SOUVENIRS */}
-      <IndexShop />
 
       {/* FOOTER */}
       <SiteFooter />
