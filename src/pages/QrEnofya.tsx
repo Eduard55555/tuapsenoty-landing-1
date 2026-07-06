@@ -3,10 +3,9 @@ import Icon from "@/components/ui/icon";
 const TARGET_PATH = "/characters/enofya?from=qr";
 
 export default function QrEnofya() {
-  const targetUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}${TARGET_PATH}`
-      : `https://tuapsenoty.ru${TARGET_PATH}`;
+  // QR всегда ведёт на боевой домен, чтобы переход засчитывался вне зависимости от того,
+  // где открыт генератор (превью или прод)
+  const targetUrl = `https://tuapsenoty.ru${TARGET_PATH}`;
 
   const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&margin=20&data=${encodeURIComponent(
     targetUrl,
