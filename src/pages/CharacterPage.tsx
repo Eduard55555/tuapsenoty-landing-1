@@ -31,7 +31,6 @@ export default function CharacterPage() {
     // Персонажи со своим счётчиком (Енофья) прибавляются ТОЛЬКО при переходе по QR (?from=qr)
     const shouldIncrement = hasOwnCounter ? fromQr && !already : !already;
     const method = shouldIncrement ? "POST" : "GET";
-    if (shouldIncrement) localStorage.setItem(key, "1");
 
     const url = hasOwnCounter
       ? `${CHARACTER_API}?slug=${encodeURIComponent(slug)}`
@@ -39,7 +38,13 @@ export default function CharacterPage() {
 
     fetch(url, { method, cache: "no-store" })
       .then((r) => r.json())
-      .then((d) => setFoundCount(typeof d.count === "number" ? d.count + FINDER_BASE : null))
+      .then((d) => {
+        // флаг ставим только после УСПЕШНОГО прибавления, чтобы засчёт не «сгорал» при сбое сети
+        if (shouldIncrement && typeof d.count === "number") {
+          localStorage.setItem(key, "1");
+        }
+        setFoundCount(typeof d.count === "number" ? d.count + FINDER_BASE : null);
+      })
       .catch(() => {});
   }, [slug, char?.location, hasOwnCounter, fromQr]);
 
