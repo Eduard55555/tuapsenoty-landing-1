@@ -4,7 +4,7 @@ import { playCoin } from "@/hooks/useSound";
 
 export default function FinderCounter() {
   const { count, updatedAt } = useFinderData();
-  const { count: enofyaCount } = useCharacterData("enofya");
+  const { count: enofyaCount, updatedAt: enofyaUpdatedAt } = useCharacterData("enofya");
   const [display, setDisplay] = useState(0);
   const [enofyaDisplay, setEnofyaDisplay] = useState(0);
   const [splashes, setSplashes] = useState<number[]>([]);
@@ -61,15 +61,18 @@ export default function FinderCounter() {
   if (count === null) return null;
 
   const formatted = display.toLocaleString("ru-RU");
-  const updatedLabel = updatedAt
-    ? new Date(updatedAt).toLocaleString("ru-RU", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-    : null;
+  const fmtDate = (v: string | null) =>
+    v
+      ? new Date(v).toLocaleString("ru-RU", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      : null;
+  const updatedLabel = fmtDate(updatedAt);
+  const enofyaUpdatedLabel = fmtDate(enofyaUpdatedAt);
 
   return (
     <div className="animate-fade-up flex flex-col items-center mb-6">
@@ -161,6 +164,11 @@ export default function FinderCounter() {
             {pluralPeople(enofyaDisplay)}
           </span>
         </button>
+      )}
+      {enofyaCount !== null && enofyaUpdatedLabel && (
+        <p className="font-body text-[11px] sm:text-xs mt-2" style={{ color: "rgba(245,230,211,0.55)" }}>
+          Обновлено: {enofyaUpdatedLabel}
+        </p>
       )}
     </div>
   );
