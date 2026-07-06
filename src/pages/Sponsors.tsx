@@ -8,6 +8,7 @@ interface Sponsor {
   name: string;
   logo: string;
   logoImage?: string;
+  photo?: string;
   category: string;
   description: string;
   services: string[];
@@ -24,6 +25,7 @@ const sponsors: Sponsor[] = [
     name: "Рестобар V*MESTE — первый дом Енофьи",
     logo: "🤝",
     logoImage: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/4cc69fd9-1c78-40a2-9826-e9567456a31d.png",
+    photo: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/3fad70de-3731-4c1a-9d2a-455db8c25d6c.png",
     category: "Рестобар · Партнёр",
     description:
       "С огромной радостью объявляем о начале сотрудничества с рестобаром V*MESTE! Именно здесь временно поселилась наша бронзовая бабушка Енофья — это её первый «тестовый дом» в городе. V*MESTE — место, где любят семьями, вкусно кормят и создают настоящую атмосферу уюта. Идеальное пространство для хлебосольной Енофьи, которая тоже всегда рада гостям. Загляните, чтобы поздороваться с Енофьей, сфотографироваться с ней и попробовать знаменитую пиццу и десерты.",
@@ -113,13 +115,19 @@ export default function Sponsors() {
                     : "1px solid rgba(184,115,51,0.15)",
                 }}>
                 <div className={`${s.featured ? "sm:flex" : "flex flex-col"}`}>
-                  <div className={`${s.logoImage ? "bg-white" : `bg-gradient-to-br ${s.color}`} flex items-center justify-center flex-shrink-0 p-6`}
-                    style={{ height: s.featured ? undefined : "140px", minHeight: "140px", width: s.featured ? undefined : "100%" }}>
-                    {s.logoImage ? (
-                      <img src={s.logoImage} alt={s.name}
-                        className={`object-contain ${s.featured ? "w-full sm:w-64 max-h-48 sm:max-h-full" : "max-w-full max-h-full"}`} />
-                    ) : (
-                      <span className="text-6xl">{s.logo}</span>
+                  <div className={`flex-shrink-0 flex flex-col ${s.featured ? "sm:w-72" : "w-full"}`}>
+                    <div className={`${s.logoImage ? "bg-white" : `bg-gradient-to-br ${s.color}`} flex items-center justify-center p-6`}
+                      style={{ minHeight: "140px" }}>
+                      {s.logoImage ? (
+                        <img src={s.logoImage} alt={s.name}
+                          className="object-contain w-full max-h-40" />
+                      ) : (
+                        <span className="text-6xl">{s.logo}</span>
+                      )}
+                    </div>
+                    {s.photo && (
+                      <img src={s.photo} alt={`${s.name} — вывеска`}
+                        className="w-full h-40 sm:flex-1 object-cover" />
                     )}
                   </div>
                   <div className="p-6 flex flex-col flex-1">
