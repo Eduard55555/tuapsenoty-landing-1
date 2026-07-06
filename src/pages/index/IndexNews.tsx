@@ -6,49 +6,6 @@ import { NEWS_PHOTOS, ENOFYA_PHOTOS } from "./indexData";
 
 const enotych = characters.find((c) => c.slug === "enotych");
 
-function PhotoGallery({ photos, alt }: { photos: string[]; alt: string }) {
-  const [idx, setIdx] = useState(0);
-  return (
-    <div className="relative w-full h-64 md:h-full min-h-64">
-      <img
-        src={photos[idx]}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        className="w-full h-full object-cover"
-      />
-      <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
-        {photos.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setIdx(i)}
-            className="w-2.5 h-2.5 rounded-full border-0 cursor-pointer transition-all"
-            style={{ background: i === idx ? "#B8732F" : "rgba(255,255,255,0.75)" }}
-          />
-        ))}
-      </div>
-      {idx > 0 && (
-        <button
-          onClick={() => setIdx(idx - 1)}
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center border-0 cursor-pointer"
-          style={{ background: "rgba(255,255,255,0.85)" }}
-        >
-          <Icon name="ChevronLeft" size={18} />
-        </button>
-      )}
-      {idx < photos.length - 1 && (
-        <button
-          onClick={() => setIdx(idx + 1)}
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center border-0 cursor-pointer"
-          style={{ background: "rgba(255,255,255,0.85)" }}
-        >
-          <Icon name="ChevronRight" size={18} />
-        </button>
-      )}
-    </div>
-  );
-}
-
 function PhotoCollage({ photos, alt }: { photos: string[]; alt: string }) {
   return (
     <div className="grid grid-cols-2 gap-1.5 w-full p-1.5">
@@ -71,7 +28,7 @@ function NewsGallery() {
 }
 
 function EnofyaGallery() {
-  return <PhotoGallery photos={ENOFYA_PHOTOS} alt="Енофья в бронзе" />;
+  return <PhotoCollage photos={ENOFYA_PHOTOS} alt="Енофья в бронзе" />;
 }
 
 export default function IndexNews() {
