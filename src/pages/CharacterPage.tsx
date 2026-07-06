@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useSearchParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -14,8 +14,6 @@ export { characters };
 
 export default function CharacterPage() {
   const { slug } = useParams<{ slug: string }>();
-  const [searchParams] = useSearchParams();
-  const fromQr = searchParams.get("from") === "qr";
   const char = characters.find((c) => c.slug === slug);
   const hasOwnCounter = !!slug && OWN_COUNTER_SLUGS.includes(slug);
   const [arOpen, setArOpen] = useState(false);
@@ -30,8 +28,9 @@ export default function CharacterPage() {
 
     let shouldIncrement: boolean;
     if (hasOwnCounter) {
-      // Енофья: засчитываем переход по QR не чаще раза в день на устройство
-      shouldIncrement = fromQr && localStorage.getItem(key) !== today;
+      // Енофья: засчитываем любой заход на её страницу не чаще раза в день на устройство
+      // (QR у статуэтки ведёт на /characters/enofya без параметров)
+      shouldIncrement = localStorage.getItem(key) !== today;
     } else {
       shouldIncrement = !localStorage.getItem(key);
     }
@@ -51,7 +50,7 @@ export default function CharacterPage() {
         setFoundCount(typeof d.count === "number" ? d.count + FINDER_BASE : null);
       })
       .catch(() => {});
-  }, [slug, char?.location, hasOwnCounter, fromQr]);
+  }, [slug, char?.location, hasOwnCounter]);
 
   useSeo({
     title: char
