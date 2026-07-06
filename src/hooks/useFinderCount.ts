@@ -67,6 +67,25 @@ export function useFinderCount(): number | null {
   return useFinderData().count;
 }
 
+export function useCharacterData(slug: string): { count: number | null; updatedAt: string | null } {
+  const [count, setCount] = useState<number | null>(null);
+  const [updatedAt, setUpdatedAt] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`${CHARACTER_API}?slug=${encodeURIComponent(slug)}`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => {
+        if (typeof d.count === "number") {
+          setCount(d.count);
+          setUpdatedAt(typeof d.updated_at === "string" ? d.updated_at : null);
+        }
+      })
+      .catch(() => {});
+  }, [slug]);
+
+  return { count, updatedAt };
+}
+
 const FOUND_FLAG = "finder-found-counted";
 
 // module rev: 3

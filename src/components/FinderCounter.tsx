@@ -1,11 +1,21 @@
 import { useState, useEffect, useRef } from "react";
-import { useFinderData, pluralPeople } from "@/hooks/useFinderCount";
+import { useFinderData, useCharacterData, pluralPeople } from "@/hooks/useFinderCount";
 import { playCoin } from "@/hooks/useSound";
 
 export default function FinderCounter() {
   const { count, updatedAt } = useFinderData();
+  const { count: enofyaCount } = useCharacterData("enofya");
   const [display, setDisplay] = useState(0);
+  const [enofyaDisplay, setEnofyaDisplay] = useState(0);
   const [splashes, setSplashes] = useState<number[]>([]);
+  const [enofyaSplashes, setEnofyaSplashes] = useState<number[]>([]);
+
+  const handleEnofyaSplash = () => {
+    playCoin();
+    const id = Date.now();
+    setEnofyaSplashes((s) => [...s, id]);
+    setTimeout(() => setEnofyaSplashes((s) => s.filter((x) => x !== id)), 700);
+  };
 
   const handleSplash = () => {
     playCoin();
@@ -34,6 +44,19 @@ export default function FinderCounter() {
     };
     requestAnimationFrame(tick);
   }, [count]);
+
+  useEffect(() => {
+    if (enofyaCount === null) return;
+    const duration = 1600;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setEnofyaDisplay(Math.round(enofyaCount * eased));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [enofyaCount]);
 
   if (count === null) return null;
 
@@ -96,9 +119,49 @@ export default function FinderCounter() {
           Обновлено: {updatedLabel}
         </p>
       )}
-      <p className="font-body text-xs sm:text-sm italic mt-1" style={{ color: "rgba(245,230,211,0.7)" }}>
-        Енофья скоро будет ждать вас 💛
-      </p>
+      {enofyaCount !== null && (
+        <button
+          type="button"
+          onClick={handleEnofyaSplash}
+          onMouseEnter={handleHover}
+          className="relative inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-lg cursor-pointer transition-transform hover:scale-[1.03] active:scale-95 mt-3"
+          style={{
+            background: "rgba(253, 246, 238, 0.12)",
+            border: "1px solid rgba(184,115,51,0.45)",
+            backdropFilter: "blur(8px)",
+          }}
+        >
+          {enofyaSplashes.map((id) => (
+            <span
+              key={id}
+              className="absolute inset-0 rounded-full pointer-events-none animate-finder-splash"
+              style={{ border: "2px solid var(--bronze)" }}
+            />
+          ))}
+          <span className="relative flex h-2.5 w-2.5">
+            <span
+              className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
+              style={{ backgroundColor: "var(--bronze)" }}
+            />
+            <span
+              className="relative inline-flex rounded-full h-2.5 w-2.5"
+              style={{ backgroundColor: "var(--bronze)" }}
+            />
+          </span>
+          <span className="font-body text-sm sm:text-base" style={{ color: "rgba(245,230,211,0.9)" }}>
+            Енофью нашли
+          </span>
+          <span
+            className="font-display font-bold text-lg sm:text-xl tabular-nums"
+            style={{ color: "var(--bronze)" }}
+          >
+            {enofyaDisplay.toLocaleString("ru-RU")}
+          </span>
+          <span className="font-body text-sm sm:text-base" style={{ color: "rgba(245,230,211,0.9)" }}>
+            {pluralPeople(enofyaDisplay)}
+          </span>
+        </button>
+      )}
     </div>
   );
 }
