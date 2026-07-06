@@ -107,14 +107,14 @@ export default function CharacterPage() {
                       {char.location}
                     </span>
                   </div>
-                ) : (
+                ) : !hasOwnCounter ? (
                   <div className="flex items-center justify-center gap-1 mt-2">
                     <Icon name="Clock" size={14} />
                     <span className="font-body text-sm" style={{ color: "var(--bronze)" }}>
                       Скоро появится в городе
                     </span>
                   </div>
-                )}
+                ) : null}
                 {foundCount !== null && (
                   <div
                     className="inline-flex items-center gap-2 rounded-full px-4 py-2 mt-4"
@@ -131,7 +131,7 @@ export default function CharacterPage() {
                       />
                     </span>
                     <span className="font-body text-sm" style={{ color: "#5A3E2B" }}>
-                      {hasOwnCounter ? "Ко мне заглянули уже" : "Меня нашли уже"}
+                      Меня нашли уже
                     </span>
                     <span className="font-display font-bold text-base tabular-nums" style={{ color: "var(--bronze)" }}>
                       {foundCount.toLocaleString("ru-RU")}
