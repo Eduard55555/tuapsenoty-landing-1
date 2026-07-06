@@ -112,4 +112,6 @@ export const NEWS_PHOTOS = [
 export const ENOFYA_PHOTOS = [
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/bc45f1a50097404aaefe37e2abda7cc8.webp",
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/c8be351b65cb4ba6bf6a901e581c755c.webp",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/f0216fca-6e9c-4243-873c-2d9dd96aad3a.jpg",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/fd9cbcfa-385e-4c29-a4e6-65318036e55a.jpg",
 ];
