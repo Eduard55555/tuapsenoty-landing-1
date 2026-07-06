@@ -127,7 +127,7 @@ export default function Sponsors() {
                     </div>
                     {s.photo && (
                       <img src={s.photo} alt={`${s.name} — вывеска`}
-                        className="w-full h-40 sm:flex-1 object-cover" />
+                        className="w-full object-contain" />
                     )}
                   </div>
                   <div className="p-6 flex flex-col flex-1">
