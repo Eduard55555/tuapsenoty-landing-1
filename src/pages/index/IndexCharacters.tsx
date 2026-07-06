@@ -125,7 +125,7 @@ export default function IndexCharacters() {
                       </div>
                     ) : null}
 
-                    {foundCount !== null && char.location && (
+                    {foundCount !== null && char.location && char.slug !== "enofya" && (
                       <div className="flex items-center justify-center gap-1.5 mb-4">
                         <span className="relative flex h-2 w-2">
                           <span className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
