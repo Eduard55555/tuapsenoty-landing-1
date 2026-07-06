@@ -7,15 +7,37 @@ import useSeo from "@/hooks/useSeo";
 interface Sponsor {
   name: string;
   logo: string;
+  logoImage?: string;
   category: string;
   description: string;
   services: string[];
+  address?: string;
   url: string;
+  urlLabel?: string;
   color: string;
   isVacant?: boolean;
+  featured?: boolean;
 }
 
 const sponsors: Sponsor[] = [
+  {
+    name: "Рестобар V*MESTE — первый дом Енофьи",
+    logo: "🤝",
+    logoImage: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/files/8ff257ad-cdb4-4732-9b12-ec052cf93164.jpg",
+    category: "Рестобар · Партнёр",
+    description:
+      "С огромной радостью объявляем о начале сотрудничества с рестобаром V*MESTE! Именно здесь временно поселилась наша бронзовая бабушка Енофья — это её первый «тестовый дом» в городе. V*MESTE — место, где любят семьями, вкусно кормят и создают настоящую атмосферу уюта. Идеальное пространство для хлебосольной Енофьи, которая тоже всегда рада гостям. Загляните, чтобы поздороваться с Енофьей, сфотографироваться с ней и попробовать знаменитую пиццу и десерты.",
+    services: [
+      "Первый дом бронзовой Енофьи",
+      "Знаменитая пицца и десерты",
+      "Уютная семейная атмосфера",
+    ],
+    address: "г. Туапсе, Морской бульвар, 3",
+    url: "/characters/enofya",
+    urlLabel: "Познакомиться с Енофьей",
+    color: "from-amber-100 to-teal-100",
+    featured: true,
+  },
   {
     name: "Здесь может быть ваш бизнес",
     logo: "✨",
@@ -81,44 +103,63 @@ export default function Sponsors() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {sponsors.map((s, i) => (
               <div key={i}
-                className="rounded-3xl overflow-hidden card-hover flex flex-col"
+                className={`rounded-3xl overflow-hidden card-hover flex flex-col ${s.featured ? "sm:col-span-2 lg:col-span-3" : ""}`}
                 style={{
                   background: s.isVacant ? "rgba(255,255,255,0.6)" : "#fff",
                   border: s.isVacant
                     ? "2px dashed rgba(184,115,51,0.4)"
+                    : s.featured
+                    ? "2px solid var(--bronze)"
                     : "1px solid rgba(184,115,51,0.15)",
                 }}>
-                <div className={`bg-gradient-to-br ${s.color} flex items-center justify-center`}
-                  style={{ height: "140px" }}>
-                  <span className="text-6xl">{s.logo}</span>
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <p className="font-body text-xs font-bold uppercase tracking-wider mb-1"
-                    style={{ color: "var(--bronze)" }}>
-                    {s.category}
-                  </p>
-                  <h3 className="font-display text-2xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
-                    {s.name}
-                  </h3>
-                  <p className="font-body text-sm mb-4" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
-                    {s.description}
-                  </p>
-                  <div className="space-y-2 mb-5">
-                    {s.services.map((srv, j) => (
-                      <div key={j} className="flex items-center gap-2">
-                        <Icon name="Check" size={16} style={{ color: "var(--sea)" }} />
-                        <span className="font-body text-sm" style={{ color: "#5A3E2B" }}>
-                          {srv}
+                <div className={`${s.featured ? "sm:flex" : "flex flex-col"}`}>
+                  <div className={`bg-gradient-to-br ${s.color} flex items-center justify-center flex-shrink-0`}
+                    style={{ height: s.featured ? undefined : "140px", minHeight: "140px", width: s.featured ? undefined : "100%" }}>
+                    {s.logoImage ? (
+                      <img src={s.logoImage} alt={s.name}
+                        className={`object-cover ${s.featured ? "w-full sm:w-64 h-48 sm:h-full" : "w-full h-full"}`} />
+                    ) : (
+                      <span className="text-6xl">{s.logo}</span>
+                    )}
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <p className="font-body text-xs font-bold uppercase tracking-wider mb-1"
+                      style={{ color: "var(--bronze)" }}>
+                      {s.category}
+                    </p>
+                    <h3 className="font-display text-2xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
+                      {s.name}
+                    </h3>
+                    <p className="font-body text-sm mb-4" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
+                      {s.description}
+                    </p>
+                    <div className="space-y-2 mb-4">
+                      {s.services.map((srv, j) => (
+                        <div key={j} className="flex items-center gap-2">
+                          <Icon name="Check" size={16} style={{ color: "var(--sea)" }} />
+                          <span className="font-body text-sm" style={{ color: "#5A3E2B" }}>
+                            {srv}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    {s.address && (
+                      <div className="flex items-center gap-2 mb-5">
+                        <Icon name="MapPin" size={16} style={{ color: "var(--bronze)" }} />
+                        <span className="font-body text-sm font-semibold" style={{ color: "var(--bronze)" }}>
+                          {s.address}
                         </span>
                       </div>
-                    ))}
+                    )}
+                    <a href={s.url}
+                      target={s.url.startsWith("http") || s.url.startsWith("mailto") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className="btn-primary text-sm mt-auto justify-center"
+                      style={s.isVacant ? { background: "linear-gradient(135deg, var(--teal), var(--sea-light))", color: "var(--warm-dark)", boxShadow: "0 4px 15px rgba(64,224,208,0.4)" } : undefined}>
+                      <Icon name={s.isVacant ? "Sparkles" : s.featured ? "Heart" : "ExternalLink"} size={16} />
+                      {s.urlLabel || (s.isVacant ? "Стать партнёром" : "Подробнее")}
+                    </a>
                   </div>
-                  <a href={s.url} target="_blank" rel="noopener noreferrer"
-                    className="btn-primary text-sm mt-auto justify-center"
-                    style={s.isVacant ? { background: "linear-gradient(135deg, var(--teal), var(--sea-light))", color: "var(--warm-dark)", boxShadow: "0 4px 15px rgba(64,224,208,0.4)" } : undefined}>
-                    <Icon name={s.isVacant ? "Sparkles" : "ExternalLink"} size={16} />
-                    {s.isVacant ? "Стать партнёром" : "Подробнее"}
-                  </a>
                 </div>
               </div>
             ))}
