@@ -24,7 +24,7 @@ const TUAPSE_CENTER = "39.072500,44.099000";
 
 const spots: Spot[] = [
   { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed", mapSrc: ENOTYCH_MAP },
-  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Набережная", status: "placed", mapSrc: ENOFYA_MAP },
+  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Морской проспект, 3", status: "placed", mapSrc: ENOFYA_MAP },
   { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
   { slug: "enira", name: "Енира", emoji: "🐚", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
   { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
