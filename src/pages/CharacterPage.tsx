@@ -25,11 +25,16 @@ export default function CharacterPage() {
     if (!slug) return;
     if (!hasOwnCounter && !char?.location) return;
 
+    const today = new Date().toISOString().slice(0, 10);
     const key = `found-${slug}`;
-    const already = localStorage.getItem(key);
 
-    // Персонажи со своим счётчиком (Енофья) прибавляются ТОЛЬКО при переходе по QR (?from=qr)
-    const shouldIncrement = hasOwnCounter ? fromQr && !already : !already;
+    let shouldIncrement: boolean;
+    if (hasOwnCounter) {
+      // Енофья: засчитываем переход по QR не чаще раза в день на устройство
+      shouldIncrement = fromQr && localStorage.getItem(key) !== today;
+    } else {
+      shouldIncrement = !localStorage.getItem(key);
+    }
     const method = shouldIncrement ? "POST" : "GET";
 
     const url = hasOwnCounter
@@ -39,9 +44,9 @@ export default function CharacterPage() {
     fetch(url, { method, cache: "no-store" })
       .then((r) => r.json())
       .then((d) => {
-        // флаг ставим только после УСПЕШНОГО прибавления, чтобы засчёт не «сгорал» при сбое сети
+        // отметку ставим только после УСПЕШНОГО прибавления, чтобы засчёт не «сгорал» при сбое сети
         if (shouldIncrement && typeof d.count === "number") {
-          localStorage.setItem(key, "1");
+          localStorage.setItem(key, hasOwnCounter ? today : "1");
         }
         setFoundCount(typeof d.count === "number" ? d.count + FINDER_BASE : null);
       })
