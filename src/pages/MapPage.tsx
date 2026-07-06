@@ -15,6 +15,8 @@ interface Spot {
 
 const ENOTYCH_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor";
 
+const ENOFYA_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A706221539dc93604d0beec3a3496e2a6aaa2d808267cff39add22954de10ad95&source=constructor";
+
 const tuapseMap = (coords: string) =>
   `https://yandex.ru/map-widget/v1/?ll=${coords}&z=16&pt=${coords},comma`;
 
@@ -22,7 +24,7 @@ const TUAPSE_CENTER = "39.072500,44.099000";
 
 const spots: Spot[] = [
   { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed", mapSrc: ENOTYCH_MAP },
-  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
+  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Набережная", status: "placed", mapSrc: ENOFYA_MAP },
   { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
   { slug: "enira", name: "Енира", emoji: "🐚", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
   { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
