@@ -147,7 +147,7 @@ export default function IndexNews() {
               <div className="md:w-2/5 relative">
                 <EnofyaGallery />
               </div>
-              <div className="p-4 sm:p-8 md:w-3/5">
+              <div className="p-4 sm:p-8 md:w-3/5 flex flex-col">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
                     style={{ backgroundColor: "rgba(184,115,51,0.15)", color: "var(--bronze)" }}>
@@ -161,15 +161,16 @@ export default function IndexNews() {
                   Енофья отлита в бронзе!
                 </h3>
                 <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
-                  Добрая бабушка семьи — Енофья — воплощена мастерами. В чепце и фартуке, с корзинкой полной гостинцев, она уже встречает гостей Туапсе с улыбкой и теплом на Морском проспекте, 3.
+                  Добрая бабушка семьи — Енофья — воплощена мастерами. В чепце и фартуке, с корзинкой полной гостинцев, она уже встречает гостей Туапсе с улыбкой и теплом на Морском проспекте, 3 в рестобаре V*MESTE.
                 </p>
-                <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
+                <div className="rounded-2xl overflow-hidden flex-1 min-h-64" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
                   <iframe
                     src="https://yandex.ru/map-widget/v1/?um=constructor%3A706221539dc93604d0beec3a3496e2a6aaa2d808267cff39add22954de10ad95&source=constructor"
                     width="100%"
-                    height="180"
+                    height="100%"
                     frameBorder={0}
                     title="Енофья на карте"
+                    style={{ display: "block", minHeight: 256 }}
                   />
                 </div>
               </div>
