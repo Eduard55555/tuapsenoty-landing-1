@@ -191,10 +191,8 @@ export default function Sponsors() {
                       </div>
                     )}
                     {s.photo2 && (
-                      <div className="relative flex-1 min-h-0 my-3">
-                        <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
-                          className="absolute inset-0 w-full h-full object-contain object-left rounded-2xl" />
-                      </div>
+                      <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
+                        className="w-auto max-h-56 object-contain object-left rounded-2xl my-3" />
                     )}
                     <div className="flex flex-col sm:flex-row gap-3">
                       <a href={s.url}
