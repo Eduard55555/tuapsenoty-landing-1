@@ -152,10 +152,6 @@ export default function Sponsors() {
                     <h3 className="font-display text-2xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
                       {s.name}
                     </h3>
-                    {s.photo2 && (
-                      <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
-                        className="float-right ml-4 mb-3 w-auto max-h-56 object-contain rounded-2xl" />
-                    )}
                     <p className="font-body text-sm mb-4" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
                       {s.description}
                     </p>
@@ -169,32 +165,39 @@ export default function Sponsors() {
                         </div>
                       ))}
                     </div>
-                    {s.highlights && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {s.highlights.map((h, j) => (
-                          <span key={j}
-                            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-body text-sm font-bold"
-                            style={{
-                              background: "#fff",
-                              color: "var(--bronze)",
-                              border: "1.5px solid rgba(184,115,51,0.35)",
-                              boxShadow: "0 2px 8px rgba(184,115,51,0.12)",
-                            }}>
-                            <Icon name={h.icon} size={16} style={{ color: "var(--bronze)" }} />
-                            {h.label}
-                          </span>
-                        ))}
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-5">
+                      <div className="flex-1">
+                        {s.highlights && (
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {s.highlights.map((h, j) => (
+                              <span key={j}
+                                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-body text-sm font-bold"
+                                style={{
+                                  background: "#fff",
+                                  color: "var(--bronze)",
+                                  border: "1.5px solid rgba(184,115,51,0.35)",
+                                  boxShadow: "0 2px 8px rgba(184,115,51,0.12)",
+                                }}>
+                                <Icon name={h.icon} size={16} style={{ color: "var(--bronze)" }} />
+                                {h.label}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                        {s.address && (
+                          <div className="flex items-center gap-2">
+                            <Icon name="MapPin" size={16} style={{ color: "var(--bronze)" }} />
+                            <span className="font-body text-sm font-semibold" style={{ color: "var(--bronze)" }}>
+                              {s.address}
+                            </span>
+                          </div>
+                        )}
                       </div>
-                    )}
-                    {s.address && (
-                      <div className="flex items-center gap-2 mb-5">
-                        <Icon name="MapPin" size={16} style={{ color: "var(--bronze)" }} />
-                        <span className="font-body text-sm font-semibold" style={{ color: "var(--bronze)" }}>
-                          {s.address}
-                        </span>
-                      </div>
-                    )}
-                    <div className="clear-both" />
+                      {s.photo2 && (
+                        <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
+                          className="w-auto max-h-56 object-contain rounded-2xl flex-shrink-0" />
+                      )}
+                    </div>
                     <div className="flex flex-col sm:flex-row gap-3">
                       <a href={s.url}
                         target={s.url.startsWith("http") || s.url.startsWith("mailto") ? "_blank" : undefined}
