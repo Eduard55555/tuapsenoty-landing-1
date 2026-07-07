@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -10,27 +9,19 @@ interface Spot {
   emoji: string;
   location: string;
   status: "placed" | "soon";
-  mapSrc: string;
 }
 
-const ENOTYCH_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor";
-
-const ENOFYA_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A9fcbfbcb651b40d9e69ee5338b8b1851be093eac55d8eeecc355d63a5cb6f9bc&source=constructor";
-
-const tuapseMap = (coords: string) =>
-  `https://yandex.ru/map-widget/v1/?ll=${coords}&z=16&pt=${coords},comma`;
-
-const TUAPSE_CENTER = "39.072500,44.099000";
+const COMMON_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A9fcbfbcb651b40d9e69ee5338b8b1851be093eac55d8eeecc355d63a5cb6f9bc&source=constructor";
 
 const spots: Spot[] = [
-  { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed", mapSrc: ENOTYCH_MAP },
-  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Морской бульвар, 3", status: "placed", mapSrc: ENOFYA_MAP },
-  { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
-  { slug: "enira", name: "Енира", emoji: "🐚", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
-  { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
-  { slug: "enovey", name: "Еновей", emoji: "🗺️", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
-  { slug: "enosik", name: "Еносик", emoji: "🪸", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
-  { slug: "enosha", name: "Еноша", emoji: "⚓", location: "Скоро определим", status: "soon", mapSrc: tuapseMap(TUAPSE_CENTER) },
+  { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed" },
+  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Морской бульвар, 3", status: "placed" },
+  { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon" },
+  { slug: "enira", name: "Енира", emoji: "🐚", location: "Скоро определим", status: "soon" },
+  { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon" },
+  { slug: "enovey", name: "Еновей", emoji: "🗺️", location: "Скоро определим", status: "soon" },
+  { slug: "enosik", name: "Еносик", emoji: "🪸", location: "Скоро определим", status: "soon" },
+  { slug: "enosha", name: "Еноша", emoji: "⚓", location: "Скоро определим", status: "soon" },
 ];
 
 const placedCount = spots.filter((s) => s.status === "placed").length;
@@ -42,14 +33,6 @@ export default function MapPage() {
       "Карта расположения бронзовых енотов-хранителей по Туапсе. Узнайте, где установлен Енотыч и где появятся остальные еноты семьи.",
     path: "/map",
   });
-  const [active, setActive] = useState<Spot>(spots[0]);
-  const [reloadKey, setReloadKey] = useState(0);
-
-  const selectSpot = (s: Spot) => {
-    setActive(s);
-    setReloadKey((k) => k + 1);
-  };
-
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <SiteHeader />
@@ -74,9 +57,8 @@ export default function MapPage() {
             <div className="lg:col-span-2 rounded-3xl overflow-hidden shadow-2xl"
               style={{ border: "3px solid rgba(184,115,51,0.2)", minHeight: 420 }}>
               <iframe
-                key={`${active.slug}-${reloadKey}`}
-                title={`Карта — ${active.name}`}
-                src={active.mapSrc}
+                title="Карта — где найти енотов"
+                src={COMMON_MAP}
                 width="100%"
                 height="520"
                 frameBorder="0"
@@ -87,17 +69,15 @@ export default function MapPage() {
 
             <div className="space-y-3">
               {spots.map((s) => {
-                const isActive = s.slug === active.slug;
                 const isPlaced = s.status === "placed";
                 return (
-                  <button
+                  <div
                     key={s.slug}
-                    onClick={() => selectSpot(s)}
-                    className="w-full text-left rounded-2xl p-4 transition-all flex items-center gap-3"
+                    className="w-full text-left rounded-2xl p-4 flex items-center gap-3"
                     style={{
-                      background: isActive ? "linear-gradient(135deg, var(--teal-light), var(--teal))" : "#fff",
-                      border: isActive ? "2px solid var(--teal)" : "2px solid rgba(184,115,51,0.15)",
-                      boxShadow: isActive ? "0 6px 18px rgba(64,224,208,0.35)" : "0 2px 8px rgba(0,0,0,0.05)",
+                      background: "#fff",
+                      border: "2px solid rgba(184,115,51,0.15)",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
                     }}
                   >
                     <span className="text-2xl flex-shrink-0">{s.emoji}</span>
@@ -118,7 +98,7 @@ export default function MapPage() {
                       <Icon name={isPlaced ? "Check" : "Clock"} size={13} />
                       {isPlaced ? "Установлен" : "Скоро"}
                     </span>
-                  </button>
+                  </div>
                 );
               })}
             </div>
