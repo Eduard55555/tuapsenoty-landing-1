@@ -12,6 +12,8 @@ interface Sponsor {
   category: string;
   description: string;
   services: string[];
+  highlights?: { icon: string; label: string }[];
+  routeUrl?: string;
   address?: string;
   url: string;
   urlLabel?: string;
@@ -34,6 +36,12 @@ const sponsors: Sponsor[] = [
       "Знаменитая пицца и десерты",
       "Уютная семейная атмосфера",
     ],
+    highlights: [
+      { icon: "Coffee", label: "Кофе" },
+      { icon: "Pizza", label: "Пицца" },
+      { icon: "Heart", label: "Енофья" },
+    ],
+    routeUrl: "https://yandex.ru/maps/?text=Туапсе, Морской бульвар, 3",
     address: "г. Туапсе, Морской бульвар, 3",
     url: "/characters/enofya",
     urlLabel: "Познакомиться с Енофьей",
@@ -107,7 +115,11 @@ export default function Sponsors() {
               <div key={i}
                 className={`rounded-3xl overflow-hidden card-hover flex flex-col ${s.featured ? "sm:col-span-2 lg:col-span-3" : ""}`}
                 style={{
-                  background: s.isVacant ? "rgba(255,255,255,0.6)" : "#fff",
+                  background: s.isVacant
+                    ? "rgba(255,255,255,0.6)"
+                    : s.featured
+                    ? "linear-gradient(135deg, #FBF3E4, #FDF8EF)"
+                    : "#fff",
                   border: s.isVacant
                     ? "2px dashed rgba(184,115,51,0.4)"
                     : s.featured
@@ -151,6 +163,23 @@ export default function Sponsors() {
                         </div>
                       ))}
                     </div>
+                    {s.highlights && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {s.highlights.map((h, j) => (
+                          <span key={j}
+                            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-body text-sm font-bold"
+                            style={{
+                              background: "#fff",
+                              color: "var(--bronze)",
+                              border: "1.5px solid rgba(184,115,51,0.35)",
+                              boxShadow: "0 2px 8px rgba(184,115,51,0.12)",
+                            }}>
+                            <Icon name={h.icon} size={16} style={{ color: "var(--bronze)" }} />
+                            {h.label}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     {s.address && (
                       <div className="flex items-center gap-2 mb-5">
                         <Icon name="MapPin" size={16} style={{ color: "var(--bronze)" }} />
@@ -159,14 +188,26 @@ export default function Sponsors() {
                         </span>
                       </div>
                     )}
-                    <a href={s.url}
-                      target={s.url.startsWith("http") || s.url.startsWith("mailto") ? "_blank" : undefined}
-                      rel="noopener noreferrer"
-                      className="btn-primary text-sm mt-auto justify-center"
-                      style={s.isVacant ? { background: "linear-gradient(135deg, var(--teal), var(--sea-light))", color: "var(--warm-dark)", boxShadow: "0 4px 15px rgba(64,224,208,0.4)" } : undefined}>
-                      <Icon name={s.isVacant ? "Sparkles" : s.featured ? "Heart" : "ExternalLink"} size={16} />
-                      {s.urlLabel || (s.isVacant ? "Стать партнёром" : "Подробнее")}
-                    </a>
+                    <div className="mt-auto flex flex-col sm:flex-row gap-3">
+                      <a href={s.url}
+                        target={s.url.startsWith("http") || s.url.startsWith("mailto") ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                        className="btn-primary text-sm justify-center flex-1"
+                        style={s.isVacant ? { background: "linear-gradient(135deg, var(--teal), var(--sea-light))", color: "var(--warm-dark)", boxShadow: "0 4px 15px rgba(64,224,208,0.4)" } : undefined}>
+                        <Icon name={s.isVacant ? "Sparkles" : s.featured ? "Heart" : "ExternalLink"} size={16} />
+                        {s.urlLabel || (s.isVacant ? "Стать партнёром" : "Подробнее")}
+                      </a>
+                      {s.routeUrl && (
+                        <a href={s.routeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-primary text-sm justify-center flex-1"
+                          style={{ background: "linear-gradient(135deg, #FF6B35, #FF9558)", color: "#fff", boxShadow: "0 4px 15px rgba(255,107,53,0.4)" }}>
+                          <Icon name="MapPin" size={16} />
+                          📍 Построить маршрут
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
