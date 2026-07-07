@@ -155,18 +155,18 @@ export default function Sponsors() {
                     <p className="font-body text-sm mb-4" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
                       {s.description}
                     </p>
-                    <div className="space-y-2 mb-4">
-                      {s.services.map((srv, j) => (
-                        <div key={j} className="flex items-center gap-2">
-                          <Icon name="Check" size={16} style={{ color: "var(--sea)" }} />
-                          <span className="font-body text-sm" style={{ color: "#5A3E2B" }}>
-                            {srv}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
                     <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-5">
                       <div className="flex-1">
+                        <div className="space-y-2 mb-4">
+                          {s.services.map((srv, j) => (
+                            <div key={j} className="flex items-center gap-2">
+                              <Icon name="Check" size={16} style={{ color: "var(--sea)" }} />
+                              <span className="font-body text-sm" style={{ color: "#5A3E2B" }}>
+                                {srv}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                         {s.highlights && (
                           <div className="flex flex-wrap gap-2 mb-4">
                             {s.highlights.map((h, j) => (
