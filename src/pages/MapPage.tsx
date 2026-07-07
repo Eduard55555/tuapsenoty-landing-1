@@ -15,7 +15,7 @@ interface Spot {
 
 const ENOTYCH_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor";
 
-const ENOFYA_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A706221539dc93604d0beec3a3496e2a6aaa2d808267cff39add22954de10ad95&source=constructor";
+const ENOFYA_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A9fcbfbcb651b40d9e69ee5338b8b1851be093eac55d8eeecc355d63a5cb6f9bc&source=constructor";
 
 const tuapseMap = (coords: string) =>
   `https://yandex.ru/map-widget/v1/?ll=${coords}&z=16&pt=${coords},comma`;
