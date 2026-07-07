@@ -190,6 +190,10 @@ export default function Sponsors() {
                         </span>
                       </div>
                     )}
+                    {s.photo2 && (
+                      <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
+                        className="w-full rounded-2xl object-cover mb-5" />
+                    )}
                     <div className="mt-auto flex flex-col sm:flex-row gap-3">
                       <a href={s.url}
                         target={s.url.startsWith("http") || s.url.startsWith("mailto") ? "_blank" : undefined}
@@ -210,10 +214,6 @@ export default function Sponsors() {
                         </a>
                       )}
                     </div>
-                    {s.photo2 && (
-                      <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
-                        className="w-full rounded-2xl object-cover mt-5" />
-                    )}
                   </div>
                 </div>
               </div>
