@@ -144,7 +144,7 @@ export default function Sponsors() {
                         className="w-full object-contain" />
                     )}
                   </div>
-                  <div className="p-6 flex flex-col flex-1">
+                  <div className="p-6 flex flex-col flex-1 relative">
                     <p className="font-body text-xs font-bold uppercase tracking-wider mb-1"
                       style={{ color: "var(--bronze)" }}>
                       {s.category}
@@ -191,9 +191,9 @@ export default function Sponsors() {
                       </div>
                     )}
                     {s.photo2 && (
-                      <div className="flex-1 min-h-0 mb-5">
+                      <div className="flex-1 min-h-0 flex items-center justify-start mb-5">
                         <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
-                          className="rounded-2xl object-cover w-full h-full" />
+                          className="rounded-2xl object-contain max-h-full w-auto" />
                       </div>
                     )}
                     <div className="flex flex-col sm:flex-row gap-3">
