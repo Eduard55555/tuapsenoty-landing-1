@@ -9,7 +9,6 @@ interface Sponsor {
   logo: string;
   logoImage?: string;
   photo?: string;
-  photo2?: string;
   category: string;
   description: string;
   services: string[];
@@ -29,7 +28,6 @@ const sponsors: Sponsor[] = [
     logo: "🤝",
     logoImage: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/4cc69fd9-1c78-40a2-9826-e9567456a31d.png",
     photo: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/3fad70de-3731-4c1a-9d2a-455db8c25d6c.png",
-    photo2: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/cbf8bf6f-5924-4d6e-a928-e4a7b785e8ed.png",
     category: "Рестобар · Партнёр",
     description:
       "С огромной радостью объявляем о начале сотрудничества с рестобаром V*MESTE! Рестобар V*MESTE — первый дом Енофьи. Именно здесь временно поселилась наша бронзовая бабушка — это её первый «тестовый дом» в городе. V*MESTE — место, где вкусно кормят и создают настоящую атмосферу уюта для семейного отдыха. Идеальное пространство для хлебосольной Енофьи, которая тоже всегда рада гостям. Загляните, чтобы поздороваться с Енофьей, сфотографироваться с ней и попробовать знаменитую пиццу и десерты. А ещё здесь варят отличный кофе — так что можно не торопиться, взять чашку капучино и посидеть рядом с Енофьей, пока она привыкает к новой компании.",
@@ -144,7 +142,7 @@ export default function Sponsors() {
                         className="w-full object-contain" />
                     )}
                   </div>
-                  <div className="p-6 flex flex-col flex-1 relative">
+                  <div className="p-6 flex flex-col flex-1">
                     <p className="font-body text-xs font-bold uppercase tracking-wider mb-1"
                       style={{ color: "var(--bronze)" }}>
                       {s.category}
@@ -190,13 +188,7 @@ export default function Sponsors() {
                         </span>
                       </div>
                     )}
-                    {s.photo2 && (
-                      <div className="flex-1 min-h-0 flex items-center justify-start mb-5">
-                        <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
-                          className="rounded-2xl object-contain max-h-full w-auto" />
-                      </div>
-                    )}
-                    <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="mt-auto flex flex-col sm:flex-row gap-3">
                       <a href={s.url}
                         target={s.url.startsWith("http") || s.url.startsWith("mailto") ? "_blank" : undefined}
                         rel="noopener noreferrer"
