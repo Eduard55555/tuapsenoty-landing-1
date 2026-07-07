@@ -152,6 +152,10 @@ export default function Sponsors() {
                     <h3 className="font-display text-2xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
                       {s.name}
                     </h3>
+                    {s.photo2 && (
+                      <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
+                        className="float-right ml-4 mb-3 w-auto max-h-56 object-contain rounded-2xl" />
+                    )}
                     <p className="font-body text-sm mb-4" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
                       {s.description}
                     </p>
@@ -190,10 +194,7 @@ export default function Sponsors() {
                         </span>
                       </div>
                     )}
-                    {s.photo2 && (
-                      <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
-                        className="w-auto max-h-56 object-contain rounded-2xl mb-3 ml-auto -mt-2" />
-                    )}
+                    <div className="clear-both" />
                     <div className="flex flex-col sm:flex-row gap-3">
                       <a href={s.url}
                         target={s.url.startsWith("http") || s.url.startsWith("mailto") ? "_blank" : undefined}
