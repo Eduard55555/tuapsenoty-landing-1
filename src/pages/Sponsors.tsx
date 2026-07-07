@@ -143,10 +143,6 @@ export default function Sponsors() {
                       <img src={s.photo} alt={`${s.name} — вывеска`}
                         className="w-full object-contain" />
                     )}
-                    {s.photo2 && (
-                      <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
-                        className="w-full object-cover" />
-                    )}
                   </div>
                   <div className="p-6 flex flex-col flex-1">
                     <p className="font-body text-xs font-bold uppercase tracking-wider mb-1"
@@ -215,6 +211,12 @@ export default function Sponsors() {
                       )}
                     </div>
                   </div>
+                  {s.photo2 && (
+                    <div className="flex-shrink-0 sm:w-80">
+                      <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
+                        className="w-full h-full object-cover" />
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
