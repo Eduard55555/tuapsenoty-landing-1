@@ -210,13 +210,11 @@ export default function Sponsors() {
                         </a>
                       )}
                     </div>
-                  </div>
-                  {s.photo2 && (
-                    <div className="flex-shrink-0 sm:w-80">
+                    {s.photo2 && (
                       <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
-                        className="w-full h-full object-cover" />
-                    </div>
-                  )}
+                        className="w-full rounded-2xl object-cover mt-5" />
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
