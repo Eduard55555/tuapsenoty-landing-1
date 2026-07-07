@@ -191,10 +191,12 @@ export default function Sponsors() {
                       </div>
                     )}
                     {s.photo2 && (
-                      <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
-                        className="rounded-2xl object-contain mb-5 max-h-64 w-auto" />
+                      <div className="flex-1 min-h-0 mb-5">
+                        <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
+                          className="rounded-2xl object-cover w-full h-full" />
+                      </div>
                     )}
-                    <div className="mt-auto flex flex-col sm:flex-row gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
                       <a href={s.url}
                         target={s.url.startsWith("http") || s.url.startsWith("mailto") ? "_blank" : undefined}
                         rel="noopener noreferrer"
