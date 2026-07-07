@@ -13,7 +13,7 @@ export const characters = [
     ritual: "Потри удочку, фуражку или лапку. Загадай желание. Енотыч верит, что оно сбудется. И это уже полдела. А Енотыч постарается сделать так, чтобы оно сбылось.",
     location: "Набережная",
     color: "from-amber-100 to-yellow-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/562bd5d2802344239c93869ff2c2bc36.webp",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/dedcb879-e394-4ecf-b9a2-3f51e45fd402.png",
     video: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/videos/enotych-ar-v3.mp4",
   },
   {
@@ -26,7 +26,7 @@ export const characters = [
     ritual: "Погладь корзинку — и год будет сладким. Говорят, кто улыбнётся ей в ответ — у того даже грустный день становится сладким",
     location: "Морской бульвар, 3 — рестобар V*MESTE",
     color: "from-rose-100 to-orange-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/ad39aa7d34fd48aa9bb68504c28b0cc3.webp",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/77f4a412-aa81-4cbc-8468-c0857cd99cbc.png",
   },
   {
     slug: "tuapsey",
@@ -38,7 +38,7 @@ export const characters = [
     ritual: "Потри его по плечу и посмотри вдаль — говорят, там на горизонте уже ждёт твоя удача",
     location: "",
     color: "from-blue-100 to-teal-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/9c9d10753c734625b091be903995694d.webp",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/58afeb2e-e5a5-43ff-94c8-33a3fefa527f.png",
   },
   {
     slug: "enira",
