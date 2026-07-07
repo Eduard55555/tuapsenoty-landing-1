@@ -9,6 +9,7 @@ interface Sponsor {
   logo: string;
   logoImage?: string;
   photo?: string;
+  photo2?: string;
   category: string;
   description: string;
   services: string[];
@@ -28,6 +29,7 @@ const sponsors: Sponsor[] = [
     logo: "🤝",
     logoImage: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/4cc69fd9-1c78-40a2-9826-e9567456a31d.png",
     photo: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/3fad70de-3731-4c1a-9d2a-455db8c25d6c.png",
+    photo2: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/cbf8bf6f-5924-4d6e-a928-e4a7b785e8ed.png",
     category: "Рестобар · Партнёр",
     description:
       "С огромной радостью объявляем о начале сотрудничества с рестобаром V*MESTE! Рестобар V*MESTE — первый дом Енофьи. Именно здесь временно поселилась наша бронзовая бабушка — это её первый «тестовый дом» в городе. V*MESTE — место, где вкусно кормят и создают настоящую атмосферу уюта для семейного отдыха. Идеальное пространство для хлебосольной Енофьи, которая тоже всегда рада гостям. Загляните, чтобы поздороваться с Енофьей, сфотографироваться с ней и попробовать знаменитую пиццу и десерты. А ещё здесь варят отличный кофе — так что можно не торопиться, взять чашку капучино и посидеть рядом с Енофьей, пока она привыкает к новой компании.",
@@ -140,6 +142,10 @@ export default function Sponsors() {
                     {s.photo && (
                       <img src={s.photo} alt={`${s.name} — вывеска`}
                         className="w-full object-contain" />
+                    )}
+                    {s.photo2 && (
+                      <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
+                        className="w-full object-cover" />
                     )}
                   </div>
                   <div className="p-6 flex flex-col flex-1">
