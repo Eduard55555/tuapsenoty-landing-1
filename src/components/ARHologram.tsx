@@ -13,8 +13,22 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
   const holoRef = useRef<HTMLVideoElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
   const [hasAudio, setHasAudio] = useState(true);
+
+  const tryPlayWithSound = () => {
+    const v = holoRef.current;
+    if (!v) return;
+    v.muted = false;
+    v.volume = 1;
+    const p = v.play();
+    if (p && typeof p.then === "function") {
+      p.then(() => setMuted(false)).catch(() => {
+        v.muted = true;
+        setMuted(true);
+      });
+    }
+  };
 
   const checkAudio = () => {
     const v = holoRef.current as (HTMLVideoElement & {
@@ -101,7 +115,10 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
                 loop
                 muted={muted}
                 playsInline
-                onLoadedData={checkAudio}
+                onLoadedData={() => {
+                  checkAudio();
+                  tryPlayWithSound();
+                }}
                 onPlaying={checkAudio}
               />
             ) : (
