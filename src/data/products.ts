@@ -57,6 +57,26 @@ export const PRODUCTS: Product[] = [
     badgeColor: "#B8732F",
     stock: "Под заказ · ограниченная серия",
   },
+  {
+    id: "figure-new-1",
+    name: "Фигурка Туапсенота",
+    price: 950,
+    emoji: "🦝",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/0050f11c-291a-4e71-8686-cd5a58ec6e59.jfif",
+    description: "Частичка Туапсе для дома\n\nБронзовый хранитель, который принесёт тепло и уют в ваш дом. Ручная работа, приятный вес, благородный блеск «под бронзу».",
+    badge: "Новинка",
+    badgeColor: "#4CAF50",
+  },
+  {
+    id: "figure-new-2",
+    name: "Фигурка Туапсенота",
+    price: 950,
+    emoji: "🦝",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/08352612-7bdb-486a-a022-edd8ca2aa42c.jfif",
+    description: "Частичка Туапсе для дома\n\nБронзовый хранитель, который принесёт тепло и уют в ваш дом. Ручная работа, приятный вес, благородный блеск «под бронзу».",
+    badge: "Новинка",
+    badgeColor: "#4CAF50",
+  },
 ];
 
 export function buildCartUrl(p: Product, qty = 1): string {
