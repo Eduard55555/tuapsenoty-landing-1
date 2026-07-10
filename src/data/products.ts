@@ -59,7 +59,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "figure-new-1",
-    name: "Фигурка Туапсенота",
+    name: "Фигурка Енофьи",
     price: 950,
     emoji: "🦝",
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/0050f11c-291a-4e71-8686-cd5a58ec6e59.jfif",
@@ -69,7 +69,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "figure-new-2",
-    name: "Фигурка Туапсенота",
+    name: "Фигурка Туапсея",
     price: 950,
     emoji: "🦝",
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/08352612-7bdb-486a-a022-edd8ca2aa42c.jfif",
