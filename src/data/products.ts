@@ -4,6 +4,7 @@ export interface Product {
   price: number;
   emoji: string;
   image: string;
+  images?: string[];
   description: string;
   badge: string;
   badgeColor: string;
@@ -62,7 +63,13 @@ export const PRODUCTS: Product[] = [
     name: "Фигурка Енофьи",
     price: 950,
     emoji: "🦝",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/0050f11c-291a-4e71-8686-cd5a58ec6e59.jfif",
+    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/6c1b2819-39be-47db-977d-1d2258e05633.jfif",
+    images: [
+      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/6c1b2819-39be-47db-977d-1d2258e05633.jfif",
+      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/b1ac2392-4ae8-4f56-88c6-1b884132db1f.jfif",
+      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/6b86eb0a-a5a8-4eed-aa37-31d53a1c7cac.jfif",
+      "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/0c0350f2-4ec7-4b79-abff-3cb74ec54a7e.jfif",
+    ],
     description: "Частичка Туапсе для дома\n\nБронзовый хранитель, который принесёт тепло и уют в ваш дом. Ручная работа, приятный вес, благородный блеск «под бронзу».",
     badge: "Новинка",
     badgeColor: "#4CAF50",

@@ -3,6 +3,7 @@ import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import PhoneLink from "@/components/PhoneLink";
+import ProductGallery from "@/components/ProductGallery";
 import useSeo from "@/hooks/useSeo";
 import { PRODUCTS, buildCartUrl } from "@/data/products";
 
@@ -73,10 +74,8 @@ export default function Shop() {
                 boxShadow: "0 12px 40px rgba(184,115,51,0.18)",
               }}>
               <div className="relative">
-                <img src={p.image} alt={p.name}
-                  className="w-full object-contain"
-                  style={{ maxHeight: "180px", backgroundColor: "#f5f0eb" }} />
-                <span className="absolute top-2 left-2 font-body text-xs font-bold px-2 py-0.5 rounded-full"
+                <ProductGallery product={p} />
+                <span className="absolute top-2 left-2 z-10 font-body text-xs font-bold px-2 py-0.5 rounded-full"
                   style={{ backgroundColor: p.badgeColor, color: "white" }}>
                   {p.badge}
                 </span>
