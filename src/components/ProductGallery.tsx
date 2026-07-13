@@ -15,13 +15,13 @@ export default function ProductGallery({ product }: { product: Product }) {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-0.5" style={{ backgroundColor: "#f5f0eb" }}>
+    <div className="grid grid-cols-2 gap-0" style={{ backgroundColor: "#f5f0eb" }}>
       {photos.map((src, i) => (
         <img
           key={i}
           src={src}
           alt={`${product.name} — фото ${i + 1}`}
-          className="w-full object-contain"
+          className="w-full object-cover block"
           style={{ height: "110px", backgroundColor: "#f5f0eb" }}
         />
       ))}
