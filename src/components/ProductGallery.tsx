@@ -21,8 +21,8 @@ export default function ProductGallery({ product }: { product: Product }) {
           key={i}
           src={src}
           alt={`${product.name} — фото ${i + 1}`}
-          className="w-full object-cover"
-          style={{ height: "90px", backgroundColor: "#f5f0eb" }}
+          className="w-full object-contain"
+          style={{ height: "110px", backgroundColor: "#f5f0eb" }}
         />
       ))}
     </div>
