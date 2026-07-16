@@ -5,6 +5,7 @@ import { characters } from "@/pages/CharacterPage";
 import { NEWS_PHOTOS, ENOFYA_PHOTOS } from "./indexData";
 
 const enotych = characters.find((c) => c.slug === "enotych");
+const enofya = characters.find((c) => c.slug === "enofya");
 
 function PhotoCollage({ photos, alt }: { photos: string[]; alt: string }) {
   return (
@@ -33,6 +34,7 @@ function EnofyaGallery() {
 
 export default function IndexNews() {
   const [arOpen, setArOpen] = useState(false);
+  const [arEnofyaOpen, setArEnofyaOpen] = useState(false);
   return (
     <section id="news" className="cv-auto py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
       <div className="max-w-6xl mx-auto">
@@ -120,6 +122,16 @@ export default function IndexNews() {
                 <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
                   Добрая бабушка семьи — Енофья — воплощена мастерами. В чепце и фартуке, с корзинкой полной гостинцев, она уже встречает гостей Туапсе с улыбкой и теплом на Морском проспекте, 3 в рестобаре V*MESTE.
                 </p>
+                <div className="flex flex-wrap items-center gap-3 mb-4">
+                  <button
+                    type="button"
+                    onClick={() => setArEnofyaOpen(true)}
+                    className="btn-primary inline-flex text-sm py-2.5 px-5"
+                    style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
+                    <Icon name="Sparkles" size={16} />
+                    Оживить Енофью
+                  </button>
+                </div>
                 <div className="rounded-2xl overflow-hidden flex-1 min-h-64" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
                   <iframe
                     src="https://yandex.ru/map-widget/v1/?um=constructor%3A706221539dc93604d0beec3a3496e2a6aaa2d808267cff39add22954de10ad95&source=constructor"
@@ -157,6 +169,15 @@ export default function IndexNews() {
           video={(enotych as { video?: string }).video}
           name={enotych.name}
           onClose={() => setArOpen(false)}
+        />
+      )}
+
+      {arEnofyaOpen && enofya && (
+        <ARHologram
+          image={enofya.image}
+          video={(enofya as { video?: string }).video}
+          name={enofya.name}
+          onClose={() => setArEnofyaOpen(false)}
         />
       )}
     </section>
