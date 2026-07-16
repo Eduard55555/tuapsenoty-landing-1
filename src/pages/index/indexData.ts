@@ -27,6 +27,7 @@ export const characters = [
     location: "Морской бульвар, 3 — рестобар V*MESTE",
     color: "from-rose-100 to-orange-100",
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/77f4a412-aa81-4cbc-8468-c0857cd99cbc.png",
+    video: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/1b8c5faa-380f-48f6-9203-cfb09855463e.mp4",
   },
   {
     slug: "tuapsey",
