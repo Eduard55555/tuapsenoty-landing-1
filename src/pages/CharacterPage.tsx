@@ -25,6 +25,12 @@ export default function CharacterPage() {
 
     const today = new Date().toISOString().slice(0, 10);
     const key = `found-${slug}`;
+    const cacheKey = `found-count-${slug}`;
+
+    const cached = localStorage.getItem(cacheKey);
+    if (cached !== null && !Number.isNaN(Number(cached))) {
+      setFoundCount(Number(cached));
+    }
 
     let shouldIncrement: boolean;
     if (hasOwnCounter) {
@@ -47,7 +53,11 @@ export default function CharacterPage() {
         if (shouldIncrement && typeof d.count === "number") {
           localStorage.setItem(key, hasOwnCounter ? today : "1");
         }
-        setFoundCount(typeof d.count === "number" ? d.count + FINDER_BASE : null);
+        if (typeof d.count === "number") {
+          const value = d.count + FINDER_BASE;
+          localStorage.setItem(cacheKey, String(value));
+          setFoundCount(value);
+        }
       })
       .catch(() => {});
   }, [slug, char?.location, hasOwnCounter]);
