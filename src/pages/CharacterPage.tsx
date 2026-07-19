@@ -8,7 +8,8 @@ import { FINDER_API, FINDER_BASE, CHARACTER_API, pluralPeople } from "@/hooks/us
 import { characters } from "@/pages/index/indexData";
 import useSeo from "@/hooks/useSeo";
 
-const OWN_COUNTER_SLUGS = ["enofya"];
+const OWN_COUNTER_SLUGS: string[] = [];
+const NO_LOCATION_LABEL_SLUGS = ["enofya"];
 
 export { characters };
 
@@ -121,7 +122,7 @@ export default function CharacterPage() {
                       {char.location}
                     </span>
                   </div>
-                ) : !hasOwnCounter ? (
+                ) : !hasOwnCounter && !NO_LOCATION_LABEL_SLUGS.includes(slug || "") ? (
                   <div className="flex items-center justify-center gap-1 mt-2">
                     <Icon name="Clock" size={14} />
                     <span className="font-body text-sm" style={{ color: "var(--bronze)" }}>
