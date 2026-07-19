@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { characters, PLANETA_URL } from "./indexData";
-import { useFinderCount, pluralPeople, CHARACTER_API } from "@/hooks/useFinderCount";
+import { useFinderCount, pluralPeople } from "@/hooks/useFinderCount";
 import func2url from "../../../backend/func2url.json";
 
 export default function IndexCharacters() {
@@ -10,14 +10,6 @@ export default function IndexCharacters() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const foundCount = useFinderCount();
-  const [enofyaCount, setEnofyaCount] = useState<number | null>(null);
-
-  useEffect(() => {
-    fetch(`${CHARACTER_API}?slug=enofya`, { cache: "no-store" })
-      .then((r) => r.json())
-      .then((d) => setEnofyaCount(typeof d.count === "number" ? d.count : null))
-      .catch(() => {});
-  }, []);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,14 +108,14 @@ export default function IndexCharacters() {
                           {char.location}
                         </span>
                       </div>
-                    ) : char.slug !== "enofya" ? (
+                    ) : (
                       <div className="flex items-center justify-center gap-1 mb-3">
                         <Icon name="Clock" size={12} />
                         <span className="font-body text-xs" style={{ color: "var(--bronze)" }}>
                           Скоро появится в городе
                         </span>
                       </div>
-                    ) : null}
+                    )}
 
                     {foundCount !== null && char.location && char.slug !== "enofya" && (
                       <div className="flex items-center justify-center gap-1.5 mb-4">
@@ -139,24 +131,6 @@ export default function IndexCharacters() {
                             {foundCount.toLocaleString("ru-RU")}
                           </span>{" "}
                           {pluralPeople(foundCount)}
-                        </span>
-                      </div>
-                    )}
-
-                    {char.slug === "enofya" && enofyaCount !== null && (
-                      <div className="flex items-center justify-center gap-1.5 mb-4">
-                        <span className="relative flex h-2 w-2">
-                          <span className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
-                            style={{ backgroundColor: "var(--bronze)" }} />
-                          <span className="relative inline-flex rounded-full h-2 w-2"
-                            style={{ backgroundColor: "var(--bronze)" }} />
-                        </span>
-                        <span className="font-body text-xs" style={{ color: "var(--warm-text)" }}>
-                          Нашли{" "}
-                          <span className="font-bold" style={{ color: "var(--bronze)" }}>
-                            {enofyaCount.toLocaleString("ru-RU")}
-                          </span>{" "}
-                          {pluralPeople(enofyaCount)}
                         </span>
                       </div>
                     )}
