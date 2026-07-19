@@ -9,7 +9,7 @@ import { characters } from "@/pages/index/indexData";
 import useSeo from "@/hooks/useSeo";
 
 const OWN_COUNTER_SLUGS: string[] = [];
-const NO_LOCATION_LABEL_SLUGS = ["enofya"];
+const NO_LOCATION_LABEL_SLUGS: string[] = [];
 
 export { characters };
 
