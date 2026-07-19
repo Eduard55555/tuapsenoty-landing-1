@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import ARHologram from "@/components/ARHologram";
 import { characters } from "@/pages/CharacterPage";
-import { NEWS_PHOTOS, ENOFYA_PHOTOS } from "./indexData";
+import { NEWS_PHOTOS } from "./indexData";
 
 const enotych = characters.find((c) => c.slug === "enotych");
 const enofya = characters.find((c) => c.slug === "enofya");
@@ -26,10 +26,6 @@ function PhotoCollage({ photos, alt }: { photos: string[]; alt: string }) {
 
 function NewsGallery() {
   return <PhotoCollage photos={NEWS_PHOTOS} alt="Енотыч в бронзе" />;
-}
-
-function EnofyaGallery() {
-  return <PhotoCollage photos={ENOFYA_PHOTOS} alt="Енофья в бронзе" />;
 }
 
 export default function IndexNews() {
@@ -102,46 +98,31 @@ export default function IndexNews() {
 
           <div className="card-hover rounded-3xl overflow-hidden md:col-span-2"
             style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
-            <div className="md:flex md:flex-row-reverse">
-              <div className="md:w-2/5 relative">
-                <EnofyaGallery />
+            <div className="p-4 sm:p-8 flex flex-col">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
+                  style={{ backgroundColor: "rgba(184,115,51,0.15)", color: "var(--bronze)" }}>
+                  🧺 Новый хранитель
+                </span>
+                <span className="font-body text-xs" style={{ color: "#9B7B5A" }}>
+                  Май 2026
+                </span>
               </div>
-              <div className="p-4 sm:p-8 md:w-3/5 flex flex-col">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
-                    style={{ backgroundColor: "rgba(184,115,51,0.15)", color: "var(--bronze)" }}>
-                    🧺 Новый хранитель
-                  </span>
-                  <span className="font-body text-xs" style={{ color: "#9B7B5A" }}>
-                    Май 2026
-                  </span>
-                </div>
-                <h3 className="section-title text-xl sm:text-3xl mb-4">
-                  Енофья отлита в бронзе!
-                </h3>
-                <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
-                  Добрая бабушка семьи — Енофья — воплощена мастерами. В чепце и фартуке, с корзинкой полной гостинцев, она уже встречает гостей Туапсе с улыбкой и теплом на Морском проспекте, 3 в рестобаре V*MESTE.
-                </p>
-                <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <button
-                    type="button"
-                    onClick={() => setArEnofyaOpen(true)}
-                    className="btn-primary inline-flex text-sm py-2.5 px-5"
-                    style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
-                    <Icon name="Sparkles" size={16} />
-                    Оживить Енофью
-                  </button>
-                </div>
-                <div className="rounded-2xl overflow-hidden flex-1 min-h-64" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
-                  <iframe
-                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A706221539dc93604d0beec3a3496e2a6aaa2d808267cff39add22954de10ad95&source=constructor"
-                    width="100%"
-                    height="100%"
-                    frameBorder={0}
-                    title="Енофья на карте"
-                    style={{ display: "block", minHeight: 256 }}
-                  />
-                </div>
+              <h3 className="section-title text-xl sm:text-3xl mb-4">
+                Енофья отлита в бронзе!
+              </h3>
+              <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
+                Добрая бабушка семьи — Енофья — воплощена мастерами. В чепце и фартуке, с корзинкой полной гостинцев, она скоро появится в городе и будет встречать гостей Туапсе с улыбкой и теплом.
+              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setArEnofyaOpen(true)}
+                  className="btn-primary inline-flex text-sm py-2.5 px-5"
+                  style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
+                  <Icon name="Sparkles" size={16} />
+                  Оживить Енофью
+                </button>
               </div>
             </div>
           </div>
