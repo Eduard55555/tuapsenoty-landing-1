@@ -11,7 +11,7 @@ interface Spot {
   status: "placed" | "soon";
 }
 
-const COMMON_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A9fcbfbcb651b40d9e69ee5338b8b1851be093eac55d8eeecc355d63a5cb6f9bc&source=constructor";
+const COMMON_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A706221539dc93604d0beec3a3496e2a6aaa2d808267cff39add22954de10ad95&source=constructor";
 
 const spots: Spot[] = [
   { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed" },
