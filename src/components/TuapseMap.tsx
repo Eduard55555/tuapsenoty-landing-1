@@ -8,14 +8,6 @@ const SPOTS = [
     pos: { top: "62%", left: "24%" },
   },
   {
-    emoji: "🏞️",
-    title: "Парк",
-    icon: "Trees",
-    status: "Енофья (место выбирается)",
-    here: false,
-    pos: { top: "32%", left: "54%" },
-  },
-  {
     emoji: "🚉",
     title: "Вокзал",
     icon: "TrainFront",
