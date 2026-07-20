@@ -15,7 +15,7 @@ const COMMON_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A9fcbfbcb65
 
 const spots: Spot[] = [
   { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed" },
-  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Морской бульвар, 3", status: "placed" },
+  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Место выбирается", status: "soon" },
   { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon" },
   { slug: "enira", name: "Енира", emoji: "🐚", location: "Скоро определим", status: "soon" },
   { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon" },
