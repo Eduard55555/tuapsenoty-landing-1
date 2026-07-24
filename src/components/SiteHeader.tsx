@@ -66,7 +66,7 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
           <nav className="hidden lg:flex items-center gap-3">
             {(() => {
               const items: [string, string][] = [
-                ["💛 Наши партнёры ✨", "/sponsors"],
+                ["💛 Стать партнёром ✨", "/sponsors"],
                 ["🛒 Магазин", "/shop"],
                 ...LINKS,
               ];
@@ -108,7 +108,7 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
           style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
           {(() => {
             const items: [string, string][] = [
-              ["💛 Наши партнёры ✨", "/sponsors"],
+              ["💛 Стать партнёром ✨", "/sponsors"],
               ["🛒 Магазин", "/shop"],
               ...LINKS,
             ];

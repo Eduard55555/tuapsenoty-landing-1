@@ -92,7 +92,7 @@ export default function SiteFooter() {
               <a href="/sponsors"
                 className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
                 style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
-                💛 Наши партнёры ✨
+                💛 Стать партнёром ✨
               </a>
             </div>
 

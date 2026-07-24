@@ -1,71 +1,75 @@
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import PhoneLink from "@/components/PhoneLink";
 import useSeo from "@/hooks/useSeo";
 
-interface Sponsor {
-  name: string;
-  logo: string;
-  logoImage?: string;
-  photo?: string;
-  photo2?: string;
-  category: string;
-  description: string;
-  services: string[];
-  highlights?: { icon: string; label: string }[];
-  routeUrl?: string;
-  address?: string;
-  url: string;
-  urlLabel?: string;
-  color: string;
-  isVacant?: boolean;
-  featured?: boolean;
-}
+const PARTNER_URL = "https://functions.poehali.dev/1eb969da-c9f0-4d24-ab20-b98e2c7bac73";
 
-const sponsors: Sponsor[] = [
-  {
-    name: "Здесь может быть ваш бизнес",
-    logo: "✨",
-    category: "Свободное место",
-    description:
-      "Это место ждёт своего хозяина. Поселите бронзового енота у входа — и гости начнут искать именно вас.",
-    services: [],
-    url: "mailto:sen555551@mail.ru?subject=Хочу стать партнёром проекта «Туапсеноты»",
-    color: "from-amber-100 to-yellow-100",
-    isVacant: true,
-  },
-  {
-    name: "Здесь может быть ваш бизнес",
-    logo: "✨",
-    category: "Свободное место",
-    description:
-      "Это место ждёт своего хозяина. Поселите бронзового енота у входа — и гости начнут искать именно вас.",
-    services: [],
-    url: "mailto:sen555551@mail.ru?subject=Хочу стать партнёром проекта «Туапсеноты»",
-    color: "from-cyan-100 to-blue-100",
-    isVacant: true,
-  },
-  {
-    name: "Здесь может быть ваш бизнес",
-    logo: "✨",
-    category: "Свободное место",
-    description:
-      "Это место ждёт своего хозяина. Поселите бронзового енота у входа — и гости начнут искать именно вас.",
-    services: [],
-    url: "mailto:sen555551@mail.ru?subject=Хочу стать партнёром проекта «Туапсеноты»",
-    color: "from-rose-100 to-orange-100",
-    isVacant: true,
-  },
+const BENEFITS = [
+  { icon: "Users", title: "Поток гостей", text: "Люди специально приходят искать енотов — и попадают к вам." },
+  { icon: "Megaphone", title: "Бесплатная реклама", text: "Упоминания в соцсетях, прессе и на этом сайте." },
+  { icon: "Sparkles", title: "Уникальность", text: "Бронзовый хранитель у входа, которого нет больше нигде." },
+  { icon: "HeartHandshake", title: "Доброе имя", text: "Вы — часть городского проекта, который любят жители." },
 ];
 
 export default function Sponsors() {
   useSeo({
-    title: "Партнёры Туапсеноты — компании, поддержавшие проект",
+    title: "Стать партнёром Туапсеноты — поселите бронзового енота у бизнеса",
     description:
-      "Компании-партнёры, которые помогли бронзовым енотам найти дом в Туапсе. Рекомендуем кафе, кофейни и сервисы города.",
+      "Оставьте заявку, чтобы бронзовая скульптура енота-хранителя появилась у вашего бизнеса в Туапсе. Поток гостей и бесплатная реклама.",
     path: "/sponsors",
   });
+
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [consent, setConsent] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (loading) return;
+    if (!name.trim() || !phone.trim()) {
+      setError("Заполните имя и телефон");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 15000);
+    try {
+      const res = await fetch(PARTNER_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, company, phone, email, message }),
+        signal: controller.signal,
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error("fail");
+      setSubmitted(true);
+    } catch {
+      setError("Не удалось отправить. Попробуйте ещё раз или позвоните нам.");
+    } finally {
+      clearTimeout(timer);
+      setLoading(false);
+    }
+  };
+
+  const inputStyle =
+    "w-full rounded-2xl px-4 py-3 font-body text-base outline-none transition-colors";
+  const inputBorder = {
+    background: "#fff",
+    border: "2px solid rgba(184,115,51,0.2)",
+    color: "var(--warm-dark)",
+  };
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <SiteHeader />
@@ -75,180 +79,116 @@ export default function Sponsors() {
           <div className="text-center mb-12">
             <div className="text-5xl mb-4">🤝</div>
             <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
-              Наши партнёры
+              Стать партнёром
             </h1>
-            <p className="font-body text-lg max-w-2xl mx-auto mb-3" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
-              Компании, которые помогли енотам найти дом в Туапсе. Заодно — сделали так,
-              чтобы вы знали, куда зайти за хорошим кофе, свежей выпечкой или приятным обслуживанием.
-            </p>
-            <p className="font-body text-lg max-w-2xl mx-auto font-semibold" style={{ color: "var(--bronze)" }}>
-              Мы их рекомендуем. И вы тоже присмотритесь. 💛
+            <p className="font-body text-lg max-w-2xl mx-auto" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
+              Хотите, чтобы бронзовый енот-хранитель поселился у вашего бизнеса?
+              Оставьте заявку — мы свяжемся с вами и обсудим детали.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {sponsors.map((s, i) => (
-              <div key={i}
-                className={`rounded-3xl overflow-hidden card-hover flex flex-col ${s.featured ? "sm:col-span-2 lg:col-span-3" : ""}`}
-                style={{
-                  background: s.isVacant
-                    ? "rgba(255,255,255,0.6)"
-                    : s.featured
-                    ? "linear-gradient(135deg, #FBF3E4, #FDF8EF)"
-                    : "#fff",
-                  border: s.isVacant
-                    ? "2px dashed rgba(184,115,51,0.4)"
-                    : s.featured
-                    ? "2px solid var(--bronze)"
-                    : "1px solid rgba(184,115,51,0.15)",
-                }}>
-                <div className={`${s.featured ? "sm:flex" : "flex flex-col"}`}>
-                  <div className={`flex-shrink-0 flex flex-col ${s.featured ? "sm:w-72" : "w-full"}`}>
-                    <div className={`${s.logoImage ? "bg-white" : `bg-gradient-to-br ${s.color}`} flex items-center justify-center p-6`}
-                      style={{ minHeight: "140px" }}>
-                      {s.logoImage ? (
-                        <img src={s.logoImage} alt={s.name}
-                          className="object-contain w-full max-h-40" />
-                      ) : (
-                        <span className="text-6xl">{s.logo}</span>
-                      )}
-                    </div>
-                    {s.photo && (
-                      <img src={s.photo} alt={`${s.name} — вывеска`}
-                        className="w-full object-contain" />
-                    )}
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            <div className="grid sm:grid-cols-2 gap-4">
+              {BENEFITS.map((b) => (
+                <div key={b.title} className="rounded-3xl p-6"
+                  style={{ background: "#fff", border: "1px solid rgba(184,115,51,0.15)" }}>
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
+                    style={{ background: "rgba(184,115,51,0.12)" }}>
+                    <Icon name={b.icon} size={24} style={{ color: "var(--bronze)" }} />
                   </div>
-                  <div className="p-6 flex flex-col flex-1 relative">
-                    <p className="font-body text-xs font-bold uppercase tracking-wider mb-1"
-                      style={{ color: "var(--bronze)" }}>
-                      {s.category}
-                    </p>
-                    <h3 className="font-display text-2xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
-                      {s.name}
-                    </h3>
-                    <p className="font-body text-sm mb-4" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
-                      {s.description}
-                    </p>
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-5">
-                      <div className="flex-1">
-                        <div className="space-y-2 mb-4">
-                          {s.services.map((srv, j) => (
-                            <div key={j} className="flex items-center gap-2">
-                              <Icon name="Check" size={16} style={{ color: "var(--sea)" }} />
-                              <span className="font-body text-sm" style={{ color: "#5A3E2B" }}>
-                                {srv}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                        {s.highlights && (
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {s.highlights.map((h, j) => (
-                              <span key={j}
-                                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-body text-sm font-bold"
-                                style={{
-                                  background: "#fff",
-                                  color: "var(--bronze)",
-                                  border: "1.5px solid rgba(184,115,51,0.35)",
-                                  boxShadow: "0 2px 8px rgba(184,115,51,0.12)",
-                                }}>
-                                <Icon name={h.icon} size={16} style={{ color: "var(--bronze)" }} />
-                                {h.label}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                        {s.address && (
-                          <div className="flex items-center gap-2">
-                            <Icon name="MapPin" size={16} style={{ color: "var(--bronze)" }} />
-                            <span className="font-body text-sm font-semibold" style={{ color: "var(--bronze)" }}>
-                              {s.address}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      {s.photo2 && (
-                        <img src={s.photo2} alt={`${s.name} — Енофья в зале`}
-                          className="w-auto max-h-56 object-contain rounded-2xl flex-shrink-0" />
-                      )}
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <a href={s.url}
-                        target={s.url.startsWith("http") || s.url.startsWith("mailto") ? "_blank" : undefined}
-                        rel="noopener noreferrer"
-                        className="btn-primary text-sm justify-center flex-1"
-                        style={s.isVacant ? { background: "linear-gradient(135deg, var(--teal), var(--sea-light))", color: "var(--warm-dark)", boxShadow: "0 4px 15px rgba(64,224,208,0.4)" } : undefined}>
-                        <Icon name={s.isVacant ? "Sparkles" : s.featured ? "Heart" : "ExternalLink"} size={16} />
-                        {s.urlLabel || (s.isVacant ? "Стать партнёром" : "Подробнее")}
-                      </a>
-                      {s.routeUrl && (
-                        <a href={s.routeUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-primary text-sm justify-center flex-1"
-                          style={{ background: "linear-gradient(135deg, #FF6B35, #FF9558)", color: "#fff", boxShadow: "0 4px 15px rgba(255,107,53,0.4)" }}>
-                          <Icon name="MapPin" size={16} />
-                          📍 Построить маршрут
-                        </a>
-                      )}
-                    </div>
-                  </div>
+                  <h3 className="font-display text-lg font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+                    {b.title}
+                  </h3>
+                  <p className="font-body text-sm" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
+                    {b.text}
+                  </p>
                 </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="rounded-3xl p-8 sm:p-12"
-            style={{ background: "linear-gradient(135deg, var(--sea), var(--sea-light))" }}>
-            <div className="text-center">
-              <div className="text-4xl mb-4">💛</div>
-              <h2 className="font-display text-3xl font-bold mb-4" style={{ color: "var(--cream)" }}>
-                Хотите, чтобы бронзовая скульптура стояла у вашего бизнеса?
-              </h2>
+              ))}
             </div>
 
-            <div className="max-w-2xl mx-auto space-y-3 mb-8">
-              <p className="font-body text-base" style={{ color: "rgba(245,230,211,0.95)", lineHeight: 1.7 }}>
-                Проект «Туапсеноты» — это не просто фигурки. Это люди, которые их ищут.
-                И те, кто попадается им на пути.
-              </p>
-              <p className="font-body text-base" style={{ color: "rgba(245,230,211,0.95)", lineHeight: 1.7 }}>
-                Если вы хотите процветания своему бизнесу и «вечной» бесплатной рекламы —
-                давайте обсудим, как уникальная бронзовая скульптура может поселиться у вашего входа.
-              </p>
-            </div>
-
-            <div className="max-w-md mx-auto mb-8">
-              <p className="font-body text-sm font-bold uppercase tracking-wider mb-4 text-center"
-                style={{ color: "var(--teal-light)" }}>
-                Что вы получите
-              </p>
-              <div className="space-y-3">
-                {[
-                  "Гостей, которые не проходят мимо",
-                  "Упоминания в соцсетях и прессе",
-                  "Место на этой странице",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <span className="flex-shrink-0 mt-0.5">
-                      <Icon name="Check" size={20} style={{ color: "var(--teal-light)" }} />
-                    </span>
-                    <span className="font-body text-base" style={{ color: "var(--cream)" }}>
-                      {item}
-                    </span>
+            <div className="rounded-3xl p-6 sm:p-8"
+              style={{ background: "linear-gradient(135deg, #FBF3E4, #FDF8EF)", border: "2px solid var(--bronze)" }}>
+              {submitted ? (
+                <div className="text-center py-10">
+                  <div className="text-5xl mb-4">💛</div>
+                  <h2 className="font-display text-2xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
+                    Заявка отправлена!
+                  </h2>
+                  <p className="font-body text-base" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
+                    Спасибо! Мы свяжемся с вами в ближайшее время, чтобы обсудить детали.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <h2 className="font-display text-2xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+                    Оставьте заявку
+                  </h2>
+                  <div>
+                    <label className="block font-body text-sm font-semibold mb-1.5" style={{ color: "#5A3E2B" }}>
+                      Ваше имя <span style={{ color: "var(--bronze)" }}>*</span>
+                    </label>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)}
+                      placeholder="Как к вам обращаться" className={inputStyle} style={inputBorder} />
                   </div>
-                ))}
-              </div>
-            </div>
+                  <div>
+                    <label className="block font-body text-sm font-semibold mb-1.5" style={{ color: "#5A3E2B" }}>
+                      Компания
+                    </label>
+                    <input type="text" value={company} onChange={(e) => setCompany(e.target.value)}
+                      placeholder="Название бизнеса" className={inputStyle} style={inputBorder} />
+                  </div>
+                  <div>
+                    <label className="block font-body text-sm font-semibold mb-1.5" style={{ color: "#5A3E2B" }}>
+                      Телефон <span style={{ color: "var(--bronze)" }}>*</span>
+                    </label>
+                    <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+7 900 000-00-00" className={inputStyle} style={inputBorder} />
+                  </div>
+                  <div>
+                    <label className="block font-body text-sm font-semibold mb-1.5" style={{ color: "#5A3E2B" }}>
+                      Email
+                    </label>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@example.ru" className={inputStyle} style={inputBorder} />
+                  </div>
+                  <div>
+                    <label className="block font-body text-sm font-semibold mb-1.5" style={{ color: "#5A3E2B" }}>
+                      Сообщение
+                    </label>
+                    <textarea value={message} onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Расскажите о вашем бизнесе или задайте вопрос" rows={3}
+                      className={`${inputStyle} resize-none`} style={inputBorder} />
+                  </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="mailto:sen555551@mail.ru?subject=Хочу стать партнёром проекта «Туапсеноты»"
-                className="btn-primary inline-flex">
-                <Icon name="Mail" size={18} />
-                Написать на почту
-              </a>
-              <PhoneLink className="btn-secondary inline-flex cursor-pointer" iconSize={18} />
+                  <label className="flex items-start gap-2 cursor-pointer">
+                    <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)}
+                      className="mt-1 flex-shrink-0" />
+                    <span className="font-body text-xs" style={{ color: "#6B4C35" }}>
+                      Согласен на обработку персональных данных
+                    </span>
+                  </label>
+
+                  {error && (
+                    <p className="font-body text-sm" style={{ color: "#C0392B" }}>{error}</p>
+                  )}
+
+                  <button type="submit" disabled={loading || !consent}
+                    className="btn-primary w-full justify-center"
+                    style={{ opacity: loading || !consent ? 0.6 : 1 }}>
+                    <Icon name={loading ? "Loader" : "Send"} size={18} />
+                    {loading ? "Отправляем…" : "Отправить заявку"}
+                  </button>
+
+                  <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+                    <a href="mailto:sen555551@mail.ru?subject=Хочу стать партнёром проекта «Туапсеноты»"
+                      className="font-body text-sm inline-flex items-center gap-1.5" style={{ color: "var(--bronze)" }}>
+                      <Icon name="Mail" size={15} /> Написать на почту
+                    </a>
+                    <PhoneLink className="font-body text-sm inline-flex items-center gap-1.5 cursor-pointer"
+                      iconSize={15} />
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>
