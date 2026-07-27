@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
-import { PLANETA_URL } from "@/pages/index/indexData";
 
 const LINKS: [string, string][] = [
   ["О проекте", "/#about"],
@@ -124,11 +123,6 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
               );
             });
           })()}
-          <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-            className="btn-primary text-sm w-full justify-center mt-2">
-            <Icon name="Heart" size={16} />
-            Поддержать на Planeta.ru
-          </a>
         </div>
       )}
     </header>

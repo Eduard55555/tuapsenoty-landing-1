@@ -2,7 +2,6 @@ import Icon from "@/components/ui/icon";
 import FinderCounter from "@/components/FinderCounter";
 import SeagullsFlight from "@/components/SeagullsFlight";
 import { playCoin } from "@/hooks/useSound";
-import { PLANETA_URL } from "./indexData";
 
 export default function IndexHero() {
   return (
@@ -58,11 +57,11 @@ export default function IndexHero() {
               <Icon name="ShoppingCart" size={18} />
               Перейти в магазин
             </a>
-            <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
+            <a href="/sponsors"
               onMouseEnter={playCoin}
               className="btn-primary text-base px-6 py-4 w-full sm:w-auto text-center"
               style={{ background: "linear-gradient(135deg, var(--teal), var(--sea-light))", color: "var(--warm-dark)", boxShadow: "0 4px 15px rgba(64,224,208,0.4)" }}>
-              <Icon name="Heart" size={18} />
+              <Icon name="HeartHandshake" size={18} />
               Стать частью легенды
             </a>
           </div>

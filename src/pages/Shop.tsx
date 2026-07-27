@@ -7,7 +7,7 @@ import ProductGallery from "@/components/ProductGallery";
 import useSeo from "@/hooks/useSeo";
 import { PRODUCTS, buildCartUrl } from "@/data/products";
 
-const PLANETA_URL = "https://planeta.ru/campaigns/244619";
+
 
 export default function Shop() {
   useSeo({
@@ -163,22 +163,6 @@ export default function Shop() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="rounded-3xl p-8 text-center"
-          style={{ background: "linear-gradient(135deg, var(--sea), #3d7a90)", boxShadow: "0 12px 40px rgba(122,177,191,0.3)" }}>
-          <h3 className="font-display text-2xl sm:text-3xl font-bold mb-3"
-            style={{ color: "var(--cream)" }}>
-            Поддержать проект
-          </h3>
-          <p className="font-body mb-6" style={{ color: "rgba(245,230,211,0.8)" }}>
-            Стань частью истории на Planeta.ru
-          </p>
-          <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-            className="btn-primary inline-flex text-base px-8 py-4">
-            <Icon name="Heart" size={18} />
-            Поддержать на Planeta.ru
-          </a>
         </div>
       </div>
 
