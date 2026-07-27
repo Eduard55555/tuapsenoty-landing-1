@@ -6,7 +6,6 @@ const LINKS: [string, string][] = [
   ["Персонажи", "/#characters"],
   ["Карта", "/map"],
   ["Галерея", "/gallery"],
-  ["Как помочь", "/#help"],
   ["Новости", "/#news"],
 ];
 
