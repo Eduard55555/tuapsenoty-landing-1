@@ -86,6 +86,11 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
                 Корзина
               </a>
             )}
+            <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
+              className="btn-primary text-sm px-3 py-1 whitespace-nowrap">
+              <Icon name="Heart" size={16} />
+              Поддержать проект
+            </a>
           </nav>
 
           <div className="flex items-center gap-2 lg:hidden">
