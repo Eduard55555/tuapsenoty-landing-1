@@ -1,3 +1,4 @@
+export const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 export const MAX_URL = "https://max.ru/join/uBdeDmv3f51WgWvFTPMWA84VIaYSgeU9yLwdr9lYO1g";
 export const VK_URL = "https://vk.ru/club237171594";
 

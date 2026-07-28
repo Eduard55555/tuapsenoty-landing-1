@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
-import { characters } from "./indexData";
+import { characters, PLANETA_URL } from "./indexData";
 import { useFinderCount, pluralPeople } from "@/hooks/useFinderCount";
 import func2url from "../../../backend/func2url.json";
 
@@ -224,14 +224,14 @@ export default function IndexCharacters() {
           </h2>
           <p className="font-body text-lg mb-12 max-w-2xl mx-auto"
             style={{ color: "rgba(245,230,211,0.85)", lineHeight: 1.8 }}>
-            Поселите бронзового енота у своего бизнеса или следите за жизнью
-            проекта в наших соцсетях — так вы помогаете енотам обживать Туапсе.
+            Поддержите проект на Planeta.ru и получите эксклюзивный подарок
+            от команды Туапсенотов.
           </p>
 
-          <a href="/sponsors"
+          <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
             className="btn-primary text-lg px-10 py-5 inline-flex">
-            <Icon name="HeartHandshake" size={20} />
-            Стать партнёром
+            <Icon name="ExternalLink" size={20} />
+            Перейти к сбору на Planeta.ru
           </a>
         </div>
       </section>

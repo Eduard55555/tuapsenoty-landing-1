@@ -1,7 +1,7 @@
 import Icon from "@/components/ui/icon";
 import PhoneLink from "@/components/PhoneLink";
 
-
+const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 const MAX_URL = "https://max.ru/join/uBdeDmv3f51WgWvFTPMWA84VIaYSgeU9yLwdr9lYO1g";
 const VK_URL = "https://vk.ru/club237171594";
 const TELEGRAM_URL = "https://t.me/tuapsenoty";
@@ -83,12 +83,24 @@ export default function SiteFooter() {
                 <Icon name="Send" size={14} />
                 Телеграм
               </a>
+              <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 font-body text-sm hover:underline"
+                style={{ color: "rgba(245,230,211,0.8)" }}>
+                <Icon name="ExternalLink" size={14} />
+                Страница на Planeta.ru
+              </a>
               <a href="/sponsors"
                 className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
                 style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
                 💛 Стать партнёром ✨
               </a>
             </div>
+
+            <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
+              className="btn-primary text-sm mt-6 inline-flex">
+              <Icon name="Heart" size={16} />
+              Поддержать проект
+            </a>
           </div>
         </div>
 
