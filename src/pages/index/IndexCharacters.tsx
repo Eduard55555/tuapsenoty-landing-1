@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { characters, PLANETA_URL } from "./indexData";
-import { useFinderCount, useCharacterData, pluralPeople } from "@/hooks/useFinderCount";
+import { useFinderCount, pluralPeople } from "@/hooks/useFinderCount";
+import { useCharacterCount } from "@/hooks/useCharacterCount";
 import func2url from "../../../backend/func2url.json";
 
 export default function IndexCharacters() {
@@ -10,7 +11,7 @@ export default function IndexCharacters() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const foundCount = useFinderCount();
-  const eniraCount = useCharacterData("enira").count;
+  const eniraCount = useCharacterCount("enira");
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
