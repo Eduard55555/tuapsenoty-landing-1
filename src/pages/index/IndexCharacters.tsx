@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { characters, PLANETA_URL } from "./indexData";
-import { useFinderCount, pluralPeople } from "@/hooks/useFinderCount";
+import { useFinderCount, useCharacterData, pluralPeople } from "@/hooks/useFinderCount";
 import func2url from "../../../backend/func2url.json";
 
 export default function IndexCharacters() {
@@ -10,6 +10,7 @@ export default function IndexCharacters() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const foundCount = useFinderCount();
+  const eniraCount = useCharacterData("enira").count;
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,23 +118,27 @@ export default function IndexCharacters() {
                       </div>
                     )}
 
-                    {foundCount !== null && char.location && char.slug !== "enofya" && (
-                      <div className="flex items-center justify-center gap-1.5 mb-4">
-                        <span className="relative flex h-2 w-2">
-                          <span className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
-                            style={{ backgroundColor: "var(--bronze)" }} />
-                          <span className="relative inline-flex rounded-full h-2 w-2"
-                            style={{ backgroundColor: "var(--bronze)" }} />
-                        </span>
-                        <span className="font-body text-xs" style={{ color: "var(--warm-text)" }}>
-                          Нашли{" "}
-                          <span className="font-bold" style={{ color: "var(--bronze)" }}>
-                            {foundCount.toLocaleString("ru-RU")}
-                          </span>{" "}
-                          {pluralPeople(foundCount)}
-                        </span>
-                      </div>
-                    )}
+                    {(() => {
+                      const cardCount = char.slug === "enira" ? eniraCount : foundCount;
+                      if (cardCount === null || !char.location || char.slug === "enofya") return null;
+                      return (
+                        <div className="flex items-center justify-center gap-1.5 mb-4">
+                          <span className="relative flex h-2 w-2">
+                            <span className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
+                              style={{ backgroundColor: "var(--bronze)" }} />
+                            <span className="relative inline-flex rounded-full h-2 w-2"
+                              style={{ backgroundColor: "var(--bronze)" }} />
+                          </span>
+                          <span className="font-body text-xs" style={{ color: "var(--warm-text)" }}>
+                            Нашли{" "}
+                            <span className="font-bold" style={{ color: "var(--bronze)" }}>
+                              {cardCount.toLocaleString("ru-RU")}
+                            </span>{" "}
+                            {pluralPeople(cardCount)}
+                          </span>
+                        </div>
+                      );
+                    })()}
 
                     <div className="mt-auto flex flex-col items-center gap-2">
                       <a href={`/characters/${char.slug}`}
