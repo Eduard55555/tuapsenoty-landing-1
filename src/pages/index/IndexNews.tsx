@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import ARHologram from "@/components/ARHologram";
 import { characters } from "@/pages/CharacterPage";
-import { NEWS_PHOTOS } from "./indexData";
+import { NEWS_PHOTOS, ENIRA_PHOTOS } from "./indexData";
 
 const enotych = characters.find((c) => c.slug === "enotych");
 const enofya = characters.find((c) => c.slug === "enofya");
@@ -11,16 +11,19 @@ const enira = characters.find((c) => c.slug === "enira");
 function PhotoCollage({ photos, alt }: { photos: string[]; alt: string }) {
   return (
     <div className="grid grid-cols-2 gap-1.5 w-full p-1.5">
-      {photos.map((src, i) => (
-        <img
-          key={src}
-          src={src}
-          alt={`${alt} ${i + 1}`}
-          loading="lazy"
-          decoding="async"
-          className="w-full aspect-square object-cover rounded-2xl"
-        />
-      ))}
+      {photos.map((src, i) => {
+        const isLastOdd = photos.length % 2 === 1 && i === photos.length - 1;
+        return (
+          <img
+            key={src}
+            src={src}
+            alt={`${alt} ${i + 1}`}
+            loading="lazy"
+            decoding="async"
+            className={`w-full object-cover rounded-2xl ${isLastOdd ? "col-span-2 aspect-[2/1]" : "aspect-square"}`}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -100,6 +103,53 @@ export default function IndexNews() {
 
           <div className="card-hover rounded-3xl overflow-hidden md:col-span-2"
             style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
+            <div className="md:flex">
+              <div className="md:w-2/5 relative">
+                <PhotoCollage photos={ENIRA_PHOTOS} alt="Енира в бронзе" />
+              </div>
+              <div className="p-4 sm:p-6 md:w-3/5 flex flex-col justify-center">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
+                    style={{ backgroundColor: "rgba(76,175,80,0.15)", color: "#4CAF50" }}>
+                    🐚 Новый хранитель
+                  </span>
+                  <span className="font-body text-xs" style={{ color: "#9B7B5A" }}>
+                    Май 2026
+                  </span>
+                </div>
+                <h3 className="section-title text-xl sm:text-2xl mb-2">
+                  Енира заняла своё место!
+                </h3>
+                <p className="font-body text-sm mb-4" style={{ color: "var(--warm-text)", lineHeight: 1.6 }}>
+                  Ласковая мама семьи — Енира — уже в бронзе и установлена в городе.
+                  Обнимите её, и даже в пасмурный день станет солнечно. Отметили её
+                  на карте — приходите знакомиться.
+                </p>
+                <div className="flex flex-wrap items-center gap-3 mb-4">
+                  <button
+                    type="button"
+                    onClick={() => setArEniraOpen(true)}
+                    className="btn-primary inline-flex text-sm py-2.5 px-5"
+                    style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
+                    <Icon name="Sparkles" size={16} />
+                    Оживить Ениру
+                  </button>
+                </div>
+                <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
+                  <iframe
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A9fcbfbcb651b40d9e69ee5338b8b1851be093eac55d8eeecc355d63a5cb6f9bc&source=constructor"
+                    width="100%"
+                    height="180"
+                    frameBorder={0}
+                    title="Енира на карте"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="card-hover rounded-3xl overflow-hidden md:col-span-2"
+            style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
             <div className="p-4 sm:p-8 flex flex-col">
               <div className="flex items-center gap-2 mb-4">
                 <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
@@ -125,48 +175,6 @@ export default function IndexNews() {
                   <Icon name="Sparkles" size={16} />
                   Оживить Енофью
                 </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="card-hover rounded-3xl overflow-hidden md:col-span-2"
-            style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
-            <div className="p-4 sm:p-8 flex flex-col">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
-                  style={{ backgroundColor: "rgba(76,175,80,0.15)", color: "#4CAF50" }}>
-                  🐚 Новый хранитель
-                </span>
-                <span className="font-body text-xs" style={{ color: "#9B7B5A" }}>
-                  Май 2026
-                </span>
-              </div>
-              <h3 className="section-title text-xl sm:text-3xl mb-4">
-                Енира заняла своё место!
-              </h3>
-              <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
-                Ласковая мама семьи — Енира — уже в бронзе и установлена в городе.
-                Обнимите её, и даже в пасмурный день станет солнечно. Отметили её
-                на карте — приходите знакомиться.
-              </p>
-              <div className="flex flex-wrap items-center gap-3 mb-4">
-                <button
-                  type="button"
-                  onClick={() => setArEniraOpen(true)}
-                  className="btn-primary inline-flex text-sm py-2.5 px-5"
-                  style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
-                  <Icon name="Sparkles" size={16} />
-                  Оживить Ениру
-                </button>
-              </div>
-              <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
-                <iframe
-                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A9fcbfbcb651b40d9e69ee5338b8b1851be093eac55d8eeecc355d63a5cb6f9bc&source=constructor"
-                  width="100%"
-                  height="180"
-                  frameBorder={0}
-                  title="Енира на карте"
-                />
               </div>
             </div>
           </div>

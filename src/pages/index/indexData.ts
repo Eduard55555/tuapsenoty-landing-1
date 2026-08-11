@@ -109,6 +109,12 @@ export const NEWS_PHOTOS = [
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/8147c82fa9ca4425a5560d6db2ddaf4f.webp",
 ];
 
+export const ENIRA_PHOTOS = [
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/d371e921-224e-42d8-a89a-44a97b648682.jfif",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/b0ab1479-70b5-40ca-b46a-6f0ebaac0e82.jfif",
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/5e00a23f-e559-4b66-97f0-7d904ca4b471.jfif",
+];
+
 export const ENOFYA_PHOTOS = [
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/bc45f1a50097404aaefe37e2abda7cc8.webp",
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/c8be351b65cb4ba6bf6a901e581c755c.webp",
