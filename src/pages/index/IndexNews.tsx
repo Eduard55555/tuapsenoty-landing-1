@@ -102,7 +102,7 @@ export default function IndexNews() {
             style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
             <div className="md:flex">
               <div className="md:w-2/5 relative">
-                <PhotoCollage photos={ENIRA_PHOTOS} alt="Енира в бронзе" cols={3} ratio="aspect-[3/4]" />
+                <PhotoCollage photos={ENIRA_PHOTOS} alt="Енира с Тыдочкой в бронзе" cols={3} ratio="aspect-[3/4]" />
               </div>
               <div className="p-4 sm:p-6 md:w-3/5 flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-3">
@@ -115,11 +115,11 @@ export default function IndexNews() {
                   </span>
                 </div>
                 <h3 className="section-title text-xl sm:text-2xl mb-2">
-                  Енира заняла своё место!
+                  Енира с Тыдочкой заняли своё место!
                 </h3>
                 <p className="font-body text-sm mb-4" style={{ color: "var(--warm-text)", lineHeight: 1.6 }}>
-                  Ласковая мама семьи — Енира — уже в бронзе и установлена в городе.
-                  Обнимите её, и даже в пасмурный день станет солнечно. Отметили её
+                  Ласковая мама семьи — Енира с Тыдочкой — уже в бронзе и установлены в городе.
+                  Обнимите их, и даже в пасмурный день станет солнечно. Отметили их
                   на карте — приходите знакомиться.
                 </p>
                 <div className="flex flex-wrap items-center gap-3 mb-4">
@@ -129,7 +129,7 @@ export default function IndexNews() {
                     className="btn-primary inline-flex text-sm py-2.5 px-5"
                     style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
                     <Icon name="Sparkles" size={16} />
-                    Оживить Ениру
+                    Оживить Ениру с Тыдочкой
                   </button>
                 </div>
                 <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
@@ -138,7 +138,7 @@ export default function IndexNews() {
                     width="100%"
                     height="180"
                     frameBorder={0}
-                    title="Енира на карте"
+                    title="Енира с Тыдочкой на карте"
                   />
                 </div>
               </div>

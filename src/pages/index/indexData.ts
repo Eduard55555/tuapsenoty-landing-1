@@ -43,7 +43,7 @@ export const characters = [
   },
   {
     slug: "enira",
-    name: "Енира",
+    name: "Енира с Тыдочкой",
     emoji: "🐚",
     icon: "Shell",
     role: "Мама",

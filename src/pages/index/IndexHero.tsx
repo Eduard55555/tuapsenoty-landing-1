@@ -39,7 +39,7 @@ export default function IndexHero() {
           </div>
           <div className="flex flex-wrap items-start justify-center gap-x-4 gap-y-2">
             <FinderCounter />
-            <FinderCounter label="Ениру нашли" count={eniraCount} />
+            <FinderCounter label="Ениру с Тыдочкой нашли" count={eniraCount} />
           </div>
 
           <div className="animate-fade-up">

@@ -17,7 +17,7 @@ const spots: Spot[] = [
   { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed" },
   { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Место выбирается", status: "soon" },
   { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon" },
-  { slug: "enira", name: "Енира", emoji: "🐚", location: "Установлена в городе", status: "placed" },
+  { slug: "enira", name: "Енира с Тыдочкой", emoji: "🐚", location: "Установлена в городе", status: "placed" },
   { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon" },
   { slug: "enovey", name: "Еновей", emoji: "🗺️", location: "Скоро определим", status: "soon" },
   { slug: "enosik", name: "Еносик", emoji: "🪸", location: "Скоро определим", status: "soon" },
