@@ -171,6 +171,23 @@ export default function CharacterPage() {
                   {char.ritual}
                 </p>
               </div>
+
+              {(char as { map?: string }).map && (
+                <div className="mt-6">
+                  <p className="font-body text-sm font-bold mb-3 text-center" style={{ color: "var(--bronze)" }}>
+                    📍 Где меня найти
+                  </p>
+                  <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
+                    <iframe
+                      src={(char as { map?: string }).map}
+                      width="100%"
+                      height="240"
+                      frameBorder={0}
+                      title={`${char.name} на карте`}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 

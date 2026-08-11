@@ -14,6 +14,7 @@ export const characters = [
     location: "Набережная",
     color: "from-amber-100 to-yellow-100",
     image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/dedcb879-e394-4ecf-b9a2-3f51e45fd402.png",
+    map: "https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor",
     video: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/videos/enotych-ar-v3.mp4",
   },
   {
@@ -48,9 +49,10 @@ export const characters = [
     role: "Мама",
     description: "Ласковая, заботливая, добрая.",
     ritual: "Обними её — и даже в пасмурный день станет солнечно",
-    location: "",
+    location: "Установлена в городе",
     color: "from-cyan-100 to-blue-100",
     image: "/enira/enira-card.webp",
+    map: "https://yandex.ru/map-widget/v1/?um=constructor%3A9fcbfbcb651b40d9e69ee5338b8b1851be093eac55d8eeecc355d63a5cb6f9bc&source=constructor",
   },
   {
     slug: "tydochka",
