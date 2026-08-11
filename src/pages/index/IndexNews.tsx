@@ -2,7 +2,8 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import ARHologram from "@/components/ARHologram";
 import { characters } from "@/pages/CharacterPage";
-import { NEWS_PHOTOS, ENIRA_PHOTOS } from "./indexData";
+import { NEWS_PHOTOS } from "./indexData";
+import { ENIRA_GALLERY } from "./photosData";
 
 const enotych = characters.find((c) => c.slug === "enotych");
 const enofya = characters.find((c) => c.slug === "enofya");
@@ -102,7 +103,7 @@ export default function IndexNews() {
             style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
             <div className="md:flex">
               <div className="md:w-2/5 relative">
-                <PhotoCollage photos={ENIRA_PHOTOS} alt="Енира с Тыдочкой в бронзе" cols={3} ratio="aspect-[3/4]" />
+                <PhotoCollage photos={ENIRA_GALLERY} alt="Енира с Тыдочкой в бронзе" cols={3} ratio="aspect-[3/4]" />
               </div>
               <div className="p-4 sm:p-6 md:w-3/5 flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-3">
