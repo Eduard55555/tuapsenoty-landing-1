@@ -110,9 +110,9 @@ export const NEWS_PHOTOS = [
 ];
 
 export const ENIRA_PHOTOS = [
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/d371e921-224e-42d8-a89a-44a97b648682.jfif",
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/b0ab1479-70b5-40ca-b46a-6f0ebaac0e82.jfif",
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/5e00a23f-e559-4b66-97f0-7d904ca4b471.jfif",
+  "/enira/enira-1.webp",
+  "/enira/enira-2.webp",
+  "/enira/enira-3.webp",
 ];
 
 export const ENOFYA_PHOTOS = [

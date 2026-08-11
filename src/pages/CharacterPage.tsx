@@ -182,7 +182,7 @@ export default function CharacterPage() {
             </button>
             <a href="/shop" className="btn-primary inline-flex">
               <Icon name="ShoppingCart" size={18} />
-              Купить статуэтку {char.name === "Енофья" ? "Енофьи" : char.name === "Тыдочка" ? "Тыдочки" : char.name + "а"}
+              Купить статуэтку {char.name === "Енофья" ? "Енофьи" : char.name === "Тыдочка" ? "Тыдочки" : char.name === "Енира" ? "Ениры" : char.name + "а"}
             </a>
           </div>
 

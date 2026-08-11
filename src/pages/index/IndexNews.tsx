@@ -8,22 +8,19 @@ const enotych = characters.find((c) => c.slug === "enotych");
 const enofya = characters.find((c) => c.slug === "enofya");
 const enira = characters.find((c) => c.slug === "enira");
 
-function PhotoCollage({ photos, alt }: { photos: string[]; alt: string }) {
+function PhotoCollage({ photos, alt, cols = 2, ratio = "aspect-square" }: { photos: string[]; alt: string; cols?: number; ratio?: string }) {
   return (
-    <div className="grid grid-cols-2 gap-1.5 w-full p-1.5">
-      {photos.map((src, i) => {
-        const isLastOdd = photos.length % 2 === 1 && i === photos.length - 1;
-        return (
-          <img
-            key={src}
-            src={src}
-            alt={`${alt} ${i + 1}`}
-            loading="lazy"
-            decoding="async"
-            className={`w-full object-cover rounded-2xl ${isLastOdd ? "col-span-2 aspect-[2/1]" : "aspect-square"}`}
-          />
-        );
-      })}
+    <div className={`grid ${cols === 3 ? "grid-cols-3" : "grid-cols-2"} gap-1.5 w-full p-1.5`}>
+      {photos.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={`${alt} ${i + 1}`}
+          loading="lazy"
+          decoding="async"
+          className={`w-full object-cover object-top rounded-2xl ${ratio}`}
+        />
+      ))}
     </div>
   );
 }
@@ -105,7 +102,7 @@ export default function IndexNews() {
             style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
             <div className="md:flex">
               <div className="md:w-2/5 relative">
-                <PhotoCollage photos={ENIRA_PHOTOS} alt="Енира в бронзе" />
+                <PhotoCollage photos={ENIRA_PHOTOS} alt="Енира в бронзе" cols={3} ratio="aspect-[3/4]" />
               </div>
               <div className="p-4 sm:p-6 md:w-3/5 flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-3">
