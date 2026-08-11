@@ -33,8 +33,18 @@ export default function CharacterPage() {
       setFoundCount(Number(cached));
     }
 
+    const host = window.location.hostname;
+    const isPreview =
+      host === "localhost" ||
+      host === "127.0.0.1" ||
+      host.endsWith(".local") ||
+      host.endsWith("poehali.dev") ||
+      /bot|crawler|spider|headless/i.test(navigator.userAgent);
+
     let shouldIncrement: boolean;
-    if (hasOwnCounter) {
+    if (isPreview) {
+      shouldIncrement = false;
+    } else if (hasOwnCounter) {
       // Енофья: засчитываем любой заход на её страницу не чаще раза в день на устройство
       // (QR у статуэтки ведёт на /characters/enofya без параметров)
       shouldIncrement = localStorage.getItem(key) !== today;
