@@ -3,8 +3,10 @@ import FinderCounter from "@/components/FinderCounter";
 import SeagullsFlight from "@/components/SeagullsFlight";
 import { playCoin } from "@/hooks/useSound";
 import { PLANETA_URL } from "./indexData";
+import { useCharacterCount } from "@/hooks/useCharacterCount";
 
 export default function IndexHero() {
+  const eniraCount = useCharacterCount("enira");
   return (
     <>
       {/* HERO */}
@@ -35,7 +37,10 @@ export default function IndexHero() {
               style={{ border: "4px solid rgba(245, 230, 211, 0.4)" }}
             />
           </div>
-          <FinderCounter />
+          <div className="flex flex-wrap items-start justify-center gap-x-4 gap-y-2">
+            <FinderCounter />
+            <FinderCounter label="Ениру нашли" count={eniraCount} />
+          </div>
 
           <div className="animate-fade-up">
             <h1 className="font-display font-bold mb-6 max-w-4xl mx-auto"

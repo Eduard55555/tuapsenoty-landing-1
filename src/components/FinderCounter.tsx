@@ -2,8 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { useFinderData, pluralPeople } from "@/hooks/useFinderCount";
 import { playCoin } from "@/hooks/useSound";
 
-export default function FinderCounter() {
-  const { count, updatedAt } = useFinderData();
+export default function FinderCounter({ label, count: countProp, updatedAt: updatedAtProp }: { label?: string; count?: number | null; updatedAt?: string | null } = {}) {
+  const finder = useFinderData();
+  const isExternal = countProp !== undefined;
+  const count = isExternal ? countProp ?? null : finder.count;
+  const updatedAt = isExternal ? updatedAtProp ?? null : finder.updatedAt;
   const [display, setDisplay] = useState(0);
   const [splashes, setSplashes] = useState<number[]>([]);
 
@@ -81,7 +84,7 @@ export default function FinderCounter() {
           />
         </span>
         <span className="font-body text-sm sm:text-base" style={{ color: "rgba(245,230,211,0.9)" }}>
-          Енотыча нашли
+          {label ?? "Енотыча нашли"}
         </span>
         <span
           className="font-display font-bold text-lg sm:text-xl tabular-nums"
