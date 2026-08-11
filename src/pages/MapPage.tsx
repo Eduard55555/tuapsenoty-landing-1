@@ -17,7 +17,7 @@ const spots: Spot[] = [
   { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed" },
   { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Место выбирается", status: "soon" },
   { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon" },
-  { slug: "enira", name: "Енира", emoji: "🐚", location: "Скоро определим", status: "soon" },
+  { slug: "enira", name: "Енира", emoji: "🐚", location: "Установлена в городе", status: "placed" },
   { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon" },
   { slug: "enovey", name: "Еновей", emoji: "🗺️", location: "Скоро определим", status: "soon" },
   { slug: "enosik", name: "Еносик", emoji: "🪸", location: "Скоро определим", status: "soon" },
@@ -48,7 +48,8 @@ export default function MapPage() {
               Где найти енотов
             </h1>
             <p className="font-body text-lg max-w-2xl mx-auto" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
-              Восемь бронзовых хранителей поселятся по всему городу. Уже установлен{" "}
+              Восемь бронзовых хранителей поселятся по всему городу. Уже{" "}
+              {placedCount === 1 ? "установлен" : "установлены"}{" "}
               <strong>{placedCount}</strong> — остальные скоро займут свои места.
             </p>
           </div>
@@ -96,7 +97,7 @@ export default function MapPage() {
                         color: isPlaced ? "var(--sea)" : "var(--bronze)",
                       }}>
                       <Icon name={isPlaced ? "Check" : "Clock"} size={13} />
-                      {isPlaced ? "Установлен" : "Скоро"}
+                      {isPlaced ? (s.slug === "enira" || s.slug === "enofya" || s.slug === "tydochka" ? "Установлена" : "Установлен") : "Скоро"}
                     </span>
                   </div>
                 );

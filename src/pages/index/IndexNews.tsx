@@ -6,6 +6,7 @@ import { NEWS_PHOTOS } from "./indexData";
 
 const enotych = characters.find((c) => c.slug === "enotych");
 const enofya = characters.find((c) => c.slug === "enofya");
+const enira = characters.find((c) => c.slug === "enira");
 
 function PhotoCollage({ photos, alt }: { photos: string[]; alt: string }) {
   return (
@@ -31,6 +32,7 @@ function NewsGallery() {
 export default function IndexNews() {
   const [arOpen, setArOpen] = useState(false);
   const [arEnofyaOpen, setArEnofyaOpen] = useState(false);
+  const [arEniraOpen, setArEniraOpen] = useState(false);
   return (
     <section id="news" className="cv-auto py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
       <div className="max-w-6xl mx-auto">
@@ -127,6 +129,48 @@ export default function IndexNews() {
             </div>
           </div>
 
+          <div className="card-hover rounded-3xl overflow-hidden md:col-span-2"
+            style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
+            <div className="p-4 sm:p-8 flex flex-col">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="font-body text-xs font-bold px-3 py-1 rounded-full"
+                  style={{ backgroundColor: "rgba(76,175,80,0.15)", color: "#4CAF50" }}>
+                  🐚 Новый хранитель
+                </span>
+                <span className="font-body text-xs" style={{ color: "#9B7B5A" }}>
+                  Май 2026
+                </span>
+              </div>
+              <h3 className="section-title text-xl sm:text-3xl mb-4">
+                Енира заняла своё место!
+              </h3>
+              <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
+                Ласковая мама семьи — Енира — уже в бронзе и установлена в городе.
+                Обнимите её, и даже в пасмурный день станет солнечно. Отметили её
+                на карте — приходите знакомиться.
+              </p>
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <button
+                  type="button"
+                  onClick={() => setArEniraOpen(true)}
+                  className="btn-primary inline-flex text-sm py-2.5 px-5"
+                  style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
+                  <Icon name="Sparkles" size={16} />
+                  Оживить Ениру
+                </button>
+              </div>
+              <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A9fcbfbcb651b40d9e69ee5338b8b1851be093eac55d8eeecc355d63a5cb6f9bc&source=constructor"
+                  width="100%"
+                  height="180"
+                  frameBorder={0}
+                  title="Енира на карте"
+                />
+              </div>
+            </div>
+          </div>
+
           {[
             { emoji: "🏛️", title: "Администрация поддержала проект", date: "Апрель 2026", text: "Официальное одобрение от администрации Туапсе открыло путь к размещению скульптур в городе." },
             { emoji: "⚖️", title: "Юридическая защита оформлена", date: "Март 2026", text: "Персонажи и названия зарегистрированы. Туапсеноты под надёжной защитой авторского права." },
@@ -159,6 +203,15 @@ export default function IndexNews() {
           video={(enofya as { video?: string }).video}
           name={enofya.name}
           onClose={() => setArEnofyaOpen(false)}
+        />
+      )}
+
+      {arEniraOpen && enira && (
+        <ARHologram
+          image={enira.image}
+          video={(enira as { video?: string }).video}
+          name={enira.name}
+          onClose={() => setArEniraOpen(false)}
         />
       )}
     </section>
