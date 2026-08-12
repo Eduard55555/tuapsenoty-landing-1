@@ -4,6 +4,8 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import PhoneLink from "@/components/PhoneLink";
 import ProductGallery from "@/components/ProductGallery";
+import DeliveryInfo from "@/components/DeliveryInfo";
+import ReviewsSection from "@/components/ReviewsSection";
 import useSeo from "@/hooks/useSeo";
 import { PRODUCTS, buildCartUrl } from "@/data/products";
 
@@ -140,16 +142,21 @@ export default function Shop() {
                 </div>
                 <button
                   onClick={() => handleAdd(p)}
-                  className="w-full flex items-center justify-center gap-2 rounded-full font-display font-bold text-base px-4 py-3.5 transition-transform active:scale-95"
+                  className="cta-buy w-full flex items-center justify-center gap-2.5 rounded-full font-display font-extrabold text-lg sm:text-xl px-5 py-5 transition-transform active:scale-95"
                   style={{
-                    backgroundColor: added === p.id ? "#4CAF50" : "#FF7A1A",
+                    background: added === p.id
+                      ? "linear-gradient(135deg, #4CAF50, #2E7D32)"
+                      : "linear-gradient(135deg, #FF9330, #F2540B)",
                     color: "white",
-                    boxShadow: "0 8px 20px rgba(255,122,26,0.35)",
+                    letterSpacing: "0.01em",
+                    boxShadow: added === p.id
+                      ? "0 10px 26px rgba(76,175,80,0.45)"
+                      : "0 12px 28px rgba(242,84,11,0.45)",
                   }}>
                   {added === p.id ? (
-                    <><Icon name="Check" size={20} /> Добавлено</>
+                    <><Icon name="Check" size={24} /> Добавлено</>
                   ) : (
-                    <><Icon name="ShoppingCart" size={20} /> В корзину</>
+                    <><Icon name="ShoppingCart" size={24} /> В корзину</>
                   )}
                 </button>
                 <PhoneLink
@@ -163,6 +170,25 @@ export default function Shop() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mb-14">
+          <div className="text-center mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+              Доставка и оплата
+            </h2>
+            <p className="font-body" style={{ color: "#6B4C35" }}>
+              Оформляете заявку — мы звоним и договариваемся об удобном способе
+            </p>
+          </div>
+          <DeliveryInfo />
+          <div className="text-center mt-5">
+            <a href="/delivery" className="inline-flex items-center gap-1.5 font-body font-bold text-sm underline"
+              style={{ color: "var(--bronze)" }}>
+              Все условия доставки и оплаты
+              <Icon name="ArrowRight" size={16} />
+            </a>
+          </div>
         </div>
 
         <div className="rounded-3xl p-8 text-center"
@@ -180,6 +206,10 @@ export default function Shop() {
             Поддержать на Planeta.ru
           </a>
         </div>
+      </div>
+
+      <div className="relative z-10">
+        <ReviewsSection background="transparent" />
       </div>
 
       <SiteFooter />

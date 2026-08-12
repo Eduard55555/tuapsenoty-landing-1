@@ -45,9 +45,9 @@ export default function IndexShop() {
                   </div>
                   <a
                     href={buildCartUrl(p)}
-                    className="w-full flex items-center justify-center gap-2 rounded-full font-display font-bold text-base px-4 py-3.5 transition-transform active:scale-95"
-                    style={{ backgroundColor: "#FF7A1A", color: "white", boxShadow: "0 8px 20px rgba(255,122,26,0.35)" }}>
-                    <Icon name="ShoppingCart" size={20} />
+                    className="cta-buy w-full flex items-center justify-center gap-2.5 rounded-full font-display font-extrabold text-lg sm:text-xl px-5 py-5 transition-transform active:scale-95"
+                    style={{ background: "linear-gradient(135deg, #FF9330, #F2540B)", color: "white", letterSpacing: "0.01em", boxShadow: "0 12px 28px rgba(242,84,11,0.45)" }}>
+                    <Icon name="ShoppingCart" size={24} />
                     В корзину
                   </a>
                 </div>

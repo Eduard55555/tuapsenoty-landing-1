@@ -5,6 +5,7 @@ import IndexAbout from "./index/IndexAbout";
 import IndexNews from "./index/IndexNews";
 import IndexShop from "./index/IndexShop";
 import IndexCharacters from "./index/IndexCharacters";
+import ReviewsSection from "@/components/ReviewsSection";
 import { useCountFoundOnce } from "@/hooks/useFinderCount";
 import useSeo from "@/hooks/useSeo";
 import { useEffect } from "react";
@@ -47,6 +48,9 @@ export default function Index() {
 
       {/* SHOP / SOUVENIRS */}
       <IndexShop />
+
+      {/* REVIEWS */}
+      <ReviewsSection background="linear-gradient(180deg, var(--sand) 0%, var(--cream) 100%)" />
 
       {/* ABOUT */}
       <IndexAbout />

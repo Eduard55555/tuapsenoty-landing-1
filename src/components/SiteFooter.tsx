@@ -89,6 +89,12 @@ export default function SiteFooter() {
                 <Icon name="ExternalLink" size={14} />
                 Страница на Planeta.ru
               </a>
+              <a href="/delivery"
+                className="flex items-center gap-2 font-body text-sm hover:underline"
+                style={{ color: "rgba(245,230,211,0.8)" }}>
+                <Icon name="Truck" size={14} />
+                Доставка и оплата
+              </a>
               <a href="/sponsors"
                 className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
                 style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>

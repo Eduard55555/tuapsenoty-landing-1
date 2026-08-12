@@ -59,6 +59,7 @@ function MetrikaTracker() {
 
 const Shop = lazy(() => import("./pages/Shop"));
 const Cart = lazy(() => import("./pages/Cart"));
+const Delivery = lazy(() => import("./pages/Delivery"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CharacterPage = lazy(() => import("./pages/CharacterPage"));
 const Privacy = lazy(() => import("./pages/Privacy"));
@@ -103,6 +104,7 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/delivery" element={<Delivery />} />
               <Route path="/characters/:slug" element={<CharacterPage />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/sponsors" element={<Sponsors />} />

@@ -190,6 +190,23 @@
     box-shadow: 0 28px 55px rgba(184, 115, 51, 0.32);
   }
 
+  .cta-buy {
+    animation: ctaPulse 2.6s ease-in-out infinite;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  }
+
+  .cta-buy:hover {
+    animation-play-state: paused;
+    filter: brightness(1.06);
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-buy {
+      animation: none;
+    }
+  }
+
   .btn-primary {
     background: linear-gradient(135deg, var(--bronze), var(--bronze-dark));
     color: var(--cream);
@@ -248,6 +265,16 @@
     background-repeat: repeat;
     background-size: 200px;
     pointer-events: none;
+  }
+}
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
   }
 }
 

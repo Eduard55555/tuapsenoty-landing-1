@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
+import { DELIVERY_FACTS } from "@/data/delivery";
 
 export default function Cart() {
   const params = new URLSearchParams(window.location.search);
@@ -169,7 +170,7 @@ export default function Cart() {
                 style={{ border: "1.5px solid rgba(184,115,51,0.3)", color: "var(--warm-dark)", backgroundColor: "white" }}
               />
               <p className="font-body text-sm px-1 -mt-1" style={{ color: "#9B7B5A", lineHeight: 1.5 }}>
-                Способ доставки и адрес уточним по телефону — так быстрее и без ошибок.
+                Способ доставки и адрес уточним по телефону — так быстрее и без ошибок. Отправляем в течение 2 дней после заказа.
               </p>
               <label className="flex items-start gap-3 cursor-pointer py-1">
                 <input
@@ -205,7 +206,7 @@ export default function Cart() {
 
               <div className="grid grid-cols-3 gap-2 pt-2">
                 {[
-                  { icon: "ShieldCheck", label: "Без предоплаты" },
+                  { icon: "ShieldCheck", label: "Карта, СБП, перевод" },
                   { icon: "PhoneCall", label: "Звонок-подтверждение" },
                   { icon: "Lock", label: "Данные защищены" },
                 ].map((b) => (
@@ -226,18 +227,20 @@ export default function Cart() {
                   Доставка и оплата
                 </h3>
                 <ul className="space-y-2">
-                  {[
-                    "Отправляем Почтой России и СДЭК по всей стране",
-                    "Стоимость доставки рассчитаем при звонке — зависит от региона",
-                    "Оплата при получении или по реквизитам — как удобно",
-                    "Самовывоз в Туапсе — бесплатно",
-                  ].map((t) => (
-                    <li key={t} className="flex items-start gap-2 font-body text-sm" style={{ color: "#6B4C35", lineHeight: 1.5 }}>
+                  {DELIVERY_FACTS.map((f) => (
+                    <li key={f.title} className="flex items-start gap-2 font-body text-sm" style={{ color: "#6B4C35", lineHeight: 1.5 }}>
                       <Icon name="Check" size={16} style={{ color: "#388E3C", flexShrink: 0, marginTop: 2 }} />
-                      {t}
+                      <span>
+                        <b style={{ color: "var(--warm-dark)" }}>{f.title}:</b> {f.text}
+                      </span>
                     </li>
                   ))}
                 </ul>
+                <a href="/delivery" className="inline-flex items-center gap-1 font-body text-sm font-bold mt-3 underline"
+                  style={{ color: "var(--bronze)" }}>
+                  Подробнее о доставке и оплате
+                  <Icon name="ArrowRight" size={14} />
+                </a>
               </div>
             </form>
           </>
