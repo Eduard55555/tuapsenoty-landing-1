@@ -21,11 +21,12 @@ const NETWORKS = [
       `https://t.me/share/url?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TEXT)}`,
   },
   {
-    id: "wa",
-    label: "WhatsApp",
+    id: "max",
+    label: "MAX",
     icon: "MessageCircle",
-    color: "#25D366",
-    href: () => `https://wa.me/?text=${encodeURIComponent(SHARE_TEXT)}`,
+    color: "#7C3AED",
+    href: () =>
+      `https://max.ru/share?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TEXT)}`,
   },
 ];
 
