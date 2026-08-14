@@ -175,7 +175,7 @@ export default function CharacterPage() {
                   </div>
                   {foundUpdatedAt && (
                     <p className="font-body text-xs" style={{ color: "#9B7B5A" }}>
-                      Обновлено {new Date(foundUpdatedAt).toLocaleString("ru-RU", {
+                      Обновлено: {new Date(foundUpdatedAt).toLocaleString("ru-RU", {
                         day: "numeric",
                         month: "long",
                         year: "numeric",
