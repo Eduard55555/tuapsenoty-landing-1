@@ -3,10 +3,10 @@ import FinderCounter from "@/components/FinderCounter";
 import SeagullsFlight from "@/components/SeagullsFlight";
 import { playCoin } from "@/hooks/useSound";
 import { PLANETA_URL } from "./indexData";
-import { useCharacterData } from "@/hooks/useFinderCount";
+import { useCharacterStats } from "@/hooks/useCharacterCount";
 
 export default function IndexHero() {
-  const enira = useCharacterData("enira");
+  const enira = useCharacterStats("enira");
   return (
     <>
       {/* HERO */}
