@@ -3,10 +3,10 @@ import FinderCounter from "@/components/FinderCounter";
 import SeagullsFlight from "@/components/SeagullsFlight";
 import { playCoin } from "@/hooks/useSound";
 import { PLANETA_URL } from "./indexData";
-import { useCharacterCount } from "@/hooks/useCharacterCount";
+import { useCharacterData } from "@/hooks/useFinderCount";
 
 export default function IndexHero() {
-  const eniraCount = useCharacterCount("enira");
+  const enira = useCharacterData("enira");
   return (
     <>
       {/* HERO */}
@@ -39,7 +39,7 @@ export default function IndexHero() {
           </div>
           <div className="flex flex-wrap items-start justify-center gap-x-4 gap-y-2">
             <FinderCounter />
-            <FinderCounter label="Ениру с Тыдочкой нашли" count={eniraCount} />
+            <FinderCounter label="Ениру с Тыдочкой нашли" count={enira.count} updatedAt={enira.updatedAt} />
           </div>
 
           <div className="animate-fade-up">
