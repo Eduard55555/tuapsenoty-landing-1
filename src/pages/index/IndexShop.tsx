@@ -1,5 +1,6 @@
 import Icon from "@/components/ui/icon";
 import { PRODUCTS, buildCartUrl } from "@/data/products";
+import ShareButtons from "@/components/ShareButtons";
 
 const FEATURED = PRODUCTS.slice(0, 3);
 
@@ -50,6 +51,9 @@ export default function IndexShop() {
                     <Icon name="ShoppingCart" size={24} />
                     В корзину
                   </a>
+                  <div className="flex justify-center mt-3 pt-3" style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
+                    <ShareButtons />
+                  </div>
                 </div>
               </div>
             </div>

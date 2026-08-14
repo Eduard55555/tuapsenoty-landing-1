@@ -5,6 +5,7 @@ import SiteHeader from "@/components/SiteHeader";
 import PhoneLink from "@/components/PhoneLink";
 import ProductGallery from "@/components/ProductGallery";
 import DeliveryInfo from "@/components/DeliveryInfo";
+import ShareButtons from "@/components/ShareButtons";
 import ReviewsSection from "@/components/ReviewsSection";
 import useSeo from "@/hooks/useSeo";
 import { PRODUCTS, buildCartUrl } from "@/data/products";
@@ -167,6 +168,9 @@ export default function Shop() {
                 <p className="font-body text-xs text-center mt-1.5" style={{ color: "#9B7B5A" }}>
                   Заказ в 1 клик — позвоните, оформим за минуту
                 </p>
+                <div className="flex justify-center mt-3 pt-3" style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
+                  <ShareButtons />
+                </div>
               </div>
             </div>
           ))}

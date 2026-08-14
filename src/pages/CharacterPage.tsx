@@ -19,6 +19,7 @@ export default function CharacterPage() {
   const hasOwnCounter = !!slug && OWN_COUNTER_SLUGS.includes(slug);
   const [arOpen, setArOpen] = useState(false);
   const [foundCount, setFoundCount] = useState<number | null>(hasOwnCounter ? 0 : null);
+  const [foundUpdatedAt, setFoundUpdatedAt] = useState<string | null>(null);
 
   useEffect(() => {
     if (!slug) return;
@@ -32,6 +33,8 @@ export default function CharacterPage() {
     if (cached !== null && !Number.isNaN(Number(cached))) {
       setFoundCount(Number(cached));
     }
+    const cachedAt = localStorage.getItem(`${cacheKey}-at`);
+    if (cachedAt) setFoundUpdatedAt(cachedAt);
 
     const host = window.location.hostname;
     const isPreview =
@@ -68,6 +71,10 @@ export default function CharacterPage() {
           const value = d.count + FINDER_BASE;
           localStorage.setItem(cacheKey, String(value));
           setFoundCount(value);
+        }
+        if (typeof d.updated_at === "string") {
+          localStorage.setItem(`${cacheKey}-at`, d.updated_at);
+          setFoundUpdatedAt(d.updated_at);
         }
       })
       .catch(() => {});
@@ -141,8 +148,9 @@ export default function CharacterPage() {
                   </div>
                 ) : null}
                 {foundCount !== null && (
+                  <div className="mt-4 flex flex-col items-center gap-1.5">
                   <div
-                    className="inline-flex items-center gap-2 rounded-full px-4 py-2 mt-4"
+                    className="inline-flex items-center gap-2 rounded-full px-4 py-2"
                     style={{ backgroundColor: "rgba(184,115,51,0.12)", border: "1px solid rgba(184,115,51,0.3)" }}
                   >
                     <span className="relative flex h-2.5 w-2.5">
@@ -164,6 +172,18 @@ export default function CharacterPage() {
                     <span className="font-body text-sm" style={{ color: "#5A3E2B" }}>
                       {pluralPeople(foundCount)}
                     </span>
+                  </div>
+                  {foundUpdatedAt && (
+                    <p className="font-body text-xs" style={{ color: "#9B7B5A" }}>
+                      Обновлено {new Date(foundUpdatedAt).toLocaleString("ru-RU", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </p>
+                  )}
                   </div>
                 )}
               </div>
