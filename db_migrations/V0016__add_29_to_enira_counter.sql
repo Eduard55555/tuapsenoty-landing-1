@@ -1,0 +1,1 @@
+UPDATE character_counters SET count = count + 29, updated_at = now() WHERE slug = 'enira';
