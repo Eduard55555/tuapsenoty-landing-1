@@ -77,8 +77,8 @@ export default function Sponsors() {
       <main className="pt-28 pb-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <div className="text-5xl mb-4">🤝</div>
-            <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
+            <div className="text-4xl sm:text-5xl mb-4">🤝</div>
+            <h1 className="font-display text-2xl sm:text-5xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
               Стать партнёром
             </h1>
             <p className="font-body text-lg max-w-2xl mx-auto" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
@@ -87,7 +87,7 @@ export default function Sponsors() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="grid lg:grid-cols-2 gap-5 sm:gap-8 items-start">
             <div className="grid sm:grid-cols-2 gap-4">
               {BENEFITS.map((b) => (
                 <div key={b.title} className="rounded-3xl p-6"
@@ -110,8 +110,8 @@ export default function Sponsors() {
               style={{ background: "linear-gradient(135deg, #FBF3E4, #FDF8EF)", border: "2px solid var(--bronze)" }}>
               {submitted ? (
                 <div className="text-center py-10">
-                  <div className="text-5xl mb-4">💛</div>
-                  <h2 className="font-display text-2xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
+                  <div className="text-4xl sm:text-5xl mb-4">💛</div>
+                  <h2 className="font-display text-xl sm:text-2xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
                     Заявка отправлена!
                   </h2>
                   <p className="font-body text-base" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
@@ -120,7 +120,7 @@ export default function Sponsors() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <h2 className="font-display text-2xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+                  <h2 className="font-display text-xl sm:text-2xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
                     Оставьте заявку
                   </h2>
                   <div>

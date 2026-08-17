@@ -41,7 +41,7 @@ export default function IndexShop() {
                   {p.name}
                 </h3>
                 <div className="mt-auto">
-                  <div className="font-display text-2xl font-bold mb-3" style={{ color: "var(--bronze)" }}>
+                  <div className="font-display text-xl sm:text-2xl font-bold mb-3" style={{ color: "var(--bronze)" }}>
                     {p.price.toLocaleString("ru-RU")} ₽
                   </div>
                   <a

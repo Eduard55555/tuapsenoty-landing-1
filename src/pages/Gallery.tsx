@@ -45,8 +45,8 @@ export default function Gallery() {
       <main className="pt-28 pb-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <div className="text-5xl mb-4">📸</div>
-            <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
+            <div className="text-4xl sm:text-5xl mb-4">📸</div>
+            <h1 className="font-display text-2xl sm:text-5xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
               Галерея
             </h1>
             <p className="font-body text-lg max-w-2xl mx-auto" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>

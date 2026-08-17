@@ -135,8 +135,8 @@ export default function ARHologram({ image, video, name, onClose }: ARHologramPr
 
       {error && (
         <div className="absolute inset-0 flex items-center justify-center p-6">
-          <div className="bg-white rounded-3xl p-8 max-w-sm text-center">
-            <div className="text-5xl mb-4">📷</div>
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-sm text-center">
+            <div className="text-4xl sm:text-5xl mb-4">📷</div>
             <p className="font-body text-base mb-6" style={{ color: "#5A3E2B" }}>
               {error}
             </p>

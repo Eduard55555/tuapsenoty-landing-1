@@ -66,7 +66,7 @@ export default function Shop() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-4 mb-16">
+        <div className="grid sm:grid-cols-3 gap-4 mb-10 sm:mb-16">
           {PRODUCTS.map((p) => (
             <div key={p.id} className="rounded-2xl overflow-hidden card-hover"
               style={{
@@ -115,7 +115,7 @@ export default function Shop() {
                   </div>
                 )}
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="font-display text-2xl font-bold" style={{ color: "var(--bronze)" }}>
+                  <span className="font-display text-xl sm:text-2xl font-bold" style={{ color: "var(--bronze)" }}>
                     {p.price.toLocaleString("ru-RU")} ₽
                   </span>
                   <div className="flex items-center gap-1 rounded-full px-1 py-1"
@@ -195,7 +195,7 @@ export default function Shop() {
           </div>
         </div>
 
-        <div className="rounded-3xl p-8 text-center"
+        <div className="rounded-3xl p-6 sm:p-8 text-center"
           style={{ background: "linear-gradient(135deg, var(--sea), #3d7a90)", boxShadow: "0 12px 40px rgba(122,177,191,0.3)" }}>
           <h3 className="font-display text-2xl sm:text-3xl font-bold mb-3"
             style={{ color: "var(--cream)" }}>

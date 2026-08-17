@@ -32,7 +32,7 @@ export default function CookieBanner() {
     <div className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4">
       <div className="max-w-3xl mx-auto rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 shadow-2xl animate-fade-up"
         style={{ backgroundColor: "var(--warm-dark)", border: "1px solid rgba(184,115,51,0.3)" }}>
-        <div className="text-3xl">🍪</div>
+        <div className="text-2xl sm:text-3xl">🍪</div>
         <p className="font-body text-sm flex-1" style={{ color: "var(--cream)", lineHeight: 1.5 }}>
           Мы используем файлы cookie для корректной работы сайта и анализа статистики.
           Подробнее — в{" "}

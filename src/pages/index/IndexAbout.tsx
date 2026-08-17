@@ -11,7 +11,7 @@ export default function IndexAbout() {
             Туапсе заслуживает<br />своей легенды
           </h2>
         </div>
-        <div className="font-body text-lg max-w-3xl mx-auto mb-16" style={{ color: "var(--warm-text)", lineHeight: 1.8, textAlign: "justify" }}>
+        <div className="font-body text-base sm:text-lg max-w-3xl mx-auto mb-10 sm:mb-16" style={{ color: "var(--warm-text)", lineHeight: 1.8, textAlign: "justify" }}>
           <p style={{ textIndent: "2em" }}>Туапсе — город, где море обнимает берег, а горы смотрят в облака. Здесь хочется замедлиться, остановиться, вдохнуть и рассмотреть повнимательнее.</p>
           <p style={{ textIndent: "2em" }}>«Туапсеноты» — не просто фигурки. Это маленькое чудо, которое делает город ещё теплее.</p>
           <p style={{ textIndent: "2em" }}>Восемь бронзовых енотов. Совсем маленькие — 20 см. Они поселятся на набережной, в парке, на пляже, у вокзала. У каждого — имя, характер, своя тихая легенда. И ритуал, который хочется повторять: потереть лапку, прошептать желание, просто улыбнуться в ответ.</p>
@@ -29,7 +29,7 @@ export default function IndexAbout() {
             className="w-full h-64 sm:h-96 object-cover"
             style={{ objectPosition: "center center" }}
           />
-          <div className="absolute inset-0 flex items-end p-8"
+          <div className="absolute inset-0 flex items-end p-5 sm:p-8"
             style={{ background: "linear-gradient(to top, rgba(46,92,110,0.8) 0%, transparent 60%)" }}>
             <p className="font-display text-lg sm:text-2xl md:text-3xl font-bold italic"
               style={{ color: "var(--cream)" }}>

@@ -94,9 +94,9 @@ export default function CharacterPage() {
   if (!char) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "var(--cream)" }}>
-        <div className="text-center p-8">
-          <div className="text-6xl mb-4">🦝</div>
-          <h1 className="font-display text-3xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
+        <div className="text-center p-5 sm:p-8">
+          <div className="text-5xl sm:text-6xl mb-4">🦝</div>
+          <h1 className="font-display text-2xl sm:text-3xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
             Персонаж не найден
           </h1>
           <Link to="/#characters" className="btn-primary inline-flex">
@@ -123,10 +123,10 @@ export default function CharacterPage() {
               className="w-full object-cover"
               style={{ maxHeight: "420px", objectPosition: "top" }}
             />
-            <div className="p-8">
+            <div className="p-5 sm:p-8">
               <div className="text-center mb-6">
-                <div className="text-4xl mb-2">{char.emoji}</div>
-                <h1 className="font-display text-4xl font-bold mb-1" style={{ color: "var(--warm-dark)" }}>
+                <div className="text-3xl sm:text-4xl mb-2">{char.emoji}</div>
+                <h1 className="font-display text-2xl sm:text-4xl font-bold mb-1" style={{ color: "var(--warm-dark)" }}>
                   {char.name}
                 </h1>
                 <p className="font-body text-lg font-semibold" style={{ color: "var(--bronze)" }}>

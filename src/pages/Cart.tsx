@@ -71,9 +71,9 @@ export default function Cart() {
 
       <div className="max-w-2xl mx-auto px-4 py-8">
         {submitted ? (
-          <div className="text-center py-20">
-            <div className="text-7xl mb-6">🦝</div>
-            <h2 className="font-display text-3xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
+          <div className="text-center py-12 sm:py-20">
+            <div className="text-5xl sm:text-7xl mb-6">🦝</div>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
               Заявка принята!
             </h2>
             <p className="font-body mb-8" style={{ color: "#6B4C35" }}>
@@ -85,8 +85,8 @@ export default function Cart() {
             </a>
           </div>
         ) : !hasItem ? (
-          <div className="text-center py-20">
-            <div className="text-7xl mb-6">🛒</div>
+          <div className="text-center py-12 sm:py-20">
+            <div className="text-5xl sm:text-7xl mb-6">🛒</div>
             <p className="font-body text-lg mb-8" style={{ color: "#9B7B5A" }}>Корзина пуста</p>
             <a href="/shop" className="btn-primary inline-flex px-8 py-4">
               <Icon name="ShoppingBag" size={18} />
@@ -133,7 +133,7 @@ export default function Cart() {
                         <Icon name="Plus" size={16} />
                       </button>
                     </div>
-                    <p className="font-display text-2xl font-bold" style={{ color: "var(--bronze)" }}>
+                    <p className="font-display text-xl sm:text-2xl font-bold" style={{ color: "var(--bronze)" }}>
                       {total.toLocaleString("ru-RU")} ₽
                     </p>
                   </div>
@@ -142,7 +142,7 @@ export default function Cart() {
             </div>
 
             <form onSubmit={handleOrder} className="space-y-4">
-              <h2 className="font-display text-2xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+              <h2 className="font-display text-xl sm:text-2xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
                 Ваши данные
               </h2>
               <input

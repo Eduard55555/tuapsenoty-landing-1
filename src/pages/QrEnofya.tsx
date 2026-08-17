@@ -31,8 +31,8 @@ export default function QrEnofya() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12" style={{ backgroundColor: "var(--cream)" }}>
       <div className="qr-print-area w-full max-w-md text-center">
-        <div className="text-4xl mb-2">🧺</div>
-        <h1 className="font-display text-3xl font-bold mb-1" style={{ color: "var(--warm-dark)" }}>
+        <div className="text-3xl sm:text-4xl mb-2">🧺</div>
+        <h1 className="font-display text-2xl sm:text-3xl font-bold mb-1" style={{ color: "var(--warm-dark)" }}>
           Енофья
         </h1>
         <p className="font-body text-base mb-6" style={{ color: "var(--bronze)" }}>

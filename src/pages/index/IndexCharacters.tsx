@@ -40,7 +40,7 @@ export default function IndexCharacters() {
       <section id="characters" className="cv-auto py-8 sm:py-12 px-4 sm:px-6"
         style={{ background: "linear-gradient(180deg, var(--sand) 0%, var(--cream) 100%)" }}>
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
               style={{ color: "var(--bronze)" }}>
               Персонажи
@@ -79,10 +79,10 @@ export default function IndexCharacters() {
                         )}
                       </div>
                     ) : (
-                      <div className="text-5xl mb-4 text-center">{char.emoji}</div>
+                      <div className="text-4xl sm:text-5xl mb-4 text-center">{char.emoji}</div>
                     )}
                     <div className="text-center mb-4">
-                      <h3 className="font-display text-2xl font-bold" style={{ color: "var(--warm-dark)" }}>
+                      <h3 className="font-display text-xl sm:text-2xl font-bold" style={{ color: "var(--warm-dark)" }}>
                         {char.name}
                       </h3>
                       <p className="font-body text-sm font-semibold mt-1" style={{ color: "var(--bronze)" }}>

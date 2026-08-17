@@ -36,7 +36,7 @@ export default function Delivery() {
           className="rounded-3xl p-6 sm:p-8 mt-8"
           style={{ backgroundColor: "var(--sand)", border: "1px solid rgba(184,115,51,0.18)" }}
         >
-          <h2 className="font-display text-2xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
+          <h2 className="font-display text-xl sm:text-2xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
             Как проходит заказ
           </h2>
           <ol className="space-y-3">

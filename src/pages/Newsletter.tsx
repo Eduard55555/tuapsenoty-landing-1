@@ -80,13 +80,13 @@ const Newsletter = () => {
       style={{ backgroundColor: "var(--cream)" }}
     >
       <div
-        className="w-full max-w-xl rounded-2xl p-8 shadow-lg"
+        className="w-full max-w-xl rounded-2xl p-5 sm:p-8 shadow-lg"
         style={{ backgroundColor: "#ffffff" }}
       >
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-3xl">🦝</span>
+          <span className="text-2xl sm:text-3xl">🦝</span>
           <h1
-            className="text-2xl font-extrabold"
+            className="text-xl sm:text-2xl font-extrabold"
             style={{ color: "var(--sea)", fontFamily: "'Nunito', sans-serif" }}
           >
             Рассылка новостей

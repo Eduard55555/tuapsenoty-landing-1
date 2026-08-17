@@ -37,7 +37,7 @@ export default function IndexNews() {
   return (
     <section id="news" className="cv-auto py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
             style={{ color: "var(--bronze)" }}>
             Новости проекта
@@ -47,7 +47,7 @@ export default function IndexNews() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-5 sm:gap-8">
           <div className="card-hover rounded-3xl overflow-hidden md:col-span-2"
             style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
             <div className="md:flex">
@@ -184,7 +184,7 @@ export default function IndexNews() {
             <div key={item.title}
               className="card-hover rounded-3xl p-6"
               style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
-              <div className="text-3xl mb-3">{item.emoji}</div>
+              <div className="text-2xl sm:text-3xl mb-3">{item.emoji}</div>
               <div className="font-body text-xs mb-2" style={{ color: "#9B7B5A" }}>{item.date}</div>
               <h4 className="section-title text-xl mb-3">{item.title}</h4>
               <p className="font-body text-sm" style={{ color: "var(--warm-text)", lineHeight: 1.7 }}>{item.text}</p>
