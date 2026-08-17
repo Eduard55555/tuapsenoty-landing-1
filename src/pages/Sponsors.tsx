@@ -74,14 +74,14 @@ export default function Sponsors() {
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <SiteHeader />
 
-      <main className="pt-28 pb-20 px-4 sm:px-6">
+      <main className="pt-24 sm:pt-28 pb-12 sm:pb-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <div className="text-4xl sm:text-5xl mb-4">🤝</div>
             <h1 className="font-display text-2xl sm:text-5xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
               Стать партнёром
             </h1>
-            <p className="font-body text-lg max-w-2xl mx-auto" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
+            <p className="font-body text-base sm:text-lg max-w-2xl mx-auto" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
               Хотите, чтобы бронзовый енот-хранитель поселился у вашего бизнеса?
               Оставьте заявку — мы свяжемся с вами и обсудим детали.
             </p>
@@ -90,7 +90,7 @@ export default function Sponsors() {
           <div className="grid lg:grid-cols-2 gap-5 sm:gap-8 items-start">
             <div className="grid sm:grid-cols-2 gap-4">
               {BENEFITS.map((b) => (
-                <div key={b.title} className="rounded-3xl p-6"
+                <div key={b.title} className="rounded-3xl p-5 sm:p-6"
                   style={{ background: "#fff", border: "1px solid rgba(184,115,51,0.15)" }}>
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
                     style={{ background: "rgba(184,115,51,0.12)" }}>

@@ -161,7 +161,7 @@ export default function IndexNews() {
               <h3 className="section-title text-xl sm:text-3xl mb-4">
                 Енофья отлита в бронзе!
               </h3>
-              <p className="font-body mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
+              <p className="font-body text-sm sm:text-base mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
                 Добрая бабушка семьи — Енофья — воплощена мастерами. В чепце и фартуке, с корзинкой полной гостинцев, она скоро появится в городе и будет встречать гостей Туапсе с улыбкой и теплом.
               </p>
               <div className="flex flex-wrap items-center gap-3">
@@ -182,7 +182,7 @@ export default function IndexNews() {
             { emoji: "⚖️", title: "Юридическая защита оформлена", date: "Март 2026", text: "Персонажи и названия зарегистрированы. Туапсеноты под надёжной защитой авторского права." },
           ].map((item) => (
             <div key={item.title}
-              className="card-hover rounded-3xl p-6"
+              className="card-hover rounded-3xl p-5 sm:p-6"
               style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
               <div className="text-2xl sm:text-3xl mb-3">{item.emoji}</div>
               <div className="font-body text-xs mb-2" style={{ color: "#9B7B5A" }}>{item.date}</div>

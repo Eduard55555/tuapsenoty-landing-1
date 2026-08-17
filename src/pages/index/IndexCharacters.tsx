@@ -48,7 +48,7 @@ export default function IndexCharacters() {
             <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-6">
               Познакомьтесь с семьёй
             </h2>
-            <p className="font-body text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
+            <p className="font-body text-base sm:text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
               Восемь уникальных хранителей. У каждого — своё место, характер и ритуал удачи.
             </p>
           </div>
@@ -168,7 +168,7 @@ export default function IndexCharacters() {
           <div className="rounded-3xl p-6 sm:p-12 text-center"
             style={{ background: "linear-gradient(135deg, var(--sand), #EDD5B8)" }}>
             <h3 className="section-title text-xl sm:text-3xl mb-3">Следите за проектом</h3>
-            <p className="font-body mb-8" style={{ color: "var(--warm-text)" }}>
+            <p className="font-body text-sm sm:text-base mb-6 sm:mb-8" style={{ color: "var(--warm-text)" }}>
               Подпишитесь и узнавайте первыми об открытии каждого нового Туапсенота
             </p>
 
@@ -228,14 +228,14 @@ export default function IndexCharacters() {
             Станьте хранителем<br />
             <em style={{ color: "var(--teal-light)" }}>вместе с нами</em>
           </h2>
-          <p className="font-body text-lg mb-12 max-w-2xl mx-auto"
+          <p className="font-body text-base sm:text-lg mb-8 sm:mb-12 max-w-2xl mx-auto"
             style={{ color: "rgba(245,230,211,0.85)", lineHeight: 1.8 }}>
             Поддержите проект на Planeta.ru и получите эксклюзивный подарок
             от команды Туапсенотов.
           </p>
 
           <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-            className="btn-primary text-lg px-10 py-5 inline-flex">
+            className="btn-primary text-base sm:text-lg px-6 py-4 sm:px-10 sm:py-5 inline-flex">
             <Icon name="ExternalLink" size={20} />
             Перейти к сбору на Planeta.ru
           </a>

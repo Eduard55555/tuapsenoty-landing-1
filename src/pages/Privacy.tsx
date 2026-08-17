@@ -6,21 +6,21 @@ export default function Privacy() {
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <SiteHeader />
 
-      <div className="pt-24 pb-16 px-4 sm:px-6 max-w-3xl mx-auto">
+      <div className="pt-24 pb-12 sm:pb-16 px-4 sm:px-6 max-w-3xl mx-auto">
         <div className="mb-10">
           <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
             style={{ color: "var(--bronze)" }}>
             Документы
           </p>
-          <h1 className="font-display text-3xl sm:text-4xl font-bold"
+          <h1 className="font-display text-2xl sm:text-4xl font-bold"
             style={{ color: "var(--warm-dark)" }}>
             Политика обработки персональных данных
           </h1>
         </div>
 
-        <div className="font-body space-y-8" style={{ color: "#4A3527", lineHeight: 1.7 }}>
+        <div className="font-body text-sm sm:text-base space-y-6 sm:space-y-8" style={{ color: "#4A3527", lineHeight: 1.7 }}>
           <section className="space-y-2">
-            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               1. Общие положения
             </h2>
             <p>1.1. Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта «Туапсеноты» (далее — Сайт), расположенного по адресу: tuapsenoty.ru.</p>
@@ -30,11 +30,11 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
               2. Какие персональные данные собираются
             </h2>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
+              <table className="w-full text-xs sm:text-sm border-collapse">
                 <thead>
                   <tr style={{ backgroundColor: "var(--sand)" }}>
                     <th className="text-left p-2 border" style={{ borderColor: "rgba(184,115,51,0.2)" }}>Категория</th>
@@ -51,11 +51,11 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
               3. Цели обработки персональных данных
             </h2>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
+              <table className="w-full text-xs sm:text-sm border-collapse">
                 <thead>
                   <tr style={{ backgroundColor: "var(--sand)" }}>
                     <th className="text-left p-2 border" style={{ borderColor: "rgba(184,115,51,0.2)" }}>Цель</th>
@@ -74,7 +74,7 @@ export default function Privacy() {
           </section>
 
           <section className="space-y-2">
-            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               4. Правовые основания обработки
             </h2>
             <p>4.1. Обработка персональных данных осуществляется на основании:</p>
@@ -86,13 +86,13 @@ export default function Privacy() {
           </section>
 
           <section className="space-y-2">
-            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               5. Сроки хранения и место хранения
             </h2>
             <p>5.1. Персональные данные хранятся на серверах, расположенных на территории Российской Федерации.</p>
             <p>5.2. Сроки хранения:</p>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
+              <table className="w-full text-xs sm:text-sm border-collapse">
                 <thead>
                   <tr style={{ backgroundColor: "var(--sand)" }}>
                     <th className="text-left p-2 border" style={{ borderColor: "rgba(184,115,51,0.2)" }}>Тип данных</th>
@@ -111,12 +111,12 @@ export default function Privacy() {
           </section>
 
           <section className="space-y-2">
-            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               6. Условия передачи персональных данных третьим лицам
             </h2>
             <p>6.1. Оператор не передаёт персональные данные третьим лицам, за исключением:</p>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
+              <table className="w-full text-xs sm:text-sm border-collapse">
                 <thead>
                   <tr style={{ backgroundColor: "var(--sand)" }}>
                     <th className="text-left p-2 border" style={{ borderColor: "rgba(184,115,51,0.2)" }}>Получатель</th>
@@ -138,7 +138,7 @@ export default function Privacy() {
           </section>
 
           <section className="space-y-2">
-            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               7. Файлы cookie (куки) и технические данные
             </h2>
             <p>7.1. Сайт использует файлы cookie для сбора технической информации (IP-адрес, тип браузера, сведения об устройстве).</p>
@@ -148,7 +148,7 @@ export default function Privacy() {
           </section>
 
           <section className="space-y-2">
-            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               8. Порядок получения согласия (чекбоксы)
             </h2>
             <p>8.1. Согласие на обработку персональных данных для оформления заказа даётся через отдельный чекбокс:</p>
@@ -159,12 +159,12 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-3" style={{ color: "var(--warm-dark)" }}>
               9. Права пользователя
             </h2>
             <p className="mb-2">Пользователь имеет право:</p>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
+              <table className="w-full text-xs sm:text-sm border-collapse">
                 <thead>
                   <tr style={{ backgroundColor: "var(--sand)" }}>
                     <th className="text-left p-2 border" style={{ borderColor: "rgba(184,115,51,0.2)" }}>Право</th>
@@ -183,7 +183,7 @@ export default function Privacy() {
           </section>
 
           <section className="space-y-2">
-            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               10. Меры по защите персональных данных
             </h2>
             <p>Оператор принимает следующие меры:</p>
@@ -196,7 +196,7 @@ export default function Privacy() {
           </section>
 
           <section className="space-y-2">
-            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               11. Заключительные положения
             </h2>
             <p>11.1. Оператор вправе вносить изменения в Политику. Новая редакция вступает в силу с момента её размещения на Сайте.</p>
@@ -204,7 +204,7 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               12. Контакты
             </h2>
             <p>Сарбаев Эдуард Нажиевич</p>
@@ -213,7 +213,7 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
+            <h2 className="font-display text-lg sm:text-xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               13. Настройки файлов cookie
             </h2>
             <p className="mb-3">Вы можете в любой момент изменить своё решение по использованию файлов cookie.</p>

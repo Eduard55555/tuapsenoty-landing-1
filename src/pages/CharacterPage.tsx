@@ -112,7 +112,7 @@ export default function CharacterPage() {
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <SiteHeader />
 
-      <main className="pt-24 pb-20 px-4 sm:px-6">
+      <main className="pt-24 pb-12 sm:pb-20 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
 
           <div className={`rounded-3xl overflow-hidden bg-gradient-to-br ${char.color} mb-8`}
@@ -129,7 +129,7 @@ export default function CharacterPage() {
                 <h1 className="font-display text-2xl sm:text-4xl font-bold mb-1" style={{ color: "var(--warm-dark)" }}>
                   {char.name}
                 </h1>
-                <p className="font-body text-lg font-semibold" style={{ color: "var(--bronze)" }}>
+                <p className="font-body text-base sm:text-lg font-semibold" style={{ color: "var(--bronze)" }}>
                   {char.role}
                 </p>
                 {char.location ? (
@@ -188,11 +188,11 @@ export default function CharacterPage() {
                 )}
               </div>
 
-              <p className="font-body text-base text-center mb-6" style={{ color: "#5A3E2B", lineHeight: 1.8 }}>
+              <p className="font-body text-sm sm:text-base text-center mb-6" style={{ color: "#5A3E2B", lineHeight: 1.8 }}>
                 {char.description}
               </p>
 
-              <div className="rounded-2xl p-5 text-center"
+              <div className="rounded-2xl p-4 sm:p-5 text-center"
                 style={{ backgroundColor: "rgba(184,115,51,0.1)", border: "1px dashed rgba(184,115,51,0.3)" }}>
                 <p className="font-body text-sm font-bold mb-2" style={{ color: "var(--bronze)" }}>
                   🪄 Ритуал

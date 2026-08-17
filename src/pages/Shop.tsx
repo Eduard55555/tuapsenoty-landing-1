@@ -51,8 +51,8 @@ export default function Shop() {
       </div>
       <SiteHeader showCart />
 
-      <div className="relative z-10 pt-24 pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
-        <div className="text-center mb-12">
+      <div className="relative z-10 pt-24 pb-12 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="text-center mb-8 sm:mb-12">
           <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
             style={{ color: "var(--bronze)" }}>
             Магазин
@@ -61,7 +61,7 @@ export default function Shop() {
             style={{ color: "var(--warm-dark)" }}>
             Возьми частичку Туапсе домой
           </h1>
-          <p className="font-body text-lg max-w-xl mx-auto" style={{ color: "#6B4C35" }}>
+          <p className="font-body text-base sm:text-lg max-w-xl mx-auto" style={{ color: "#6B4C35" }}>
             Каждый заказ — это вклад в проект и живая память о Туапсенотах
           </p>
         </div>
@@ -176,7 +176,7 @@ export default function Shop() {
           ))}
         </div>
 
-        <div className="mb-14">
+        <div className="mb-10 sm:mb-14">
           <div className="text-center mb-6">
             <h2 className="font-display text-2xl sm:text-3xl font-bold mb-2" style={{ color: "var(--warm-dark)" }}>
               Доставка и оплата
