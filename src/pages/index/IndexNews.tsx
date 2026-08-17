@@ -38,11 +38,11 @@ export default function IndexNews() {
     <section id="news" className="cv-auto py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10 sm:mb-16">
-          <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
+          <p className="font-body text-xs sm:text-sm font-bold tracking-widest uppercase mb-2 sm:mb-3"
             style={{ color: "var(--bronze)" }}>
             Новости проекта
           </p>
-          <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-4">
+          <h2 className="section-title text-xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
             Это уже происходит
           </h2>
         </div>

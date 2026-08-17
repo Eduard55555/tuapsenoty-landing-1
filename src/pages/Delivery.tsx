@@ -19,7 +19,7 @@ export default function Delivery() {
 
       <div className="pt-24 pb-16 px-4 sm:px-6 max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <p className="font-body text-sm font-bold tracking-widest uppercase mb-3" style={{ color: "var(--bronze)" }}>
+          <p className="font-body text-xs sm:text-sm font-bold tracking-widest uppercase mb-2 sm:mb-3" style={{ color: "var(--bronze)" }}>
             Покупателям
           </p>
           <h1 className="font-display text-3xl sm:text-5xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>

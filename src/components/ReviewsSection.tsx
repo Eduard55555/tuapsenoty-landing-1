@@ -9,17 +9,17 @@ export default function ReviewsSection({ background }: { background?: string }) 
       style={{ background: background || "var(--cream)" }}
     >
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10">
+        <div className="text-center mb-7 sm:mb-10">
           <p
-            className="font-body text-sm font-bold tracking-widest uppercase mb-3"
+            className="font-body text-xs sm:text-sm font-bold tracking-widest uppercase mb-2 sm:mb-3"
             style={{ color: "var(--bronze)" }}
           >
             Отзывы
           </p>
-          <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-4">
+          <h2 className="section-title text-xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
             Что говорят наши покупатели
           </h2>
-          <p className="font-body text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
+          <p className="font-body text-sm sm:text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
             Каждая фигурка уезжает в новый дом со своей историей
           </p>
         </div>
@@ -28,7 +28,7 @@ export default function ReviewsSection({ background }: { background?: string }) 
           {REVIEWS.map((r) => (
             <div
               key={r.name + r.city}
-              className="rounded-3xl p-6 flex flex-col card-hover"
+              className="rounded-3xl p-5 sm:p-6 flex flex-col card-hover"
               style={{
                 backgroundColor: "white",
                 border: "1px solid rgba(184,115,51,0.15)",
@@ -41,7 +41,7 @@ export default function ReviewsSection({ background }: { background?: string }) 
                 ))}
               </div>
               <p
-                className="font-body text-base flex-1 mb-4"
+                className="font-body text-sm sm:text-base flex-1 mb-4"
                 style={{ color: "#3d2b1f", lineHeight: 1.65 }}
               >
                 {r.text}
@@ -54,7 +54,7 @@ export default function ReviewsSection({ background }: { background?: string }) 
                   {r.emoji}
                 </span>
                 <div>
-                  <p className="font-display font-bold text-base" style={{ color: "var(--warm-dark)" }}>
+                  <p className="font-display font-bold text-sm sm:text-base" style={{ color: "var(--warm-dark)" }}>
                     {r.name}, {r.city}
                   </p>
                   <p className="font-body text-xs" style={{ color: "#9B7B5A" }}>

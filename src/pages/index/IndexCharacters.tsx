@@ -41,11 +41,11 @@ export default function IndexCharacters() {
         style={{ background: "linear-gradient(180deg, var(--sand) 0%, var(--cream) 100%)" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 sm:mb-16">
-            <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
+            <p className="font-body text-xs sm:text-sm font-bold tracking-widest uppercase mb-2 sm:mb-3"
               style={{ color: "var(--bronze)" }}>
               Персонажи
             </p>
-            <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-6">
+            <h2 className="section-title text-xl sm:text-4xl md:text-5xl mb-4 sm:mb-6">
               Познакомьтесь с семьёй
             </h2>
             <p className="font-body text-base sm:text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
@@ -219,11 +219,11 @@ export default function IndexCharacters() {
           style={{ background: "var(--teal)", filter: "blur(100px)", transform: "translate(30%, -30%)" }} />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <p className="font-body text-sm font-bold tracking-widest uppercase mb-4"
+          <p className="font-body text-xs sm:text-sm font-bold tracking-widest uppercase mb-3 sm:mb-4"
             style={{ color: "var(--teal-light)" }}>
             Как помочь
           </p>
-          <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold mb-6"
+          <h2 className="font-display text-xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6"
             style={{ color: "var(--cream)", lineHeight: 1.2 }}>
             Станьте хранителем<br />
             <em style={{ color: "var(--teal-light)" }}>вместе с нами</em>

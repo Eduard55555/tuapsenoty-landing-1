@@ -9,15 +9,15 @@ export default function IndexShop() {
     <section id="shop" className="cv-auto py-10 sm:py-16 px-4 sm:px-6"
       style={{ background: "linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%)" }}>
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10">
-          <p className="font-body text-sm font-bold tracking-widest uppercase mb-3"
+        <div className="text-center mb-7 sm:mb-10">
+          <p className="font-body text-xs sm:text-sm font-bold tracking-widest uppercase mb-2 sm:mb-3"
             style={{ color: "var(--bronze)" }}>
             Сувениры
           </p>
-          <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-4">
+          <h2 className="section-title text-xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
             Возьми Туапсенота домой 🦝
           </h2>
-          <p className="font-body text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
+          <p className="font-body text-sm sm:text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
             Фигурки ручной работы «под бронзу». Тёплый подарок и память о Туапсе.
           </p>
         </div>
@@ -36,17 +36,17 @@ export default function IndexShop() {
                   {p.badge}
                 </span>
               </a>
-              <div className="p-5 flex flex-col flex-1">
-                <h3 className="font-display text-lg font-bold mb-2 leading-tight" style={{ color: "var(--warm-dark)" }}>
+              <div className="p-4 sm:p-5 flex flex-col flex-1">
+                <h3 className="font-display text-base sm:text-lg font-bold mb-2 leading-tight" style={{ color: "var(--warm-dark)" }}>
                   {p.name}
                 </h3>
                 <div className="mt-auto">
-                  <div className="font-display text-xl sm:text-2xl font-bold mb-3" style={{ color: "var(--bronze)" }}>
+                  <div className="font-display text-lg sm:text-2xl font-bold mb-3" style={{ color: "var(--bronze)" }}>
                     {p.price.toLocaleString("ru-RU")} ₽
                   </div>
                   <a
                     href={buildCartUrl(p)}
-                    className="cta-buy w-full flex items-center justify-center gap-2.5 rounded-full font-display font-extrabold text-lg sm:text-xl px-5 py-5 transition-transform active:scale-95"
+                    className="cta-buy w-full flex items-center justify-center gap-2.5 rounded-full font-display font-extrabold text-base sm:text-xl px-4 py-3.5 sm:px-5 sm:py-5 transition-transform active:scale-95"
                     style={{ background: "linear-gradient(135deg, #FF9330, #F2540B)", color: "white", letterSpacing: "0.01em", boxShadow: "0 12px 28px rgba(242,84,11,0.45)" }}>
                     <Icon name="ShoppingCart" size={24} />
                     В корзину
@@ -60,9 +60,9 @@ export default function IndexShop() {
           ))}
         </div>
 
-        <div className="text-center mt-10">
+        <div className="text-center mt-7 sm:mt-10">
           <a href="/shop"
-            className="inline-flex items-center gap-2 rounded-full font-display font-bold text-base px-8 py-4 transition-transform active:scale-95"
+            className="inline-flex items-center gap-2 rounded-full font-display font-bold text-sm sm:text-base px-6 py-3.5 sm:px-8 sm:py-4 transition-transform active:scale-95"
             style={{ backgroundColor: "var(--sea)", color: "white", boxShadow: "0 8px 24px rgba(46,92,110,0.3)" }}>
             Смотреть все сувениры
             <Icon name="ArrowRight" size={20} />

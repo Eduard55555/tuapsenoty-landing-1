@@ -22,10 +22,10 @@ export default function TuapseMap() {
     <section className="py-12 sm:py-16 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
-          <p className="font-body text-sm font-bold tracking-widest uppercase mb-3" style={{ color: "var(--bronze)" }}>
+          <p className="font-body text-xs sm:text-sm font-bold tracking-widest uppercase mb-2 sm:mb-3" style={{ color: "var(--bronze)" }}>
             Карта поисков
           </p>
-          <h2 className="section-title text-2xl sm:text-4xl md:text-5xl mb-4">
+          <h2 className="section-title text-xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
             Где искать енотов
           </h2>
           <p className="font-body text-base sm:text-lg max-w-2xl mx-auto" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
