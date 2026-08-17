@@ -54,12 +54,12 @@ export default function FinderCounter({ label, count: countProp, updatedAt: upda
   const updatedLabel = fmtDate(updatedAt);
 
   return (
-    <div className="animate-fade-up flex flex-col items-center mb-6">
+    <div className="animate-fade-up flex flex-col items-center mb-3 sm:mb-6">
       <button
         type="button"
         onClick={handleSplash}
         onMouseEnter={handleHover}
-        className="relative inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-lg cursor-pointer transition-transform hover:scale-[1.03] active:scale-95"
+        className="relative inline-flex items-center gap-1.5 sm:gap-2.5 rounded-full px-3 py-1.5 sm:px-5 sm:py-2.5 shadow-lg cursor-pointer transition-transform hover:scale-[1.03] active:scale-95"
         style={{
           background: "rgba(253, 246, 238, 0.12)",
           border: "1px solid rgba(64,224,208,0.4)",
@@ -73,31 +73,31 @@ export default function FinderCounter({ label, count: countProp, updatedAt: upda
             style={{ border: "2px solid var(--teal-light)" }}
           />
         ))}
-        <span className="relative flex h-2.5 w-2.5">
+        <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
           <span
             className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
             style={{ backgroundColor: "var(--teal-light)" }}
           />
           <span
-            className="relative inline-flex rounded-full h-2.5 w-2.5"
+            className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5"
             style={{ backgroundColor: "var(--teal-light)" }}
           />
         </span>
-        <span className="font-body text-sm sm:text-base" style={{ color: "rgba(245,230,211,0.9)" }}>
+        <span className="font-body text-xs sm:text-base" style={{ color: "rgba(245,230,211,0.9)" }}>
           {label ?? "Енотыча нашли"}
         </span>
         <span
-          className="font-display font-bold text-lg sm:text-xl tabular-nums"
+          className="font-display font-bold text-sm sm:text-xl tabular-nums"
           style={{ color: "var(--teal-light)" }}
         >
           {formatted}
         </span>
-        <span className="font-body text-sm sm:text-base" style={{ color: "rgba(245,230,211,0.9)" }}>
+        <span className="font-body text-xs sm:text-base" style={{ color: "rgba(245,230,211,0.9)" }}>
           {pluralPeople(display)}
         </span>
       </button>
       {updatedLabel && (
-        <p className="font-body text-[11px] sm:text-xs mt-2" style={{ color: "rgba(245,230,211,0.55)" }}>
+        <p className="font-body text-[10px] sm:text-xs mt-1 sm:mt-2" style={{ color: "rgba(245,230,211,0.55)" }}>
           Обновлено: {updatedLabel}
         </p>
       )}
