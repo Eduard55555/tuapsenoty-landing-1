@@ -43,13 +43,13 @@ export default function IndexHero() {
           </div>
 
           <div className="animate-fade-up">
-            <h1 className="font-display font-bold mb-6 max-w-4xl mx-auto"
-              style={{ color: "var(--cream)", lineHeight: 1.2, fontSize: "clamp(24px, 6vw, 56px)" }}>
+            <h1 className="font-display font-bold mb-4 sm:mb-6 max-w-4xl mx-auto"
+              style={{ color: "var(--cream)", lineHeight: 1.2, fontSize: "clamp(20px, 5vw, 56px)" }}>
               Туапсеноты — <em style={{ color: "var(--teal-light)" }}>новая душа</em> Черноморского побережья
             </h1>
           </div>
 
-          <p className="animate-fade-up-delay-1 font-body text-base sm:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto"
+          <p className="animate-fade-up-delay-1 font-body text-sm sm:text-xl mb-6 sm:mb-10 max-w-2xl mx-auto"
             style={{ color: "rgba(245,230,211,0.85)", lineHeight: 1.7 }}>
             Семья бронзовых енотов-хранителей, которая изменит Туапсе.
             Восемь персонажей с историями, ритуалами и душой.
