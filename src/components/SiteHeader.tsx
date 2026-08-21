@@ -64,9 +64,13 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
           </a>
 
           <nav className="hidden lg:flex items-center gap-3">
+            <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
+              className="btn-primary text-sm px-3 py-1 whitespace-nowrap">
+              <Icon name="Heart" size={16} />
+              Поддержать проект
+            </a>
             {(() => {
               const items: [string, string][] = [
-                ["💛 Стать партнёром ✨", "/sponsors"],
                 ["🛒 Магазин", "/shop"],
                 ...LINKS,
               ];
@@ -87,10 +91,10 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
                 Корзина
               </a>
             )}
-            <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-              className="btn-primary text-sm px-3 py-1 whitespace-nowrap">
-              <Icon name="Heart" size={16} />
-              Поддержать проект
+            <a href="/sponsors"
+              className="font-body text-sm px-3 py-1 rounded-full whitespace-nowrap transition-transform hover:scale-105"
+              style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
+              💛 Стать партнёром ✨
             </a>
           </nav>
 
@@ -111,9 +115,13 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
       {menuOpen && (
         <div className="lg:hidden px-4 pb-4 pt-2 space-y-3"
           style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
+          <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
+            className="btn-primary text-sm w-full justify-center">
+            <Icon name="Heart" size={16} />
+            Поддержать на Planeta.ru
+          </a>
           {(() => {
             const items: [string, string][] = [
-              ["💛 Стать партнёром ✨", "/sponsors"],
               ["🛒 Магазин", "/shop"],
               ...LINKS,
             ];
@@ -129,10 +137,11 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
               );
             });
           })()}
-          <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-            className="btn-primary text-sm w-full justify-center mt-2">
-            <Icon name="Heart" size={16} />
-            Поддержать на Planeta.ru
+          <a href="/sponsors"
+            className="block font-body py-2 px-3 rounded-xl text-center mt-2"
+            style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}
+            onClick={() => setMenuOpen(false)}>
+            💛 Стать партнёром ✨
           </a>
         </div>
       )}
