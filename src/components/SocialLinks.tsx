@@ -4,7 +4,7 @@ export const MAX_URL = "https://max.ru/channel_tuapsenoty";
 export const VK_URL = "https://vk.ru/club237171594";
 export const TELEGRAM_URL = "https://t.me/tuapsenoty";
 
-const LINKS = [
+export const SOCIAL_LINKS = [
   { url: TELEGRAM_URL, label: "Telegram", icon: "Send", color: "#2AABEE" },
   { url: VK_URL, label: "ВКонтакте", icon: "Users", color: "#0077FF" },
   { url: MAX_URL, label: "MAX", icon: "MessageCircle", color: "#7C4DFF" },
@@ -21,7 +21,7 @@ export default function SocialLinks() {
           Новости о новых енотах, фото с набережной и живая жизнь проекта
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-          {LINKS.map((l) => (
+          {SOCIAL_LINKS.map((l) => (
             <a
               key={l.label}
               href={l.url}

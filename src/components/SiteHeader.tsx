@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { PLANETA_URL } from "@/pages/index/indexData";
+import { SOCIAL_LINKS } from "@/components/SocialLinks";
 
 const LINKS: [string, string][] = [
   ["Доставка", "/delivery"],
@@ -92,6 +93,16 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
               <Icon name="Heart" size={16} />
               Поддержать проект
             </a>
+            <span className="flex items-center gap-1.5 pl-2" style={{ borderLeft: "1px solid rgba(184,115,51,0.25)" }}>
+              {SOCIAL_LINKS.map((s) => (
+                <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer"
+                  aria-label={s.label} title={s.label}
+                  className="inline-flex items-center justify-center rounded-full w-8 h-8 text-white transition-transform hover:scale-110"
+                  style={{ backgroundColor: s.color }}>
+                  <Icon name={s.icon} fallback="Link" size={16} />
+                </a>
+              ))}
+            </span>
           </nav>
 
           <div className="flex items-center gap-2 lg:hidden">
@@ -134,6 +145,17 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
             <Icon name="Heart" size={16} />
             Поддержать на Planeta.ru
           </a>
+          <div className="flex items-center justify-center gap-3 pt-3"
+            style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
+            {SOCIAL_LINKS.map((s) => (
+              <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer"
+                aria-label={s.label}
+                className="inline-flex items-center justify-center rounded-full w-10 h-10 text-white transition-transform hover:scale-110"
+                style={{ backgroundColor: s.color }}>
+                <Icon name={s.icon} fallback="Link" size={20} />
+              </a>
+            ))}
+          </div>
         </div>
       )}
     </header>
