@@ -1,10 +1,9 @@
 import Icon from "@/components/ui/icon";
 import PhoneLink from "@/components/PhoneLink";
 
+import { MAX_URL, VK_URL, TELEGRAM_URL } from "@/components/SocialLinks";
+
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
-const MAX_URL = "https://max.ru/join/uBdeDmv3f51WgWvFTPMWA84VIaYSgeU9yLwdr9lYO1g";
-const VK_URL = "https://vk.ru/club237171594";
-const TELEGRAM_URL = "https://t.me/tuapsenoty";
 
 export default function SiteFooter() {
   return (

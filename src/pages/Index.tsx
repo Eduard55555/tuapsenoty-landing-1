@@ -1,4 +1,5 @@
 import SiteFooter from "@/components/SiteFooter";
+import SocialLinks from "@/components/SocialLinks";
 import IndexHeader from "./index/IndexHeader";
 import IndexHero from "./index/IndexHero";
 import IndexAbout from "./index/IndexAbout";
@@ -60,6 +61,9 @@ export default function Index() {
 
       {/* CHARACTERS + SUBSCRIBE + HOW TO HELP */}
       <IndexCharacters />
+
+      {/* SOCIAL */}
+      <SocialLinks />
 
       {/* FOOTER */}
       <SiteFooter />
