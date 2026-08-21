@@ -4,6 +4,7 @@ import SeagullsFlight from "@/components/SeagullsFlight";
 import { playCoin } from "@/hooks/useSound";
 import { PLANETA_URL } from "./indexData";
 import { useCharacterStats } from "@/hooks/useCharacterCount";
+import { SOCIAL_LINKS } from "@/components/SocialLinks";
 
 export default function IndexHero() {
   const enira = useCharacterStats("enira");
@@ -72,6 +73,21 @@ export default function IndexHero() {
             </a>
           </div>
 
+          <div className="animate-fade-up-delay-2 mt-6 sm:mt-8">
+            <p className="font-body text-sm sm:text-base mb-3" style={{ color: "rgba(245,230,211,0.85)" }}>
+              Мы в MAX, Telegram и ВКонтакте
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {SOCIAL_LINKS.map((s) => (
+                <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 font-body font-bold text-sm text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+                  style={{ backgroundColor: s.color }}>
+                  <Icon name={s.icon} fallback="Link" size={18} />
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          </div>
 
         </div>
       </section>
