@@ -3,6 +3,8 @@ import os
 import re
 import psycopg2
 
+# rev: 2
+
 
 def handler(event: dict, context) -> dict:
     '''Счётчик переходов на страницу персонажа. GET — узнать число, POST — увеличить на 1, PUT — админ меняет значение (нужен пароль X-Admin-Key). Параметр slug обязателен.'''
