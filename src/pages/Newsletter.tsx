@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
+import CounterAdmin from "@/components/CounterAdmin";
 import func2url from "../../backend/func2url.json";
 
 const NEWSLETTER_URL = func2url["send-newsletter"];
@@ -165,6 +166,8 @@ const Newsletter = () => {
                 ))}
               </div>
             )}
+
+            <CounterAdmin adminKey={adminKey} />
 
             <div>
               <label className="block mb-1 font-semibold" style={{ color: "var(--warm-text)" }}>
