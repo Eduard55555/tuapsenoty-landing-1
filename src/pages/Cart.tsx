@@ -18,15 +18,43 @@ export default function Cart() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [sendFailed, setSendFailed] = useState(false);
   const [customerName, setCustomerName] = useState("");
   const [phone, setPhone] = useState("");
   const [consent, setConsent] = useState(false);
 
+  const formatPhone = (raw: string) => {
+    let d = raw.replace(/\D/g, "");
+    if (d.startsWith("8")) d = "7" + d.slice(1);
+    if (d.startsWith("9") && d.length <= 10) d = "7" + d;
+    d = d.slice(0, 11);
+    if (!d) return "";
+    let out = "+7";
+    if (d.length > 1) out += " (" + d.slice(1, 4);
+    if (d.length >= 5) out += ") " + d.slice(4, 7);
+    if (d.length >= 8) out += "-" + d.slice(7, 9);
+    if (d.length >= 10) out += "-" + d.slice(9, 11);
+    return out;
+  };
+
+  const phoneDigits = phone.replace(/\D/g, "");
+  const phoneValid = phoneDigits.length === 11 && phoneDigits.startsWith("7");
+  const nameValid = customerName.trim().length >= 2;
+
   const handleOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading) return;
+    if (!nameValid) {
+      setError("Укажите имя — как к вам обращаться");
+      return;
+    }
+    if (!phoneValid) {
+      setError("Проверьте номер телефона: нужен полный номер, например +7 (999) 123-45-67");
+      return;
+    }
     setLoading(true);
     setError("");
+    setSendFailed(false);
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 15000);
     try {
@@ -48,6 +76,7 @@ export default function Cart() {
       setSubmitted(true);
     } catch (err) {
       console.error(err);
+      setSendFailed(true);
       setError("Не удалось отправить заявку. Проверьте соединение и попробуйте ещё раз.");
     } finally {
       clearTimeout(timer);
@@ -162,15 +191,25 @@ export default function Cart() {
               <input
                 required
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="Телефон"
+                onChange={(e) => setPhone(formatPhone(e.target.value))}
+                placeholder="+7 (999) 123-45-67"
                 type="tel"
+                inputMode="tel"
                 autoComplete="tel"
                 autoCorrect="off"
                 spellCheck={false}
                 className="w-full rounded-2xl px-5 py-4 font-body outline-none text-base"
-                style={{ border: "1.5px solid rgba(184,115,51,0.3)", color: "var(--warm-dark)", backgroundColor: "white" }}
+                style={{
+                  border: `1.5px solid ${phone && !phoneValid ? "rgba(192,57,43,0.6)" : "rgba(184,115,51,0.3)"}`,
+                  color: "var(--warm-dark)",
+                  backgroundColor: "white",
+                }}
               />
+              {phone && !phoneValid && (
+                <p className="font-body text-sm px-1 -mt-2" style={{ color: "#C0392B" }}>
+                  Введите номер полностью — 11 цифр
+                </p>
+              )}
               <p className="font-body text-sm px-1 -mt-1" style={{ color: "#9B7B5A", lineHeight: 1.5 }}>
                 Способ доставки и адрес уточним по телефону — так быстрее и без ошибок. Отправляем в течение 2 дней после заказа.
               </p>
@@ -201,9 +240,18 @@ export default function Cart() {
                 }
               </button>
               {error && (
-                <p className="font-body text-sm text-center" style={{ color: "#c0392b" }}>
-                  {error}
-                </p>
+                <div className="rounded-2xl p-4 space-y-2" style={{ backgroundColor: "#FDECEA", border: "1px solid rgba(192,57,43,0.25)" }}>
+                  <p className="font-body text-sm" style={{ color: "#c0392b" }}>{error}</p>
+                  {sendFailed && (
+                    <p className="font-body text-sm" style={{ color: "#6B4C35" }}>
+                      Данные сохранены в этом окне — нажмите «Оформить заявку» ещё раз или напишите нам в Telegram: {" "}
+                      <a href="https://t.me/tuapsenoty" target="_blank" rel="noopener noreferrer"
+                        className="underline font-semibold" style={{ color: "var(--bronze)" }}>
+                        @tuapsenoty
+                      </a>
+                    </p>
+                  )}
+                </div>
               )}
 
               <div className="grid grid-cols-3 gap-2 pt-2">

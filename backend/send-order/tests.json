@@ -5,6 +5,15 @@
       "method": "OPTIONS",
       "path": "/",
       "expectedStatus": 200
+    },
+    {
+      "name": "Reject empty order",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "", "phone": "", "items": []},
+      "expectedStatus": 400,
+      "expectedBody": {"ok": false},
+      "bodyMatcher": "partial"
     }
   ]
 }
