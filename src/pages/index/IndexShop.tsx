@@ -29,6 +29,7 @@ export default function IndexShop() {
               <a href="/shop" className="relative block">
                 <img src={p.image} alt={p.name}
                   loading="lazy" decoding="async"
+                  width={400} height={220}
                   className="w-full object-contain"
                   style={{ height: "220px", backgroundColor: "#f5f0eb" }} />
                 <span className="absolute top-3 left-3 font-body text-xs font-bold px-2.5 py-1 rounded-full"

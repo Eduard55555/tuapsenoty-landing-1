@@ -13,7 +13,7 @@ export const characters = [
     ritual: "Потри удочку, фуражку или лапку. Загадай желание. Енотыч верит, что оно сбудется. И это уже полдела. А Енотыч постарается сделать так, чтобы оно сбылось.",
     location: "Набережная",
     color: "from-amber-100 to-yellow-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/dedcb879-e394-4ecf-b9a2-3f51e45fd402.png",
+    image: "/opt/dedcb879-e394-4ecf-b9a2-3f51e45fd402.webp",
     map: "https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor",
     video: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/videos/enotych-ar-v3.mp4",
   },
@@ -26,7 +26,7 @@ export const characters = [
     description: "В её корзине — полный достаток южного лета. Присмотритесь: там и хурма, янтарная, словно солнце на закате, и сочная груша, и тяжёлые кисти винограда, которые так и просятся в ладонь. Енофья никуда не спешит, она присела отдохнуть, но корзину держит наготове — вдруг кому-то нужна будет сладкая поддержка.",
     ritual: "Погладь корзинку — и год будет сладким. Говорят, кто улыбнётся ей в ответ — у того даже грустный день становится сладким",
     color: "from-rose-100 to-orange-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/77f4a412-aa81-4cbc-8468-c0857cd99cbc.png",
+    image: "/opt/77f4a412-aa81-4cbc-8468-c0857cd99cbc.webp",
     video: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/1b8c5faa-380f-48f6-9203-cfb09855463e.mp4",
   },
   {
@@ -39,7 +39,7 @@ export const characters = [
     ritual: "Потри его по плечу и посмотри вдаль — говорят, там на горизонте уже ждёт твоя удача",
     location: "",
     color: "from-blue-100 to-teal-100",
-    image: "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/58afeb2e-e5a5-43ff-94c8-33a3fefa527f.png",
+    image: "/opt/58afeb2e-e5a5-43ff-94c8-33a3fefa527f.webp",
   },
   {
     slug: "enira",
@@ -114,6 +114,6 @@ export const NEWS_PHOTOS = [
 export const ENOFYA_PHOTOS = [
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/bc45f1a50097404aaefe37e2abda7cc8.webp",
   "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/c8be351b65cb4ba6bf6a901e581c755c.webp",
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/f0216fca-6e9c-4243-873c-2d9dd96aad3a.jpg",
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/fd9cbcfa-385e-4c29-a4e6-65318036e55a.jpg",
+  "/opt/f0216fca-6e9c-4243-873c-2d9dd96aad3a.webp",
+  "/opt/fd9cbcfa-385e-4c29-a4e6-65318036e55a.webp",
 ];

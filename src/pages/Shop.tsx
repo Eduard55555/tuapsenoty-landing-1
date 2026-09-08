@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -8,6 +8,7 @@ import DeliveryInfo from "@/components/DeliveryInfo";
 import ShareButtons from "@/components/ShareButtons";
 import ReviewsSection from "@/components/ReviewsSection";
 import useSeo from "@/hooks/useSeo";
+import JsonLd from "@/components/JsonLd";
 import { PRODUCTS, buildCartUrl } from "@/data/products";
 
 const PLANETA_URL = "https://planeta.ru/campaigns/244619";
@@ -19,6 +20,33 @@ export default function Shop() {
       "Сувениры и мини-фигурки енотов-хранителей Туапсе ручной работы. Купите своего Енотыча и поддержите проект бронзовой семьи на набережной.",
     path: "/shop",
   });
+  const productsSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Сувениры Туапсенотов",
+      itemListElement: PRODUCTS.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+          "@type": "Product",
+          name: p.name,
+          image: p.image,
+          description: p.description.split("\n")[0],
+          brand: { "@type": "Brand", name: "Туапсеноты" },
+          offers: {
+            "@type": "Offer",
+            price: p.price,
+            priceCurrency: "RUB",
+            availability: "https://schema.org/InStock",
+            url: `https://tuapsenoty.ru/shop#${p.id}`,
+          },
+        },
+      })),
+    }),
+    [],
+  );
+
   const [added, setAdded] = useState<string | null>(null);
   const [qtys, setQtys] = useState<Record<string, number>>({});
 
@@ -41,6 +69,7 @@ export default function Shop() {
         background:
           "radial-gradient(1100px 600px at 12% -8%, rgba(122,177,191,0.22), transparent 58%), radial-gradient(1000px 600px at 95% 8%, rgba(184,115,51,0.18), transparent 55%), radial-gradient(900px 700px at 50% 115%, rgba(212,160,90,0.16), transparent 60%), linear-gradient(180deg, #FDF6EE, #F5E6D3 55%, #F0DCC2)",
       }}>
+      <JsonLd id="shop" data={productsSchema} />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full opacity-70 blur-3xl"
           style={{ background: "radial-gradient(circle, rgba(140,82,30,0.55), transparent 70%)" }} />

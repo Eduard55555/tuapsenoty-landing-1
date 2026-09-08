@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
@@ -7,6 +7,7 @@ import ARHologram from "@/components/ARHologram";
 import { FINDER_API, FINDER_BASE, CHARACTER_API, pluralPeople } from "@/hooks/useFinderCount";
 import { characters } from "@/pages/index/indexData";
 import useSeo from "@/hooks/useSeo";
+import JsonLd from "@/components/JsonLd";
 
 const OWN_COUNTER_SLUGS: string[] = ["enira"];
 const NO_LOCATION_LABEL_SLUGS: string[] = [];
@@ -91,6 +92,44 @@ export default function CharacterPage() {
     image: char?.image,
   });
 
+  const charSchema = useMemo(() => {
+    if (!char) return null;
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": char.location ? "TouristAttraction" : "CreativeWork",
+        name: char.name,
+        description: char.description,
+        image: char.image,
+        url: `https://tuapsenoty.ru/characters/${char.slug}`,
+        ...(char.location
+          ? {
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Туапсе",
+                addressRegion: "Краснодарский край",
+                addressCountry: "RU",
+              },
+              isAccessibleForFree: true,
+            }
+          : {}),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Главная", item: "https://tuapsenoty.ru/" },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: char.name,
+            item: `https://tuapsenoty.ru/characters/${char.slug}`,
+          },
+        ],
+      },
+    ];
+  }, [char]);
+
   if (!char) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "var(--cream)" }}>
@@ -110,6 +149,7 @@ export default function CharacterPage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
+      {charSchema && <JsonLd id={`char-${char.slug}`} data={charSchema} />}
       <SiteHeader />
 
       <main className="pt-24 pb-12 sm:pb-20 px-4 sm:px-6">
@@ -119,7 +159,10 @@ export default function CharacterPage() {
             style={{ border: "1px solid rgba(184,115,51,0.15)" }}>
             <img
               src={char.image}
-              alt={char.name}
+              alt={`${char.name} — бронзовый енот-хранитель Туапсе`}
+              decoding="async"
+              width={640}
+              height={420}
               className="w-full object-cover"
               style={{ maxHeight: "420px", objectPosition: "top" }}
             />

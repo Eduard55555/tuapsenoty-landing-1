@@ -100,6 +100,8 @@ export default function Cart() {
               <div className="flex items-center gap-4 p-4">
                 {image && (
                   <img src={image} alt={name}
+                    loading="lazy" decoding="async"
+                    width={96} height={96}
                     className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-xl flex-shrink-0"
                     style={{ backgroundColor: "#f5f0eb" }} />
                 )}

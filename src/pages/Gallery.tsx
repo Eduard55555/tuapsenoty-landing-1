@@ -62,6 +62,8 @@ export default function Gallery() {
                 style={{ background: "#fff", border: "1px solid rgba(184,115,51,0.15)" }}>
                 <div className={`bg-gradient-to-br ${p.color}`}>
                   <img src={p.url} alt={p.name}
+                    loading="lazy" decoding="async"
+                    width={640} height={320}
                     className="w-full object-cover"
                     style={{ height: "320px", objectPosition: "center" }} />
                 </div>

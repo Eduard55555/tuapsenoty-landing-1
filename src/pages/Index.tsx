@@ -9,7 +9,9 @@ import IndexCharacters from "./index/IndexCharacters";
 import ReviewsSection from "@/components/ReviewsSection";
 import { useCountFoundOnce } from "@/hooks/useFinderCount";
 import useSeo from "@/hooks/useSeo";
-import { useEffect } from "react";
+import JsonLd from "@/components/JsonLd";
+import { characters, VK_URL } from "./index/indexData";
+import { useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Index() {
@@ -38,8 +40,49 @@ export default function Index() {
     path: "/",
   });
 
+  const schema = useMemo(
+    () => [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Туапсеноты",
+        url: "https://tuapsenoty.ru/",
+        logo: "https://tuapsenoty.ru/favicon.svg",
+        description:
+          "Проект семьи бронзовых енотов-хранителей на набережной Туапсе: скульптуры, сувениры и городские легенды.",
+        sameAs: [VK_URL],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Туапсе",
+          addressRegion: "Краснодарский край",
+          addressCountry: "RU",
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Туапсеноты",
+        url: "https://tuapsenoty.ru/",
+        inLanguage: "ru-RU",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Семья Туапсенотов",
+        itemListElement: characters.map((c, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: c.name,
+          url: `https://tuapsenoty.ru/characters/${c.slug}`,
+        })),
+      },
+    ],
+    [],
+  );
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
+      <JsonLd id="home" data={schema} />
 
       {/* HEADER */}
       <IndexHeader />
