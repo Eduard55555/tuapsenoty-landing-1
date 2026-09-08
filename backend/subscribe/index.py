@@ -1,8 +1,9 @@
 import json
 import os
 import re
-import urllib.request
 import psycopg2
+
+from notify import notify
 
 
 def handler(event: dict, context) -> dict:
@@ -37,23 +38,6 @@ def handler(event: dict, context) -> dict:
         conn.close()
 
     if is_new:
-        token = os.environ.get('TELEGRAM_BOT_TOKEN')
-        if not token:
-            print('TELEGRAM_BOT_TOKEN is missing')
-        else:
-            text = f"📬 Новый подписчик на новости!\n\n📧 {email}"
-            data = json.dumps({'chat_id': '300609957', 'text': text}).encode()
-            for attempt in range(3):
-                req = urllib.request.Request(
-                    f'https://api.telegram.org/bot{token}/sendMessage',
-                    data=data,
-                    headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'}
-                )
-                try:
-                    resp = urllib.request.urlopen(req, timeout=10)
-                    print('Telegram response:', resp.status, resp.read().decode())
-                    break
-                except Exception as e:
-                    print(f'Telegram send failed (attempt {attempt + 1}):', repr(e))
+        notify('Новый подписчик — Туапсеноты', f"📬 Новый подписчик на новости!\n\n📧 {email}")
 
     return {'statusCode': 200, 'headers': {'Access-Control-Allow-Origin': '*'}, 'body': json.dumps({'ok': True})}

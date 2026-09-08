@@ -1,6 +1,6 @@
 import json
-import os
-import urllib.request
+
+from notify import notify
 
 
 def handler(event: dict, context) -> dict:
@@ -37,35 +37,17 @@ def handler(event: dict, context) -> dict:
 
     text = '\n'.join(lines)
 
-    token = os.environ['TELEGRAM_BOT_TOKEN']
-    chat_id = '300609957'
+    sent = notify('Заявка на партнёрство — Туапсеноты', text)
 
-    data = json.dumps({'chat_id': chat_id, 'text': text, 'parse_mode': 'Markdown'}).encode()
-
-    last_error = ''
-    sent = False
-    for attempt in range(2):
-        req = urllib.request.Request(
-            f'https://api.telegram.org/bot{token}/sendMessage',
-            data=data,
-            headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'}
-        )
-        try:
-            urllib.request.urlopen(req, timeout=5)
-            sent = True
-            break
-        except Exception as e:
-            last_error = str(e)
-
-    if not sent:
+    if not sent['telegram'] and not sent['email']:
         return {
             'statusCode': 502,
             'headers': {'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'ok': False, 'error': last_error})
+            'body': json.dumps({'ok': False, 'error': 'delivery failed'})
         }
 
     return {
         'statusCode': 200,
         'headers': {'Access-Control-Allow-Origin': '*'},
-        'body': json.dumps({'ok': True})
+        'body': json.dumps({'ok': True, **sent})
     }

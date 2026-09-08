@@ -1,11 +1,10 @@
 import json
 import os
 import re
-import smtplib
-import urllib.request
-from email.mime.text import MIMEText
 
 import psycopg2
+
+from notify import notify
 
 CORS = {
     'Access-Control-Allow-Origin': '*',
@@ -82,46 +81,16 @@ def handler(event: dict, context) -> dict:
         f"💰 *Итого: {total:,} ₽*"
     )
 
-    last_error = ''
-    mail_ok = False
-    smtp_email = os.environ.get('SMTP_EMAIL')
-    smtp_password = os.environ.get('SMTP_PASSWORD')
-    if smtp_email and smtp_password:
-        try:
-            msg = MIMEText(text.replace('*', ''), 'plain', 'utf-8')
-            msg['Subject'] = 'Заявка из магазина Туапсенотов' + (f' №{order_id}' if order_id else '')
-            msg['From'] = smtp_email
-            msg['To'] = smtp_email
-            server = smtplib.SMTP_SSL('smtp.mail.ru', 465, timeout=15)
-            server.login(smtp_email, smtp_password)
-            server.sendmail(smtp_email, smtp_email, msg.as_string())
-            server.quit()
-            mail_ok = True
-        except Exception as e:
-            last_error = str(e)
-            print('SMTP error:', repr(e))
-
-    token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
-    chat_id = '300609957'
-    telegram_ok = False
-    if token:
-        data = json.dumps({'chat_id': chat_id, 'text': text, 'parse_mode': 'Markdown'}).encode()
-        req = urllib.request.Request(
-            f'https://api.telegram.org/bot{token}/sendMessage',
-            data=data,
-            headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'},
-        )
-        try:
-            urllib.request.urlopen(req, timeout=3)
-            telegram_ok = True
-        except Exception as e:
-            print('Telegram error:', repr(e))
+    subject = 'Заявка из магазина Туапсенотов' + (f' №{order_id}' if order_id else '')
+    sent = notify(subject, text)
+    telegram_ok = sent['telegram']
+    mail_ok = sent['email']
 
     if not telegram_ok and not mail_ok and order_id is None:
         return {
             'statusCode': 502,
             'headers': {**CORS, 'Content-Type': 'application/json'},
-            'body': json.dumps({'ok': False, 'error': last_error}),
+            'body': json.dumps({'ok': False, 'error': 'delivery failed'}),
         }
 
     return {
