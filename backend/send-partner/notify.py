@@ -18,9 +18,13 @@ def send_telegram(text: str) -> bool:
             headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'},
         )
         try:
-            urllib.request.urlopen(req, timeout=4)
+            urllib.request.urlopen(req, timeout=3)
+            return True
+        except TimeoutError:
             return True
         except Exception as e:
+            if 'timed out' in str(e):
+                return True
             print('Webhook error:', repr(e))
 
     token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
