@@ -60,25 +60,25 @@ def handler(event: dict, context) -> dict:
         print('DB save error:', repr(e))
 
     items_text = '\n'.join(
-        f"  • {i.get('name', '')} × {i.get('qty', 1)} = {int(i.get('price', 0)) * int(i.get('qty', 1)):,} ₽"
+        f"- {i.get('name', '')} x {i.get('qty', 1)} = {int(i.get('price', 0)) * int(i.get('qty', 1))} руб."
         for i in items
     )
 
     delivery_text = ''
     if delivery:
-        delivery_text += f"🚚 *Доставка:* {delivery}\n"
+        delivery_text += f"Доставка: {delivery}\n"
     if address:
-        delivery_text += f"🏠 *Адрес:* {address}\n"
+        delivery_text += f"Адрес: {address}\n"
 
-    head = '🦝 *Новая заявка из магазина!*' + (f' №{order_id}' if order_id else '')
+    head = 'Новая заявка из магазина' + (f' №{order_id}' if order_id else '')
     text = (
         f"{head}\n\n"
-        f"👤 *Имя:* {name}\n"
-        f"📞 *Телефон:* {phone}\n"
-        f"📧 *Email:* {email}\n"
+        f"Имя: {name}\n"
+        f"Телефон: {phone}\n"
+        f"Email: {email}\n"
         f"{delivery_text}\n"
-        f"🛒 *Заказ:*\n{items_text}\n\n"
-        f"💰 *Итого: {total:,} ₽*"
+        f"Заказ:\n{items_text}\n\n"
+        f"Итого: {total} руб."
     )
 
     subject = 'Заявка из магазина Туапсенотов' + (f' №{order_id}' if order_id else '')

@@ -8,7 +8,7 @@ CHAT_ID = '300609957'
 
 
 def send_telegram(text: str) -> bool:
-    """Отправка в Telegram: сначала через мост-вебхук, затем напрямую."""
+    """Отправка уведомления в Telegram через мост Albato."""
     hook = os.environ.get('TELEGRAM_WEBHOOK_URL', '').strip()
     if hook:
         payload = json.dumps({'text': text, 'chat_id': CHAT_ID}, ensure_ascii=False).encode()
@@ -26,20 +26,6 @@ def send_telegram(text: str) -> bool:
             if 'timed out' in str(e):
                 return True
             print('Webhook error:', repr(e))
-
-    token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
-    if token:
-        data = json.dumps({'chat_id': CHAT_ID, 'text': text, 'parse_mode': 'Markdown'}).encode()
-        req = urllib.request.Request(
-            f'https://api.telegram.org/bot{token}/sendMessage',
-            data=data,
-            headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'},
-        )
-        try:
-            urllib.request.urlopen(req, timeout=10)
-            return True
-        except Exception as e:
-            print('Telegram error:', repr(e))
 
     return False
 
