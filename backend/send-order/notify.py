@@ -18,7 +18,7 @@ def send_telegram(text: str) -> bool:
             headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'},
         )
         try:
-            urllib.request.urlopen(req, timeout=3)
+            urllib.request.urlopen(req, timeout=25)
             return True
         except TimeoutError:
             return True
@@ -36,7 +36,7 @@ def send_telegram(text: str) -> bool:
             headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'},
         )
         try:
-            urllib.request.urlopen(req, timeout=3)
+            urllib.request.urlopen(req, timeout=10)
             return True
         except Exception as e:
             print('Telegram error:', repr(e))
