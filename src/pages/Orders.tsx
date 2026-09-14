@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import func2url from "../../backend/func2url.json";
 
@@ -70,6 +71,15 @@ const Orders = () => {
               Заказы магазина
             </h1>
           </div>
+
+          <Link
+            to="/newsletter"
+            className="inline-flex items-center gap-2 mb-5 rounded-xl px-4 py-2.5 font-semibold border"
+            style={{ borderColor: "var(--sand)", color: "var(--sea)" }}
+          >
+            <Icon name="Mail" size={18} />
+            Рассылка и счётчики
+          </Link>
 
           {!authed ? (
             <div className="space-y-4">

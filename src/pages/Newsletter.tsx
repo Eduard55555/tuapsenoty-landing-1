@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import CounterAdmin from "@/components/CounterAdmin";
 import func2url from "../../backend/func2url.json";
@@ -93,6 +94,15 @@ const Newsletter = () => {
             Рассылка новостей
           </h1>
         </div>
+
+        <Link
+          to="/orders"
+          className="inline-flex items-center gap-2 mb-5 rounded-xl px-4 py-2.5 font-semibold border"
+          style={{ borderColor: "var(--sand)", color: "var(--sea)" }}
+        >
+          <Icon name="ShoppingBag" size={18} />
+          Перейти к заказам
+        </Link>
 
         {!authed ? (
           <div className="space-y-4">
