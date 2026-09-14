@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAdminKey } from "@/hooks/useAdminKey";
 import Icon from "@/components/ui/icon";
 import func2url from "../../backend/func2url.json";
 
@@ -20,7 +21,7 @@ type Order = {
 };
 
 const Orders = () => {
-  const [adminKey, setAdminKey] = useState("");
+  const { adminKey, setAdminKey, saveKey, clearKey } = useAdminKey();
   const [authed, setAuthed] = useState(false);
   const [orders, setOrders] = useState<Order[]>([]);
   const [sum, setSum] = useState(0);
@@ -28,25 +29,35 @@ const Orders = () => {
   const [error, setError] = useState("");
   const [openId, setOpenId] = useState<number | null>(null);
 
-  const load = async (key: string) => {
+  const load = async (key: string, silent = false) => {
+    if (!key) return;
     setError("");
     setLoading(true);
     try {
       const res = await fetch(ORDERS_URL, { headers: { "X-Admin-Key": key } });
       if (res.status === 403) {
-        setError("Неверный пароль");
+        clearKey();
+        if (!silent) setError("Неверный пароль");
         setLoading(false);
         return;
       }
       const data = await res.json();
       setOrders(data.orders ?? []);
       setSum(data.sum ?? 0);
+      saveKey(key);
       setAuthed(true);
     } catch {
-      setError("Ошибка соединения. Попробуйте ещё раз.");
+      if (!silent) setError("Ошибка соединения. Попробуйте ещё раз.");
     }
     setLoading(false);
   };
+
+  const autoTried = useRef(false);
+  useEffect(() => {
+    if (autoTried.current || !adminKey) return;
+    autoTried.current = true;
+    load(adminKey, true);
+  }, [adminKey]);
 
   const formatDate = (iso: string | null) => {
     if (!iso) return "";
@@ -72,14 +83,29 @@ const Orders = () => {
             </h1>
           </div>
 
-          <Link
-            to="/newsletter"
-            className="inline-flex items-center gap-2 mb-5 rounded-xl px-4 py-2.5 font-semibold border"
-            style={{ borderColor: "var(--sand)", color: "var(--sea)" }}
-          >
-            <Icon name="Mail" size={18} />
-            Рассылка и счётчики
-          </Link>
+          <div className="flex flex-wrap items-center gap-2 mb-5">
+            <Link
+              to="/newsletter"
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 font-semibold border"
+              style={{ borderColor: "var(--sand)", color: "var(--sea)" }}
+            >
+              <Icon name="Mail" size={18} />
+              Рассылка и счётчики
+            </Link>
+            {authed && (
+              <button
+                onClick={() => {
+                  clearKey();
+                  setAuthed(false);
+                }}
+                className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 font-semibold border"
+                style={{ borderColor: "var(--sand)", color: "var(--muted-foreground)" }}
+              >
+                <Icon name="LogOut" size={18} />
+                Выйти
+              </button>
+            )}
+          </div>
 
           {!authed ? (
             <div className="space-y-4">

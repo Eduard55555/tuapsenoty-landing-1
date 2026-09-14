@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAdminKey } from "@/hooks/useAdminKey";
 import Icon from "@/components/ui/icon";
 import CounterAdmin from "@/components/CounterAdmin";
 import func2url from "../../backend/func2url.json";
@@ -7,7 +8,7 @@ import func2url from "../../backend/func2url.json";
 const NEWSLETTER_URL = func2url["send-newsletter"];
 
 const Newsletter = () => {
-  const [adminKey, setAdminKey] = useState("");
+  const { adminKey, setAdminKey, saveKey, clearKey } = useAdminKey();
   const [authed, setAuthed] = useState(false);
   const [count, setCount] = useState<number | null>(null);
   const [subscribers, setSubscribers] = useState<{ email: string; created_at: string | null }[]>([]);
@@ -18,28 +19,38 @@ const Newsletter = () => {
   const [error, setError] = useState("");
   const [result, setResult] = useState<string>("");
 
-  const checkKey = async () => {
+  const checkKey = async (key: string = adminKey, silent = false) => {
+    if (!key) return;
     setError("");
     setLoading(true);
     try {
       const res = await fetch(NEWSLETTER_URL, {
         method: "GET",
-        headers: { "X-Admin-Key": adminKey },
+        headers: { "X-Admin-Key": key },
       });
       if (res.status === 403) {
-        setError("Неверный пароль");
+        clearKey();
+        if (!silent) setError("Неверный пароль");
         setLoading(false);
         return;
       }
       const data = await res.json();
       setCount(data.count ?? 0);
       setSubscribers(data.subscribers ?? []);
+      saveKey(key);
       setAuthed(true);
     } catch {
-      setError("Ошибка соединения. Попробуйте ещё раз.");
+      if (!silent) setError("Ошибка соединения. Попробуйте ещё раз.");
     }
     setLoading(false);
   };
+
+  const autoTried = useRef(false);
+  useEffect(() => {
+    if (autoTried.current || !adminKey) return;
+    autoTried.current = true;
+    checkKey(adminKey, true);
+  }, [adminKey]);
 
   const send = async () => {
     setError("");
@@ -95,14 +106,29 @@ const Newsletter = () => {
           </h1>
         </div>
 
-        <Link
-          to="/orders"
-          className="inline-flex items-center gap-2 mb-5 rounded-xl px-4 py-2.5 font-semibold border"
-          style={{ borderColor: "var(--sand)", color: "var(--sea)" }}
-        >
-          <Icon name="ShoppingBag" size={18} />
-          Перейти к заказам
-        </Link>
+        <div className="flex flex-wrap items-center gap-2 mb-5">
+          <Link
+            to="/orders"
+            className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 font-semibold border"
+            style={{ borderColor: "var(--sand)", color: "var(--sea)" }}
+          >
+            <Icon name="ShoppingBag" size={18} />
+            Перейти к заказам
+          </Link>
+          {authed && (
+            <button
+              onClick={() => {
+                clearKey();
+                setAuthed(false);
+              }}
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 font-semibold border"
+              style={{ borderColor: "var(--sand)", color: "var(--muted-foreground)" }}
+            >
+              <Icon name="LogOut" size={18} />
+              Выйти
+            </button>
+          )}
+        </div>
 
         {!authed ? (
           <div className="space-y-4">
@@ -113,14 +139,14 @@ const Newsletter = () => {
               type="password"
               value={adminKey}
               onChange={(e) => setAdminKey(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && checkKey()}
+              onKeyDown={(e) => e.key === "Enter" && checkKey(adminKey)}
               placeholder="Пароль"
               className="w-full rounded-xl px-4 py-3 outline-none border"
               style={{ borderColor: "var(--sand)", color: "var(--warm-dark)" }}
             />
             {error && <p style={{ color: "#C0392B" }}>{error}</p>}
             <button
-              onClick={checkKey}
+              onClick={() => checkKey(adminKey)}
               disabled={loading || !adminKey}
               className="w-full rounded-xl py-3 font-bold text-white flex items-center justify-center gap-2 disabled:opacity-60"
               style={{ backgroundColor: "var(--sea)" }}

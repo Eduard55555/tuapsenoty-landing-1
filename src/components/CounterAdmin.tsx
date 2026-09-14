@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Icon from "@/components/ui/icon";
-import { CHARACTER_API } from "@/hooks/useFinderCount";
+import { CHARACTER_API, FINDER_API } from "@/hooks/useFinderCount";
 
-const ITEMS: { slug: string; title: string }[] = [
-  { slug: "enofya", title: "Енофья с малышом" },
+const ITEMS: { slug: string; title: string; finder?: boolean }[] = [
+  { slug: "enotych", title: "Енотыч", finder: true },
   { slug: "enira", title: "Енира с Тыдочкой" },
 ];
 
@@ -16,7 +16,8 @@ export default function CounterAdmin({ adminKey }: { adminKey: string }) {
 
   useEffect(() => {
     ITEMS.forEach((it) => {
-      fetch(`${CHARACTER_API}?slug=${it.slug}`, { cache: "no-store" })
+      const url = it.finder ? FINDER_API : `${CHARACTER_API}?slug=${it.slug}`;
+      fetch(url, { cache: "no-store" })
         .then((r) => r.json())
         .then((d) => setRows((p) => ({ ...p, [it.slug]: { count: d.count ?? 0, loading: false } })))
         .catch(() => setRows((p) => ({ ...p, [it.slug]: { count: null, loading: false } })));
@@ -26,11 +27,12 @@ export default function CounterAdmin({ adminKey }: { adminKey: string }) {
   const apply = async (slug: string, payload: Record<string, number>) => {
     setError("");
     setRows((p) => ({ ...p, [slug]: { count: p[slug]?.count ?? 0, loading: true } }));
+    const item = ITEMS.find((i) => i.slug === slug);
     try {
-      const res = await fetch(CHARACTER_API, {
+      const res = await fetch(item?.finder ? FINDER_API : CHARACTER_API, {
         method: "PUT",
         headers: { "Content-Type": "application/json", "X-Admin-Key": adminKey },
-        body: JSON.stringify({ slug, ...payload }),
+        body: JSON.stringify(item?.finder ? payload : { slug, ...payload }),
       });
       const data = await res.json();
       if (typeof data.count !== "number") {
