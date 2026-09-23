@@ -39,7 +39,7 @@ def handler(event: dict, context) -> dict:
         cur = conn.cursor()
         cur.execute(
             f"SELECT id, customer_name, phone, email, delivery, address, items, total, created_at "
-            f"FROM {schema}.orders ORDER BY created_at DESC LIMIT 300"
+            f"FROM {schema}.orders WHERE is_test = false ORDER BY created_at DESC LIMIT 300"
         )
         for row in cur.fetchall():
             orders.append({
