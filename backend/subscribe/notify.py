@@ -8,22 +8,22 @@ CHAT_ID = '300609957'
 
 
 def send_telegram(text: str) -> bool:
-    """Отправка уведомления в Telegram напрямую через бота."""
-    token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
-    if token:
-        data = json.dumps({'chat_id': CHAT_ID, 'text': text}, ensure_ascii=False).encode()
-        req = urllib.request.Request(
-            f'https://api.telegram.org/bot{token}/sendMessage',
-            data=data,
-            headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'},
-        )
-        try:
-            urllib.request.urlopen(req, timeout=8)
-            return True
-        except Exception as e:
-            print('Telegram error:', repr(e))
-
-    return False
+    """Отправка в Telegram через мост-вебхук (прямой доступ к API из облака закрыт)."""
+    hook = os.environ.get('TELEGRAM_WEBHOOK_URL', '').strip()
+    if not hook:
+        return False
+    payload = json.dumps({'text': text, 'chat_id': CHAT_ID}, ensure_ascii=False).encode()
+    req = urllib.request.Request(
+        hook,
+        data=payload,
+        headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'},
+    )
+    try:
+        urllib.request.urlopen(req, timeout=3)
+        return True
+    except Exception as e:
+        print('Webhook error:', repr(e))
+        return False
 
 
 def send_email(subject: str, text: str) -> bool:
@@ -49,4 +49,5 @@ def send_email(subject: str, text: str) -> bool:
 
 def notify(subject: str, text: str) -> dict:
     """Уведомление владельца по всем доступным каналам."""
-    return {'telegram': send_telegram(text), 'email': send_email(subject, text)}
+    mail_ok = send_email(subject, text)
+    return {'telegram': send_telegram(text), 'email': mail_ok}
