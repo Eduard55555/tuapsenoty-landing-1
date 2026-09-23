@@ -8,35 +8,17 @@ CHAT_ID = '300609957'
 
 
 def send_telegram(text: str) -> bool:
-    """Отправка в Telegram: сначала через мост-вебхук, затем напрямую."""
-    hook = os.environ.get('TELEGRAM_WEBHOOK_URL', '').strip()
-    if hook:
-        payload = json.dumps({'text': text, 'chat_id': CHAT_ID}, ensure_ascii=False).encode()
-        req = urllib.request.Request(
-            hook,
-            data=payload,
-            headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'},
-        )
-        try:
-            urllib.request.urlopen(req, timeout=25)
-            return True
-        except TimeoutError:
-            return True
-        except Exception as e:
-            if 'timed out' in str(e):
-                return True
-            print('Webhook error:', repr(e))
-
-    token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+    """Отправка уведомления в Telegram напрямую через бота."""
+    token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
     if token:
-        data = json.dumps({'chat_id': CHAT_ID, 'text': text, 'parse_mode': 'Markdown'}).encode()
+        data = json.dumps({'chat_id': CHAT_ID, 'text': text}, ensure_ascii=False).encode()
         req = urllib.request.Request(
             f'https://api.telegram.org/bot{token}/sendMessage',
             data=data,
             headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'},
         )
         try:
-            urllib.request.urlopen(req, timeout=10)
+            urllib.request.urlopen(req, timeout=8)
             return True
         except Exception as e:
             print('Telegram error:', repr(e))
