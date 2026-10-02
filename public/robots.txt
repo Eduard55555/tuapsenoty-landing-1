@@ -1,8 +1,16 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /orders
+Disallow: /newsletter
+Disallow: /gallery-admin
 
 User-agent: Yandex
 Allow: /
+Disallow: /admin
+Disallow: /orders
+Disallow: /newsletter
+Disallow: /gallery-admin
 Clean-param: utm_source&utm_medium&utm_campaign&id&name&price&image&qty
 
 Sitemap: https://tuapsenoty.ru/sitemap.xml

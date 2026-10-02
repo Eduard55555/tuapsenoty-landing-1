@@ -67,9 +67,7 @@ const Sponsors = lazy(() => import("./pages/Sponsors"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const MapPage = lazy(() => import("./pages/MapPage"));
 const QrEnofya = lazy(() => import("./pages/QrEnofya"));
-const Newsletter = lazy(() => import("./pages/Newsletter"));
-const Orders = lazy(() => import("./pages/Orders"));
-const GalleryAdmin = lazy(() => import("./pages/GalleryAdmin"));
+const Admin = lazy(() => import("./pages/Admin"));
 
 const PageFallback = () => (
   <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "var(--cream)" }}>
@@ -113,9 +111,10 @@ const App = () => {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/map" element={<MapPage />} />
               <Route path="/qr-enofya" element={<QrEnofya />} />
-              <Route path="/newsletter" element={<Newsletter />} />
-              <Route path="/orders" element={<Orders />} />
-              <Route path="/gallery-admin" element={<GalleryAdmin />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/orders" element={<Admin initial="orders" />} />
+              <Route path="/gallery-admin" element={<Admin initial="photos" />} />
+              <Route path="/newsletter" element={<Admin initial="newsletter" />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
