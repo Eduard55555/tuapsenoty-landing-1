@@ -1,7 +1,12 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import useSeo from "@/hooks/useSeo";
+import Icon from "@/components/ui/icon";
+import SubmitPhotoDialog from "@/components/gallery/SubmitPhotoDialog";
+import func2url from "../../backend/func2url.json";
+
+const GALLERY_URL = (func2url as Record<string, string>)["gallery-photos"];
 
 const CDN = "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt";
 
@@ -29,7 +34,18 @@ export default function Gallery() {
     path: "/gallery",
   });
 
-  const items = useMemo(() => shuffle(photos), []);
+  const [userPhotos, setUserPhotos] = useState<string[]>([]);
+  const [submitOpen, setSubmitOpen] = useState(false);
+
+  useEffect(() => {
+    fetch(GALLERY_URL)
+      .then((r) => r.json())
+      .then((d) => setUserPhotos((d.photos ?? []).map((p: { url: string }) => p.url)))
+      .catch(() => {});
+  }, []);
+
+  const base = useMemo(() => shuffle(photos), []);
+  const items = useMemo(() => shuffle([...base, ...userPhotos]), [base, userPhotos]);
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
@@ -46,6 +62,14 @@ export default function Gallery() {
               Бронзовые еноты, которые уже нашли своё место в Туапсе. Приходите в гости —
               потрите на удачу и загадайте желание.
             </p>
+            <button
+              onClick={() => setSubmitOpen(true)}
+              className="btn-bronze mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full font-body font-semibold text-white"
+              style={{ background: "var(--bronze)" }}
+            >
+              <Icon name="Camera" size={18} />
+              Прислать своё фото
+            </button>
           </div>
 
           <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 sm:gap-4">
@@ -69,6 +93,7 @@ export default function Gallery() {
       </main>
 
       <SiteFooter />
+      <SubmitPhotoDialog open={submitOpen} onOpenChange={setSubmitOpen} />
     </div>
   );
 }

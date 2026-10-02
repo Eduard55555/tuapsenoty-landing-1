@@ -1,0 +1,7 @@
+{
+  "tests": [
+    {"name": "Список одобренных фото", "method": "GET", "path": "/", "expectedStatus": 200, "expectedBody": {"ok": true}, "bodyMatcher": "partial"},
+    {"name": "Модерация без пароля запрещена", "method": "GET", "path": "/?status=pending", "expectedStatus": 403},
+    {"name": "Пустая отправка", "method": "POST", "path": "/", "body": {"action": "submit", "image": ""}, "expectedStatus": 400}
+  ]
+}

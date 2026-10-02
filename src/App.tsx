@@ -69,6 +69,7 @@ const MapPage = lazy(() => import("./pages/MapPage"));
 const QrEnofya = lazy(() => import("./pages/QrEnofya"));
 const Newsletter = lazy(() => import("./pages/Newsletter"));
 const Orders = lazy(() => import("./pages/Orders"));
+const GalleryAdmin = lazy(() => import("./pages/GalleryAdmin"));
 
 const PageFallback = () => (
   <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "var(--cream)" }}>
@@ -114,6 +115,7 @@ const App = () => {
               <Route path="/qr-enofya" element={<QrEnofya />} />
               <Route path="/newsletter" element={<Newsletter />} />
               <Route path="/orders" element={<Orders />} />
+              <Route path="/gallery-admin" element={<GalleryAdmin />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
