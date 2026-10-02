@@ -4,23 +4,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import useSeo from "@/hooks/useSeo";
 import { MAX_URL, VK_URL } from "@/components/SocialLinks";
-
-type ActiveContest = {
-  title: string;
-  rules: string;
-  deadline: string;
-  voting: string;
-  prize: string;
-  link: string;
-};
-
-const ACTIVE = null as ActiveContest | null;
-
-const UPCOMING = [
-  "Конкурс на лучшую историю о Енотыче",
-  "Конкурс на лучшее фото с Енирой и Тыдочкой",
-  "Конкурс на лучшее название для нового енота",
-];
+import { useContests, useTexts } from "@/content/siteContent";
 
 const STEPS = [
   { icon: "BellRing", text: "Подпишитесь на наш канал в MAX или ВКонтакте" },
@@ -38,6 +22,8 @@ const Badge = ({ children, bg, color }: { children: React.ReactNode; bg: string;
 const card = { backgroundColor: "#fff", border: "1px solid rgba(184,115,51,0.18)" };
 
 export default function Contests() {
+  const { active: ACTIVE, finished, upcoming: UPCOMING } = useContests();
+  const t = useTexts();
   useSeo({
     title: "Конкурсы Туапсенотов — фото, истории и призы",
     description:
@@ -57,50 +43,55 @@ export default function Contests() {
               Конкурсы Туапсенотов
             </h1>
             <p className="font-body text-lg max-w-xl mx-auto" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
-              Здесь мы собираем ваши истории, фото и идеи. Участвуйте — и попадёте в бронзовую летопись города.
+              {t("contests_intro")}
             </p>
           </div>
 
-          <section className="rounded-3xl p-6 sm:p-8" style={card}>
-            <Badge bg="rgba(46,139,87,0.12)" color="#2E7D32">Завершён</Badge>
-            <h2 className="font-display text-xl sm:text-2xl font-bold mt-3 mb-4" style={{ color: "var(--warm-dark)" }}>
-              📸 Фотоконкурс «Туапсеноты» (сентябрь 2026)
-            </h2>
-            <p className="font-body mb-5" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
-              Мы провели первый конкурс фотографий с нашими бронзовыми хранителями. Вы прислали 33 работы — тёплые,
-              смешные и трогательные. Спасибо каждому!
-            </p>
+          {finished.map((f) => (
+            <section key={f.id} className="rounded-3xl p-6 sm:p-8" style={card}>
+              <Badge bg="rgba(46,139,87,0.12)" color="#2E7D32">Завершён</Badge>
+              <h2 className="font-display text-xl sm:text-2xl font-bold mt-3 mb-4" style={{ color: "var(--warm-dark)" }}>
+                📸 {f.title}
+              </h2>
+              <p className="font-body mb-5 whitespace-pre-line" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
+                {f.text}
+              </p>
 
-            <div className="grid grid-cols-3 gap-3 mb-5">
-              {[
-                { v: "33", l: "работы" },
-                { v: "№8", l: "победитель" },
-                { v: "103", l: "голоса" },
-              ].map((s) => (
-                <div key={s.l} className="rounded-2xl py-4 text-center" style={{ backgroundColor: "var(--sand)" }}>
-                  <div className="font-display text-2xl sm:text-3xl font-bold" style={{ color: "var(--bronze)" }}>
-                    {s.v}
-                  </div>
-                  <div className="font-body text-xs sm:text-sm" style={{ color: "#6B4C35" }}>
-                    {s.l}
-                  </div>
-                </div>
-              ))}
-            </div>
+              <div className="grid grid-cols-3 gap-3 mb-5">
+                {[
+                  { v: f.works, l: "работ" },
+                  { v: f.winner, l: "победитель" },
+                  { v: f.votes, l: "голосов" },
+                ]
+                  .filter((x) => x.v)
+                  .map((x) => (
+                    <div key={x.l} className="rounded-2xl py-4 text-center" style={{ backgroundColor: "var(--sand)" }}>
+                      <div className="font-display text-2xl sm:text-3xl font-bold" style={{ color: "var(--bronze)" }}>
+                        {x.v}
+                      </div>
+                      <div className="font-body text-xs sm:text-sm" style={{ color: "#6B4C35" }}>
+                        {x.l}
+                      </div>
+                    </div>
+                  ))}
+              </div>
 
-            <p className="font-body mb-6" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
-              Голосование проходило в MAX и ВКонтакте. Все работы добавлены в нашу галерею.
-            </p>
+              {f.footer && (
+                <p className="font-body mb-6 whitespace-pre-line" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
+                  {f.footer}
+                </p>
+              )}
 
-            <Link
-              to="/gallery"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-body font-semibold text-white"
-              style={{ background: "var(--bronze)" }}
-            >
-              <Icon name="Images" size={18} />
-              Смотреть все работы
-            </Link>
-          </section>
+              <Link
+                to="/gallery"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-body font-semibold text-white"
+                style={{ background: "var(--bronze)" }}
+              >
+                <Icon name="Images" size={18} />
+                Смотреть все работы
+              </Link>
+            </section>
+          ))}
 
           {ACTIVE ? (
             <section className="rounded-3xl p-6 sm:p-8" style={{ ...card, border: "2px solid var(--bronze)" }}>
@@ -156,10 +147,10 @@ export default function Contests() {
               🔜 Что будет дальше
             </h2>
             <ul className="space-y-3 mb-4">
-              {UPCOMING.map((t) => (
-                <li key={t} className="flex items-start gap-3 font-body" style={{ color: "#3d2b1f", lineHeight: 1.6 }}>
+              {UPCOMING.map((item) => (
+                <li key={item} className="flex items-start gap-3 font-body" style={{ color: "#3d2b1f", lineHeight: 1.6 }}>
                   <Icon name="Sparkles" size={18} className="mt-1 shrink-0" style={{ color: "var(--bronze)" }} />
-                  {t}
+                  {item}
                 </li>
               ))}
             </ul>

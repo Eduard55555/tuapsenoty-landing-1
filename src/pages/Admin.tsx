@@ -6,15 +6,24 @@ import CounterAdmin from "@/components/CounterAdmin";
 import OrdersPanel from "@/components/admin/OrdersPanel";
 import PhotosPanel from "@/components/admin/PhotosPanel";
 import NewsletterPanel from "@/components/admin/NewsletterPanel";
+import TextsEditor from "@/components/admin/TextsEditor";
+import CharactersEditor from "@/components/admin/CharactersEditor";
+import NewsEditor from "@/components/admin/NewsEditor";
+import ContestsEditor from "@/components/admin/ContestsEditor";
+import { loadContent } from "@/content/siteContent";
 import func2url from "../../backend/func2url.json";
 
 const CHECK_URL = (func2url as Record<string, string>)["orders-list"];
 
-type Section = "orders" | "photos" | "counters" | "newsletter";
+type Section = "orders" | "photos" | "texts" | "characters" | "news" | "contests" | "counters" | "newsletter";
 
 const SECTIONS: { id: Section; title: string; icon: string }[] = [
   { id: "orders", title: "Заказы", icon: "ShoppingBag" },
   { id: "photos", title: "Фото", icon: "Images" },
+  { id: "texts", title: "Тексты", icon: "Type" },
+  { id: "characters", title: "Еноты", icon: "PawPrint" },
+  { id: "news", title: "Новости", icon: "Newspaper" },
+  { id: "contests", title: "Конкурсы", icon: "Trophy" },
   { id: "counters", title: "Счётчики", icon: "Hash" },
   { id: "newsletter", title: "Рассылка", icon: "Mail" },
 ];
@@ -26,6 +35,7 @@ export default function Admin({ initial = "orders" }: { initial?: Section }) {
   const [authed, setAuthed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [contentReady, setContentReady] = useState(false);
   const [section, setSection] = useState<Section>(() => {
     const fromHash = typeof window !== "undefined" ? window.location.hash.slice(1) : "";
     return isSection(fromHash) ? fromHash : initial;
@@ -43,6 +53,7 @@ export default function Admin({ initial = "orders" }: { initial?: Section }) {
       } else {
         saveKey(key);
         setAuthed(true);
+        loadContent().finally(() => setContentReady(true));
       }
     } catch {
       if (!silent) setError("Ошибка соединения. Попробуйте ещё раз.");
@@ -147,6 +158,15 @@ export default function Admin({ initial = "orders" }: { initial?: Section }) {
 
               {section === "orders" && <OrdersPanel adminKey={adminKey} />}
               {section === "photos" && <PhotosPanel adminKey={adminKey} />}
+              {["texts", "characters", "news", "contests"].includes(section) && !contentReady && (
+                <div className="flex justify-center py-10">
+                  <Icon name="Loader2" className="animate-spin" size={28} />
+                </div>
+              )}
+              {contentReady && section === "texts" && <TextsEditor adminKey={adminKey} />}
+              {contentReady && section === "characters" && <CharactersEditor adminKey={adminKey} />}
+              {contentReady && section === "news" && <NewsEditor adminKey={adminKey} />}
+              {contentReady && section === "contests" && <ContestsEditor adminKey={adminKey} />}
               {section === "counters" && <CounterAdmin adminKey={adminKey} />}
               {section === "newsletter" && <NewsletterPanel adminKey={adminKey} />}
             </>

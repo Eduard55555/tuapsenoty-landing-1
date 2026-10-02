@@ -5,9 +5,11 @@ import { playCoin } from "@/hooks/useSound";
 import { PLANETA_URL } from "./indexData";
 import { useCharacterStats } from "@/hooks/useCharacterCount";
 import { SOCIAL_LINKS } from "@/components/SocialLinks";
+import { useTexts } from "@/content/siteContent";
 
 export default function IndexHero() {
   const enira = useCharacterStats("enira");
+  const t = useTexts();
   return (
     <>
       {/* HERO */}
@@ -52,8 +54,7 @@ export default function IndexHero() {
 
           <p className="animate-fade-up-delay-1 font-body text-sm sm:text-xl mb-6 sm:mb-10 max-w-2xl mx-auto"
             style={{ color: "rgba(245,230,211,0.85)", lineHeight: 1.7 }}>
-            Семья бронзовых енотов-хранителей, которая изменит Туапсе.
-            Восемь персонажей с историями, ритуалами и душой.
+            {t("hero_subtitle")}
           </p>
 
           <div className="animate-fade-up-delay-2 flex flex-col sm:flex-row items-center justify-center gap-4">

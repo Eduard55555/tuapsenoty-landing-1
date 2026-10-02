@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
-import { characters, PLANETA_URL } from "./indexData";
+import { PLANETA_URL } from "./indexData";
+import { useCharacters, useTexts } from "@/content/siteContent";
 import { useFinderCount, pluralPeople } from "@/hooks/useFinderCount";
 import { useCharacterCount } from "@/hooks/useCharacterCount";
 import func2url from "../../../backend/func2url.json";
 
 export default function IndexCharacters() {
+  const characters = useCharacters();
+  const t = useTexts();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -49,7 +52,7 @@ export default function IndexCharacters() {
               Познакомьтесь с семьёй
             </h2>
             <p className="font-body text-base sm:text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
-              Восемь уникальных хранителей. У каждого — своё место, характер и ритуал удачи.
+              {t("characters_subtitle")}
             </p>
           </div>
 

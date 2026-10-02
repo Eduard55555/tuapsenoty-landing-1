@@ -1,13 +1,10 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import ARHologram from "@/components/ARHologram";
-import { characters } from "@/pages/CharacterPage";
+import { useCharacters, useNews, useTexts } from "@/content/siteContent";
 import { NEWS_PHOTOS } from "./indexData";
 import { ENIRA_GALLERY } from "./photosData";
 
-const enotych = characters.find((c) => c.slug === "enotych");
-const enofya = characters.find((c) => c.slug === "enofya");
-const enira = characters.find((c) => c.slug === "enira");
 
 function PhotoCollage({ photos, alt, cols = 2, ratio = "aspect-square" }: { photos: string[]; alt: string; cols?: number; ratio?: string }) {
   return (
@@ -31,6 +28,12 @@ function NewsGallery() {
 }
 
 export default function IndexNews() {
+  const characters = useCharacters();
+  const news = useNews();
+  const t = useTexts();
+  const enotych = characters.find((c) => c.slug === "enotych");
+  const enofya = characters.find((c) => c.slug === "enofya");
+  const enira = characters.find((c) => c.slug === "enira");
   const [arOpen, setArOpen] = useState(false);
   const [arEnofyaOpen, setArEnofyaOpen] = useState(false);
   const [arEniraOpen, setArEniraOpen] = useState(false);
@@ -61,15 +64,14 @@ export default function IndexNews() {
                     🔥 Горячая новость
                   </span>
                   <span className="font-body text-xs" style={{ color: "#9B7B5A" }}>
-                    Май 2026
+                    {t("news_enotych_date")}
                   </span>
                 </div>
                 <h3 className="section-title text-xl sm:text-2xl mb-2">
-                  Енотыч уже отлит в бронзе!
+                  {t("news_enotych_title")}
                 </h3>
                 <p className="font-body text-sm mb-4" style={{ color: "var(--warm-text)", lineHeight: 1.6 }}>
-                  Первый хранитель семьи — Енотыч — готов. Бронзовый рыбак с удочкой уже
-                  воплощён мастерами, установлен на набережной и ждёт жителей и гостей Туапсе.
+                  {t("news_enotych_text")}
                 </p>
                 <div className="flex flex-wrap items-center gap-3 mb-4">
                   <a href="https://web.max.ru/-72521511416496" target="_blank" rel="noopener noreferrer"
@@ -112,16 +114,14 @@ export default function IndexNews() {
                     🐚 Новый хранитель
                   </span>
                   <span className="font-body text-xs" style={{ color: "#9B7B5A" }}>
-                    Май 2026
+                    {t("news_enira_date")}
                   </span>
                 </div>
                 <h3 className="section-title text-xl sm:text-2xl mb-2">
-                  Енира с Тыдочкой заняли своё место!
+                  {t("news_enira_title")}
                 </h3>
                 <p className="font-body text-sm mb-4" style={{ color: "var(--warm-text)", lineHeight: 1.6 }}>
-                  Ласковая мама семьи — Енира с Тыдочкой — уже в бронзе и установлены в городе.
-                  Обнимите их, и даже в пасмурный день станет солнечно. Отметили их
-                  на карте — приходите знакомиться.
+                  {t("news_enira_text")}
                 </p>
                 <div className="flex flex-wrap items-center gap-3 mb-4">
                   <button
@@ -155,14 +155,14 @@ export default function IndexNews() {
                   🧺 Новый хранитель
                 </span>
                 <span className="font-body text-xs" style={{ color: "#9B7B5A" }}>
-                  Май 2026
+                  {t("news_enofya_date")}
                 </span>
               </div>
               <h3 className="section-title text-xl sm:text-3xl mb-4">
-                Енофья отлита в бронзе!
+                {t("news_enofya_title")}
               </h3>
               <p className="font-body text-sm sm:text-base mb-6" style={{ color: "var(--warm-text)", lineHeight: 1.8 }}>
-                Добрая бабушка семьи — Енофья — воплощена мастерами. В чепце и фартуке, с корзинкой полной гостинцев, она скоро появится в городе и будет встречать гостей Туапсе с улыбкой и теплом.
+                {t("news_enofya_text")}
               </p>
               <div className="flex flex-wrap items-center gap-3">
                 <button
@@ -177,17 +177,25 @@ export default function IndexNews() {
             </div>
           </div>
 
-          {[
-            { emoji: "🏛️", title: "Администрация поддержала проект", date: "Апрель 2026", text: "Официальное одобрение от администрации Туапсе открыло путь к размещению скульптур в городе." },
-            { emoji: "⚖️", title: "Юридическая защита оформлена", date: "Март 2026", text: "Персонажи и названия зарегистрированы. Туапсеноты под надёжной защитой авторского права." },
-          ].map((item) => (
-            <div key={item.title}
-              className="card-hover rounded-3xl p-5 sm:p-6"
+          {news.map((item) => (
+            <div key={item.id}
+              className="card-hover rounded-3xl overflow-hidden"
               style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
-              <div className="text-2xl sm:text-3xl mb-3">{item.emoji}</div>
-              <div className="font-body text-xs mb-2" style={{ color: "#9B7B5A" }}>{item.date}</div>
-              <h4 className="section-title text-xl mb-3">{item.title}</h4>
-              <p className="font-body text-sm" style={{ color: "var(--warm-text)", lineHeight: 1.7 }}>{item.text}</p>
+              {item.image && (
+                <img src={item.image} alt={item.title} loading="lazy" decoding="async" className="w-full h-56 object-cover" />
+              )}
+              <div className="p-5 sm:p-6">
+                {item.emoji && <div className="text-2xl sm:text-3xl mb-3">{item.emoji}</div>}
+                <div className="font-body text-xs mb-2" style={{ color: "#9B7B5A" }}>{item.date}</div>
+                <h4 className="section-title text-xl mb-3">{item.title}</h4>
+                <p className="font-body text-sm whitespace-pre-line" style={{ color: "var(--warm-text)", lineHeight: 1.7 }}>{item.text}</p>
+                {item.link && (
+                  <a href={item.link} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex text-sm py-2.5 px-5 mt-4">
+                    Подробнее
+                    <Icon name="ArrowRight" size={16} />
+                  </a>
+                )}
+              </div>
             </div>
           ))}
         </div>

@@ -6,6 +6,7 @@ import SiteHeader from "@/components/SiteHeader";
 import ARHologram from "@/components/ARHologram";
 import { FINDER_API, FINDER_BASE, CHARACTER_API, pluralPeople } from "@/hooks/useFinderCount";
 import { characters } from "@/pages/index/indexData";
+import { useCharacters } from "@/content/siteContent";
 import useSeo from "@/hooks/useSeo";
 import JsonLd from "@/components/JsonLd";
 
@@ -16,7 +17,8 @@ export { characters };
 
 export default function CharacterPage() {
   const { slug } = useParams<{ slug: string }>();
-  const char = characters.find((c) => c.slug === slug);
+  const allCharacters = useCharacters();
+  const char = allCharacters.find((c) => c.slug === slug);
   const hasOwnCounter = !!slug && OWN_COUNTER_SLUGS.includes(slug);
   const [arOpen, setArOpen] = useState(false);
   const [foundCount, setFoundCount] = useState<number | null>(hasOwnCounter ? 0 : null);

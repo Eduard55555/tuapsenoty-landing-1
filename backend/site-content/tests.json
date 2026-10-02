@@ -1,0 +1,5 @@
+{"tests": [
+  {"name": "CORS", "method": "OPTIONS", "path": "/", "expectedStatus": 200},
+  {"name": "Чтение контента", "method": "GET", "path": "/", "expectedStatus": 200, "expectedBody": {"ok": true}, "bodyMatcher": "partial"},
+  {"name": "Запись без пароля закрыта", "method": "POST", "path": "/", "body": {"key": "texts", "value": {}}, "expectedStatus": 403}
+]}
