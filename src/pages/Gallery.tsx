@@ -9,11 +9,7 @@ const photos: string[] = [
   `${CDN}/4209745dee83480c8dd7b64a526128ac.webp`,
   `${CDN}/e1d54b161225457294d5fc19435e3200.webp`,
   `${CDN}/899811b1ecba4fa7954b1dbdda5d5b67.webp`,
-  "/gallery/enotych-1.webp",
-  "/gallery/enotych-2.webp",
-  "/gallery/enotych-3.webp",
-  "/gallery/enotych-4.webp",
-  "/gallery/enotych-5.webp",
+  ...Array.from({ length: 10 }, (_, i) => `/gallery/enotych-${i + 1}.webp`),
 ];
 
 const shuffle = <T,>(arr: T[]) => {
