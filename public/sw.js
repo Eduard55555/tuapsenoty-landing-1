@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tuapsenoty-v3';
+const CACHE_NAME = 'tuapsenoty-v4';
 const PRECACHE_URLS = [
   '/',
   '/manifest.json',
@@ -27,6 +27,10 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(req.url);
 
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+
   if (req.headers.has('range') || req.destination === 'video' || req.destination === 'audio' || /\.(mp4|webm|mov|mp3|m4a)$/i.test(url.pathname)) {
     return;
   }
@@ -48,7 +52,7 @@ self.addEventListener('fetch', (event) => {
     caches.match(req).then((cached) => {
       if (cached) return cached;
       return fetch(req).then((res) => {
-        if (res && res.status === 200 && (url.origin === self.location.origin || url.hostname === 'cdn.poehali.dev')) {
+        if (res && res.status === 200 && url.origin === self.location.origin) {
           const copy = res.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
         }
