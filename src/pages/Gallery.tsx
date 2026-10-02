@@ -23,6 +23,11 @@ const placed: Placed[] = [
       "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/4209745dee83480c8dd7b64a526128ac.webp",
       "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/e1d54b161225457294d5fc19435e3200.webp",
       "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/899811b1ecba4fa7954b1dbdda5d5b67.webp",
+      "/gallery/enotych-1.webp",
+      "/gallery/enotych-2.webp",
+      "/gallery/enotych-3.webp",
+      "/gallery/enotych-4.webp",
+      "/gallery/enotych-5.webp",
     ],
   },
 ];
