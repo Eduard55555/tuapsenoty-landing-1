@@ -3,8 +3,7 @@ import Icon from "@/components/ui/icon";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import useSeo from "@/hooks/useSeo";
-import { MAX_URL, VK_URL } from "@/components/SocialLinks";
-import { useContests, useTexts } from "@/content/siteContent";
+import { useContacts, useContests, useTexts } from "@/content/siteContent";
 
 const STEPS = [
   { icon: "BellRing", text: "Подпишитесь на наш канал в MAX или ВКонтакте" },
@@ -24,6 +23,7 @@ const card = { backgroundColor: "#fff", border: "1px solid rgba(184,115,51,0.18)
 export default function Contests() {
   const { active: ACTIVE, finished, upcoming: UPCOMING } = useContests();
   const t = useTexts();
+  const { max: MAX_URL, vk: VK_URL } = useContacts();
   useSeo({
     title: "Конкурсы Туапсенотов — фото, истории и призы",
     description:
@@ -56,6 +56,10 @@ export default function Contests() {
               <p className="font-body mb-5 whitespace-pre-line" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
                 {f.text}
               </p>
+
+              {f.image && (
+                <img src={f.image} alt={f.title} loading="lazy" className="w-full rounded-2xl mb-5 object-cover" style={{ maxHeight: 480 }} />
+              )}
 
               <div className="grid grid-cols-3 gap-3 mb-5">
                 {[

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const PHONE_DISPLAY = "8-918-505-16-17";
-const PHONE_TEL = "+79185051617";
+import { useContacts } from "@/content/siteContent";
 
 function isMobile() {
   return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
@@ -17,6 +16,9 @@ interface PhoneLinkProps {
 
 export default function PhoneLink({ className, style, iconSize = 14, showIcon = true }: PhoneLinkProps) {
   const [copied, setCopied] = useState(false);
+  const PHONE_DISPLAY = useContacts().phone;
+  const digits = PHONE_DISPLAY.replace(/\D/g, "");
+  const PHONE_TEL = digits.length === 11 && digits.startsWith("8") ? `+7${digits.slice(1)}` : `+${digits}`;
 
   const handleClick = (e: React.MouseEvent) => {
     if (isMobile()) return;

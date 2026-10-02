@@ -10,12 +10,15 @@ import TextsEditor from "@/components/admin/TextsEditor";
 import CharactersEditor from "@/components/admin/CharactersEditor";
 import NewsEditor from "@/components/admin/NewsEditor";
 import ContestsEditor from "@/components/admin/ContestsEditor";
+import ProductsEditor from "@/components/admin/ProductsEditor";
+import MediaEditor from "@/components/admin/MediaEditor";
+import InfoEditor from "@/components/admin/InfoEditor";
 import { loadContent } from "@/content/siteContent";
 import func2url from "../../backend/func2url.json";
 
 const CHECK_URL = (func2url as Record<string, string>)["orders-list"];
 
-type Section = "orders" | "photos" | "texts" | "characters" | "news" | "contests" | "counters" | "newsletter";
+type Section = "orders" | "photos" | "texts" | "characters" | "news" | "contests" | "products" | "media" | "info" | "counters" | "newsletter";
 
 const SECTIONS: { id: Section; title: string; icon: string }[] = [
   { id: "orders", title: "Заказы", icon: "ShoppingBag" },
@@ -24,6 +27,9 @@ const SECTIONS: { id: Section; title: string; icon: string }[] = [
   { id: "characters", title: "Еноты", icon: "PawPrint" },
   { id: "news", title: "Новости", icon: "Newspaper" },
   { id: "contests", title: "Конкурсы", icon: "Trophy" },
+  { id: "products", title: "Магазин", icon: "Store" },
+  { id: "media", title: "Фото и карты", icon: "Map" },
+  { id: "info", title: "Контакты, отзывы", icon: "Contact" },
   { id: "counters", title: "Счётчики", icon: "Hash" },
   { id: "newsletter", title: "Рассылка", icon: "Mail" },
 ];
@@ -135,7 +141,7 @@ export default function Admin({ initial = "orders" }: { initial?: Section }) {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2 mb-6">
                 {SECTIONS.map((s) => {
                   const active = section === s.id;
                   return (
@@ -158,7 +164,7 @@ export default function Admin({ initial = "orders" }: { initial?: Section }) {
 
               {section === "orders" && <OrdersPanel adminKey={adminKey} />}
               {section === "photos" && <PhotosPanel adminKey={adminKey} />}
-              {["texts", "characters", "news", "contests"].includes(section) && !contentReady && (
+              {["texts", "characters", "news", "contests", "products", "media", "info"].includes(section) && !contentReady && (
                 <div className="flex justify-center py-10">
                   <Icon name="Loader2" className="animate-spin" size={28} />
                 </div>
@@ -167,6 +173,9 @@ export default function Admin({ initial = "orders" }: { initial?: Section }) {
               {contentReady && section === "characters" && <CharactersEditor adminKey={adminKey} />}
               {contentReady && section === "news" && <NewsEditor adminKey={adminKey} />}
               {contentReady && section === "contests" && <ContestsEditor adminKey={adminKey} />}
+              {contentReady && section === "products" && <ProductsEditor adminKey={adminKey} />}
+              {contentReady && section === "media" && <MediaEditor adminKey={adminKey} />}
+              {contentReady && section === "info" && <InfoEditor adminKey={adminKey} />}
               {section === "counters" && <CounterAdmin adminKey={adminKey} />}
               {section === "newsletter" && <NewsletterPanel adminKey={adminKey} />}
             </>

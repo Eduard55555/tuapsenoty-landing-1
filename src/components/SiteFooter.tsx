@@ -1,11 +1,12 @@
 import Icon from "@/components/ui/icon";
 import PhoneLink from "@/components/PhoneLink";
 
-import { MAX_URL, VK_URL, TELEGRAM_URL } from "@/components/SocialLinks";
-
-const PLANETA_URL = "https://planeta.ru/campaigns/244619";
+import { useContacts, useTexts } from "@/content/siteContent";
 
 export default function SiteFooter() {
+  const c = useContacts();
+  const t = useTexts();
+  const { max: MAX_URL, vk: VK_URL, telegram: TELEGRAM_URL, planeta: PLANETA_URL } = c;
   return (
     <footer className="py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--warm-dark)" }}>
       <div className="max-w-6xl mx-auto">
@@ -19,7 +20,7 @@ export default function SiteFooter() {
               </span>
             </div>
             <p className="font-body text-sm" style={{ color: "rgba(245,230,211,0.6)", lineHeight: 1.7 }}>
-              Семья бронзовых енотов-хранителей Туапсе. Проект авторов Эдуарда и Ирины Сарбаевых.
+              {t("footer_about")}
             </p>
           </div>
 
@@ -31,24 +32,18 @@ export default function SiteFooter() {
             <div className="space-y-2">
               <div className="flex items-center gap-2" style={{ color: "rgba(245,230,211,0.8)" }}>
                 <Icon name="User" size={14} />
-                <span className="font-body text-sm">Эдуард и Ирина Сарбаевы</span>
+                <span className="font-body text-sm">{c.authors}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Icon name="Mail" size={14} />
-                <a href="mailto:sen555551@mail.ru"
-                  className="font-body text-sm hover:underline"
-                  style={{ color: "rgba(245,230,211,0.8)" }}>
-                  sen555551@mail.ru
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Icon name="Mail" size={14} />
-                <a href="mailto:galyapina2014@yandex.ru"
-                  className="font-body text-sm hover:underline"
-                  style={{ color: "rgba(245,230,211,0.8)" }}>
-                  galyapina2014@yandex.ru
-                </a>
-              </div>
+              {c.emails.filter(Boolean).map((e) => (
+                <div key={e} className="flex items-center gap-2">
+                  <Icon name="Mail" size={14} />
+                  <a href={`mailto:${e}`}
+                    className="font-body text-sm hover:underline break-all"
+                    style={{ color: "rgba(245,230,211,0.8)" }}>
+                    {e}
+                  </a>
+                </div>
+              ))}
               <div className="flex items-center gap-2">
                 <PhoneLink
                   className="flex items-center gap-2 font-body text-sm hover:underline cursor-pointer"

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { useContests, type ActiveContest, type ContestsData, type FinishedContest } from "@/content/siteContent";
 import { saveContent } from "./contentApi";
-import { Card, Field, GroupTitle, SaveBar } from "./EditorKit";
+import { Card, Field, GroupTitle, ImageField, SaveBar } from "./EditorKit";
 
 const EMPTY_ACTIVE: ActiveContest = { title: "", rules: "", deadline: "", voting: "", prize: "", link: "" };
 
@@ -102,6 +102,7 @@ export default function ContestsEditor({ adminKey }: { adminKey: string }) {
             <Field label="Голосов" value={f.votes} onChange={(v) => setFinished(i, "votes", v)} placeholder="103" />
           </div>
           <Field label="Текст после цифр" value={f.footer} onChange={(v) => setFinished(i, "footer", v)} multiline rows={2} />
+          <ImageField label="Фото победителя (необязательно)" value={f.image ?? ""} onChange={(v) => setFinished(i, "image", v)} adminKey={adminKey} />
         </Card>
       ))}
       <button

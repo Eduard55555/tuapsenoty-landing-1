@@ -2,31 +2,20 @@ import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import useSeo from "@/hooks/useSeo";
-
-interface Spot {
-  slug: string;
-  name: string;
-  emoji: string;
-  location: string;
-  status: "placed" | "soon";
-}
-
-const COMMON_MAP = "https://yandex.ru/map-widget/v1/?um=constructor%3A706221539dc93604d0beec3a3496e2a6aaa2d808267cff39add22954de10ad95&source=constructor";
-
-const spots: Spot[] = [
-  { slug: "enotych", name: "Енотыч", emoji: "🎣", location: "Набережная", status: "placed" },
-  { slug: "enofya", name: "Енофья", emoji: "🧺", location: "Место выбирается", status: "soon" },
-  { slug: "tuapsey", name: "Туапсей", emoji: "🧭", location: "Скоро определим", status: "soon" },
-  { slug: "enira", name: "Енира с Тыдочкой", emoji: "🐚", location: "Установлена в городе", status: "placed" },
-  { slug: "tydochka", name: "Тыдочка", emoji: "🌅", location: "Скоро определим", status: "soon" },
-  { slug: "enovey", name: "Еновей", emoji: "🗺️", location: "Скоро определим", status: "soon" },
-  { slug: "enosik", name: "Еносик", emoji: "🪸", location: "Скоро определим", status: "soon" },
-  { slug: "enosha", name: "Еноша", emoji: "⚓", location: "Скоро определим", status: "soon" },
-];
-
-const placedCount = spots.filter((s) => s.status === "placed").length;
+import { normalizeMapUrl, useCharacters, useMedia, useTexts } from "@/content/siteContent";
 
 export default function MapPage() {
+  const characters = useCharacters();
+  const media = useMedia();
+  const t = useTexts();
+  const spots = characters.map((c) => ({
+    slug: c.slug,
+    name: c.name,
+    emoji: c.emoji,
+    location: c.location || "Скоро определим",
+    status: c.location ? "placed" : "soon",
+  }));
+  const placedCount = spots.filter((s) => s.status === "placed").length;
   useSeo({
     title: "Карта Туапсеноты — где найти бронзовых енотов в Туапсе",
     description:
@@ -45,30 +34,33 @@ export default function MapPage() {
               Карта Туапсе
             </p>
             <h1 className="section-title text-3xl sm:text-5xl mb-4">
-              Где найти енотов
+              {t("map_title")}
             </h1>
             <p className="font-body text-lg max-w-2xl mx-auto" style={{ color: "#6B4C35", lineHeight: 1.6 }}>
-              Восемь бронзовых хранителей поселятся по всему городу. Уже{" "}
-              {placedCount === 1 ? "установлен" : "установлены"}{" "}
-              <strong>{placedCount}</strong> — остальные скоро займут свои места.
+              {placedCount > 0 && (
+                <>
+                  Уже {placedCount === 1 ? "установлен" : "установлены"} <strong>{placedCount}</strong>.{" "}
+                </>
+              )}
+              {t("map_intro")}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 rounded-3xl overflow-hidden shadow-2xl"
+            {media.common_map && (<div className="lg:col-span-2 rounded-3xl overflow-hidden shadow-2xl"
               style={{ border: "3px solid rgba(184,115,51,0.2)", minHeight: 420 }}>
               <iframe
                 title="Карта — где найти енотов"
-                src={COMMON_MAP}
+                src={normalizeMapUrl(media.common_map)}
                 width="100%"
                 height="520"
                 frameBorder="0"
                 allowFullScreen
                 style={{ display: "block", border: 0 }}
               />
-            </div>
+            </div>)}
 
-            <div className="space-y-3">
+            <div className={`space-y-3 ${media.common_map ? "" : "lg:col-span-3 grid sm:grid-cols-2 gap-3 space-y-0"}`}>
               {spots.map((s) => {
                 const isPlaced = s.status === "placed";
                 return (
@@ -97,7 +89,7 @@ export default function MapPage() {
                         color: isPlaced ? "var(--sea)" : "var(--bronze)",
                       }}>
                       <Icon name={isPlaced ? "Check" : "Clock"} size={13} />
-                      {isPlaced ? (s.slug === "enira" || s.slug === "enofya" || s.slug === "tydochka" ? "Установлена" : "Установлен") : "Скоро"}
+                      {isPlaced ? "Уже здесь" : "Скоро"}
                     </span>
                   </div>
                 );

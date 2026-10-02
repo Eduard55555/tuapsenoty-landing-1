@@ -1,10 +1,12 @@
 import Icon from "@/components/ui/icon";
-import { PRODUCTS, buildCartUrl } from "@/data/products";
+import { buildCartUrl } from "@/data/products";
+import { useProducts, useTexts } from "@/content/siteContent";
 import ShareButtons from "@/components/ShareButtons";
 
-const FEATURED = PRODUCTS.slice(0, 3);
 
 export default function IndexShop() {
+  const FEATURED = useProducts().slice(0, 3);
+  const t = useTexts();
   return (
     <section id="shop" className="cv-auto py-10 sm:py-16 px-4 sm:px-6"
       style={{ background: "linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%)" }}>
@@ -15,10 +17,10 @@ export default function IndexShop() {
             Сувениры
           </p>
           <h2 className="section-title text-xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
-            Возьми Туапсенота домой 🦝
+            {t("shop_title")}
           </h2>
           <p className="font-body text-sm sm:text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
-            Фигурки ручной работы «под бронзу». Тёплый подарок и память о Туапсе.
+            {t("shop_subtitle")}
           </p>
         </div>
 

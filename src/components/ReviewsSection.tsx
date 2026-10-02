@@ -1,7 +1,10 @@
 import Icon from "@/components/ui/icon";
-import { REVIEWS } from "@/data/reviews";
+import { useReviews, useTexts } from "@/content/siteContent";
 
 export default function ReviewsSection({ background }: { background?: string }) {
+  const REVIEWS = useReviews();
+  const t = useTexts();
+  if (REVIEWS.length === 0) return null;
   return (
     <section
       id="reviews"
@@ -17,17 +20,17 @@ export default function ReviewsSection({ background }: { background?: string }) 
             Отзывы
           </p>
           <h2 className="section-title text-xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
-            Что говорят наши покупатели
+            {t("reviews_title")}
           </h2>
           <p className="font-body text-sm sm:text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
-            Каждая фигурка уезжает в новый дом со своей историей
+            {t("reviews_subtitle")}
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
           {REVIEWS.map((r) => (
             <div
-              key={r.name + r.city}
+              key={r.name + r.city + r.text.slice(0, 10)}
               className="rounded-3xl p-5 sm:p-6 flex flex-col card-hover"
               style={{
                 backgroundColor: "white",

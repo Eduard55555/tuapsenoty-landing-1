@@ -13,9 +13,9 @@ CORS = {
     'Access-Control-Max-Age': '86400',
 }
 
-KEYS = {'texts', 'characters', 'news', 'contests'}
+KEYS = {'texts', 'characters', 'characterList', 'news', 'contests', 'products', 'reviews', 'delivery', 'contacts', 'media'}
 TYPES = {'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/png': 'png'}
-MAX_BYTES = 5 * 1024 * 1024
+MAX_BYTES = 8 * 1024 * 1024
 
 
 def _resp(code: int, payload: dict) -> dict:
@@ -34,7 +34,7 @@ def _is_admin(event: dict) -> bool:
 
 
 def handler(event: dict, context) -> dict:
-    """Редактируемый контент сайта: тексты, персонажи, новости, конкурсы. Чтение всем, запись по админ-паролю."""
+    """Редактируемый контент сайта: тексты, еноты, новости, конкурсы, магазин, отзывы, контакты, фото и карты. Чтение всем, запись по админ-паролю."""
 
     method = event.get('httpMethod')
     if method == 'OPTIONS':
@@ -69,7 +69,7 @@ def handler(event: dict, context) -> dict:
             return _resp(400, {'ok': False, 'error': 'Только JPG, PNG или WEBP'})
         raw = base64.b64decode((body.get('data') or '').split(',')[-1])
         if len(raw) > MAX_BYTES:
-            return _resp(400, {'ok': False, 'error': 'Файл больше 5 МБ'})
+            return _resp(400, {'ok': False, 'error': 'Файл больше 8 МБ'})
         key = f"content/{uuid.uuid4().hex}.{ext}"
         s3 = boto3.client(
             's3',

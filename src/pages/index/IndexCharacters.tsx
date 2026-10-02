@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
-import { PLANETA_URL } from "./indexData";
-import { useCharacters, useTexts } from "@/content/siteContent";
+import { useCharacters, useContacts, useTexts } from "@/content/siteContent";
 import { useFinderCount, pluralPeople } from "@/hooks/useFinderCount";
 import { useCharacterCount } from "@/hooks/useCharacterCount";
 import func2url from "../../../backend/func2url.json";
@@ -9,6 +8,7 @@ import func2url from "../../../backend/func2url.json";
 export default function IndexCharacters() {
   const characters = useCharacters();
   const t = useTexts();
+  const PLANETA_URL = useContacts().planeta;
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -49,7 +49,7 @@ export default function IndexCharacters() {
               Персонажи
             </p>
             <h2 className="section-title text-xl sm:text-4xl md:text-5xl mb-4 sm:mb-6">
-              Познакомьтесь с семьёй
+              {t("characters_title")}
             </h2>
             <p className="font-body text-base sm:text-lg max-w-xl mx-auto" style={{ color: "var(--warm-text)" }}>
               {t("characters_subtitle")}

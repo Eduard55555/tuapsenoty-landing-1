@@ -10,11 +10,13 @@ import ShareButtons from "@/components/ShareButtons";
 import ReviewsSection from "@/components/ReviewsSection";
 import useSeo from "@/hooks/useSeo";
 import JsonLd from "@/components/JsonLd";
-import { PRODUCTS, buildCartUrl } from "@/data/products";
+import { buildCartUrl, type Product } from "@/data/products";
+import { useContacts, useProducts } from "@/content/siteContent";
 
-const PLANETA_URL = "https://planeta.ru/campaigns/244619";
 
 export default function Shop() {
+  const PRODUCTS = useProducts();
+  const PLANETA_URL = useContacts().planeta;
   useSeo({
     title: "Магазин Туапсеноты — фигурки и сувениры бронзовых енотов",
     description:
@@ -45,7 +47,7 @@ export default function Shop() {
         },
       })),
     }),
-    [],
+    [PRODUCTS],
   );
 
   const [added, setAdded] = useState<string | null>(null);
@@ -56,7 +58,7 @@ export default function Shop() {
     setQtys((prev) => ({ ...prev, [id]: Math.max(1, (prev[id] || 1) + delta) }));
   };
 
-  const handleAdd = (product: typeof PRODUCTS[0]) => {
+  const handleAdd = (product: Product) => {
     setAdded(product.id);
     const qty = getQty(product.id);
     setTimeout(() => {

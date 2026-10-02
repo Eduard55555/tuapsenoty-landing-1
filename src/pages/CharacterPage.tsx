@@ -6,7 +6,7 @@ import SiteHeader from "@/components/SiteHeader";
 import ARHologram from "@/components/ARHologram";
 import { FINDER_API, FINDER_BASE, CHARACTER_API, pluralPeople } from "@/hooks/useFinderCount";
 import { characters } from "@/pages/index/indexData";
-import { useCharacters } from "@/content/siteContent";
+import { normalizeMapUrl, useCharacters } from "@/content/siteContent";
 import useSeo from "@/hooks/useSeo";
 import JsonLd from "@/components/JsonLd";
 
@@ -254,7 +254,7 @@ export default function CharacterPage() {
                   </p>
                   <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
                     <iframe
-                      src={(char as { map?: string }).map}
+                      src={normalizeMapUrl((char as { map?: string }).map || "")}
                       width="100%"
                       height="240"
                       frameBorder={0}

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
-import { DELIVERY_FACTS } from "@/data/delivery";
+import { useDelivery } from "@/content/siteContent";
 
 export default function Cart() {
+  const DELIVERY_FACTS = useDelivery();
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id") || "";
   const name = params.get("name") || "";

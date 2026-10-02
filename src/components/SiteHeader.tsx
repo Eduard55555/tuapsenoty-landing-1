@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
-import { PLANETA_URL } from "@/pages/index/indexData";
+import { useContacts } from "@/content/siteContent";
 
 const LINKS: [string, string][] = [
   ["Конкурсы", "/contests"],
@@ -50,6 +50,7 @@ function gradientButtonStyle(t: number): React.CSSProperties {
 
 export default function SiteHeader({ showCart = false }: { showCart?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const PLANETA_URL = useContacts().planeta;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50"

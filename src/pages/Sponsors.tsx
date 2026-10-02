@@ -3,6 +3,7 @@ import Icon from "@/components/ui/icon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import PhoneLink from "@/components/PhoneLink";
+import { useContacts } from "@/content/siteContent";
 import useSeo from "@/hooks/useSeo";
 
 const PARTNER_URL = "https://functions.poehali.dev/1eb969da-c9f0-4d24-ab20-b98e2c7bac73";
@@ -22,6 +23,7 @@ export default function Sponsors() {
     path: "/sponsors",
   });
 
+  const CONTACT_EMAIL = useContacts().emails[0] || "sen555551@mail.ru";
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
@@ -180,7 +182,7 @@ export default function Sponsors() {
                   </button>
 
                   <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-                    <a href="mailto:sen555551@mail.ru?subject=Хочу стать партнёром проекта «Туапсеноты»"
+                    <a href={`mailto:${CONTACT_EMAIL}?subject=Хочу стать партнёром проекта «Туапсеноты»`}
                       className="font-body text-sm inline-flex items-center gap-1.5" style={{ color: "var(--bronze)" }}>
                       <Icon name="Mail" size={15} /> Написать на почту
                     </a>

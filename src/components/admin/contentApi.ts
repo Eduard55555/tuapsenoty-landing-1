@@ -1,4 +1,5 @@
 import { CONTENT_URL, setContent, type ContentData } from "@/content/siteContent";
+import compressImage from "@/lib/compressImage";
 
 export async function saveContent<K extends keyof ContentData>(adminKey: string, key: K, value: ContentData[K]) {
   const res = await fetch(CONTENT_URL, {
@@ -12,16 +13,23 @@ export async function saveContent<K extends keyof ContentData>(adminKey: string,
 }
 
 export async function uploadImage(adminKey: string, file: File): Promise<string> {
-  const dataUrl: string = await new Promise((resolve, reject) => {
-    const r = new FileReader();
-    r.onload = () => resolve(String(r.result));
-    r.onerror = reject;
-    r.readAsDataURL(file);
-  });
+  let dataUrl: string;
+  let contentType = "image/jpeg";
+  try {
+    dataUrl = await compressImage(file, 1800, 0.85);
+  } catch {
+    contentType = file.type;
+    dataUrl = await new Promise((resolve, reject) => {
+      const r = new FileReader();
+      r.onload = () => resolve(String(r.result));
+      r.onerror = reject;
+      r.readAsDataURL(file);
+    });
+  }
   const res = await fetch(CONTENT_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json", "X-Admin-Key": adminKey },
-    body: JSON.stringify({ action: "upload", contentType: file.type, data: dataUrl }),
+    body: JSON.stringify({ action: "upload", contentType, data: dataUrl }),
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok || !data.url) throw new Error(data.error || "Не удалось загрузить фото");

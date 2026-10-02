@@ -1,7 +1,8 @@
-import { useTexts } from "@/content/siteContent";
+import { useMedia, useTexts } from "@/content/siteContent";
 
 export default function IndexAbout() {
   const t = useTexts();
+  const media = useMedia();
   return (
     <section id="about" className="cv-auto py-8 sm:py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--cream)" }}>
       <div className="max-w-6xl mx-auto">
@@ -23,7 +24,7 @@ export default function IndexAbout() {
 
         <div className="mt-16 rounded-3xl overflow-hidden shadow-2xl relative">
           <img
-            src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/d9f2d83f1f264f32945cf1a8d5470ab4.webp"
+            src={media.about_image}
             alt="Семья Туапсенотов"
             loading="lazy"
             decoding="async"

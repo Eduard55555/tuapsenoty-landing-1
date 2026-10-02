@@ -2,14 +2,18 @@ import Icon from "@/components/ui/icon";
 import FinderCounter from "@/components/FinderCounter";
 import SeagullsFlight from "@/components/SeagullsFlight";
 import { playCoin } from "@/hooks/useSound";
-import { PLANETA_URL } from "./indexData";
 import { useCharacterStats } from "@/hooks/useCharacterCount";
 import { SOCIAL_LINKS } from "@/components/SocialLinks";
-import { useTexts } from "@/content/siteContent";
+import { useContacts, useMedia, useTexts } from "@/content/siteContent";
 
 export default function IndexHero() {
   const enira = useCharacterStats("enira");
   const t = useTexts();
+  const media = useMedia();
+  const contacts = useContacts();
+  const PLANETA_URL = contacts.planeta;
+  const heroTitle = t("hero_title");
+  const dash = heroTitle.indexOf(" — ");
   return (
     <>
       {/* HERO */}
@@ -30,7 +34,7 @@ export default function IndexHero() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
           <div className="animate-float mb-4 inline-block" style={{ marginTop: "-38px" }}>
             <img
-              src="https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/opt/93ed2016798c4b13abf094a11fc45750.webp"
+              src={media.hero_image}
               alt="Енофья с малышом"
               decoding="async"
               width={256}
@@ -48,7 +52,13 @@ export default function IndexHero() {
           <div className="animate-fade-up">
             <h1 className="font-display font-bold mb-4 sm:mb-6 max-w-4xl mx-auto"
               style={{ color: "var(--cream)", lineHeight: 1.2, fontSize: "clamp(20px, 5vw, 56px)" }}>
-              Туапсеноты — <em style={{ color: "var(--teal-light)" }}>новая душа</em> Черноморского побережья
+              {heroTitle === "Туапсеноты — новая душа Черноморского побережья" ? (
+                <>Туапсеноты — <em style={{ color: "var(--teal-light)" }}>новая душа</em> Черноморского побережья</>
+              ) : dash > 0 ? (
+                <>{heroTitle.slice(0, dash)} — <em style={{ color: "var(--teal-light)" }}>{heroTitle.slice(dash + 3)}</em></>
+              ) : (
+                heroTitle
+              )}
             </h1>
           </div>
 
@@ -79,7 +89,7 @@ export default function IndexHero() {
               Мы в MAX, Telegram и ВКонтакте
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              {SOCIAL_LINKS.map((s) => (
+              {SOCIAL_LINKS.map((s0) => ({ ...s0, url: s0.label === "MAX" ? contacts.max : s0.label === "Telegram" ? contacts.telegram : contacts.vk })).map((s) => (
                 <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full px-4 py-2 font-body font-bold text-sm text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
                   style={{ backgroundColor: s.color }}>

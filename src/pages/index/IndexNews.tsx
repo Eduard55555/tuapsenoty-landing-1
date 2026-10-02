@@ -1,9 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import ARHologram from "@/components/ARHologram";
-import { useCharacters, useNews, useTexts } from "@/content/siteContent";
-import { NEWS_PHOTOS } from "./indexData";
-import { ENIRA_GALLERY } from "./photosData";
+import { normalizeMapUrl, useCharacters, useMedia, useNews, useTexts } from "@/content/siteContent";
 
 
 function PhotoCollage({ photos, alt, cols = 2, ratio = "aspect-square" }: { photos: string[]; alt: string; cols?: number; ratio?: string }) {
@@ -23,14 +21,12 @@ function PhotoCollage({ photos, alt, cols = 2, ratio = "aspect-square" }: { phot
   );
 }
 
-function NewsGallery() {
-  return <PhotoCollage photos={NEWS_PHOTOS} alt="Енотыч в бронзе" />;
-}
 
 export default function IndexNews() {
   const characters = useCharacters();
   const news = useNews();
   const t = useTexts();
+  const media = useMedia();
   const enotych = characters.find((c) => c.slug === "enotych");
   const enofya = characters.find((c) => c.slug === "enofya");
   const enira = characters.find((c) => c.slug === "enira");
@@ -46,7 +42,7 @@ export default function IndexNews() {
             Новости проекта
           </p>
           <h2 className="section-title text-xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
-            Это уже происходит
+            {t("news_title")}
           </h2>
         </div>
 
@@ -55,7 +51,7 @@ export default function IndexNews() {
             style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
             <div className="md:flex">
               <div className="md:w-2/5 relative">
-                <NewsGallery />
+                <PhotoCollage photos={media.news_enotych_photos} alt="Енотыч в бронзе" />
               </div>
               <div className="p-4 sm:p-6 md:w-3/5 flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-3">
@@ -88,15 +84,17 @@ export default function IndexNews() {
                     Оживить Енотыча
                   </button>
                 </div>
-                <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
-                  <iframe
-                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A8320dc8f2d5e1729b5847107af9a69817a72779d9419cdcc1cbccdcb1acbdb4d&source=constructor"
-                    width="100%"
-                    height="180"
-                    frameBorder={0}
-                    title="Енотыч на карте"
-                  />
-                </div>
+                {media.news_enotych_map && (
+                  <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
+                    <iframe
+                      src={normalizeMapUrl(media.news_enotych_map)}
+                      width="100%"
+                      height="180"
+                      frameBorder={0}
+                      title="Енотыч на карте"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -105,7 +103,7 @@ export default function IndexNews() {
             style={{ border: "1px solid rgba(184,115,51,0.15)", backgroundColor: "var(--sand)" }}>
             <div className="md:flex">
               <div className="md:w-2/5 relative">
-                <PhotoCollage photos={ENIRA_GALLERY} alt="Енира с Тыдочкой в бронзе" cols={3} ratio="aspect-[3/4]" />
+                <PhotoCollage photos={media.news_enira_photos} alt="Енира с Тыдочкой в бронзе" cols={3} ratio="aspect-[3/4]" />
               </div>
               <div className="p-4 sm:p-6 md:w-3/5 flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-3">
@@ -133,15 +131,17 @@ export default function IndexNews() {
                     Оживить Ениру с Тыдочкой
                   </button>
                 </div>
-                <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
-                  <iframe
-                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A9fcbfbcb651b40d9e69ee5338b8b1851be093eac55d8eeecc355d63a5cb6f9bc&source=constructor"
-                    width="100%"
-                    height="180"
-                    frameBorder={0}
-                    title="Енира с Тыдочкой на карте"
-                  />
-                </div>
+                {media.news_enira_map && (
+                  <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
+                    <iframe
+                      src={normalizeMapUrl(media.news_enira_map)}
+                      width="100%"
+                      height="180"
+                      frameBorder={0}
+                      title="Енира с Тыдочкой на карте"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
