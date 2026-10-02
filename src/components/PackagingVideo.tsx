@@ -1,7 +1,7 @@
 import Icon from "@/components/ui/icon";
 
 const VIDEO_URL =
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/videos/box-video-final.mp4";
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/videos/packaging-light.mp4";
 
 export default function PackagingVideo() {
   return (
@@ -40,17 +40,18 @@ export default function PackagingVideo() {
       </div>
       <div className="order-1 sm:order-2 flex justify-center">
         <video
-          src={VIDEO_URL}
           poster="/opt/packaging-poster.webp"
           controls
           playsInline
           muted
           loop
           autoPlay
-          preload="metadata"
+          preload="auto"
           className="w-full max-w-[300px] rounded-2xl"
           style={{ aspectRatio: "9 / 16", objectFit: "cover", boxShadow: "0 12px 30px rgba(61,43,31,0.25)" }}
-        />
+        >
+          <source src={VIDEO_URL} type="video/mp4" />
+        </video>
       </div>
     </div>
   );

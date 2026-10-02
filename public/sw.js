@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tuapsenoty-v2';
+const CACHE_NAME = 'tuapsenoty-v3';
 const PRECACHE_URLS = [
   '/',
   '/manifest.json',
@@ -26,6 +26,10 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
 
   const url = new URL(req.url);
+
+  if (req.headers.has('range') || req.destination === 'video' || req.destination === 'audio' || /\.(mp4|webm|mov|mp3|m4a)$/i.test(url.pathname)) {
+    return;
+  }
 
   if (req.mode === 'navigate') {
     event.respondWith(
