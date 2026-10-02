@@ -67,6 +67,7 @@ const Sponsors = lazy(() => import("./pages/Sponsors"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const MapPage = lazy(() => import("./pages/MapPage"));
 const QrEnofya = lazy(() => import("./pages/QrEnofya"));
+const Contests = lazy(() => import("./pages/Contests"));
 const Admin = lazy(() => import("./pages/Admin"));
 
 const PageFallback = () => (
@@ -111,6 +112,7 @@ const App = () => {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/map" element={<MapPage />} />
               <Route path="/qr-enofya" element={<QrEnofya />} />
+              <Route path="/contests" element={<Contests />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/orders" element={<Admin initial="orders" />} />
               <Route path="/gallery-admin" element={<Admin initial="photos" />} />

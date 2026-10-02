@@ -3,7 +3,7 @@ import Icon from "@/components/ui/icon";
 import { PLANETA_URL } from "@/pages/index/indexData";
 
 const LINKS: [string, string][] = [
-  ["Доставка", "/delivery"],
+  ["Конкурсы", "/contests"],
   ["О проекте", "/#about"],
   ["Персонажи", "/#characters"],
   ["Карта", "/map"],
