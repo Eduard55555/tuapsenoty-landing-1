@@ -5,6 +5,7 @@ import SiteHeader from "@/components/SiteHeader";
 import PhoneLink from "@/components/PhoneLink";
 import ProductGallery from "@/components/ProductGallery";
 import DeliveryInfo from "@/components/DeliveryInfo";
+import PackagingVideo from "@/components/PackagingVideo";
 import ShareButtons from "@/components/ShareButtons";
 import ReviewsSection from "@/components/ReviewsSection";
 import useSeo from "@/hooks/useSeo";
@@ -203,6 +204,10 @@ export default function Shop() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mb-10 sm:mb-14">
+          <PackagingVideo />
         </div>
 
         <div className="mb-10 sm:mb-14">
