@@ -5,6 +5,17 @@ import SiteFooter from "@/components/SiteFooter";
 import useSeo from "@/hooks/useSeo";
 import { MAX_URL, VK_URL } from "@/components/SocialLinks";
 
+type ActiveContest = {
+  title: string;
+  rules: string;
+  deadline: string;
+  voting: string;
+  prize: string;
+  link: string;
+};
+
+const ACTIVE = null as ActiveContest | null;
+
 const UPCOMING = [
   "Конкурс на лучшую историю о Енотыче",
   "Конкурс на лучшее фото с Енирой и Тыдочкой",
@@ -91,15 +102,54 @@ export default function Contests() {
             </Link>
           </section>
 
-          <section className="rounded-3xl p-6 sm:p-8" style={{ ...card, border: "2px dashed rgba(184,115,51,0.4)" }}>
-            <Badge bg="var(--bronze)" color="#fff">Скоро</Badge>
-            <h2 className="font-display text-xl sm:text-2xl font-bold mt-3 mb-3" style={{ color: "var(--warm-dark)" }}>
-              🏆 Новый конкурс
-            </h2>
-            <p className="font-body" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
-              Следите за анонсами. Будет интересно!
-            </p>
-          </section>
+          {ACTIVE ? (
+            <section className="rounded-3xl p-6 sm:p-8" style={{ ...card, border: "2px solid var(--bronze)" }}>
+              <Badge bg="var(--bronze)" color="#fff">Идёт сейчас</Badge>
+              <h2 className="font-display text-xl sm:text-2xl font-bold mt-3 mb-4" style={{ color: "var(--warm-dark)" }}>
+                🏆 {ACTIVE.title}
+              </h2>
+              <p className="font-body mb-5 whitespace-pre-line" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
+                {ACTIVE.rules}
+              </p>
+              <div className="grid sm:grid-cols-3 gap-3 mb-6">
+                {[
+                  { icon: "Inbox", label: "Приём работ", value: `до ${ACTIVE.deadline}` },
+                  { icon: "Vote", label: "Голосование", value: ACTIVE.voting },
+                  { icon: "Gift", label: "Приз", value: ACTIVE.prize },
+                ].map((r) => (
+                  <div key={r.label} className="rounded-2xl p-4" style={{ backgroundColor: "var(--sand)" }}>
+                    <div className="flex items-center gap-2 font-body text-xs uppercase tracking-wider font-bold mb-1" style={{ color: "var(--bronze)" }}>
+                      <Icon name={r.icon} size={14} fallback="Circle" />
+                      {r.label}
+                    </div>
+                    <div className="font-body font-semibold" style={{ color: "var(--warm-dark)" }}>
+                      {r.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <a
+                href={ACTIVE.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-body font-semibold text-white"
+                style={{ background: "var(--bronze)" }}
+              >
+                <Icon name="Send" size={18} />
+                Участвовать
+              </a>
+            </section>
+          ) : (
+            <section className="rounded-3xl p-6 sm:p-8" style={{ ...card, border: "2px dashed rgba(184,115,51,0.4)" }}>
+              <Badge bg="var(--bronze)" color="#fff">Скоро</Badge>
+              <h2 className="font-display text-xl sm:text-2xl font-bold mt-3 mb-3" style={{ color: "var(--warm-dark)" }}>
+                🏆 Новый конкурс
+              </h2>
+              <p className="font-body" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
+                Следите за анонсами. Будет интересно!
+              </p>
+            </section>
+          )}
 
           <section className="rounded-3xl p-6 sm:p-8" style={{ backgroundColor: "var(--sand)", border: "1px solid rgba(184,115,51,0.18)" }}>
             <h2 className="font-display text-xl sm:text-2xl font-bold mb-4" style={{ color: "var(--warm-dark)" }}>
