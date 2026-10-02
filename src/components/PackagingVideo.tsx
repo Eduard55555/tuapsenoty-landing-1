@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
 const VIDEO_URL =
-  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/videos/packaging-light.mp4?v=4";
+  "https://cdn.poehali.dev/projects/5c864877-cf84-4a78-897d-bd1766f6ada6/bucket/videos/packaging-light.mp4?v=5";
 
 export default function PackagingVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -10,24 +10,32 @@ export default function PackagingVideo() {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    let retries = 0;
+    let usedBlob = false;
+    let blobUrl: string | null = null;
     let timer: number | undefined;
 
-    const retry = () => {
-      if (retries >= 2 || v.readyState >= 3) return;
-      retries += 1;
-      const t = v.currentTime;
-      v.src = `${VIDEO_URL}&r=${Date.now()}`;
-      v.load();
-      v.currentTime = t;
-      v.play().catch(() => {});
+    const loadAsBlob = () => {
+      if (usedBlob || v.readyState >= 3) return;
+      usedBlob = true;
+      fetch(`${VIDEO_URL}&b=1`, { cache: "no-store", mode: "cors" })
+        .then((r) => r.blob())
+        .then((b) => {
+          blobUrl = URL.createObjectURL(b);
+          v.src = blobUrl;
+          v.load();
+          v.play().catch(() => {});
+        })
+        .catch(() => {});
     };
 
     const onWaiting = () => {
       window.clearTimeout(timer);
-      timer = window.setTimeout(retry, 8000);
+      timer = window.setTimeout(loadAsBlob, 4000);
     };
     const onPlaying = () => window.clearTimeout(timer);
+
+    timer = window.setTimeout(loadAsBlob, 5000);
+    const retry = loadAsBlob;
 
     v.addEventListener("waiting", onWaiting);
     v.addEventListener("stalled", onWaiting);
@@ -36,6 +44,7 @@ export default function PackagingVideo() {
     v.addEventListener("canplay", onPlaying);
     return () => {
       window.clearTimeout(timer);
+      if (blobUrl) URL.revokeObjectURL(blobUrl);
       v.removeEventListener("waiting", onWaiting);
       v.removeEventListener("stalled", onWaiting);
       v.removeEventListener("error", retry);

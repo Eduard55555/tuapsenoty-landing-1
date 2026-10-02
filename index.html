@@ -63,7 +63,10 @@
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
-            navigator.serviceWorker.register('/sw.js').catch(function (e) {
+            navigator.serviceWorker.getRegistrations().then(function (regs) {
+                regs.forEach(function (r) { r.update(); });
+            });
+            navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(function (e) {
                 console.warn('SW registration failed:', e);
             });
         });
