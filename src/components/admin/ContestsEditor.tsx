@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { useContests, type ActiveContest, type ContestsData, type FinishedContest } from "@/content/siteContent";
 import { saveContent } from "./contentApi";
-import { Card, Field, GroupTitle, ImageField, SaveBar } from "./EditorKit";
+import { Card, Field, GroupTitle, ImagesField, SaveBar } from "./EditorKit";
 
 const EMPTY_ACTIVE: ActiveContest = { title: "", rules: "", deadline: "", voting: "", prize: "", link: "" };
 
@@ -16,7 +16,7 @@ export default function ContestsEditor({ adminKey }: { adminKey: string }) {
     setDirty(true);
   };
   const setActive = (k: keyof ActiveContest, v: string) => update({ active: { ...(data.active ?? EMPTY_ACTIVE), [k]: v } });
-  const setFinished = (i: number, k: keyof FinishedContest, v: string) =>
+  const setFinished = (i: number, k: keyof FinishedContest, v: string | string[]) =>
     update({ finished: data.finished.map((f, j) => (j === i ? { ...f, [k]: v } : f)) });
 
   const finishActive = () => {
@@ -102,7 +102,13 @@ export default function ContestsEditor({ adminKey }: { adminKey: string }) {
             <Field label="Голосов" value={f.votes} onChange={(v) => setFinished(i, "votes", v)} placeholder="103" />
           </div>
           <Field label="Текст после цифр" value={f.footer} onChange={(v) => setFinished(i, "footer", v)} multiline rows={2} />
-          <ImageField label="Фото победителя (необязательно)" value={f.image ?? ""} onChange={(v) => setFinished(i, "image", v)} adminKey={adminKey} />
+          <ImagesField
+            label="Фото победителей"
+            hint="Можно выбрать сразу несколько фото. Первое — самое большое. Порядок меняется стрелками."
+            value={f.images ?? (f.image ? [f.image] : [])}
+            onChange={(v) => update({ finished: data.finished.map((x, j) => (j === i ? { ...x, images: v, image: v[0] ?? "" } : x)) })}
+            adminKey={adminKey}
+          />
         </Card>
       ))}
       <button

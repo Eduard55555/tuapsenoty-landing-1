@@ -36,6 +36,7 @@ export type FinishedContest = {
   votes: string;
   footer: string;
   image?: string;
+  images?: string[];
 };
 export type ActiveContest = { title: string; rules: string; deadline: string; voting: string; prize: string; link: string };
 export type ContestsData = { active: ActiveContest | null; finished: FinishedContest[]; upcoming: string[] };

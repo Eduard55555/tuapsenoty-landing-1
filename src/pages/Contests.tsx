@@ -57,9 +57,25 @@ export default function Contests() {
                 {f.text}
               </p>
 
-              {f.image && (
-                <img src={f.image} alt={f.title} loading="lazy" className="w-full rounded-2xl mb-5 object-cover" style={{ maxHeight: 480 }} />
-              )}
+              {(() => {
+                const photos = f.images ?? (f.image ? [f.image] : []);
+                if (!photos.length) return null;
+                return (
+                  <div className="mb-5">
+                    <p className="font-body text-sm font-bold mb-3" style={{ color: "var(--bronze)" }}>🏆 Победители</p>
+                    <img src={photos[0]} alt={`${f.title} — победитель`} loading="lazy" className="w-full rounded-2xl object-cover" style={{ maxHeight: 520 }} />
+                    {photos.length > 1 && (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3">
+                        {photos.slice(1).map((src) => (
+                          <a key={src} href={src} target="_blank" rel="noopener noreferrer">
+                            <img src={src} alt={`${f.title} — призёр`} loading="lazy" className="w-full aspect-square rounded-2xl object-cover" />
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
 
               <div className="grid grid-cols-3 gap-3 mb-5">
                 {[
