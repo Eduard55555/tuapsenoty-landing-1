@@ -63,72 +63,6 @@ export default function Contests() {
             </p>
           </div>
 
-          {finished.map((f) => (
-            <section key={f.id} className="rounded-3xl p-6 sm:p-8" style={card}>
-              <Badge bg="rgba(46,139,87,0.12)" color="#2E7D32">Завершён</Badge>
-              <h2 className="font-display text-xl sm:text-2xl font-bold mt-3 mb-4" style={{ color: "var(--warm-dark)" }}>
-                📸 {f.title}
-              </h2>
-              <p className="font-body mb-5 whitespace-pre-line" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
-                {f.text}
-              </p>
-
-              {(() => {
-                const photos = f.images ?? (f.image ? [f.image] : []);
-                if (!photos.length) return null;
-                return (
-                  <div className="mb-5">
-                    <p className="font-body text-sm font-bold mb-3" style={{ color: "var(--bronze)" }}>🏆 Победители</p>
-                    <img src={photos[0]} alt={`${f.title} — победитель`} loading="lazy" className="w-full rounded-2xl object-cover" style={{ maxHeight: 520 }} />
-                    {photos.length > 1 && (
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3">
-                        {photos.slice(1).map((src) => (
-                          <a key={src} href={src} target="_blank" rel="noopener noreferrer">
-                            <img src={src} alt={`${f.title} — призёр`} loading="lazy" className="w-full aspect-square rounded-2xl object-cover" />
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })()}
-
-              <div className="grid grid-cols-3 gap-3 mb-5">
-                {[
-                  { v: f.works, l: "работ" },
-                  { v: f.winner, l: "победитель" },
-                  { v: f.votes, l: "голосов" },
-                ]
-                  .filter((x) => x.v)
-                  .map((x) => (
-                    <div key={x.l} className="rounded-2xl py-4 text-center" style={{ backgroundColor: "var(--sand)" }}>
-                      <div className="font-display text-2xl sm:text-3xl font-bold" style={{ color: "var(--bronze)" }}>
-                        {x.v}
-                      </div>
-                      <div className="font-body text-xs sm:text-sm" style={{ color: "#6B4C35" }}>
-                        {x.l}
-                      </div>
-                    </div>
-                  ))}
-              </div>
-
-              {f.footer && (
-                <p className="font-body mb-6 whitespace-pre-line" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
-                  {f.footer}
-                </p>
-              )}
-
-              <Link
-                to="/gallery"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-body font-semibold text-white"
-                style={{ background: "var(--bronze)" }}
-              >
-                <Icon name="Images" size={18} />
-                Смотреть все работы
-              </Link>
-            </section>
-          ))}
-
           {ACTIVE ? (
             <section className="rounded-3xl p-6 sm:p-8" style={{ ...card, border: "2px solid var(--bronze)" }}>
               <Badge bg="var(--bronze)" color="#fff">Идёт сейчас</Badge>
@@ -196,6 +130,78 @@ export default function Contests() {
               Следите за новостями!
             </p>
           </section>
+
+          {finished.length > 0 && (
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-center pt-4" style={{ color: "var(--warm-dark)" }}>
+              Прошедшие конкурсы
+            </h2>
+          )}
+
+          {finished.map((f) => (
+            <section key={f.id} className="rounded-3xl p-6 sm:p-8" style={card}>
+              <Badge bg="rgba(46,139,87,0.12)" color="#2E7D32">Завершён</Badge>
+              <h2 className="font-display text-xl sm:text-2xl font-bold mt-3 mb-4" style={{ color: "var(--warm-dark)" }}>
+                📸 {f.title}
+              </h2>
+              <p className="font-body mb-5 whitespace-pre-line" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
+                {f.text}
+              </p>
+
+              {(() => {
+                const photos = f.images ?? (f.image ? [f.image] : []);
+                if (!photos.length) return null;
+                return (
+                  <div className="mb-5">
+                    <p className="font-body text-sm font-bold mb-3" style={{ color: "var(--bronze)" }}>🏆 Победители</p>
+                    <img src={photos[0]} alt={`${f.title} — победитель`} loading="lazy" className="w-full rounded-2xl object-cover" style={{ maxHeight: 520 }} />
+                    {photos.length > 1 && (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3">
+                        {photos.slice(1).map((src) => (
+                          <a key={src} href={src} target="_blank" rel="noopener noreferrer">
+                            <img src={src} alt={`${f.title} — призёр`} loading="lazy" className="w-full aspect-square rounded-2xl object-cover" />
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+
+              <div className="grid grid-cols-3 gap-3 mb-5">
+                {[
+                  { v: f.works, l: "работ" },
+                  { v: f.winner, l: "победитель" },
+                  { v: f.votes, l: "голосов" },
+                ]
+                  .filter((x) => x.v)
+                  .map((x) => (
+                    <div key={x.l} className="rounded-2xl py-4 text-center" style={{ backgroundColor: "var(--sand)" }}>
+                      <div className="font-display text-2xl sm:text-3xl font-bold" style={{ color: "var(--bronze)" }}>
+                        {x.v}
+                      </div>
+                      <div className="font-body text-xs sm:text-sm" style={{ color: "#6B4C35" }}>
+                        {x.l}
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              {f.footer && (
+                <p className="font-body mb-6 whitespace-pre-line" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
+                  {f.footer}
+                </p>
+              )}
+
+              <Link
+                to="/gallery"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-body font-semibold text-white"
+                style={{ background: "var(--bronze)" }}
+              >
+                <Icon name="Images" size={18} />
+                Смотреть все работы
+              </Link>
+            </section>
+          ))}
 
           <section className="rounded-3xl p-6 sm:p-8" style={card}>
             <h2 className="font-display text-xl sm:text-2xl font-bold mb-5" style={{ color: "var(--warm-dark)" }}>
