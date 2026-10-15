@@ -44,8 +44,13 @@ export default function ContestsEditor({ adminKey }: { adminKey: string }) {
             label="Куда ведёт кнопка «Участвовать»"
             value={data.active.link}
             onChange={(v) => setActive("link", v)}
-            placeholder="https://max.ru/... или https://vk.ru/..."
+            placeholder="https://vk.ru/wall-... — ссылка на пост конкурса"
           />
+          {!data.active.link && (
+            <p className="text-xs -mt-2" style={{ color: "#B45309" }}>
+              Ссылка не указана — кнопка поведёт в сообщество ВКонтакте. Лучше вставьте ссылку на пост конкурса.
+            </p>
+          )}
           <div className="flex flex-wrap gap-2 pt-1">
             <button
               onClick={finishActive}

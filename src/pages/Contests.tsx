@@ -18,6 +18,22 @@ const Badge = ({ children, bg, color }: { children: React.ReactNode; bg: string;
   </span>
 );
 
+const normUrl = (u: string) => (u && !/^https?:\/\//i.test(u) ? `https://${u.trim()}` : u.trim());
+
+const Linkify = ({ text }: { text: string }) => (
+  <>
+    {text.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
+      /^https?:\/\//.test(part) ? (
+        <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="underline font-semibold break-all" style={{ color: "var(--bronze)" }}>
+          {part}
+        </a>
+      ) : (
+        part
+      ),
+    )}
+  </>
+);
+
 const card = { backgroundColor: "#fff", border: "1px solid rgba(184,115,51,0.18)" };
 
 export default function Contests() {
@@ -120,14 +136,16 @@ export default function Contests() {
                 🏆 {ACTIVE.title}
               </h2>
               <p className="font-body mb-5 whitespace-pre-line" style={{ color: "#5A3E2B", lineHeight: 1.7 }}>
-                {ACTIVE.rules}
+                <Linkify text={ACTIVE.rules} />
               </p>
               <div className="grid sm:grid-cols-3 gap-3 mb-6">
                 {[
                   { icon: "Inbox", label: "Приём работ", value: `до ${ACTIVE.deadline}` },
                   { icon: "Vote", label: "Голосование", value: ACTIVE.voting },
                   { icon: "Gift", label: "Приз", value: ACTIVE.prize },
-                ].map((r) => (
+                ]
+                  .filter((r) => r.value && r.value !== "до ")
+                  .map((r) => (
                   <div key={r.label} className="rounded-2xl p-4" style={{ backgroundColor: "var(--sand)" }}>
                     <div className="flex items-center gap-2 font-body text-xs uppercase tracking-wider font-bold mb-1" style={{ color: "var(--bronze)" }}>
                       <Icon name={r.icon} size={14} fallback="Circle" />
@@ -140,7 +158,7 @@ export default function Contests() {
                 ))}
               </div>
               <a
-                href={ACTIVE.link}
+                href={normUrl(ACTIVE.link) || VK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-body font-semibold text-white"
