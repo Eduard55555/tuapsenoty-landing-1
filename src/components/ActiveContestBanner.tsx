@@ -2,18 +2,19 @@ import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import { useContests } from "@/content/siteContent";
 
-export default function ActiveContestBanner() {
+export default function ActiveContestBanner({ inline = false }: { inline?: boolean }) {
   const { active } = useContests();
   if (!active?.title) return null;
 
   return (
-    <section className="px-4 sm:px-6 py-8" style={{ backgroundColor: "var(--cream)" }}>
+    <section className={inline ? "relative z-10 mb-14 sm:mb-16 text-left" : "px-4 sm:px-6 py-8"} style={inline ? undefined : { backgroundColor: "var(--cream)" }}>
       <Link
         to="/contests"
         className="group max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-4 sm:gap-6 rounded-3xl p-5 sm:p-6 text-center sm:text-left transition-transform hover:-translate-y-0.5"
         style={{
           background: "linear-gradient(135deg, var(--bronze) 0%, #8B5A2B 100%)",
           boxShadow: "0 12px 30px rgba(184,115,51,0.3)",
+          border: inline ? "2px solid rgba(255,255,255,0.35)" : undefined,
         }}
       >
         <div className="text-5xl shrink-0 animate-bounce" style={{ animationDuration: "2s" }}>

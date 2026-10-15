@@ -6,7 +6,6 @@ import IndexAbout from "./index/IndexAbout";
 import IndexNews from "./index/IndexNews";
 import IndexShop from "./index/IndexShop";
 import IndexCharacters from "./index/IndexCharacters";
-import ActiveContestBanner from "@/components/ActiveContestBanner";
 import ReviewsSection from "@/components/ReviewsSection";
 import { useCountFoundOnce } from "@/hooks/useFinderCount";
 import useSeo from "@/hooks/useSeo";
@@ -90,7 +89,6 @@ export default function Index() {
 
       {/* HERO */}
       <IndexHero />
-      <ActiveContestBanner />
 
       {/* SHOP / SOUVENIRS */}
       <IndexShop />

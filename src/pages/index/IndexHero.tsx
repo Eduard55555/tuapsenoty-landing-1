@@ -1,5 +1,6 @@
 import Icon from "@/components/ui/icon";
 import FinderCounter from "@/components/FinderCounter";
+import ActiveContestBanner from "@/components/ActiveContestBanner";
 import SeagullsFlight from "@/components/SeagullsFlight";
 import { playCoin } from "@/hooks/useSound";
 import { useCharacterStats } from "@/hooks/useCharacterCount";
@@ -32,6 +33,7 @@ export default function IndexHero() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
+          <ActiveContestBanner inline />
           <div className="animate-float mb-4 inline-block" style={{ marginTop: "-38px" }}>
             <img
               src={media.hero_image}
