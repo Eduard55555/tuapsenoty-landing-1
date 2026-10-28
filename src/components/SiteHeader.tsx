@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { useContacts } from "@/content/siteContent";
 
@@ -48,15 +47,24 @@ function gradientButtonStyle(t: number): React.CSSProperties {
   };
 }
 
+const PARTNER_STYLE: React.CSSProperties = {
+  color: "var(--warm-dark)",
+  fontWeight: 800,
+  background: "linear-gradient(135deg, var(--teal-light), var(--teal))",
+  letterSpacing: "0.02em",
+  boxShadow: "0 2px 10px rgba(64,224,208,0.4)",
+};
+
+const ITEMS: [string, string][] = [["🛒 Магазин", "/shop"], ...LINKS];
+
 export default function SiteHeader({ showCart = false }: { showCart?: boolean }) {
-  const [menuOpen, setMenuOpen] = useState(false);
   const PLANETA_URL = useContacts().planeta;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50"
+    <header className="relative lg:fixed top-0 left-0 right-0 z-50"
       style={{ background: "rgba(253, 246, 238, 0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(184,115,51,0.15)" }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14 lg:h-16">
           <a href="/" className="flex items-center gap-2">
             <span className="text-2xl">🦝</span>
             <span className="font-display text-xl font-bold" style={{ color: "var(--bronze)" }}>
@@ -70,22 +78,13 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
               <Icon name="Heart" size={16} />
               Поддержать проект
             </a>
-            {(() => {
-              const items: [string, string][] = [
-                ["🛒 Магазин", "/shop"],
-                ...LINKS,
-              ];
-              return items.map(([label, href], i) => {
-                const t = items.length > 1 ? i / (items.length - 1) : 0;
-                return (
-                  <a key={label} href={href}
-                    className="font-body text-sm px-3 py-1 rounded-full whitespace-nowrap transition-transform hover:scale-105"
-                    style={{ ...gradientButtonStyle(t) }}>
-                    {label}
-                  </a>
-                );
-              });
-            })()}
+            {ITEMS.map(([label, href], i) => (
+              <a key={label} href={href}
+                className="font-body text-sm px-3 py-1 rounded-full whitespace-nowrap transition-transform hover:scale-105"
+                style={gradientButtonStyle(i / (ITEMS.length - 1))}>
+                {label}
+              </a>
+            ))}
             {showCart && (
               <a href="/cart" className="btn-primary text-sm px-3 py-1 whitespace-nowrap">
                 <Icon name="ShoppingCart" size={16} />
@@ -94,58 +93,41 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
             )}
             <a href="/sponsors"
               className="font-body text-sm px-3 py-1 rounded-full whitespace-nowrap transition-transform hover:scale-105"
-              style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
+              style={PARTNER_STYLE}>
               💛 Стать партнёром ✨
             </a>
           </nav>
+        </div>
 
-          <div className="flex items-center gap-2 lg:hidden">
+        <nav className="lg:hidden pb-3 space-y-2">
+          <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
+            className="btn-primary text-sm w-full justify-center py-2">
+            <Icon name="Heart" size={16} />
+            Поддержать проект
+          </a>
+          <div className="flex flex-wrap gap-2">
+            {ITEMS.map(([label, href], i) => (
+              <a key={label} href={href}
+                className="font-body text-sm py-1.5 px-2 rounded-full text-center whitespace-nowrap flex-grow basis-[30%]"
+                style={gradientButtonStyle(i / (ITEMS.length - 1))}>
+                {label}
+              </a>
+            ))}
             {showCart && (
-              <a href="/cart" className="btn-primary text-sm px-3 py-2">
-                <Icon name="ShoppingCart" size={18} />
+              <a href="/cart"
+                className="btn-primary text-sm py-1.5 px-2 justify-center whitespace-nowrap flex-grow basis-[30%]">
+                <Icon name="ShoppingCart" size={16} />
+                Корзина
               </a>
             )}
-            <button className="p-2" onClick={() => setMenuOpen(!menuOpen)}
-              style={{ color: "var(--bronze)" }}>
-              <Icon name={menuOpen ? "X" : "Menu"} size={24} />
-            </button>
+            <a href="/sponsors"
+              className="font-body text-sm py-1.5 px-2 rounded-full text-center whitespace-nowrap flex-grow basis-[45%]"
+              style={PARTNER_STYLE}>
+              💛 Стать партнёром ✨
+            </a>
           </div>
-        </div>
+        </nav>
       </div>
-
-      {menuOpen && (
-        <div className="lg:hidden px-4 pb-4 pt-2 space-y-3"
-          style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
-          <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-            className="btn-primary text-sm w-full justify-center">
-            <Icon name="Heart" size={16} />
-            Поддержать на Planeta.ru
-          </a>
-          {(() => {
-            const items: [string, string][] = [
-              ["🛒 Магазин", "/shop"],
-              ...LINKS,
-            ];
-            return items.map(([label, href], i) => {
-              const t = items.length > 1 ? i / (items.length - 1) : 0;
-              return (
-                <a key={label} href={href}
-                  className="block font-body py-2 px-3 rounded-xl text-center"
-                  style={{ ...gradientButtonStyle(t) }}
-                  onClick={() => setMenuOpen(false)}>
-                  {label}
-                </a>
-              );
-            });
-          })()}
-          <a href="/sponsors"
-            className="block font-body py-2 px-3 rounded-xl text-center mt-2"
-            style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}
-            onClick={() => setMenuOpen(false)}>
-            💛 Стать партнёром ✨
-          </a>
-        </div>
-      )}
     </header>
   );
 }

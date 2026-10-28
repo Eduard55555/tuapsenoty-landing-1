@@ -18,7 +18,7 @@ export default function IndexHero() {
   return (
     <>
       {/* HERO */}
-      <section className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-28 sm:pt-32">
+      <section className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-8 lg:pt-32">
         <div className="absolute inset-0 texture-overlay opacity-30" />
 
         <SeagullsFlight />

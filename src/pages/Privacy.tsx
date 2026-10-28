@@ -6,7 +6,7 @@ export default function Privacy() {
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <SiteHeader />
 
-      <div className="pt-24 pb-12 sm:pb-16 px-4 sm:px-6 max-w-3xl mx-auto">
+      <div className="pt-6 lg:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 max-w-3xl mx-auto">
         <div className="mb-10">
           <p className="font-body text-xs sm:text-sm font-bold tracking-widest uppercase mb-2 sm:mb-3"
             style={{ color: "var(--bronze)" }}>

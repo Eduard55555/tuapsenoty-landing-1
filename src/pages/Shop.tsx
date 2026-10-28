@@ -83,7 +83,7 @@ export default function Shop() {
       </div>
       <SiteHeader showCart />
 
-      <div className="relative z-10 pt-24 pb-12 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 pt-6 lg:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <p className="font-body text-xs sm:text-sm font-bold tracking-widest uppercase mb-2 sm:mb-3"
             style={{ color: "var(--bronze)" }}>

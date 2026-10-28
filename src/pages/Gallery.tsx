@@ -51,7 +51,7 @@ export default function Gallery() {
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <SiteHeader />
 
-      <main className="pt-28 pb-20 px-4 sm:px-6">
+      <main className="pt-8 lg:pt-28 pb-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div className="text-4xl sm:text-5xl mb-4">📸</div>

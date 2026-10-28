@@ -51,7 +51,7 @@ export default function Contests() {
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <SiteHeader />
 
-      <main className="pt-28 pb-20 px-4 sm:px-6">
+      <main className="pt-8 lg:pt-28 pb-20 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto space-y-8">
           <div className="text-center mb-4">
             <div className="text-5xl mb-4">🏆</div>

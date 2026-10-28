@@ -154,7 +154,7 @@ export default function CharacterPage() {
       {charSchema && <JsonLd id={`char-${char.slug}`} data={charSchema} />}
       <SiteHeader />
 
-      <main className="pt-24 pb-12 sm:pb-20 px-4 sm:px-6">
+      <main className="pt-6 lg:pt-24 pb-12 sm:pb-20 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
 
           <div className={`rounded-3xl overflow-hidden bg-gradient-to-br ${char.color} mb-8`}

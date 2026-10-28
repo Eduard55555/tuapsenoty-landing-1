@@ -76,7 +76,7 @@ export default function Sponsors() {
     <div className="min-h-screen" style={{ backgroundColor: "var(--cream)" }}>
       <SiteHeader />
 
-      <main className="pt-24 sm:pt-28 pb-12 sm:pb-20 px-4 sm:px-6">
+      <main className="pt-6 lg:pt-28 pb-12 sm:pb-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
             <div className="text-4xl sm:text-5xl mb-4">🤝</div>
