@@ -13,16 +13,18 @@ import ContestsEditor from "@/components/admin/ContestsEditor";
 import ProductsEditor from "@/components/admin/ProductsEditor";
 import MediaEditor from "@/components/admin/MediaEditor";
 import InfoEditor from "@/components/admin/InfoEditor";
+import MenuEditor from "@/components/admin/MenuEditor";
 import { loadContent } from "@/content/siteContent";
 import func2url from "../../backend/func2url.json";
 
 const CHECK_URL = (func2url as Record<string, string>)["orders-list"];
 
-type Section = "orders" | "photos" | "texts" | "characters" | "news" | "contests" | "products" | "media" | "info" | "counters" | "newsletter";
+type Section = "orders" | "photos" | "menu" | "texts" | "characters" | "news" | "contests" | "products" | "media" | "info" | "counters" | "newsletter";
 
 const SECTIONS: { id: Section; title: string; icon: string }[] = [
   { id: "orders", title: "Заказы", icon: "ShoppingBag" },
   { id: "photos", title: "Фото", icon: "Images" },
+  { id: "menu", title: "Меню", icon: "LayoutGrid" },
   { id: "texts", title: "Тексты", icon: "Type" },
   { id: "characters", title: "Еноты", icon: "PawPrint" },
   { id: "news", title: "Новости", icon: "Newspaper" },
@@ -164,11 +166,12 @@ export default function Admin({ initial = "orders" }: { initial?: Section }) {
 
               {section === "orders" && <OrdersPanel adminKey={adminKey} />}
               {section === "photos" && <PhotosPanel adminKey={adminKey} />}
-              {["texts", "characters", "news", "contests", "products", "media", "info"].includes(section) && !contentReady && (
+              {["menu", "texts", "characters", "news", "contests", "products", "media", "info"].includes(section) && !contentReady && (
                 <div className="flex justify-center py-10">
                   <Icon name="Loader2" className="animate-spin" size={28} />
                 </div>
               )}
+              {contentReady && section === "menu" && <MenuEditor adminKey={adminKey} />}
               {contentReady && section === "texts" && <TextsEditor adminKey={adminKey} />}
               {contentReady && section === "characters" && <CharactersEditor adminKey={adminKey} />}
               {contentReady && section === "news" && <NewsEditor adminKey={adminKey} />}

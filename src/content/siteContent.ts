@@ -49,6 +49,7 @@ export type Contacts = {
   vk: string;
   telegram: string;
   planeta: string;
+  menu?: MenuItem[];
 };
 
 export type Media = {
@@ -73,6 +74,20 @@ export type ContentData = {
   contacts?: Contacts;
   media?: Media;
 };
+
+export type MenuItem = { id: string; label: string; href: string; style?: "auto" | "support" | "partner" };
+
+export const DEFAULT_MENU: MenuItem[] = [
+  { id: "support", label: "Поддержать проект", href: "planeta", style: "support" },
+  { id: "shop", label: "🛒 Магазин", href: "/shop" },
+  { id: "contests", label: "Конкурсы", href: "/contests" },
+  { id: "about", label: "О проекте", href: "/#about" },
+  { id: "characters", label: "Персонажи", href: "/#characters" },
+  { id: "map", label: "Карта", href: "/map" },
+  { id: "gallery", label: "Галерея", href: "/gallery" },
+  { id: "news", label: "Новости", href: "/#news" },
+  { id: "partner", label: "💛 Стать партнёром ✨", href: "/sponsors", style: "partner" },
+];
 
 export const TEXT_FIELDS: { group: string; key: string; label: string; def: string; multiline?: boolean }[] = [
   { group: "Главный экран", key: "hero_title", label: "Заголовок", def: "Туапсеноты — новая душа Черноморского побережья" },
@@ -281,4 +296,9 @@ export function useContacts(): Contacts {
 
 export function useMedia(): Media {
   return { ...DEFAULT_MEDIA, ...(useContent().media ?? {}) };
+}
+
+export function useMenu(): MenuItem[] {
+  const m = useContent().contacts?.menu;
+  return Array.isArray(m) ? m : DEFAULT_MENU;
 }

@@ -1,14 +1,5 @@
 import Icon from "@/components/ui/icon";
-import { useContacts } from "@/content/siteContent";
-
-const LINKS: [string, string][] = [
-  ["Конкурсы", "/contests"],
-  ["О проекте", "/#about"],
-  ["Персонажи", "/#characters"],
-  ["Карта", "/map"],
-  ["Галерея", "/gallery"],
-  ["Новости", "/#news"],
-];
+import { useContacts, useMenu } from "@/content/siteContent";
 
 const HERO_STOPS: { p: number; c: [number, number, number] }[] = [
   { p: 0, c: [46, 92, 110] },
@@ -55,34 +46,49 @@ const PARTNER_STYLE: React.CSSProperties = {
   boxShadow: "0 2px 10px rgba(64,224,208,0.4)",
 };
 
-const ITEMS: [string, string][] = [["🛒 Магазин", "/shop"], ...LINKS];
-
 export default function SiteHeader({ showCart = false }: { showCart?: boolean }) {
   const PLANETA_URL = useContacts().planeta;
+  const menu = useMenu().filter((m) => m.label.trim());
+  const resolve = (href: string) => (href.trim() === "planeta" ? PLANETA_URL : href.trim() || "/");
+  const isExternal = (href: string) => /^https?:\/\//.test(href);
+  const support = menu.filter((m) => m.style === "support");
+  const regular = menu.filter((m) => m.style !== "support");
+  const autoCount = regular.filter((m) => m.style !== "partner").length;
+  let autoIdx = -1;
+  const styled = regular.map((m) => {
+    if (m.style === "partner") return { m, style: PARTNER_STYLE };
+    autoIdx += 1;
+    return { m, style: gradientButtonStyle(autoCount > 1 ? autoIdx / (autoCount - 1) : 0) };
+  });
+  const linkProps = (href: string) => {
+    const url = resolve(href);
+    return isExternal(url) ? { href: url, target: "_blank", rel: "noopener noreferrer" } : { href: url };
+  };
 
   return (
     <header className="relative lg:fixed top-0 left-0 right-0 z-50"
       style={{ background: "rgba(253, 246, 238, 0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(184,115,51,0.15)" }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-14 lg:h-16">
-          <a href="/" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2 shrink-0">
             <span className="text-2xl">🦝</span>
             <span className="font-display text-xl font-bold" style={{ color: "var(--bronze)" }}>
               Туапсеноты
             </span>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-3">
-            <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-              className="btn-primary text-sm px-3 py-1 whitespace-nowrap">
-              <Icon name="Heart" size={16} />
-              Поддержать проект
-            </a>
-            {ITEMS.map(([label, href], i) => (
-              <a key={label} href={href}
+          <nav className="hidden lg:flex items-center gap-3 flex-wrap justify-end py-2">
+            {support.map((m) => (
+              <a key={m.id} {...linkProps(m.href)} className="btn-primary text-sm px-3 py-1 whitespace-nowrap">
+                <Icon name="Heart" size={16} />
+                {m.label}
+              </a>
+            ))}
+            {styled.map(({ m, style }) => (
+              <a key={m.id} {...linkProps(m.href)}
                 className="font-body text-sm px-3 py-1 rounded-full whitespace-nowrap transition-transform hover:scale-105"
-                style={gradientButtonStyle(i / (ITEMS.length - 1))}>
-                {label}
+                style={style}>
+                {m.label}
               </a>
             ))}
             {showCart && (
@@ -91,26 +97,22 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
                 Корзина
               </a>
             )}
-            <a href="/sponsors"
-              className="font-body text-sm px-3 py-1 rounded-full whitespace-nowrap transition-transform hover:scale-105"
-              style={PARTNER_STYLE}>
-              💛 Стать партнёром ✨
-            </a>
           </nav>
         </div>
 
         <nav className="lg:hidden pb-3 space-y-2">
-          <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-            className="btn-primary text-sm w-full justify-center py-2">
-            <Icon name="Heart" size={16} />
-            Поддержать проект
-          </a>
+          {support.map((m) => (
+            <a key={m.id} {...linkProps(m.href)} className="btn-primary text-sm w-full justify-center py-2">
+              <Icon name="Heart" size={16} />
+              {m.label}
+            </a>
+          ))}
           <div className="flex flex-wrap gap-2">
-            {ITEMS.map(([label, href], i) => (
-              <a key={label} href={href}
-                className="font-body text-sm py-1.5 px-2 rounded-full text-center whitespace-nowrap flex-grow basis-[30%]"
-                style={gradientButtonStyle(i / (ITEMS.length - 1))}>
-                {label}
+            {styled.map(({ m, style }) => (
+              <a key={m.id} {...linkProps(m.href)}
+                className={`font-body text-sm py-1.5 px-2 rounded-full text-center whitespace-nowrap flex-grow ${m.style === "partner" ? "basis-[45%]" : "basis-[30%]"}`}
+                style={style}>
+                {m.label}
               </a>
             ))}
             {showCart && (
@@ -120,11 +122,6 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
                 Корзина
               </a>
             )}
-            <a href="/sponsors"
-              className="font-body text-sm py-1.5 px-2 rounded-full text-center whitespace-nowrap flex-grow basis-[45%]"
-              style={PARTNER_STYLE}>
-              💛 Стать партнёром ✨
-            </a>
           </div>
         </nav>
       </div>
