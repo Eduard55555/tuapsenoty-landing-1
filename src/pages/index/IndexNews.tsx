@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import ARHologram from "@/components/ARHologram";
-import { normalizeMapUrl, useCharacters, useMedia, useNews, useTexts } from "@/content/siteContent";
+import { normalizeMapUrl, useCharacters, useButtons, useMedia, useNews, useTexts } from "@/content/siteContent";
 
 
 function PhotoCollage({ photos, alt, cols = 2, ratio = "aspect-square" }: { photos: string[]; alt: string; cols?: number; ratio?: string }) {
@@ -27,6 +27,7 @@ export default function IndexNews() {
   const news = useNews();
   const t = useTexts();
   const media = useMedia();
+  const btn = useButtons();
   const enotych = characters.find((c) => c.slug === "enotych");
   const enofya = characters.find((c) => c.slug === "enofya");
   const enira = characters.find((c) => c.slug === "enira");
@@ -70,19 +71,19 @@ export default function IndexNews() {
                   {t("news_enotych_text")}
                 </p>
                 <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <a href="https://web.max.ru/-72521511416496" target="_blank" rel="noopener noreferrer"
+                  {!btn("news_enotych_max").hidden && <a {...btn("news_enotych_max").attrs}
                     className="btn-primary inline-flex text-sm py-2.5 px-5">
-                    Читать в MAX
+                    {btn("news_enotych_max").label}
                     <Icon name="ArrowRight" size={16} />
-                  </a>
-                  <button
+                  </a>}
+                  {!btn("news_enotych_ar").hidden && <button
                     type="button"
                     onClick={() => setArOpen(true)}
                     className="btn-primary inline-flex text-sm py-2.5 px-5"
                     style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
                     <Icon name="Sparkles" size={16} />
-                    Оживить Енотыча
-                  </button>
+                    {btn("news_enotych_ar").label}
+                  </button>}
                 </div>
                 {media.news_enotych_map && (
                   <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
@@ -122,14 +123,14 @@ export default function IndexNews() {
                   {t("news_enira_text")}
                 </p>
                 <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <button
+                  {!btn("news_enira_ar").hidden && <button
                     type="button"
                     onClick={() => setArEniraOpen(true)}
                     className="btn-primary inline-flex text-sm py-2.5 px-5"
                     style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
                     <Icon name="Sparkles" size={16} />
-                    Оживить Ениру с Тыдочкой
-                  </button>
+                    {btn("news_enira_ar").label}
+                  </button>}
                 </div>
                 {media.news_enira_map && (
                   <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(184,115,51,0.2)" }}>
@@ -165,14 +166,14 @@ export default function IndexNews() {
                 {t("news_enofya_text")}
               </p>
               <div className="flex flex-wrap items-center gap-3">
-                <button
+                {!btn("news_enofya_ar").hidden && <button
                   type="button"
                   onClick={() => setArEnofyaOpen(true)}
                   className="btn-primary inline-flex text-sm py-2.5 px-5"
                   style={{ background: "linear-gradient(135deg, var(--sea), var(--teal))" }}>
                   <Icon name="Sparkles" size={16} />
-                  Оживить Енофью
-                </button>
+                  {btn("news_enofya_ar").label}
+                </button>}
               </div>
             </div>
           </div>

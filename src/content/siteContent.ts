@@ -50,6 +50,9 @@ export type Contacts = {
   telegram: string;
   planeta: string;
   menu?: MenuItem[];
+  heroButtons?: LinkButton[];
+  footerLinks?: LinkButton[];
+  buttons?: Record<string, ButtonOverride>;
 };
 
 export type Media = {
@@ -76,6 +79,43 @@ export type ContentData = {
 };
 
 export type MenuItem = { id: string; label: string; href: string; style?: "auto" | "support" | "partner" };
+
+export type LinkButton = { id: string; label: string; href: string; style?: string; icon?: string };
+export type ButtonOverride = { label?: string; href?: string; hidden?: boolean };
+
+export const DEFAULT_HERO_BUTTONS: LinkButton[] = [
+  { id: "shop", label: "Перейти в магазин", href: "/shop", style: "bronze", icon: "ShoppingCart" },
+  { id: "legend", label: "Стать частью легенды", href: "planeta", style: "teal", icon: "Heart" },
+];
+
+export const DEFAULT_FOOTER_LINKS: LinkButton[] = [
+  { id: "max", label: "MAX", href: "max", icon: "MessageCircle" },
+  { id: "vk", label: "ВКонтакте", href: "vk", icon: "Users" },
+  { id: "tg", label: "Телеграм", href: "telegram", icon: "Send" },
+  { id: "planeta", label: "Страница на Planeta.ru", href: "planeta", icon: "ExternalLink" },
+  { id: "delivery", label: "Доставка и оплата", href: "/delivery", icon: "Truck" },
+  { id: "partner", label: "💛 Стать партнёром ✨", href: "/sponsors", style: "partner" },
+  { id: "support", label: "Поддержать проект", href: "planeta", style: "support", icon: "Heart" },
+];
+
+export type FixedButton = { key: string; group: string; place: string; label: string; href?: string };
+
+export const FIXED_BUTTONS: FixedButton[] = [
+  { key: "social_tg", group: "Соцсети (главный экран и блок «Мы в соцсетях»)", place: "Кнопка Telegram", label: "Telegram", href: "telegram" },
+  { key: "social_vk", group: "Соцсети (главный экран и блок «Мы в соцсетях»)", place: "Кнопка ВКонтакте", label: "ВКонтакте", href: "vk" },
+  { key: "social_max", group: "Соцсети (главный экран и блок «Мы в соцсетях»)", place: "Кнопка MAX", label: "MAX", href: "max" },
+  { key: "home_shop_buy", group: "Главная — блок магазина", place: "Кнопка на карточке товара", label: "В корзину" },
+  { key: "home_shop_all", group: "Главная — блок магазина", place: "Кнопка под товарами", label: "Смотреть все сувениры", href: "/shop" },
+  { key: "news_enotych_max", group: "Главная — новости", place: "Новость о Енотыче — ссылка", label: "Читать в MAX", href: "https://web.max.ru/-72521511416496" },
+  { key: "news_enotych_ar", group: "Главная — новости", place: "Новость о Енотыче — оживление", label: "Оживить Енотыча" },
+  { key: "news_enira_ar", group: "Главная — новости", place: "Новость о Енире — оживление", label: "Оживить Ениру с Тыдочкой" },
+  { key: "news_enofya_ar", group: "Главная — новости", place: "Новость о Енофье — оживление", label: "Оживить Енофью" },
+  { key: "char_more", group: "Главная — карточки енотов", place: "Кнопка «подробнее» (ведёт на страницу енота)", label: "Подробнее" },
+  { key: "char_shop", group: "Главная — карточки енотов", place: "Вторая кнопка", label: "Магазин", href: "/shop" },
+  { key: "subscribe", group: "Главная — подписка и сбор", place: "Кнопка подписки", label: "Подписаться" },
+  { key: "help_planeta", group: "Главная — подписка и сбор", place: "Кнопка в блоке «Станьте хранителем»", label: "Перейти к сбору на Planeta.ru", href: "planeta" },
+  { key: "shop_buy", group: "Страница магазина", place: "Кнопка на карточке товара", label: "В корзину" },
+];
 
 export const DEFAULT_MENU: MenuItem[] = [
   { id: "support", label: "Поддержать проект", href: "planeta", style: "support" },
@@ -301,4 +341,39 @@ export function useMedia(): Media {
 export function useMenu(): MenuItem[] {
   const m = useContent().contacts?.menu;
   return Array.isArray(m) ? m : DEFAULT_MENU;
+}
+
+export function useHeroButtons(): LinkButton[] {
+  const m = useContent().contacts?.heroButtons;
+  return Array.isArray(m) ? m : DEFAULT_HERO_BUTTONS;
+}
+
+export function useFooterLinks(): LinkButton[] {
+  const m = useContent().contacts?.footerLinks;
+  return Array.isArray(m) ? m : DEFAULT_FOOTER_LINKS;
+}
+
+export function useResolveHref() {
+  const c = useContacts();
+  const map: Record<string, string> = { planeta: c.planeta, max: c.max, vk: c.vk, telegram: c.telegram };
+  return (href: string) => {
+    const h = (href || "").trim();
+    return map[h] ?? (h || "/");
+  };
+}
+
+export function linkAttrs(url: string) {
+  return /^https?:\/\//.test(url) ? { href: url, target: "_blank", rel: "noopener noreferrer" } : { href: url };
+}
+
+export function useButtons() {
+  const overrides = useContent().contacts?.buttons ?? {};
+  const resolve = useResolveHref();
+  return (key: string) => {
+    const def = FIXED_BUTTONS.find((b) => b.key === key);
+    const o = overrides[key] ?? {};
+    const label = o.label?.trim() || def?.label || "";
+    const href = resolve(o.href?.trim() || def?.href || "/");
+    return { label, href, hidden: !!o.hidden, attrs: linkAttrs(href) };
+  };
 }

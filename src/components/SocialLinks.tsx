@@ -1,5 +1,5 @@
 import Icon from "@/components/ui/icon";
-import { useContacts } from "@/content/siteContent";
+import { useButtons } from "@/content/siteContent";
 
 export const MAX_URL = "https://max.ru/channel_tuapsenoty";
 export const VK_URL = "https://vk.ru/club237171594";
@@ -12,12 +12,9 @@ export const SOCIAL_LINKS = [
 ];
 
 export default function SocialLinks() {
-  const c = useContacts();
-  const links = [
-    { ...SOCIAL_LINKS[0], url: c.telegram },
-    { ...SOCIAL_LINKS[1], url: c.vk },
-    { ...SOCIAL_LINKS[2], url: c.max },
-  ].filter((l) => l.url);
+  const btn = useButtons();
+  const keys = ["social_tg", "social_vk", "social_max"];
+  const links = SOCIAL_LINKS.map((l, i) => ({ ...l, ...btn(keys[i]) })).filter((l) => !l.hidden && l.href);
   return (
     <section className="py-14 px-4 sm:px-6" style={{ backgroundColor: "var(--sand)" }}>
       <div className="max-w-3xl mx-auto text-center">
@@ -31,9 +28,7 @@ export default function SocialLinks() {
           {links.map((l) => (
             <a
               key={l.label}
-              href={l.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...l.attrs}
               className="inline-flex items-center gap-2 rounded-full px-5 py-3 font-body font-bold text-sm sm:text-base text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
               style={{ backgroundColor: l.color }}
             >

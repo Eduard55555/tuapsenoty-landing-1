@@ -1,12 +1,13 @@
 import Icon from "@/components/ui/icon";
 import { buildCartUrl } from "@/data/products";
-import { useProducts, useTexts } from "@/content/siteContent";
+import { useButtons, useProducts, useTexts } from "@/content/siteContent";
 import ShareButtons from "@/components/ShareButtons";
 
 
 export default function IndexShop() {
   const FEATURED = useProducts().slice(0, 3);
   const t = useTexts();
+  const btn = useButtons();
   return (
     <section id="shop" className="cv-auto py-10 sm:py-16 px-4 sm:px-6"
       style={{ background: "linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%)" }}>
@@ -52,7 +53,7 @@ export default function IndexShop() {
                     className="cta-buy w-full flex items-center justify-center gap-2.5 rounded-full font-display font-extrabold text-base sm:text-xl px-4 py-3.5 sm:px-5 sm:py-5 transition-transform active:scale-95"
                     style={{ background: "linear-gradient(135deg, #FF9330, #F2540B)", color: "white", letterSpacing: "0.01em", boxShadow: "0 12px 28px rgba(242,84,11,0.45)" }}>
                     <Icon name="ShoppingCart" size={24} />
-                    В корзину
+                    {btn("home_shop_buy").label}
                   </a>
                   <div className="flex justify-center mt-3 pt-3" style={{ borderTop: "1px solid rgba(184,115,51,0.15)" }}>
                     <ShareButtons />
@@ -64,12 +65,12 @@ export default function IndexShop() {
         </div>
 
         <div className="text-center mt-7 sm:mt-10">
-          <a href="/shop"
+          {!btn("home_shop_all").hidden && <a {...btn("home_shop_all").attrs}
             className="inline-flex items-center gap-2 rounded-full font-display font-bold text-sm sm:text-base px-6 py-3.5 sm:px-8 sm:py-4 transition-transform active:scale-95"
             style={{ backgroundColor: "var(--sea)", color: "white", boxShadow: "0 8px 24px rgba(46,92,110,0.3)" }}>
-            Смотреть все сувениры
+            {btn("home_shop_all").label}
             <Icon name="ArrowRight" size={20} />
-          </a>
+          </a>}
         </div>
       </div>
     </section>

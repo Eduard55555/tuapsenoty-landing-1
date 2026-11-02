@@ -24,7 +24,7 @@ type Section = "orders" | "photos" | "menu" | "texts" | "characters" | "news" | 
 const SECTIONS: { id: Section; title: string; icon: string }[] = [
   { id: "orders", title: "Заказы", icon: "ShoppingBag" },
   { id: "photos", title: "Фото", icon: "Images" },
-  { id: "menu", title: "Меню", icon: "LayoutGrid" },
+  { id: "menu", title: "Кнопки", icon: "LayoutGrid" },
   { id: "texts", title: "Тексты", icon: "Type" },
   { id: "characters", title: "Еноты", icon: "PawPrint" },
   { id: "news", title: "Новости", icon: "Newspaper" },

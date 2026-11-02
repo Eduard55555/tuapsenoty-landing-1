@@ -11,11 +11,12 @@ import ReviewsSection from "@/components/ReviewsSection";
 import useSeo from "@/hooks/useSeo";
 import JsonLd from "@/components/JsonLd";
 import { buildCartUrl, type Product } from "@/data/products";
-import { useContacts, useProducts } from "@/content/siteContent";
+import { useButtons, useContacts, useProducts } from "@/content/siteContent";
 
 
 export default function Shop() {
   const PRODUCTS = useProducts();
+  const btn = useButtons();
   const PLANETA_URL = useContacts().planeta;
   useSeo({
     title: "Магазин Туапсеноты — фигурки и сувениры бронзовых енотов",
@@ -189,7 +190,7 @@ export default function Shop() {
                   {added === p.id ? (
                     <><Icon name="Check" size={24} /> Добавлено</>
                   ) : (
-                    <><Icon name="ShoppingCart" size={24} /> В корзину</>
+                    <><Icon name="ShoppingCart" size={24} /> {btn("shop_buy").label}</>
                   )}
                 </button>
                 <PhoneLink

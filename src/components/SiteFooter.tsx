@@ -1,12 +1,13 @@
 import Icon from "@/components/ui/icon";
 import PhoneLink from "@/components/PhoneLink";
 
-import { useContacts, useTexts } from "@/content/siteContent";
+import { linkAttrs, useContacts, useFooterLinks, useResolveHref, useTexts } from "@/content/siteContent";
 
 export default function SiteFooter() {
   const c = useContacts();
   const t = useTexts();
-  const { max: MAX_URL, vk: VK_URL, telegram: TELEGRAM_URL, planeta: PLANETA_URL } = c;
+  const links = useFooterLinks().filter((l) => l.label.trim());
+  const resolve = useResolveHref();
   return (
     <footer className="py-12 px-4 sm:px-6" style={{ backgroundColor: "var(--warm-dark)" }}>
       <div className="max-w-6xl mx-auto">
@@ -59,48 +60,32 @@ export default function SiteFooter() {
               Ссылки
             </h4>
             <div className="space-y-2">
-              <a href={MAX_URL} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 font-body text-sm hover:underline"
-                style={{ color: "rgba(245,230,211,0.8)" }}>
-                <Icon name="MessageCircle" size={14} />
-                MAX
-              </a>
-              <a href={VK_URL} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 font-body text-sm hover:underline"
-                style={{ color: "rgba(245,230,211,0.8)" }}>
-                <Icon name="Users" size={14} />
-                ВКонтакте
-              </a>
-              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 font-body text-sm hover:underline"
-                style={{ color: "rgba(245,230,211,0.8)" }}>
-                <Icon name="Send" size={14} />
-                Телеграм
-              </a>
-              <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 font-body text-sm hover:underline"
-                style={{ color: "rgba(245,230,211,0.8)" }}>
-                <Icon name="ExternalLink" size={14} />
-                Страница на Planeta.ru
-              </a>
-              <a href="/delivery"
-                className="flex items-center gap-2 font-body text-sm hover:underline"
-                style={{ color: "rgba(245,230,211,0.8)" }}>
-                <Icon name="Truck" size={14} />
-                Доставка и оплата
-              </a>
-              <a href="/sponsors"
-                className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
-                style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
-                💛 Стать партнёром ✨
-              </a>
+              {links.filter((l) => l.style !== "support").map((l) => {
+                const attrs = linkAttrs(resolve(l.href));
+                return l.style === "partner" ? (
+                  <a key={l.id} {...attrs}
+                    className="font-body text-sm px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap transition-transform hover:scale-105"
+                    style={{ color: "var(--warm-dark)", fontWeight: 800, background: "linear-gradient(135deg, var(--teal-light), var(--teal))", letterSpacing: "0.02em", boxShadow: "0 2px 10px rgba(64,224,208,0.4)" }}>
+                    {l.label}
+                  </a>
+                ) : (
+                  <a key={l.id} {...attrs}
+                    className="flex items-center gap-2 font-body text-sm hover:underline"
+                    style={{ color: "rgba(245,230,211,0.8)" }}>
+                    {l.icon && <Icon name={l.icon} fallback="Link" size={14} />}
+                    {l.label}
+                  </a>
+                );
+              })}
             </div>
 
-            <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-              className="btn-primary text-sm mt-6 inline-flex">
-              <Icon name="Heart" size={16} />
-              Поддержать проект
-            </a>
+            {links.filter((l) => l.style === "support").map((l) => (
+              <a key={l.id} {...linkAttrs(resolve(l.href))}
+                className="btn-primary text-sm mt-6 inline-flex mr-2">
+                <Icon name={l.icon || "Heart"} fallback="Heart" size={16} />
+                {l.label}
+              </a>
+            ))}
           </div>
         </div>
 

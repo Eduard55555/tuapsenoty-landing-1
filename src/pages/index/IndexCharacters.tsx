@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
-import { useCharacters, useContacts, useTexts } from "@/content/siteContent";
+import { useButtons, useCharacters, useTexts } from "@/content/siteContent";
 import { useFinderCount, pluralPeople } from "@/hooks/useFinderCount";
 import { useCharacterCount } from "@/hooks/useCharacterCount";
 import func2url from "../../../backend/func2url.json";
@@ -8,7 +8,7 @@ import func2url from "../../../backend/func2url.json";
 export default function IndexCharacters() {
   const characters = useCharacters();
   const t = useTexts();
-  const PLANETA_URL = useContacts().planeta;
+  const btn = useButtons();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -146,17 +146,17 @@ export default function IndexCharacters() {
                     })()}
 
                     <div className="mt-auto flex flex-col items-center gap-2">
-                      <a href={`/characters/${char.slug}`}
+                      {!btn("char_more").hidden && <a href={`/characters/${char.slug}`}
                         className="w-full text-center font-body text-xs font-bold py-2 px-4 rounded-full transition-colors"
                         style={{ border: "1px solid var(--bronze)", color: "var(--bronze)" }}>
-                        Подробнее
-                      </a>
-                      <a href="/shop"
+                        {btn("char_more").label}
+                      </a>}
+                      {!btn("char_shop").hidden && <a {...btn("char_shop").attrs}
                         className="w-full flex items-center justify-center gap-1.5 font-body text-xs font-bold py-2 px-4 rounded-full transition-colors"
                         style={{ backgroundColor: "var(--bronze)", color: "white" }}>
                         <Icon name="ShoppingCart" size={14} />
-                        Магазин
-                      </a>
+                        {btn("char_shop").label}
+                      </a>}
                     </div>
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export default function IndexCharacters() {
                   />
                   <button type="submit" disabled={loading} className="btn-primary text-sm px-6 py-3">
                     <Icon name={loading ? "Loader" : "Send"} size={16} className={loading ? "animate-spin" : ""} />
-                    {loading ? "Отправляем…" : "Подписаться"}
+                    {loading ? "Отправляем…" : btn("subscribe").label}
                   </button>
                 </form>
                 {error && (
@@ -238,11 +238,11 @@ export default function IndexCharacters() {
             от команды Туапсенотов.
           </p>
 
-          <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
+          {!btn("help_planeta").hidden && <a {...btn("help_planeta").attrs}
             className="btn-primary text-base sm:text-lg px-6 py-4 sm:px-10 sm:py-5 inline-flex">
             <Icon name="ExternalLink" size={20} />
-            Перейти к сбору на Planeta.ru
-          </a>
+            {btn("help_planeta").label}
+          </a>}
         </div>
       </section>
     </>

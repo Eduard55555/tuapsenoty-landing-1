@@ -5,14 +5,23 @@ import SeagullsFlight from "@/components/SeagullsFlight";
 import { playCoin } from "@/hooks/useSound";
 import { useCharacterStats } from "@/hooks/useCharacterCount";
 import { SOCIAL_LINKS } from "@/components/SocialLinks";
-import { useContacts, useMedia, useTexts } from "@/content/siteContent";
+import { linkAttrs, useButtons, useHeroButtons, useMedia, useResolveHref, useTexts } from "@/content/siteContent";
+
+const SOCIAL_KEYS: Record<string, string> = { Telegram: "social_tg", "ВКонтакте": "social_vk", MAX: "social_max" };
+
+const HERO_STYLES: Record<string, React.CSSProperties> = {
+  bronze: { backgroundColor: "var(--bronze)" },
+  teal: { background: "linear-gradient(135deg, var(--teal), var(--sea-light))", color: "var(--warm-dark)", boxShadow: "0 4px 15px rgba(64,224,208,0.4)" },
+  sea: { background: "var(--sea)", color: "#fff", boxShadow: "0 4px 15px rgba(46,92,110,0.4)" },
+};
 
 export default function IndexHero() {
   const enira = useCharacterStats("enira");
   const t = useTexts();
   const media = useMedia();
-  const contacts = useContacts();
-  const PLANETA_URL = contacts.planeta;
+  const heroButtons = useHeroButtons().filter((b) => b.label.trim());
+  const resolve = useResolveHref();
+  const btn = useButtons();
   const heroTitle = t("hero_title");
   const dash = heroTitle.indexOf(" — ");
   return (
@@ -69,30 +78,27 @@ export default function IndexHero() {
             {t("hero_subtitle")}
           </p>
 
-          <div className="animate-fade-up-delay-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="/shop"
-              onMouseEnter={playCoin}
-              className="btn-primary text-base px-6 py-4 w-full sm:w-auto text-center"
-              style={{ backgroundColor: "var(--bronze)" }}>
-              <Icon name="ShoppingCart" size={18} />
-              Перейти в магазин
-            </a>
-            <a href={PLANETA_URL} target="_blank" rel="noopener noreferrer"
-              onMouseEnter={playCoin}
-              className="btn-primary text-base px-6 py-4 w-full sm:w-auto text-center"
-              style={{ background: "linear-gradient(135deg, var(--teal), var(--sea-light))", color: "var(--warm-dark)", boxShadow: "0 4px 15px rgba(64,224,208,0.4)" }}>
-              <Icon name="Heart" size={18} />
-              Стать частью легенды
-            </a>
-          </div>
+          {heroButtons.length > 0 && (
+            <div className="animate-fade-up-delay-2 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
+              {heroButtons.map((hb) => (
+                <a key={hb.id} {...linkAttrs(resolve(hb.href))}
+                  onMouseEnter={playCoin}
+                  className="btn-primary text-base px-6 py-4 w-full sm:w-auto text-center"
+                  style={HERO_STYLES[hb.style ?? "bronze"] ?? HERO_STYLES.bronze}>
+                  {hb.icon && <Icon name={hb.icon} fallback="ArrowRight" size={18} />}
+                  {hb.label}
+                </a>
+              ))}
+            </div>
+          )}
 
           <div className="animate-fade-up-delay-2 mt-6 sm:mt-8">
             <p className="font-body text-sm sm:text-base mb-3" style={{ color: "rgba(245,230,211,0.85)" }}>
               Мы в MAX, Telegram и ВКонтакте
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              {SOCIAL_LINKS.map((s0) => ({ ...s0, url: s0.label === "MAX" ? contacts.max : s0.label === "Telegram" ? contacts.telegram : contacts.vk })).map((s) => (
-                <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer"
+              {SOCIAL_LINKS.map((s0) => ({ ...s0, ...btn(SOCIAL_KEYS[s0.label]) })).filter((s) => !s.hidden && s.href).map((s) => (
+                <a key={s.label} {...s.attrs}
                   className="inline-flex items-center gap-2 rounded-full px-4 py-2 font-body font-bold text-sm text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
                   style={{ backgroundColor: s.color }}>
                   <Icon name={s.icon} fallback="Link" size={18} />
