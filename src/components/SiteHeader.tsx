@@ -66,10 +66,10 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
   };
 
   return (
-    <header className="relative lg:fixed top-0 left-0 right-0 z-50"
+    <header className="relative xl:sticky top-0 left-0 right-0 z-50"
       style={{ background: "rgba(253, 246, 238, 0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(184,115,51,0.15)" }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-14 lg:h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-14 xl:h-16">
           <a href="/" className="flex items-center gap-2 shrink-0">
             <span className="text-2xl">🦝</span>
             <span className="font-display text-xl font-bold" style={{ color: "var(--bronze)" }}>
@@ -77,9 +77,9 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
             </span>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-3 flex-wrap justify-end py-2">
+          <nav className="hidden xl:flex items-center gap-2 flex-nowrap justify-end py-2">
             {support.map((m) => (
-              <a key={m.id} {...linkProps(m.href)} className="btn-primary text-sm px-3 py-1 whitespace-nowrap">
+              <a key={m.id} {...linkProps(m.href)} className="btn-primary !text-sm !px-3 !py-1 !gap-1.5 whitespace-nowrap">
                 <Icon name="Heart" size={16} />
                 {m.label}
               </a>
@@ -92,7 +92,7 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
               </a>
             ))}
             {showCart && (
-              <a href="/cart" className="btn-primary text-sm px-3 py-1 whitespace-nowrap">
+              <a href="/cart" className="btn-primary !text-sm !px-3 !py-1 !gap-1.5 whitespace-nowrap">
                 <Icon name="ShoppingCart" size={16} />
                 Корзина
               </a>
@@ -100,14 +100,14 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
           </nav>
         </div>
 
-        <nav className="lg:hidden pb-3 space-y-2">
+        <nav className="xl:hidden pb-3 space-y-2 max-w-3xl mx-auto">
           {support.map((m) => (
-            <a key={m.id} {...linkProps(m.href)} className="btn-primary text-sm w-full justify-center py-2">
+            <a key={m.id} {...linkProps(m.href)} className="btn-primary !text-sm w-full justify-center !py-2 !px-4">
               <Icon name="Heart" size={16} />
               {m.label}
             </a>
           ))}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 max-w-3xl mx-auto">
             {styled.map(({ m, style }) => (
               <a key={m.id} {...linkProps(m.href)}
                 className={`font-body text-sm py-1.5 px-2 rounded-full text-center whitespace-nowrap flex-grow ${m.style === "partner" ? "basis-[45%]" : "basis-[30%]"}`}
@@ -117,7 +117,7 @@ export default function SiteHeader({ showCart = false }: { showCart?: boolean })
             ))}
             {showCart && (
               <a href="/cart"
-                className="btn-primary text-sm py-1.5 px-2 justify-center whitespace-nowrap flex-grow basis-[30%]">
+                className="btn-primary !text-sm !py-1.5 !px-2 justify-center whitespace-nowrap flex-grow basis-[30%]">
                 <Icon name="ShoppingCart" size={16} />
                 Корзина
               </a>

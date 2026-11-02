@@ -67,7 +67,7 @@ export default function Shop() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden"
+    <div className="min-h-screen relative overflow-x-clip"
       style={{
         background:
           "radial-gradient(1100px 600px at 12% -8%, rgba(122,177,191,0.22), transparent 58%), radial-gradient(1000px 600px at 95% 8%, rgba(184,115,51,0.18), transparent 55%), radial-gradient(900px 700px at 50% 115%, rgba(212,160,90,0.16), transparent 60%), linear-gradient(180deg, #FDF6EE, #F5E6D3 55%, #F0DCC2)",
@@ -83,7 +83,7 @@ export default function Shop() {
       </div>
       <SiteHeader showCart />
 
-      <div className="relative z-10 pt-6 lg:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 pt-6 pb-12 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <p className="font-body text-xs sm:text-sm font-bold tracking-widest uppercase mb-2 sm:mb-3"
             style={{ color: "var(--bronze)" }}>

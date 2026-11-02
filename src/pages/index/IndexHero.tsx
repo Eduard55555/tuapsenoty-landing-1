@@ -18,7 +18,7 @@ export default function IndexHero() {
   return (
     <>
       {/* HERO */}
-      <section className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-8 lg:pt-32">
+      <section className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-12 pb-24">
         <div className="absolute inset-0 texture-overlay opacity-30" />
 
         <SeagullsFlight />
@@ -34,7 +34,7 @@ export default function IndexHero() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
           <ActiveContestBanner inline />
-          <div className="animate-float mb-4 inline-block" style={{ marginTop: "-38px" }}>
+          <div className="animate-float mb-4 inline-block">
             <img
               src={media.hero_image}
               alt="Енофья с малышом"
