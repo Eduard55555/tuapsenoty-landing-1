@@ -15,6 +15,9 @@ export default function IndexCharacters() {
   const [error, setError] = useState("");
   const foundCount = useFinderCount();
   const eniraCount = useCharacterCount("enira");
+  const enofyaCount = useCharacterCount("enofya");
+  const tuapseyCount = useCharacterCount("tuapsey");
+  const ownCounts: Record<string, number | null> = { enira: eniraCount, enofya: enofyaCount, tuapsey: tuapseyCount };
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -124,8 +127,9 @@ export default function IndexCharacters() {
                     )}
 
                     {(() => {
-                      const cardCount = char.slug === "enira" ? eniraCount : foundCount;
-                      if (cardCount === null || !char.location || char.slug === "enofya") return null;
+                      const own = char.slug in ownCounts;
+                      const cardCount = own ? ownCounts[char.slug] : char.slug === "enotych" ? foundCount : null;
+                      if (cardCount === null || (!char.location && !own)) return null;
                       return (
                         <div className="flex items-center justify-center gap-1.5 mb-4">
                           <span className="relative flex h-2 w-2">

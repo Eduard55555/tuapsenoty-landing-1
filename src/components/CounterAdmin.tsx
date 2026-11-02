@@ -5,6 +5,8 @@ import { CHARACTER_API, FINDER_API } from "@/hooks/useFinderCount";
 const ITEMS: { slug: string; title: string; finder?: boolean }[] = [
   { slug: "enotych", title: "Енотыч", finder: true },
   { slug: "enira", title: "Енира с Тыдочкой" },
+  { slug: "enofya", title: "Енофья" },
+  { slug: "tuapsey", title: "Туапсей" },
 ];
 
 type Row = { count: number | null; loading: boolean };

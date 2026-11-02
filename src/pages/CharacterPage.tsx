@@ -10,7 +10,7 @@ import { normalizeMapUrl, useCharacters } from "@/content/siteContent";
 import useSeo from "@/hooks/useSeo";
 import JsonLd from "@/components/JsonLd";
 
-const OWN_COUNTER_SLUGS: string[] = ["enira"];
+const OWN_COUNTER_SLUGS: string[] = ["enira", "enofya", "tuapsey"];
 const NO_LOCATION_LABEL_SLUGS: string[] = [];
 
 export { characters };

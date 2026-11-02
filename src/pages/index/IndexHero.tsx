@@ -17,6 +17,8 @@ const HERO_STYLES: Record<string, React.CSSProperties> = {
 
 export default function IndexHero() {
   const enira = useCharacterStats("enira");
+  const enofya = useCharacterStats("enofya");
+  const tuapsey = useCharacterStats("tuapsey");
   const t = useTexts();
   const media = useMedia();
   const heroButtons = useHeroButtons().filter((b) => b.label.trim());
@@ -58,6 +60,8 @@ export default function IndexHero() {
           <div className="flex flex-wrap items-start justify-center gap-x-4 gap-y-2">
             <FinderCounter />
             <FinderCounter label="Ениру с Тыдочкой нашли" count={enira.count} updatedAt={enira.updatedAt} />
+            <FinderCounter label="Енофью нашли" count={enofya.count} updatedAt={enofya.updatedAt} />
+            <FinderCounter label="Туапсея нашли" count={tuapsey.count} updatedAt={tuapsey.updatedAt} />
           </div>
 
           <div className="animate-fade-up">
